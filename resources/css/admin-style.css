@@ -1,0 +1,100 @@
+.acf-fields {
+  > .acf-field {
+    &.hide-group-label,
+    &.label-hidden {
+      @apply pt-0;
+      > .acf-label {
+        @apply hidden;
+      }
+    }
+    &.field-hidden {
+      @apply hidden;
+    }
+    &.bt-0 {
+      @apply !border-t-0;
+      &.acfe-field-group-layout-row {
+        > .acf-input {
+          > .acf-fields {
+            @apply !border-t-0;
+          }
+        }
+      }
+    }
+    &.br-0 {
+      @apply !border-r-0;
+    }
+    &.bb-0 {
+      @apply !border-b-0;
+    }
+    &.bl-0 {
+      @apply !border-l-0;
+    }
+    &.pad-t-0 {
+      @apply !pt-0;
+    }
+    &.pad-r-0 {
+      @apply !pr-0;
+    }
+    &.pad-b-0 {
+      @apply !pb-0;
+    }
+    &.pad-l-0 {
+      @apply !pl-0;
+    }
+  }
+  /* &.-left {
+    > .acf-field {
+      @apply before:!hidden;
+      &.label-hidden {
+        > .acf-label {
+          @apply hidden;
+        }
+        > .acf-input {
+          @apply float-none w-full;
+        }
+      }
+    }
+  } */
+  .acf-color-picker {
+    .wp-picker-container {
+      &.wp-picker-active {
+        @apply z-20;
+        .wp-picker-input-wrap {
+          @apply flex absolute border border-solid border-[#dcdcde] p-[10px] bg-white w-[235px] mt-1;
+        }
+      }
+      input[type="text"].wp-color-picker {
+        @apply !w-24;
+      }
+      .wp-picker-holder {
+        @apply absolute z-10 top-[87px];
+      }
+      .wp-color-result.button {
+        @apply !mb-0.5;
+      }
+    }
+    .wp-picker-container .iris-picker {
+      padding-bottom: 80px !important;
+      @apply mt-0;
+    }
+    .iris-border .iris-palette-container {
+      position: absolute;
+      bottom: 10px !important;
+      left: 10px !important;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+    .iris-picker .iris-palette {
+      width: 24px !important;
+      height: 24px !important;
+      margin-left: 0px !important;
+      float: none;
+    }
+  }
+}
+.frm_insert_form svg {
+  @apply inline-block;
+}

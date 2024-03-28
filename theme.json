@@ -8,24 +8,49 @@
     "color": {
       "palette": [
         {
-          "name": "Primary",
-          "slug": "primary",
-          "color": "#0EA5E9"
+          "name": "Brand Dark Blue",
+          "slug": "brand-dark-blue",
+          "color": "#020044"
         },
         {
-          "name": "Secondary",
-          "slug": "secondary",
-          "color": "#14B8A6"
+          "name": "Brand Blue",
+          "slug": "brand-blue",
+          "color": "#1068F0"
         },
         {
-          "name": "Dark",
-          "slug": "dark",
-          "color": "#1F2937"
+          "name": "Brand Teal",
+          "slug": "brand-teal",
+          "color": "#66CCCC"
         },
         {
-          "name": "Light",
-          "slug": "light",
-          "color": "#F9FAFB"
+          "name": "Brand Gray",
+          "slug": "brand-gray",
+          "color": "#708090"
+        },
+        {
+          "name": "Brand Yellow",
+          "slug": "brand-yellow",
+          "color": "#FFA500"
+        },
+        {
+          "name": "Brand Red",
+          "slug": "brand-red",
+          "color": "#F03105"
+        },
+        {
+          "name": "Brand Tomato",
+          "slug": "brand-tomato",
+          "color": "#FF6347"
+        },
+        {
+          "name": "Brand Black",
+          "slug": "brand-black",
+          "color": "#404041"
+        },
+        {
+          "name": "Brand Light Gray",
+          "slug": "brand-light-gray",
+          "color": "#F3F1EF"
         }
       ]
     },
