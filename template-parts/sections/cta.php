@@ -7,28 +7,45 @@ include get_template_directory() . '/template-parts/global/section_settings.php'
  * $section_padding_top
  * $section_padding_bottom
 */
-$section_id = 'section-cta-' . uniqid();
+$section_id = $section_id ? 'id="' . $section_id . '"' : '';
+
+$cta = get_sub_field('cta_banner') ?: []; // Group
+$background = $cta['background'] ?? '';
+$background_image = $cta['background']['background_image'] ?? '';
+$content = $cta['content'] ?? [];
+$components = $content['components'] ?? '';
+$content_bg = $content['content_bg'] ?? '';
+
+$section_class = 'section-cta-' . uniqid();
+
 ?>
-<section class="relative <?php echo $section_id ?>">
-  <div class="absolute inset-0 z-0">
-    <img class="object-cover w-full h-full object-bottom" src="<?php echo cpsv_asset('/images/banner/catbanner-02.jpg'); ?>" alt="">
-    <div class="absolute top-0 left-1/2 right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-brand-yellow to-brand-yellow/80"></div>
-  </div>
+
+<section <?php echo $section_id ?> class="<?php echo $section_class ?> section-wrapper relative" style="<?php echo $section_style ?>">
+  <?php
+  if ($background_image) {
+    get_template_part('template-parts/components/background', '', array('field' => $background));
+  }
+  ?>
+  <?php
+  if ($content_bg) {
+    echo '<div class="absolute top-0 left-1/2 right-0 bottom-0 w-1/2 h-full" style="background-color:' . $content_bg . '"></div>';
+  } else {
+    echo '<div class="absolute top-0 left-1/2 right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-brand-yellow to-brand-yellow/80"></div>';
+  }
+  ?>
   <div class="relative z-10 container max-w-screen-2xl py-8 xl:py-36">
     <div class="flex">
       <div class="w-1/2"></div>
-      <div class="w-1/2 relative">
-        <div class="relative pl-24 pt-12 text-white">
-          <div class="absolute top-0 right-0 text-white -translate-y-1/2">
-            <?php echo cpsv_svg(array('svg' => 'cpsv', 'group' => 'shapes', 'size' => false, 'class' => 'w-[128px] xl:w-[128px] h-auto')); ?>
+      <div class="w-full lg:w-1/2">
+        <div class="relative pl-24 pt-6">
+          <div class="absolute top-0 right-0 text-white -translate-y-1/2 hidden">
+            <?php echo cpsv_svg(array('svg' => 'cpsv', 'group' => 'shapes', 'size' => false, 'class' => 'w-[128px] xl:w-[128px] h-auto text-white')); ?>
           </div>
-          <h3 class="text-5xl font-semibold">Donate Now!</h3>
-          <div class="text-xl text-white mt-8">
-            Help us make a difference today by clicking ‘Donate Now’ and supporting our mission to provide a better life for cats in need.
-          </div>
-          <div class="mt-12">
-            <a href="#" class="btn bg-white rounded-full px-10 text-base text-brand-dark-blue hover:shadow-lg hover:brightness-110 transition-all duration-300">Make a donation</a>
-          </div>
+          <?php
+          if ($components) {
+            get_template_part('template-parts/components/components', '', array('field' => $components));
+          }
+          ?>
         </div>
       </div>
     </div>

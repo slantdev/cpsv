@@ -33,9 +33,11 @@ function cpsv_slugify($text)
  */
 function preint_r($array)
 {
+  echo '<div class="prose prose-sm prose-pre:text-gray-700 max-w-none">';
   echo '<pre>';
   print_r($array);
   echo '</pre>';
+  echo '</div>';
 }
 
 /**

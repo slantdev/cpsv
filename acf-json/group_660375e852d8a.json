@@ -47,24 +47,6 @@
                     "library": "all"
                 },
                 {
-                    "key": "field_6603761d995fe",
-                    "label": "Background Color",
-                    "name": "background_color",
-                    "aria-label": "",
-                    "type": "color_picker",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "25",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "enable_opacity": 0,
-                    "return_format": "string"
-                },
-                {
                     "key": "field_66037631995ff",
                     "label": "Background Position",
                     "name": "background_position",
@@ -98,6 +80,24 @@
                     "placeholder": "",
                     "allow_custom": 0,
                     "search_placeholder": ""
+                },
+                {
+                    "key": "field_6603761d995fe",
+                    "label": "Background Color",
+                    "name": "background_color",
+                    "aria-label": "",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "enable_opacity": 0,
+                    "return_format": "string"
                 },
                 {
                     "key": "field_6603766d99600",
@@ -149,7 +149,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711503466,
+    "modified": 1711908228,
     "acfe_categories": {
         "components": "Components"
     }

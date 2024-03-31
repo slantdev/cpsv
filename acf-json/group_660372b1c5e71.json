@@ -77,7 +77,7 @@
                     "min": 0,
                     "max": 0,
                     "acfe_permissions": "",
-                    "collapsed": "",
+                    "collapsed": "field_660373693553b",
                     "button_label": "Add Slide",
                     "rows_per_page": 20,
                     "sub_fields": [
@@ -366,7 +366,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711507384,
+    "modified": 1711830417,
     "acfe_categories": {
         "layout": "Layout"
     }

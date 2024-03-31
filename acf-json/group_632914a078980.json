@@ -3,6 +3,23 @@
     "title": "Component - Buttons Repeater",
     "fields": [
         {
+            "key": "field_6605cf62b99b6",
+            "label": "(Column 9\/12)",
+            "name": "",
+            "aria-label": "",
+            "type": "acfe_column",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "columns": "9\/12",
+            "endpoint": 0
+        },
+        {
             "key": "field_63299ad735788",
             "label": "Buttons",
             "name": "buttons_repeater",
@@ -12,12 +29,12 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "75",
+                "width": "",
                 "class": "",
                 "id": ""
             },
             "acfe_repeater_stylised_button": 1,
-            "layout": "block",
+            "layout": "table",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -56,28 +73,68 @@
             ]
         },
         {
-            "key": "field_63299abc35787",
-            "label": "Buttons Alignment",
-            "name": "buttons_alignment",
+            "key": "field_6605cf69b99b7",
+            "label": "(Column 3\/12)",
+            "name": "",
             "aria-label": "",
-            "type": "button_group",
+            "type": "acfe_column",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "left": "<span class=\"dashicons dashicons-editor-alignleft\"><\/span>",
-                "center": "<span class=\"dashicons dashicons-editor-aligncenter\"><\/span>",
-                "right": "<span class=\"dashicons dashicons-editor-alignright\"><\/span>"
+            "columns": "3\/12",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6605cf96b99b8",
+            "label": "Settings",
+            "name": "settings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "label-hidden fields-flex-row fields-flex-justify-end",
+                "id": ""
             },
-            "default_value": "",
-            "return_format": "value",
-            "allow_null": 1,
-            "layout": "horizontal"
+            "layout": "block",
+            "acfe_seamless_style": 1,
+            "sub_fields": [
+                {
+                    "key": "field_63299abc35787",
+                    "label": "Alignment",
+                    "name": "buttons_alignment",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "left": "<span class=\"dashicons dashicons-editor-alignleft\"><\/span>",
+                        "center": "<span class=\"dashicons dashicons-editor-aligncenter\"><\/span>",
+                        "right": "<span class=\"dashicons dashicons-editor-alignright\"><\/span>"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "layout": "horizontal"
+                }
+            ],
+            "acfe_group_modal": 0,
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         }
     ],
     "location": [
@@ -105,7 +162,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711469882,
+    "modified": 1711688056,
     "acfe_categories": {
         "components": "Components"
     }

@@ -49,7 +49,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
-                        "class": "",
+                        "class": "field-inline-flex bb-1",
                         "id": ""
                     },
                     "choices": {
@@ -61,17 +61,14 @@
                         "## Four": "## Four",
                         "one_three_fourth": "1\/4 + 3\/4",
                         "three_one_fourth": "3\/4 + 1\/4",
-                        "#Five": "#Five",
+                        "## Five": "## Five",
                         "two_three_five": "2\/5 + 3\/5",
                         "three_two_five": "3\/5 + 2\/5"
                     },
                     "default_value": false,
                     "return_format": "value",
                     "multiple": 0,
-                    "acfe_settings": "",
-                    "acfe_validate": "",
                     "allow_null": 0,
-                    "acfe_permissions": "",
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
@@ -287,11 +284,10 @@
     "acfe_autosync": [
         "json"
     ],
-    "acfe_permissions": "",
-    "acfe_form": 1,
+    "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711559621,
+    "modified": 1711609674,
     "acfe_categories": {
         "layout": "Layout"
     }

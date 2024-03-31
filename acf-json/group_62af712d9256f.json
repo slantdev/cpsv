@@ -1,9 +1,9 @@
 {
-    "key": "group_62af6b15dc7c2",
-    "title": "Component - Button",
+    "key": "group_62af712d9256f",
+    "title": "Component - Image",
     "fields": [
         {
-            "key": "field_6606491761d12",
+            "key": "field_6606547c9bf5f",
             "label": "(Column 9\/12)",
             "name": "",
             "aria-label": "",
@@ -20,23 +20,34 @@
             "endpoint": 0
         },
         {
-            "key": "field_63299cb7a86ba",
-            "label": "Button Link",
-            "name": "button_link",
+            "key": "field_63292ded0de56",
+            "label": "Image",
+            "name": "image_source",
             "aria-label": "",
-            "type": "link",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "85",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "return_format": "array"
+            "uploader": "",
+            "return_format": "array",
+            "acfe_thumbnail": 0,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium",
+            "library": "all"
         },
         {
-            "key": "field_6606492161d13",
+            "key": "field_660654869bf60",
             "label": "(Column 3\/12)",
             "name": "",
             "aria-label": "",
@@ -53,7 +64,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_660642d2b5753",
+            "key": "field_660651e00182f",
             "label": "Settings",
             "name": "settings",
             "aria-label": "",
@@ -62,15 +73,15 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "15",
-                "class": "label-hidden",
+                "width": "",
+                "class": "label-hidden fields-flex-row fields-flex-justify-end",
                 "id": ""
             },
             "layout": "block",
             "acfe_seamless_style": 1,
             "sub_fields": [
                 {
-                    "key": "field_66064330b5754",
+                    "key": "field_6606520001830",
                     "label": "Settings",
                     "name": "more_settings",
                     "aria-label": "",
@@ -80,7 +91,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
-                        "class": "field-modal bl-0 label-hidden pad-2",
+                        "class": "field-modal bl-0",
                         "id": ""
                     },
                     "layout": "block",
@@ -90,65 +101,29 @@
                     "acfe_group_modal_size": "small",
                     "sub_fields": [
                         {
-                            "key": "field_641de13c18505",
-                            "label": "Style",
-                            "name": "button_style",
+                            "key": "field_6606521a01831",
+                            "label": "Aspect Ratio",
+                            "name": "aspect_ratio",
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
                             "choices": {
-                                "##Filled": "##Filled",
-                                "dark-blue": "Dark Blue Filled",
-                                "blue": "Blue Filled",
-                                "yellow": "Yellow Filled",
-                                "tomato": "Tomato Filled",
-                                "white": "White Filled",
-                                "##Outline": "##Outline",
-                                "dark-blue-outline": "Dark Blue Outline",
-                                "blue-outline": "Blue Outline",
-                                "yellow-outline": "Yellow Outline",
-                                "tomato-outline": "Tomato Outline",
-                                "white-outline": "White Outline",
-                                "##Custom": "##Custom",
-                                "custom": "Custom"
-                            },
-                            "default_value": false,
-                            "return_format": "value",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "ui": 0,
-                            "ajax": 0,
-                            "placeholder": "",
-                            "allow_custom": 0,
-                            "search_placeholder": ""
-                        },
-                        {
-                            "key": "field_63299d01a86bc",
-                            "label": "Size",
-                            "name": "button_size",
-                            "aria-label": "",
-                            "type": "select",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
+                                "## Default": "## Default",
                                 "default": "Default",
-                                "xs": "XS",
-                                "sm": "SM",
-                                "md": "MD",
-                                "lg": "LG"
+                                "1_1": "1:1",
+                                "## Potrait": "## Potrait",
+                                "3_2": "3:2",
+                                "5_4": "5:4",
+                                "## Landscape": "## Landscape",
+                                "16_9": "16:9",
+                                "4_3": "4:3"
                             },
                             "default_value": "default",
                             "return_format": "value",
@@ -161,82 +136,72 @@
                             "search_placeholder": ""
                         },
                         {
-                            "key": "field_63299ccfa86bb",
-                            "label": "BG Color",
-                            "name": "button_bg_color",
+                            "key": "field_63292e060de57",
+                            "label": "Rounded Corners",
+                            "name": "image_corners",
                             "aria-label": "",
-                            "type": "color_picker",
+                            "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_641de13c18505",
-                                        "operator": "==",
-                                        "value": "custom"
-                                    }
-                                ]
-                            ],
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#020044",
-                            "enable_opacity": 0,
-                            "return_format": "string"
+                            "choices": {
+                                "default": "Default",
+                                "rounded-none": "None",
+                                "rounded-md": "MD",
+                                "rounded-lg": "LG",
+                                "rounded-xl": "XL",
+                                "rounded-2xl": "2XL",
+                                "rounded-full": "Full"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_custom": 0,
+                            "search_placeholder": ""
                         },
                         {
-                            "key": "field_641de27218507",
-                            "label": "Border Color",
-                            "name": "button_border_color",
+                            "key": "field_63292e210de58",
+                            "label": "Max Width",
+                            "name": "image_max_width",
                             "aria-label": "",
-                            "type": "color_picker",
+                            "type": "select",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_641de13c18505",
-                                        "operator": "==",
-                                        "value": "custom"
-                                    }
-                                ]
-                            ],
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#020044",
-                            "enable_opacity": 1,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_632a9b7a6cc72",
-                            "label": "Text Color",
-                            "name": "button_text_color",
-                            "aria-label": "",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_641de13c18505",
-                                        "operator": "==",
-                                        "value": "custom"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "33.33",
-                                "class": "",
-                                "id": ""
+                            "choices": {
+                                "default": "Default",
+                                "none": "None",
+                                "xs": "XS",
+                                "sm": "SM",
+                                "md": "MD",
+                                "lg": "LG",
+                                "xl": "XL",
+                                "2xl": "2XL",
+                                "full": "Full"
                             },
-                            "default_value": "#ffffff",
-                            "enable_opacity": 0,
-                            "return_format": "string"
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_custom": 0,
+                            "search_placeholder": ""
                         }
                     ],
                     "acfe_seamless_style": 0
@@ -273,7 +238,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711889434,
+    "modified": 1711691447,
     "acfe_categories": {
         "components": "Components"
     }

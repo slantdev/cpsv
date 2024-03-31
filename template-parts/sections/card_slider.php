@@ -9,72 +9,33 @@ include get_template_directory() . '/template-parts/global/section_settings.php'
 */
 
 $section_id = $section_id ? 'id="' . $section_id . '"' : '';
-
-$card_slider = get_sub_field('card_slider');
-$headline = isset($card_slider['headline']) ? $card_slider['headline'] : '';
-$headline_color = isset($card_slider['headline_color']) ? $card_slider['headline_color'] : '';
-$headline_style = '';
-if ($headline_color) {
-  $headline_style .= 'color:' . $headline_color . ';';
-}
-$description = isset($card_slider['description']) ? $card_slider['description'] : '';
-$description_color = isset($card_slider['description_color']) ? $card_slider['description_color'] : '';
-$description_style = '';
-if ($description_color) {
-  $description_style .= 'color:' . $description_color . ';';
-}
-
-$card_slides = isset($card_slider['card_slider']) ? $card_slider['card_slider'] : '';
-
-//preint_r($card_slides);
-
-$section_card_id = 'section-cards-' . uniqid();
-
-function card_slide($args)
-{
-  //preint_r($args);
-  $title = isset($args['title']) ? $args['title'] : '';
-  $text = isset($args['text']) ? $args['text'] : '';
-  $image = isset($args['image']) ? $args['image'] : '';
-  $link = isset($args['link']) ? $args['link'] : '#';
-
-  echo '<a href="' . $link . '" class="group block bg-slate-100 rounded-xl overflow-clip transition-all duration-300">';
-  echo '<div class="aspect-w-4 aspect-h-5">';
-  //echo '<div class="relative">';
-  echo '<img src="' . $image . '" class="object-cover h-full w-full" />';
-  echo '<div class="absolute inset-0 bg-gradient-to-t from-black bg-blend-multiply flex flex-col justify-end">';
-  echo '<div class="p-4 xl:p-8 text-white">';
-  echo '<h4 class="text-[34px] font-medium">' . $title . '</h4>';
-  echo '<div class="mt-2 text-base font-medium">' . $text . '</div>';
-  echo '</div>';
-  echo '</div>';
-  echo '<div class="absolute inset-0 bg-transparent rounded-xl transition-all duration-300 group-hover:shadow-[0_0px_0px_16px_rgba(0,0,0,0.24)_inset]"></div>';
-  //echo '</div>';
-  echo '</div>';
-  echo '</a>';
-}
+$card_slider = get_sub_field('card_slider') ?: [];
+$heading_text = $card_slider['heading']['heading_text'] ?? '';
+$text_area = $card_slider['text_area']['text_area'] ?? '';
+$card_slides = $card_slider['card_slider'] ?? '';
+$section_card_class = 'section-cards-' . uniqid();
 
 ?>
-
-<section <?php echo $section_id ?> class="relative <?php echo $section_card_id ?>" style="<?php echo $section_style ?>">
-  <?php if ($top_separator) : ?>
-    <div class="absolute h-12 w-px top-0 left-1/2 border-l border-solid border-slate-300" style="<?php echo $top_separator_style ?>"></div>
-  <?php endif; ?>
-  <div class="relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
+<section <?php echo $section_id ?> class="<?php echo $section_card_class ?> relative section-wrapper" style="<?php echo $section_style ?>">
+  <?php get_template_part('template-parts/global/separator', '', array('location' => 'top', 'active' => $top_separator, 'color' => $top_separator_color, 'class' => '')); ?>
+  <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
+    <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
     <div class="intro-container relative container mx-auto max-w-screen-2xl">
       <div class="detect-position h-0 w-0 invisible"></div>
-      <?php if ($headline) : ?>
-        <div>
-          <h3 class="mb-4 text-brand-dark-blue font-semibold text-5xl -tracking-[0.0125em] leading-tight" style="<?php echo $headline_style ?>"><?php echo $headline ?></h3>
-        </div>
-      <?php endif ?>
-      <?php if ($description) : ?>
-        <div class="w-full xl:w-2/3">
-          <div class="prose max-w-none xl:prose-lg mr-auto text-left font-medium" style="<?php echo $description_style ?>">
-            <?php echo $description ?>
-          </div>
-        </div>
-      <?php endif ?>
+      <?php
+      if ($heading_text) {
+        echo '<div class="mb-4">';
+        get_template_part('template-parts/components/heading', '', array('field' => $card_slider, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+        echo '</div>';
+      }
+      ?>
+      <?php
+      if ($text_area) {
+        echo '<div class="w-full xl:w-2/3">';
+        get_template_part('template-parts/components/textarea', '', array('field' => $card_slider, 'align' => 'text-left', 'weight' => 'font-medium'));
+        echo '</div>';
+      }
+      ?>
     </div>
     <div class="swiper-container relative mt-8 mb-8 xl:mt-16 xl:mb-12">
       <?php
@@ -115,21 +76,21 @@ function card_slide($args)
         <div class="swiper-wrapper">
           <?php foreach ($card_slides as $card) : ?>
             <?php
-            $title = isset($card['title']) ? $card['title'] : '';
-            $text = isset($card['text']) ? $card['text'] : '';
-            $background_image = isset($card['background_image']['url']) ? $card['background_image']['url'] : '';
-            $link = isset($card['link']) ? $card['link'] : '#';
+            $title = $card['title'] ?? '';
+            $text = $card['text'] ?? '';
+            $background_image = $card['background_image']['url'] ?? '';
+            $link = $card['link']['url'] ?? '#';
             ?>
             <div class="swiper-slide max-w-[418px]">
               <a href="<?php echo $link ?>" class="group block bg-slate-100 rounded-xl overflow-clip transition-all duration-300">
                 <div class="aspect-w-4 aspect-h-5">
-                  <img src="<?php echo $background_image ?>" class="object-cover h-full w-full" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black bg-blend-multiply flex flex-col justify-end">
+                  <img src="<?php echo $background_image ?>" class="object-cover h-full w-full transition-all duration-500 group-hover:scale-105" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black from-0% to-transparent to-100% bg-blend-multiply flex flex-col justify-end">
                     <div class="p-4 xl:p-8 text-white">
                       <h4 class="text-[34px] font-medium"><?php echo $title ?></h4>
                       <div class="mt-2 text-base font-medium"><?php echo $text ?></div>
                     </div>
-                    <div class="absolute inset-0 bg-transparent rounded-xl transition-all duration-300 group-hover:shadow-[0_0px_0px_16px_rgba(0,0,0,0.24)_inset]"></div>';
+                    <div class="absolute inset-0 bg-transparent rounded-xl transition-all duration-300 group-hover:shadow-[0_0px_0px_16px_rgba(0,0,0,0.24)_inset]"></div>
                   </div>
                 </div>
               </a>
@@ -160,39 +121,38 @@ function card_slide($args)
         </div>
       </div>
     </div>
-  </div>
-  <script type="text/javascript">
-    jQuery(function($) {
-      let xPos = $(".<?php echo $section_card_id ?> .detect-position").offset().left;
-      $(".<?php echo $section_card_id ?> .swiper-container").css("padding-left", xPos);
-      new Swiper('.<?php echo $section_card_id ?> .swiper', {
-        slidesPerView: 'auto',
-        spaceBetween: 32,
-        loop: false,
-        watchOverflow: true,
-        //centerInsufficientSlides: true,
-        scrollbar: {
-          el: ".<?php echo $section_card_id ?> .swiper-scrollbar",
-          hide: false,
-        },
-        navigation: {
-          nextEl: '.<?php echo $section_card_id ?> .swiper-btn-next',
-          prevEl: '.<?php echo $section_card_id ?> .swiper-btn-prev',
-        },
-        breakpoints: {
-          768: {
-            slidesPerView: 'auto',
-            spaceBetween: 24
+    <script type="text/javascript">
+      jQuery(function($) {
+        let xPos = $(".<?php echo $section_card_class ?> .detect-position").offset().left;
+        $(".<?php echo $section_card_class ?> .swiper-container").css("padding-left", xPos);
+        new Swiper('.<?php echo $section_card_class ?> .swiper', {
+          slidesPerView: 'auto',
+          spaceBetween: 32,
+          loop: false,
+          watchOverflow: true,
+          //centerInsufficientSlides: true,
+          scrollbar: {
+            el: ".<?php echo $section_card_class ?> .swiper-scrollbar",
+            hide: false,
           },
-          1280: {
-            slidesPerView: 'auto',
-            spaceBetween: 30
+          navigation: {
+            nextEl: '.<?php echo $section_card_class ?> .swiper-btn-next',
+            prevEl: '.<?php echo $section_card_class ?> .swiper-btn-prev',
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 'auto',
+              spaceBetween: 24
+            },
+            1280: {
+              slidesPerView: 'auto',
+              spaceBetween: 30
+            }
           }
-        }
+        });
       });
-    });
-  </script>
-  <?php if ($bottom_separator) : ?>
-    <div class="absolute h-12 w-px bottom-0 left-1/2 border-l border-solid border-slate-300" style="<?php echo $bottom_separator_style ?>"></div>
-  <?php endif; ?>
+    </script>
+    <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'bottom', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
+  </div>
+  <?php get_template_part('template-parts/global/separator', '', array('location' => 'bottom', 'active' => $bottom_separator, 'color' => $bottom_separator_color, 'class' => '')); ?>
 </section>

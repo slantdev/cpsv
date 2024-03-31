@@ -1,51 +1,29 @@
 <?php
 include get_template_directory() . '/template-parts/global/section_settings.php';
-/*
- * Available section variables
- * $section_id
- * $section_style
- * $section_padding_top
- * $section_padding_bottom
-*/
 
-$section_id = $section_id ? 'id="' . $section_id . '"' : '';
+// Set section ID attribute
+$section_id_attr = $section_id ? 'id="' . $section_id . '"' : '';
 
-$hero_slider = get_sub_field('hero_slider'); // Group
-$hero_slider_repeater = isset($hero_slider['hero_slider']) ? $hero_slider['hero_slider'] : '';
-
-$stats_repeater = isset($hero_slider['stats']) ? $hero_slider['stats'] : '';
-
-//preint_r($hero_slider);
-// $headline = isset($text_center['headline']) ? $text_center['headline'] : '';
-// $headline_color = isset($text_center['headline_color']) ? $text_center['headline_color'] : '';
-// $headline_style = '';
-// if ($headline_color) {
-//   $headline_style .= 'color:' . $headline_color . ';';
-// }
-// $description = $text_center['description'];
-// $description = isset($text_center['description']) ? $text_center['description'] : '';
-
-// $components = isset($text_center['components']) ? $text_center['components'] : '';
+// Retrieve hero slider and stats repeater
+$hero_slider = get_sub_field('hero_slider') ?: [];
+$hero_slider_repeater = $hero_slider['hero_slider'] ?? '';
+$stats_repeater = $hero_slider['stats'] ?? '';
 
 ?>
-<section <?php echo $section_id ?> class="section-hero relative -mt-[136px]" style="<?php echo $section_style ?>">
+<section <?php echo $section_id_attr ?> class="section-hero relative -mt-[136px]" style="<?php echo $section_style ?>">
   <?php if ($hero_slider_repeater) : ?>
     <div class="swiper">
       <div class="swiper-wrapper">
         <?php foreach ($hero_slider_repeater as $hero) : ?>
           <?php
-          $heading = isset($hero['heading']) ? $hero['heading'] : ''; // Group
-          $heading_text = isset($heading['heading_text']) ? $heading['heading_text'] : '';
-          $heading_color = isset($heading['heading_color']) ? $heading['heading_color'] : '';
-          $background = isset($hero['background']) ? $hero['background'] : '';
-          $background_image = isset($background['background_image']) ? $background['background_image'] : '';
-          $background_color = isset($background['background_color']) ? $background['background_color'] : '';
-          $background_position = isset($background['background_position']) ? $background['background_position'] : '';
-          $background_overlay = isset($background['background_overlay']) ? $background['background_overlay'] : '';
-          $background_class = '';
-          if ($background_position) {
-            $background_class .= 'object-' . $background_position;
-          }
+          $heading = $hero['heading'] ?? [];
+          $heading_text = $heading['heading_text'] ?? '';
+          $text_area = $hero['text_area']['text_area'] ?? '';
+          $background = $hero['background'] ?? '';
+          $background_image = $background['background_image'] ?? '';
+          $background_overlay = $background['background_overlay'] ?? '';
+          $background_position = $background['background_position'] ?? '';
+          $background_class = $background_position ? 'object-' . $background_position : '';
           ?>
           <div class="swiper-slide relative">
             <?php if ($background_image) : ?>
@@ -53,18 +31,25 @@ $stats_repeater = isset($hero_slider['stats']) ? $hero_slider['stats'] : '';
                 <img class="object-cover w-full h-full <?php echo $background_class ?>" src="<?php echo $background_image['url'] ?>" alt="<?php echo $background_image['alt'] ?>">
               </div>
             <?php endif ?>
-            <div class="relative pt-44">
+            <div class="relative pt-56">
               <?php if ($background_overlay) : ?>
-                <div class="absolute inset-0 z-0" style="background-color: <?php echo $background_overlay ?>;">
-                </div>
+                <div class="absolute inset-0 z-0" style="background-color: <?php echo $background_overlay ?>;"></div>
               <?php endif ?>
               <div class="relative z-auto container max-w-screen-2xl">
                 <div class="flex xl:gap-x-20 py-16 items-end">
                   <div class="w-1/2">
-                    <h2 class="text-[64px] leading-[1.1em] text-brand-dark-blue font-semibold">75 Years of Unwavering Love</h2>
+                    <?php
+                    if ($heading_text) {
+                      get_template_part('template-parts/components/heading', '', array('field' => $hero, 'align' => 'text-left', 'size' => 'text-[64px]',  'leading' => 'leading-[1.1em]'));
+                    }
+                    ?>
                   </div>
                   <div class="w-1/2">
-                    <div class="text-[44px] leading-tight font-light text-brand-dark-blue">Ensuring every Cat finds a loving, safe & healthy home.</div>
+                    <?php
+                    if ($text_area) {
+                      get_template_part('template-parts/components/textarea', '', array('field' => $hero, 'align' => 'text-left', 'size' => 'text-[42px]',  'leading' => 'leading-tight', 'weight' => 'font-light'));
+                    }
+                    ?>
                   </div>
                 </div>
               </div>
@@ -110,26 +95,27 @@ $stats_repeater = isset($hero_slider['stats']) ? $hero_slider['stats'] : '';
   <?php if ($stats_repeater) : ?>
     <div class="absolute bottom-0 left-0 right-0 top-auto z-10 bg-brand-blue bg-opacity-80 py-16">
       <div class="container max-w-screen-3xl">
-        <div class="grid grid-cols-4 divide-x divide-white/70">
-          <?php
-          foreach ($stats_repeater as $stat) :
-            $icon = isset($stat['icon']) ? $stat['icon'] : '';
-            $number = isset($stat['number']) ? $stat['number'] : '';
-            $text = isset($stat['text']) ? $stat['text'] : '';
-          ?>
-            <div class="text-white px-12">
+        <div class="grid grid-cols-4">
+          <?php foreach ($stats_repeater as $key => $stat) : ?>
+            <?php
+            $border_class = '';
+            if ($key != '0') {
+              $border_class = 'border-t-0 border-r-0 border-b-0 border-l border-solid border-white/70';
+            }
+            ?>
+            <div class="text-white px-12 <?php echo $border_class ?>">
               <div class="flex gap-x-6 items-center mb-4">
                 <div class="flex-none">
-                  <?php if ($icon) : ?>
-                    <?php echo cpsv_icon(array('icon' => $icon, 'group' => 'content', 'size' => '96', 'class' => 'w-[5.5rem] h-[5.5rem] text-white')); ?>
+                  <?php if (!empty($stat['icon'])) : ?>
+                    <?php echo cpsv_icon(array('icon' => $stat['icon'], 'group' => 'content', 'size' => '96', 'class' => 'w-[5.5rem] h-[5.5rem] text-white')); ?>
                   <?php endif; ?>
                 </div>
-                <?php if ($icon) : ?>
-                  <div class="font-semibold text-[44px] leading-tight"><?php echo number_format($number) ?></div>
+                <?php if (!empty($stat['icon'])) : ?>
+                  <div class="font-semibold text-[44px] leading-tight"><?php echo number_format($stat['number']) ?></div>
                 <?php endif; ?>
               </div>
-              <?php if ($icon) : ?>
-                <div class="text-2xl leading-tight"><?php echo $text ?></div>
+              <?php if (!empty($stat['icon'])) : ?>
+                <div class="text-2xl leading-tight"><?php echo $stat['text'] ?></div>
               <?php endif; ?>
             </div>
           <?php endforeach ?>

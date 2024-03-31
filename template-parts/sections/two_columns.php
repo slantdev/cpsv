@@ -13,36 +13,62 @@ $section_id = $section_id ? 'id="' . $section_id . '"' : '';
 $two_columns = get_sub_field('two_columns');
 $left_column_components = isset($two_columns['left_column_components_components']) ? $two_columns['left_column_components_components'] : '';
 $right_column_components = isset($two_columns['right_column_components_components']) ? $two_columns['right_column_components_components'] : '';
-// preint_r($two_columns);
-// preint_r($left_column_components);
-// preint_r($right_column_components);
+
+$column_settings = isset($two_columns['column_settings']) ? $two_columns['column_settings'] : '';
+$col_left_class = '';
+$col_right_class = '';
+switch ($column_settings) {
+  case "half":
+    $col_left_class .= 'w-full lg:w-1/2 xl:w-1/2';
+    $col_right_class .= 'w-full lg:w-1/2 xl:w-1/2';
+    break;
+  case "one_two_third":
+    $col_left_class .= 'w-full lg:w-1/3 xl:w-1/3';
+    $col_right_class .= 'w-full lg:w-2/3 xl:w-2/3';
+    break;
+  case "two_one_third":
+    $col_left_class .= 'w-full lg:w-2/3 xl:w-2/3';
+    $col_right_class .= 'w-full lg:w-1/3 xl:w-1/3';
+    break;
+  case "one_three_fourth":
+    $col_left_class .= 'w-full lg:w-1/4 xl:w-1/4';
+    $col_right_class .= 'w-full lg:w-3/4 xl:w-3/4';
+    break;
+  case "three_one_fourth":
+    $col_left_class .= 'w-full lg:w-3/4 xl:w-3/4';
+    $col_right_class .= 'w-full lg:w-1/4 xl:w-1/4';
+    break;
+  case "two_three_five":
+    $col_left_class .= 'w-full lg:w-2/5 xl:w-2/5';
+    $col_right_class .= 'w-full lg:w-3/5 xl:w-3/5';
+    break;
+  case "three_two_five":
+    $col_left_class .= 'w-full lg:w-3/5 xl:w-3/5';
+    $col_right_class .= 'w-full lg:w-2/5 xl:w-2/5';
+    break;
+}
+
+//preint_r($column_settings);
 
 ?>
 
-<section <?php echo $section_id ?> style="<?php echo $section_style ?>" class="relative">
+<section <?php echo $section_id ?> class="section-wrapper section-two_columns relative overflow-hidden" style="<?php echo $section_style ?>">
 
-  <?php if ($top_separator) : ?>
-    <div class="absolute h-12 w-px top-0 left-1/2 border-l border-solid border-slate-300" style="<?php echo $top_separator_style ?>"></div>
-  <?php endif; ?>
-  <div class="relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
-    <div class="container mx-auto max-w-screen-2xl animation-wrapper">
-      <!-- <div class="relative mx-auto h-1 z-0">
-          <div class="absolute top-0 left-0 text-brand-orange text-brand-light-gray -translate-x-1/2 -translate-y-1/4">
-            <?php echo cpsv_svg(array('svg' => 'cpsv', 'group' => 'shapes', 'size' => false, 'class' => 'w-[180px] xl:w-[480px] h-auto')); ?>
-          </div>
-        </div> -->
+  <?php get_template_part('template-parts/global/separator', '', array('location' => 'top', 'active' => $top_separator, 'color' => $top_separator_color, 'class' => '')); ?>
+  <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
+    <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
+    <div class="section-content container mx-auto max-w-screen-2xl animation-wrapper">
       <div class="relative z-10 flex flex-col xl:flex-row xl:gap-x-12 2xl:gap-x-24 <?php echo $entrance_animation_class ?>">
-        <div class="xl:w-1/2">
+        <div class="<?php echo $col_left_class ?>">
           <?php get_template_part('template-parts/components/components', '', array('field' => $left_column_components)); ?>
         </div>
-        <div class="xl:w-1/2">
+        <div class="<?php echo $col_right_class ?>">
           <?php get_template_part('template-parts/components/components', '', array('field' => $right_column_components)); ?>
         </div>
       </div>
     </div>
+    <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'bottom', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
   </div>
-  <?php if ($bottom_separator) : ?>
-    <div class="absolute h-12 w-px bottom-0 left-1/2 border-l border-solid border-slate-300" style="<?php echo $bottom_separator_style ?>"></div>
-  <?php endif; ?>
+  <?php get_template_part('template-parts/global/separator', '', array('location' => 'bottom', 'active' => $bottom_separator, 'color' => $bottom_separator_color, 'class' => '')); ?>
 
 </section>

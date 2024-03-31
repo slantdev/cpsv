@@ -1,3 +1,34 @@
+@import "partials/daisyui.css";
+
+body {
+  height: initial;
+}
+
+#poststuff {
+  .acf-layout {
+    @apply font-sans;
+  }
+}
+
+.layout {
+  /* > .acfe-fc-placeholder {
+    > a {
+      @apply z-30;
+    }
+    .acfe-fc-overlay {
+      @apply z-20;
+    }
+    .acfe-fc-overlay.-hover,
+    &:hover .acfe-fc-overlay {
+      @apply z-20;
+    }
+  } */
+}
+
+.post-attributes-label-wrapper {
+  @apply text-[13px] mt-[1em];
+}
+
 .acf-fields {
   > .acf-field {
     &.hide-group-label,
@@ -9,6 +40,15 @@
     }
     &.field-hidden {
       @apply hidden;
+    }
+    &.field-inline-flex {
+      @apply inline-flex gap-4 items-center;
+      > .acf-label {
+        margin-bottom: 0;
+      }
+    }
+    &.bb-1 {
+      border-bottom: 1px solid #eeeeee;
     }
     &.bt-0 {
       @apply !border-t-0;
@@ -41,6 +81,98 @@
     &.pad-l-0 {
       @apply !pl-0;
     }
+    &.pad-2 {
+      @apply p-2;
+    }
+    &.pad-x-2 {
+      @apply px-2;
+    }
+    &.pad-y-2 {
+      @apply py-2;
+    }
+    &.field-switch {
+      .acf-switch {
+        width: 42px;
+        height: 24px;
+        border: none;
+        background-color: #d0d5dd;
+        border-radius: 12px;
+        &.-on {
+          background: #0d99d5;
+          border-color: #007cba;
+        }
+        span {
+          display: inline-block;
+          float: left;
+          text-align: center;
+          font-size: 13px;
+          line-height: 22px;
+          padding: 4px 10px;
+          min-width: 15px;
+        }
+        .acf-switch-on,
+        .acf-switch-off {
+          visibility: hidden;
+        }
+        .acf-switch-on {
+          color: #fff;
+          text-shadow: #007cba 0 1px 0;
+        }
+        .acf-switch-slider {
+          width: 20px;
+          height: 20px;
+          border: none;
+          border-radius: 100px;
+          box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+            0px 1px 2px rgba(16, 24, 40, 0.06);
+          left: 2px;
+        }
+        &.-on {
+          .acf-switch-slider {
+            left: 20px;
+          }
+        }
+      }
+    }
+    &.field-modal {
+      .acf-button {
+        .dashicons {
+          padding: 4px 0;
+        }
+      }
+    }
+    &.acf-field-group {
+      &.fields-flex-row {
+        > .acf-input {
+          > .acf-fields {
+            @apply flex flex-row;
+          }
+        }
+      }
+      &.fields-flex {
+        &-justify-start {
+          > .acf-input {
+            > .acf-fields {
+              @apply justify-start;
+            }
+          }
+        }
+        &-justify-end {
+          > .acf-input {
+            > .acf-fields {
+              @apply justify-end;
+            }
+          }
+        }
+        &-justify-between {
+          > .acf-input {
+            > .acf-fields {
+              @apply justify-between;
+            }
+          }
+        }
+      }
+    }
   }
   /* &.-left {
     > .acf-field {
@@ -55,46 +187,86 @@
       }
     }
   } */
+  > .acf-tab-wrap {
+    overflow: initial;
+  }
+  &.-sidebar {
+    height: 100%;
+  }
+  .acf-field-color-picker {
+    @apply bg-white;
+  }
   .acf-color-picker {
     .wp-picker-container {
-      &.wp-picker-active {
-        @apply z-20;
-        .wp-picker-input-wrap {
-          @apply flex absolute border border-solid border-[#dcdcde] p-[10px] bg-white w-[235px] mt-1;
-        }
+      .wp-color-result-text {
+        @apply hidden;
       }
       input[type="text"].wp-color-picker {
-        @apply !w-24;
-      }
-      .wp-picker-holder {
-        @apply absolute z-10 top-[87px];
-      }
-      .wp-color-result.button {
-        @apply !mb-0.5;
+        @apply !w-[140px];
       }
     }
-    .wp-picker-container .iris-picker {
-      padding-bottom: 80px !important;
-      @apply mt-0;
+    .iris-picker {
+      @apply pt-2.5 px-2.5 !pb-2.5 !w-[210px] !h-auto;
+      .iris-square {
+        @apply mr-0 float-none;
+        @apply !w-[182.125px];
+      }
+      .iris-strip {
+        @apply ml-0 float-none;
+        @apply !w-[24px] !h-[182px];
+      }
+      .iris-palette {
+        @apply !ml-0 float-none !w-6 !h-6;
+      }
     }
-    .iris-border .iris-palette-container {
-      position: absolute;
-      bottom: 10px !important;
-      left: 10px !important;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2px;
+    .iris-border {
+      .iris-picker-inner {
+        @apply static;
+      }
+      .iris-palette-container {
+        @apply static;
+        @apply grid grid-cols-8 gap-0.5 mt-1;
+      }
     }
-    .iris-picker .iris-palette {
-      width: 24px !important;
-      height: 24px !important;
-      margin-left: 0px !important;
-      float: none;
+    .iris-picker-inner {
+      @apply flex gap-x-1;
+    }
+  }
+  .acf-columns-flex-nowrap {
+    > .acf-input {
+      > .acfe-column-wrapper {
+        @apply flex-nowrap;
+      }
+    }
+  }
+  .acf-field-repeater
+    > .acf-input
+    > .acf-repeater
+    > .acfe-repeater-stylised-button {
+    @apply p-5;
+  }
+}
+
+.frm_insert_form svg {
+  @apply inline-block;
+}
+
+.acf-flexible-content {
+  .layout {
+    .acf-fc-layout-handle {
+      @apply bg-gray-100;
+      .acf-fc-layout-order {
+        @apply bg-white;
+        border: 1px solid #b5bcc2;
+        line-height: 18px;
+      }
     }
   }
 }
-.frm_insert_form svg {
-  @apply inline-block;
+
+.acf-editor-wrap {
+  /* GiveWP shortcode button */
+  .sc-wrap {
+    @apply hidden;
+  }
 }

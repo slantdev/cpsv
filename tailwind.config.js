@@ -69,7 +69,8 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        cpsv: {
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
           primary: "#020044",
           secondary: "#1068F0",
           accent: "#66CCCC",
@@ -81,7 +82,19 @@ module.exports = {
           error: "#ff0000",
         },
       },
-      "light",
+      // {
+      //   cpsv: {
+      //     primary: "#020044",
+      //     secondary: "#1068F0",
+      //     accent: "#66CCCC",
+      //     neutral: "#F3F1EF",
+      //     "base-100": "#ffffff",
+      //     info: "#0000ff",
+      //     success: "#00ff00",
+      //     warning: "#00ff00",
+      //     error: "#ff0000",
+      //   },
+      // },
     ],
     styled: true,
     base: true,

@@ -280,7 +280,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
               <?php endforeach; ?>
             </ul>
           </div>
-          <div class="prose font-medium xl:prose-lg prose-lead:xl:text-2xl prose-lead:font-normal max-w-none mb-10">
+          <div>
             <?php get_template_part('template-parts/components/components', '', array('field' => $components)); ?>
           </div>
         </div>

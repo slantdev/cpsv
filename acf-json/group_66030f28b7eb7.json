@@ -1,6 +1,6 @@
 {
     "key": "group_66030f28b7eb7",
-    "title": "Components - Content Editor",
+    "title": "Component - Content Editor",
     "fields": [
         {
             "key": "field_66030f290d3cd",
@@ -20,6 +20,23 @@
             "acfe_seamless_style": 1,
             "sub_fields": [
                 {
+                    "key": "field_6605c845cbf46",
+                    "label": "(Column 10\/12)",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "acfe_column",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "columns": "10\/12",
+                    "endpoint": 0
+                },
+                {
                     "key": "field_66030f420d3ce",
                     "label": "Content Editor",
                     "name": "content_editor",
@@ -29,33 +46,73 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "80",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
                     "default_value": "",
                     "tabs": "all",
-                    "toolbar": "full",
+                    "toolbar": "basic",
                     "media_upload": 1,
                     "delay": 0
                 },
                 {
-                    "key": "field_66030f540d3cf",
-                    "label": "Text Color",
-                    "name": "text_color",
+                    "key": "field_6605c84fcbf47",
+                    "label": "(Column 2\/12)",
+                    "name": "",
                     "aria-label": "",
-                    "type": "color_picker",
+                    "type": "acfe_column",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "20",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "#374151",
-                    "enable_opacity": 0,
-                    "return_format": "string"
+                    "columns": "2\/12",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_6605c85bcbf48",
+                    "label": "Settings",
+                    "name": "settings",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "label-hidden fields-flex-row fields-flex-justify-end",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "acfe_seamless_style": 1,
+                    "sub_fields": [
+                        {
+                            "key": "field_66030f540d3cf",
+                            "label": "Color",
+                            "name": "text_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#374151",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        }
+                    ],
+                    "acfe_group_modal": 0,
+                    "acfe_group_modal_close": 0,
+                    "acfe_group_modal_button": "",
+                    "acfe_group_modal_size": "large"
                 }
             ],
             "acfe_group_modal": 0,
@@ -89,7 +146,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711478118,
+    "modified": 1711908464,
     "acfe_categories": {
         "components": "Components"
     }
