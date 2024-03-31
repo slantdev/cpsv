@@ -11,7 +11,7 @@ body {
 }
 
 .layout {
-  /* > .acfe-fc-placeholder {
+  > .acfe-fc-placeholder {
     > a {
       @apply z-30;
     }
@@ -22,7 +22,7 @@ body {
     &:hover .acfe-fc-overlay {
       @apply z-20;
     }
-  } */
+  }
 }
 
 .post-attributes-label-wrapper {

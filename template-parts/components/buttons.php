@@ -107,7 +107,7 @@ if ($buttons_repeater) {
     }
 
     $class_list = ['btn rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105', $print_button_class, $print_button_margin];
-    $class .= implode(' ', $class_list);
+    $class = implode(' ', $class_list);
 
     // Outputting button HTML
     if ($button_url) {
