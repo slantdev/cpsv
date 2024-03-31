@@ -22,8 +22,6 @@
 
   #poststuff .acf-layout .container {
     max-width: 600px;
-    padding-right: 2rem;
-    padding-left: 2rem;
   }
 }
 
@@ -38,8 +36,8 @@
 
   #poststuff .acf-layout .container {
     max-width: 1024px;
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 }
 
@@ -47,6 +45,8 @@
 
   #poststuff .acf-layout .container {
     max-width: 1280px;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
   }
 }
 
@@ -54,6 +54,8 @@
 
   #poststuff .acf-layout .container {
     max-width: 1380px;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
 }
 
@@ -142,46 +144,6 @@
   }
 }
 
-#poststuff .acf-layout .btn {
-  display: inline-flex;
-  height: 3rem;
-  min-height: 3rem;
-  flex-shrink: 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--rounded-btn, 0.5rem);
-  border-color: transparent;
-  border-color: oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity));
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
-  font-size: 0.875rem;
-  line-height: 1em;
-  gap: 0.5rem;
-  font-weight: 600;
-  -webkit-text-decoration-line: none;
-          text-decoration-line: none;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  border-width: var(--border-btn, 1px);
-  animation: button-pop var(--animation-btn, 0.25s) ease-out;
-  transition-property: color, background-color, border-color, opacity, box-shadow, transform;
-  --tw-text-opacity: 1;
-  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  outline-color: var(--fallback-bc,oklch(var(--bc)/1));
-  background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity));
-  --tw-bg-opacity: 1;
-  --tw-border-opacity: 1;
-}
-
 #poststuff .acf-layout .\!btn {
   display: inline-flex !important;
   height: 3rem !important;
@@ -222,6 +184,51 @@
   --tw-border-opacity: 1 !important;
 }
 
+#poststuff .acf-layout .btn {
+  display: inline-flex;
+  height: 3rem;
+  min-height: 3rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded-btn, 0.5rem);
+  border-color: transparent;
+  border-color: oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1em;
+  gap: 0.5rem;
+  font-weight: 600;
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-width: var(--border-btn, 1px);
+  animation: button-pop var(--animation-btn, 0.25s) ease-out;
+  transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: var(--fallback-bc,oklch(var(--bc)/1));
+  background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity));
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
+}
+
+#poststuff .acf-layout .\!btn[disabled],
+  #poststuff .acf-layout .\!btn:disabled {
+  pointer-events: none !important;
+}
+
 #poststuff .acf-layout .btn-disabled,
   #poststuff .acf-layout .btn[disabled],
   #poststuff .acf-layout .btn:disabled {
@@ -239,6 +246,14 @@
   padding: 0px;
 }
 
+#poststuff .acf-layout :where(.\!btn:is(input[type="checkbox"])),
+#poststuff .acf-layout :where(.\!btn:is(input[type="radio"])) {
+  width: auto !important;
+  -webkit-appearance: none !important;
+     -moz-appearance: none !important;
+          appearance: none !important;
+}
+
 #poststuff .acf-layout :where(.btn:is(input[type="checkbox"])),
 #poststuff .acf-layout :where(.btn:is(input[type="radio"])) {
   width: auto;
@@ -253,6 +268,12 @@
   -webkit-appearance: none !important;
      -moz-appearance: none !important;
           appearance: none !important;
+}
+
+#poststuff .acf-layout .\!btn:is(input[type="checkbox"]):after,
+#poststuff .acf-layout .\!btn:is(input[type="radio"]):after {
+  --tw-content: attr(aria-label) !important;
+  content: var(--tw-content) !important;
 }
 
 #poststuff .acf-layout .btn:is(input[type="checkbox"]):after,
@@ -444,6 +465,37 @@
     --tw-text-opacity: 0.2;
   }
 
+  #poststuff .acf-layout .\!btn:hover {
+    --tw-border-opacity: 1 !important;
+    border-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-border-opacity))) !important;
+    --tw-bg-opacity: 1 !important;
+    background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity))) !important;
+  }
+
+  @supports (color: color-mix(in oklab, black, black)) {
+
+    #poststuff .acf-layout .\!btn:hover {
+      background-color: color-mix(
+            in oklab,
+            oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity, 1)) 90%,
+            black
+          ) !important;
+      border-color: color-mix(
+            in oklab,
+            oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity, 1)) 90%,
+            black
+          ) !important;
+    }
+  }
+
+  @supports not (color: oklch(0 0 0)) {
+
+    #poststuff .acf-layout .\!btn:hover {
+      background-color: var(--btn-color, var(--fallback-b2)) !important;
+      border-color: var(--btn-color, var(--fallback-b2)) !important;
+    }
+  }
+
   #poststuff .acf-layout .btn:hover {
     --tw-border-opacity: 1;
     border-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-border-opacity)));
@@ -537,45 +589,14 @@
     }
   }
 
-  #poststuff .acf-layout .\!btn:hover {
-    --tw-border-opacity: 1 !important;
-    border-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-border-opacity))) !important;
-    --tw-bg-opacity: 1 !important;
-    background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity))) !important;
-  }
-
-  @supports (color: color-mix(in oklab, black, black)) {
-
-    #poststuff .acf-layout .\!btn:hover {
-      background-color: color-mix(
-            in oklab,
-            oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity, 1)) 90%,
-            black
-          ) !important;
-      border-color: color-mix(
-            in oklab,
-            oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity, 1)) 90%,
-            black
-          ) !important;
-    }
-  }
-
-  @supports not (color: oklch(0 0 0)) {
-
-    #poststuff .acf-layout .\!btn:hover {
-      background-color: var(--btn-color, var(--fallback-b2)) !important;
-      border-color: var(--btn-color, var(--fallback-b2)) !important;
-    }
+  #poststuff .acf-layout .\!btn.glass:hover {
+    --glass-opacity: 25% !important;
+    --glass-border-opacity: 15% !important;
   }
 
   #poststuff .acf-layout .btn.glass:hover {
     --glass-opacity: 25%;
     --glass-border-opacity: 15%;
-  }
-
-  #poststuff .acf-layout .\!btn.glass:hover {
-    --glass-opacity: 25% !important;
-    --glass-border-opacity: 15% !important;
   }
 
   #poststuff .acf-layout .btn-ghost:hover {
@@ -715,6 +736,15 @@
     }
   }
 
+  #poststuff .acf-layout .\!btn[disabled]:hover,
+    #poststuff .acf-layout .\!btn:disabled:hover {
+    --tw-border-opacity: 0 !important;
+    background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity))) !important;
+    --tw-bg-opacity: 0.2 !important;
+    color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity))) !important;
+    --tw-text-opacity: 0.2 !important;
+  }
+
   #poststuff .acf-layout .btn-disabled:hover,
     #poststuff .acf-layout .btn[disabled]:hover,
     #poststuff .acf-layout .btn:disabled:hover {
@@ -735,6 +765,11 @@
   }
 
   @supports (color: color-mix(in oklab, black, black)) {
+
+    #poststuff .acf-layout .\!btn:is(input[type="checkbox"]:checked):hover, #poststuff .acf-layout .\!btn:is(input[type="radio"]:checked):hover {
+      background-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black) !important;
+      border-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black) !important;
+    }
 
     #poststuff .acf-layout .btn:is(input[type="checkbox"]:checked):hover, #poststuff .acf-layout .btn:is(input[type="radio"]:checked):hover {
       background-color: color-mix(in oklab, var(--fallback-p,oklch(var(--p)/1)) 90%, black);
@@ -1301,6 +1336,12 @@
   --tw-rotate: -135deg;
 }
 
+#poststuff .acf-layout .\!btn:active:hover,
+  #poststuff .acf-layout .\!btn:active:focus {
+  animation: button-pop 0s ease-out !important;
+  transform: scale(var(--btn-focus-scale, 0.97)) !important;
+}
+
 #poststuff .acf-layout .btn:active:hover,
   #poststuff .acf-layout .btn:active:focus {
   animation: button-pop 0s ease-out;
@@ -1315,26 +1356,26 @@
 
 @supports not (color: oklch(0 0 0)) {
 
-  #poststuff .acf-layout .btn {
-    background-color: var(--btn-color, var(--fallback-b2));
-    border-color: var(--btn-color, var(--fallback-b2));
-  }
-
   #poststuff .acf-layout .\!btn {
     background-color: var(--btn-color, var(--fallback-b2)) !important;
     border-color: var(--btn-color, var(--fallback-b2)) !important;
+  }
+
+  #poststuff .acf-layout .btn {
+    background-color: var(--btn-color, var(--fallback-b2));
+    border-color: var(--btn-color, var(--fallback-b2));
   }
 
   #poststuff .acf-layout .btn-primary {
     --btn-color: var(--fallback-p);
   }
 
-  #poststuff .acf-layout .btn-secondary {
-    --btn-color: var(--fallback-s);
-  }
-
   #poststuff .acf-layout .\!btn-secondary {
     --btn-color: var(--fallback-s) !important;
+  }
+
+  #poststuff .acf-layout .btn-secondary {
+    --btn-color: var(--fallback-s);
   }
 
   #poststuff .acf-layout .prose :where(code):not(:where([class~="not-prose"] *, pre *)) {
@@ -1385,16 +1426,16 @@
   }
 }
 
-#poststuff .acf-layout .btn:focus-visible {
-  outline-style: solid;
-  outline-width: 2px;
-  outline-offset: 2px;
-}
-
 #poststuff .acf-layout .\!btn:focus-visible {
   outline-style: solid !important;
   outline-width: 2px !important;
   outline-offset: 2px !important;
+}
+
+#poststuff .acf-layout .btn:focus-visible {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
 }
 
 #poststuff .acf-layout .btn-primary {
@@ -1409,19 +1450,13 @@
     --btn-color: var(--p);
   }
 
-  #poststuff .acf-layout .btn-secondary {
-    --btn-color: var(--s);
-  }
-
   #poststuff .acf-layout .\!btn-secondary {
     --btn-color: var(--s) !important;
   }
-}
 
-#poststuff .acf-layout .btn-secondary {
-  --tw-text-opacity: 1;
-  color: var(--fallback-sc,oklch(var(--sc)/var(--tw-text-opacity)));
-  outline-color: var(--fallback-s,oklch(var(--s)/1));
+  #poststuff .acf-layout .btn-secondary {
+    --btn-color: var(--s);
+  }
 }
 
 #poststuff .acf-layout .\!btn-secondary {
@@ -1430,11 +1465,10 @@
   outline-color: var(--fallback-s,oklch(var(--s)/1)) !important;
 }
 
-#poststuff .acf-layout .btn.glass {
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  outline-color: currentColor;
+#poststuff .acf-layout .btn-secondary {
+  --tw-text-opacity: 1;
+  color: var(--fallback-sc,oklch(var(--sc)/var(--tw-text-opacity)));
+  outline-color: var(--fallback-s,oklch(var(--s)/1));
 }
 
 #poststuff .acf-layout .\!btn.glass {
@@ -1444,14 +1478,21 @@
   outline-color: currentColor !important;
 }
 
-#poststuff .acf-layout .btn.glass.btn-active {
-  --glass-opacity: 25%;
-  --glass-border-opacity: 15%;
+#poststuff .acf-layout .btn.glass {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: currentColor;
 }
 
 #poststuff .acf-layout .\!btn.glass.btn-active {
   --glass-opacity: 25% !important;
   --glass-border-opacity: 15% !important;
+}
+
+#poststuff .acf-layout .btn.glass.btn-active {
+  --glass-opacity: 25%;
+  --glass-border-opacity: 15%;
 }
 
 #poststuff .acf-layout .btn-ghost {
@@ -1569,6 +1610,16 @@
   color: var(--fallback-erc,oklch(var(--erc)/var(--tw-text-opacity)));
 }
 
+#poststuff .acf-layout .\!btn.btn-disabled,
+  #poststuff .acf-layout .\!btn[disabled],
+  #poststuff .acf-layout .\!btn:disabled {
+  --tw-border-opacity: 0 !important;
+  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity))) !important;
+  --tw-bg-opacity: 0.2 !important;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity))) !important;
+  --tw-text-opacity: 0.2 !important;
+}
+
 #poststuff .acf-layout .btn.btn-disabled,
   #poststuff .acf-layout .btn[disabled],
   #poststuff .acf-layout .btn:disabled {
@@ -1589,6 +1640,16 @@
   --tw-text-opacity: 0.2 !important;
 }
 
+#poststuff .acf-layout .\!btn:is(input[type="checkbox"]:checked),
+#poststuff .acf-layout .\!btn:is(input[type="radio"]:checked) {
+  --tw-border-opacity: 1 !important;
+  border-color: var(--fallback-p,oklch(var(--p)/var(--tw-border-opacity))) !important;
+  --tw-bg-opacity: 1 !important;
+  background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity))) !important;
+  --tw-text-opacity: 1 !important;
+  color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity))) !important;
+}
+
 #poststuff .acf-layout .btn:is(input[type="checkbox"]:checked),
 #poststuff .acf-layout .btn:is(input[type="radio"]:checked) {
   --tw-border-opacity: 1;
@@ -1607,6 +1668,10 @@
   background-color: var(--fallback-p,oklch(var(--p)/var(--tw-bg-opacity))) !important;
   --tw-text-opacity: 1 !important;
   color: var(--fallback-pc,oklch(var(--pc)/var(--tw-text-opacity))) !important;
+}
+
+#poststuff .acf-layout .\!btn:is(input[type="checkbox"]:checked):focus-visible, #poststuff .acf-layout .\!btn:is(input[type="radio"]:checked):focus-visible {
+  outline-color: var(--fallback-p,oklch(var(--p)/1)) !important;
 }
 
 #poststuff .acf-layout .btn:is(input[type="checkbox"]:checked):focus-visible, #poststuff .acf-layout .btn:is(input[type="radio"]:checked):focus-visible {
@@ -4557,6 +4622,10 @@
   width: 128px;
 }
 
+#poststuff .acf-layout .w-\[144px\] {
+  width: 144px;
+}
+
 #poststuff .acf-layout .w-\[180px\] {
   width: 180px;
 }
@@ -4575,10 +4644,6 @@
 
 #poststuff .acf-layout .w-px {
   width: 1px;
-}
-
-#poststuff .acf-layout .w-\[144px\] {
-  width: 144px;
 }
 
 #poststuff .acf-layout .min-w-\[200px\] {
@@ -4883,6 +4948,10 @@
   overflow: clip;
 }
 
+#poststuff .acf-layout .whitespace-nowrap {
+  white-space: nowrap;
+}
+
 #poststuff .acf-layout .\!rounded-full {
   border-radius: 9999px !important;
 }
@@ -4969,6 +5038,11 @@
   border-style: none;
 }
 
+#poststuff .acf-layout .\!border-secondary {
+  --tw-border-opacity: 1 !important;
+  border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity))) !important;
+}
+
 #poststuff .acf-layout .border-brand-blue {
   --tw-border-opacity: 1;
   border-color: rgb(16 104 240 / var(--tw-border-opacity));
@@ -5025,11 +5099,6 @@
 
 #poststuff .acf-layout .border-white\/70 {
   border-color: rgb(255 255 255 / 0.7);
-}
-
-#poststuff .acf-layout .\!border-secondary {
-  --tw-border-opacity: 1 !important;
-  border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity))) !important;
 }
 
 #poststuff .acf-layout .bg-brand-blue {
@@ -5143,12 +5212,12 @@
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-#poststuff .acf-layout .from-20\% {
-  --tw-gradient-from-position: 20%;
-}
-
 #poststuff .acf-layout .from-0\% {
   --tw-gradient-from-position: 0%;
+}
+
+#poststuff .acf-layout .from-20\% {
+  --tw-gradient-from-position: 20%;
 }
 
 #poststuff .acf-layout .via-transparent {
@@ -5278,6 +5347,11 @@
   padding: 2rem;
 }
 
+#poststuff .acf-layout .\!px-10 {
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
+}
+
 #poststuff .acf-layout .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -5313,19 +5387,9 @@
   padding-right: 1rem;
 }
 
-#poststuff .acf-layout .px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
 #poststuff .acf-layout .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-#poststuff .acf-layout .px-7 {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
 }
 
 #poststuff .acf-layout .px-8 {
@@ -5388,9 +5452,9 @@
   padding-bottom: 2rem;
 }
 
-#poststuff .acf-layout .\!px-10 {
-  padding-left: 2.5rem !important;
-  padding-right: 2.5rem !important;
+#poststuff .acf-layout .py-\[26px\] {
+  padding-top: 26px;
+  padding-bottom: 26px;
 }
 
 #poststuff .acf-layout .\!pb-2 {
@@ -5533,14 +5597,9 @@
   text-align: right;
 }
 
-#poststuff .acf-layout .\!text-sm {
-  font-size: 0.875rem !important;
-  line-height: 1.25rem !important;
-}
-
-#poststuff .acf-layout .\!text-xs {
-  font-size: 0.75rem !important;
-  line-height: 1rem !important;
+#poststuff .acf-layout .\!text-base {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
 }
 
 #poststuff .acf-layout .text-2xl {
@@ -5623,11 +5682,6 @@
   line-height: 1rem;
 }
 
-#poststuff .acf-layout .\!text-base {
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
-}
-
 #poststuff .acf-layout .font-bold {
   font-weight: 700;
 }
@@ -5666,10 +5720,6 @@
 
 #poststuff .acf-layout .leading-loose {
   line-height: 2;
-}
-
-#poststuff .acf-layout .leading-none {
-  line-height: 1;
 }
 
 #poststuff .acf-layout .leading-snug {
@@ -6708,18 +6758,6 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-#poststuff .acf-layout .hover\:scale-\[1\.025\]:hover {
-  --tw-scale-x: 1.025;
-  --tw-scale-y: 1.025;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-#poststuff .acf-layout .hover\:scale-\[1\.015\]:hover {
-  --tw-scale-x: 1.015;
-  --tw-scale-y: 1.015;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 #poststuff .acf-layout .hover\:scale-\[1\.02\]:hover {
   --tw-scale-x: 1.02;
   --tw-scale-y: 1.02;
@@ -7147,10 +7185,6 @@
     height: 128px;
   }
 
-  #poststuff .acf-layout .xl\:h-\[88px\] {
-    height: 88px;
-  }
-
   #poststuff .acf-layout .xl\:w-1\/2 {
     width: 50%;
   }
@@ -7331,18 +7365,8 @@
     padding-top: 2rem;
   }
 
-  #poststuff .acf-layout .xl\:\!text-base {
-    font-size: 1rem !important;
-    line-height: 1.5rem !important;
-  }
-
   #poststuff .acf-layout .xl\:text-\[64px\] {
     font-size: 64px;
-  }
-
-  #poststuff .acf-layout .xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 
   #poststuff .acf-layout .xl\:text-lg {
@@ -7369,6 +7393,70 @@
   #poststuff .acf-layout .\32xl\:gap-x-24 {
     -moz-column-gap: 6rem;
          column-gap: 6rem;
+  }
+}
+
+@media (min-width: 1440px) {
+
+  #poststuff .acf-layout .\33xl\:h-20 {
+    height: 5rem;
+  }
+
+  #poststuff .acf-layout .\33xl\:text-\[15px\] {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1536px) {
+
+  #poststuff .acf-layout .\34xl\:gap-x-8 {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+
+  #poststuff .acf-layout .\34xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 1792px) {
+
+  #poststuff .acf-layout .\35xl\:h-9 {
+    height: 2.25rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:h-\[88px\] {
+    height: 88px;
+  }
+
+  #poststuff .acf-layout .\35xl\:w-9 {
+    width: 2.25rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:gap-x-10 {
+    -moz-column-gap: 2.5rem;
+         column-gap: 2.5rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:px-7 {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  #poststuff .acf-layout .\35xl\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 

@@ -3,10 +3,10 @@
 $site_logo = get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg';
 
 ?>
-<div class="top-header bg-brand-dark-blue py-3">
+<div class="top-header relative z-50 bg-brand-dark-blue py-3">
   <div class="container max-w-screen-5xl">
-    <div class="flex justify-end">
-      <ul class="top-nav flex gap-x-6">
+    <div class="flex items-center justify-end">
+      <ul class="top-nav flex gap-x-6 text-sm 4xl:text-base leading-tight">
         <li><a href="#" class="text-white font-medium hover:opacity-75">About Us</a></li>
         <li><a href="#" class="text-white font-medium hover:opacity-75">What we do</a></li>
         <li><a href="#" class="text-white font-medium hover:opacity-75">What’s on</a></li>
@@ -21,7 +21,7 @@ $site_logo = get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg
         <li><a href="#" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
       </ul>
       <div class="pl-6 border-l border-white border-solid">
-        <button type="button" class="flex items-center gap-x-2 text-white font-medium hover:opacity-75">
+        <button type="button" class="flex items-center gap-x-2 text-sm 4xl:text-base leading-tight text-white font-medium hover:opacity-75">
           <div>
             <?php echo cpsv_icon(array('icon' => 'account', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?>
           </div>
@@ -46,27 +46,27 @@ $site_logo = get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg
             </svg>
           </button>
           <div class="site-logo py-4 xl:py-6">
-            <a href="<?php echo site_url() ?>"><img src="<?php echo $site_logo ?>" alt="<?php echo get_bloginfo('name'); ?>" class="h-20 xl:h-[88px] w-auto"></a>
+            <a href="<?php echo site_url() ?>"><img src="<?php echo $site_logo ?>" alt="<?php echo get_bloginfo('name'); ?>" class="h-16 3xl:h-20 5xl:h-[88px] w-auto"></a>
           </div>
         </div>
         <div class="flex items-start">
-          <div class="bg-white px-8 py-8">
-            <ul class="main-nav flex items-center gap-x-10">
-              <li><a href="/adopt-a-cat" class="text-lg font-medium text-brand-dark-blue">ADOPT A CAT</a></li>
-              <li><a href="/foster-care" class="text-lg font-medium text-brand-dark-blue">FOSTER CARE</a></li>
-              <li><a href="/vet-clinic" class="text-lg font-medium text-brand-dark-blue">VET CLINIC</a></li>
-              <li><a href="/support-us" class="text-lg font-medium text-brand-dark-blue">SUPPORT US</a></li>
-              <li><a href="/help-advice" class="text-lg font-medium text-brand-dark-blue">HELP & ADVICE</a></li>
-              <li><a href="/shop" class="text-lg font-medium text-brand-dark-blue">SHOP</a></li>
+          <div class="bg-white px-6 py-6 5xl:px-8 5xl:py-8">
+            <ul class="main-nav flex items-center gap-x-6 4xl:gap-x-8 5xl:gap-x-10">
+              <li><a href="/adopt-a-cat" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">ADOPT A CAT</a></li>
+              <li><a href="/foster-care" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">FOSTER CARE</a></li>
+              <li><a href="/vet-clinic" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">VET CLINIC</a></li>
+              <li><a href="/support-us" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">SUPPORT US</a></li>
+              <li><a href="/help-advice" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:ext-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">HELP & ADVICE</a></li>
+              <li><a href="/shop" class="text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap text-brand-dark-blue">SHOP</a></li>
             </ul>
           </div>
           <div class="flex">
-            <a href="make-a-donation" class="bg-brand-tomato text-white flex items-center px-7 py-8 text-lg font-bold uppercase hover:brightness-110">Donate Now</a>
-            <button type="button" class="bg-brand-blue text-white flex items-center px-7 py-4 hover:brightness-110">
-              <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-9 h-9 text-white')); ?>
+            <a href="make-a-donation" class="bg-brand-tomato text-white flex items-center px-4 py-[26px] 5xl:px-7 5xl:py-8 text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-bold uppercase leading-tight whitespace-nowrap hover:brightness-110">Donate Now</a>
+            <button type="button" class="bg-brand-blue text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
+              <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
-            <button type="button" class="bg-brand-yellow text-white flex items-center px-7 py-4 hover:brightness-110">
-              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-9 h-9 text-white')); ?>
+            <button type="button" class="bg-brand-yellow text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
+              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
           </div>
         </div>
