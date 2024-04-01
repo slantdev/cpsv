@@ -6,6 +6,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+* {
+  @apply box-border;
+}
+
 h2 {
   @apply p-0;
 }
@@ -23,6 +27,12 @@ button,
   margin: 0;
   padding: 0;
   background-color: transparent;
+}
+
+.collapse-title,
+:where(.collapse > input[type="checkbox"]),
+:where(.collapse > input[type="radio"]) {
+  @apply w-auto;
 }
 
 /* #titlediv #title-prompt-text {

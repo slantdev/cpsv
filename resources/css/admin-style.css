@@ -13,14 +13,14 @@ body {
 .layout {
   > .acfe-fc-placeholder {
     > a {
-      @apply z-30;
+      @apply !z-30;
     }
     .acfe-fc-overlay {
-      @apply z-20;
+      @apply !z-20;
     }
     .acfe-fc-overlay.-hover,
     &:hover .acfe-fc-overlay {
-      @apply z-20;
+      @apply !z-20 !bg-white/70;
     }
   }
 }

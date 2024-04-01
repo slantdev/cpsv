@@ -40,14 +40,15 @@ body {
   font-family: Poppins, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 .layout > .acfe-fc-placeholder > a {
-  z-index: 30;
+  z-index: 30 !important;
 }
 .layout > .acfe-fc-placeholder .acfe-fc-overlay {
-  z-index: 20;
+  z-index: 20 !important;
 }
 .layout > .acfe-fc-placeholder .acfe-fc-overlay.-hover,
     .layout > .acfe-fc-placeholder:hover .acfe-fc-overlay {
-  z-index: 20;
+  z-index: 20 !important;
+  background-color: rgb(255 255 255 / 0.7) !important;
 }
 .post-attributes-label-wrapper {
   margin-top: 1em;
