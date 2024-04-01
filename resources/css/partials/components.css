@@ -16,3 +16,10 @@
 .swiper-button-lock {
   @apply !hidden;
 }
+
+.with_frm_style {
+  .frm_inside_container {
+    > label {
+    }
+  }
+}

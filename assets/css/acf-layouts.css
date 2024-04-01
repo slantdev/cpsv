@@ -4705,6 +4705,10 @@
   max-width: 20rem;
 }
 
+#poststuff .acf-layout .max-w-screen-xs {
+  max-width: 480px;
+}
+
 #poststuff .acf-layout .flex-none {
   flex: none;
 }

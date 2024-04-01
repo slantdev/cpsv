@@ -43,72 +43,6 @@
             "acfe_group_modal_size": "large",
             "sub_fields": [
                 {
-                    "key": "field_659bdf8a985cf",
-                    "label": "Headline",
-                    "name": "headline",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "75",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "acfe_settings": "",
-                    "acfe_validate": "",
-                    "maxlength": "",
-                    "acfe_permissions": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
-                },
-                {
-                    "key": "field_65b01777fa39d",
-                    "label": "Headline Color",
-                    "name": "headline_color",
-                    "aria-label": "",
-                    "type": "color_picker",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "25",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "#020044",
-                    "enable_opacity": 0,
-                    "return_format": "string",
-                    "acfe_settings": "",
-                    "acfe_validate": "",
-                    "acfe_permissions": ""
-                },
-                {
-                    "key": "field_659bdf98985d0",
-                    "label": "Description",
-                    "name": "description",
-                    "aria-label": "",
-                    "type": "wysiwyg",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "acfe_settings": "",
-                    "acfe_validate": "",
-                    "tabs": "all",
-                    "toolbar": "full",
-                    "media_upload": 1,
-                    "delay": 0
-                },
-                {
                     "key": "field_65a18eadbeed4",
                     "label": "Components",
                     "name": "components",
@@ -300,7 +234,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711501916,
+    "modified": 1711940876,
     "acfe_categories": {
         "layout": "Layout"
     }

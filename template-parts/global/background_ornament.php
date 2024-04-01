@@ -20,7 +20,7 @@ $position_class = $position_classes[$position] ?? 'absolute top-0 left-0 text-br
 
 $position_location = in_array($position, ['default', 'top_left', 'top_right']) ? 'top' : (in_array($position, ['bottom_left', 'bottom_right']) ? 'bottom' : '');
 
-if ($location == $position_location) :
+if ($shape !== 'none' && $location == $position_location) :
 ?>
 
   <div class="container mx-auto max-w-screen-2xl <?= $class ?>">
