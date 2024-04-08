@@ -11,14 +11,14 @@ include get_template_directory() . '/template-parts/global/section_settings.php'
 $section_id = $section_id ? 'id="' . $section_id . '"' : '';
 $section_class = 'section-onecolumn-' . uniqid();
 
-$text_center = get_sub_field('text_center');
-$components = $text_center['components'] ?? '';
-//preint_r($text_center);
+$one_column = get_sub_field('one_column');
+$components = $one_column['components'] ?? '';
+//preint_r($one_column);
 
 
 // Notes:
 // Columns settings doesn't work yet
-$column_settings = $text_center['column_settings'] ?? [];
+$column_settings = $one_column['column_settings'] ?? [];
 $alignment = $column_settings['alignment'] ?? '';
 $alignment_classes = [
   "left" => 'text-left',
@@ -28,7 +28,7 @@ $alignment_classes = [
 $alignment_class = $alignment_classes[$alignment] ?? 'text-center';
 $max_width = $column_settings['max_width'] ?? '';
 $max_width_classes = [
-  "default" => 'max-w-none',
+  "default" => 'max-w-screen-2xl',
   "none" => 'max-w-none',
   "xs" => 'max-w-screen-xs',
   "sm" => 'max-w-screen-sm',

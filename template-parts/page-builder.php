@@ -7,8 +7,8 @@ if (have_rows('section', $the_id)) :
   // Loop through rows.
   while (have_rows('section', $the_id)) : the_row();
 
-    if (get_row_layout() == 'text_center') :
-      get_template_part('template-parts/sections/text_center');
+    if (get_row_layout() == 'one_column') :
+      get_template_part('template-parts/sections/one_column');
 
     elseif (get_row_layout() == 'adopt_cats') :
       get_template_part('template-parts/sections/adopt_cats');

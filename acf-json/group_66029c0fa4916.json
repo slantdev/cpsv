@@ -449,14 +449,14 @@
                 },
                 "layout_66029c397eddb": {
                     "key": "layout_66029c397eddb",
-                    "name": "text_center",
-                    "label": "Text Center",
+                    "name": "one_column",
+                    "label": "One Column",
                     "display": "block",
                     "sub_fields": [
                         {
                             "key": "field_66029c881edca",
-                            "label": "Text Center",
-                            "name": "text_center",
+                            "label": "One Column",
+                            "name": "one_column",
                             "aria-label": "",
                             "type": "clone",
                             "instructions": "",
@@ -483,7 +483,7 @@
                     ],
                     "min": "",
                     "max": "",
-                    "acfe_flexible_render_template": "acf-layouts\/text_center.php",
+                    "acfe_flexible_render_template": "acf-layouts\/one_column.php",
                     "acfe_flexible_render_style": "",
                     "acfe_flexible_render_script": "",
                     "acfe_flexible_modal_edit_size": "",
@@ -593,7 +593,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1712608586,
+    "modified": 1712618331,
     "acfe_categories": {
         "flexible-content": "Flexible Content"
     }

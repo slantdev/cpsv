@@ -5517,6 +5517,9 @@ details.collapse summary::-webkit-details-marker {
 .pt-8 {
   padding-top: 2rem;
 }
+.\!pt-\[15px\] {
+  padding-top: 15px !important;
+}
 .text-left {
   text-align: left;
 }

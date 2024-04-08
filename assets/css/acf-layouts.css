@@ -5659,6 +5659,10 @@
   padding-top: 2rem;
 }
 
+#poststuff .acf-layout .\!pt-\[15px\] {
+  padding-top: 15px !important;
+}
+
 #poststuff .acf-layout .text-left {
   text-align: left;
 }

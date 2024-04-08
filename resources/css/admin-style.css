@@ -82,6 +82,9 @@ body {
     &.pad-l-0 {
       @apply !pl-0;
     }
+    &.pad-t-15 {
+      @apply !pt-[15px];
+    }
     &.pad-2 {
       @apply p-2;
     }

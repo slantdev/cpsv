@@ -197,6 +197,9 @@ body {
 .acf-fields > .acf-field.pad-l-0 {
   padding-left: 0px !important;
 }
+.acf-fields > .acf-field.pad-t-15 {
+  padding-top: 15px !important;
+}
 .acf-fields > .acf-field.pad-2 {
   padding: 0.5rem;
 }
