@@ -10,6 +10,6 @@
 ?>
 <div class="acf-layout <?php echo ($is_preview) ? 'is-preview' : ''; ?>">
   <?php
-  include get_template_directory() . '/template-parts/sections/campaign.php';
+  include get_template_directory() . '/template-parts/sections/posts_card.php';
   ?>
 </div>

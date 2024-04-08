@@ -91,6 +91,20 @@
                 "operator": "==",
                 "value": "page"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "help-advice"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "campaign"
+            }
         ]
     ],
     "menu_order": 0,
@@ -109,7 +123,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711475442,
+    "modified": 1712599440,
     "acfe_categories": {
         "pages": "Pages"
     }

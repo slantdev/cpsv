@@ -65,18 +65,14 @@ function cpsv_admin_styles()
   $theme = wp_get_theme();
   wp_enqueue_style('admin_css', get_template_directory_uri() . '/assets/css/admin-style.css', false, filemtime(get_stylesheet_directory() . '/assets/css/admin-style.css'));
   wp_enqueue_style('admin_gfonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap', false, $theme->get('Version'));
-
-  if (($current_page->post_type === 'page' && ($pagenow === 'post-new.php' || $pagenow === 'post.php'))) {
+  if (
+    ($current_page->post_type === 'page' && ($pagenow === 'post-new.php' || $pagenow === 'post.php')) ||
+    ($current_page->post_type === 'campaign' && ($pagenow === 'post-new.php' || $pagenow === 'post.php')) ||
+    ($current_page->post_type === 'help-advice' && ($pagenow === 'post-new.php' || $pagenow === 'post.php'))
+  ) {
     wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css', array(), '8.4.7');
     wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), '8.4.7');
     wp_enqueue_style('acf_layouts', get_template_directory_uri() . '/assets/css/acf-layouts.css', false, filemtime(get_stylesheet_directory() . '/assets/css/acf-layouts.css'));
   }
-
-  // if (($current_page->post_type === 'page' && ($pagenow === 'post-new.php' || $pagenow === 'post.php'))) {
-  //   wp_enqueue_style('acf_layouts', get_template_directory_uri() . '/assets/css/acf-layouts.css', false, filemtime(get_stylesheet_directory() . '/assets/css/acf-layouts.css'));
-  // }
-  // if (($current_page->post_type === 'scholarship' && ($pagenow === 'post-new.php' || $pagenow === 'post.php'))) {
-  //   wp_enqueue_style('acf_layouts', get_template_directory_uri() . '/assets/css/acf-layouts.css', false, filemtime(get_stylesheet_directory() . '/assets/css/acf-layouts.css'));
-  // }
 }
 add_action('admin_enqueue_scripts', 'cpsv_admin_styles');

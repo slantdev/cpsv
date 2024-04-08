@@ -25,8 +25,11 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'testimonial') :
       get_template_part('template-parts/sections/testimonial');
 
-    elseif (get_row_layout() == 'campaign') :
-      get_template_part('template-parts/sections/campaign');
+    elseif (get_row_layout() == 'posts_card') :
+      get_template_part('template-parts/sections/posts_card');
+
+    elseif (get_row_layout() == 'posts_grid') :
+      get_template_part('template-parts/sections/posts_grid');
 
     elseif (get_row_layout() == 'cta') :
       get_template_part('template-parts/sections/cta');
