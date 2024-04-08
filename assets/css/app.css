@@ -5987,15 +5987,7 @@ details.collapse summary::-webkit-details-marker {
     top: 92px;
   }
 }
-@media (min-width: 1280px) {
-
-  .mega-menu {
-    visibility: visible;
-    --tw-translate-y: -0px;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    opacity: 1;
-  }
-}
+/* @apply xl:opacity-100 xl:visible xl:-translate-y-0; */
 .mega-menu.active {
   --tw-translate-x: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
