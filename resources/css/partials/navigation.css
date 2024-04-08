@@ -27,7 +27,7 @@
   @apply absolute top-0 left-0 bottom-0 w-64 overflow-y-auto z-40 translate-x-full transition-all duration-500;
   @apply xl:absolute xl:w-full xl:z-50 xl:invisible xl:opacity-0 xl:translate-x-0 xl:-translate-y-8 xl:overflow-visible;
   @apply xl:top-[84px] 5xl:top-[92px];
-  /* @apply xl:opacity-100 xl:visible xl:-translate-y-0; */
+  @apply xl:opacity-100 xl:visible xl:-translate-y-0;
   &.active {
     @apply translate-x-0;
   }
@@ -83,8 +83,18 @@
     }
   }
   .submenu-featured {
+    @apply relative;
     .menu-article {
-      @apply hidden;
+      @apply invisible opacity-0 hidden;
+      &:first-child {
+        @apply block;
+      }
+      &.active {
+        @apply block visible opacity-100;
+      }
+      &.inactive {
+        @apply invisible opacity-0 hidden;
+      }
     }
   }
 }

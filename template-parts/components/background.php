@@ -19,7 +19,7 @@ if ($background_color) {
 
 <?php if ($background_image) : ?>
   <div class="absolute inset-0 z-0" style="<?php echo $bg_style ?>">
-    <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
+    <img class="object-cover w-full h-full transition-all duration-300 <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
     <?php if ($background_overlay) : ?>
       <div class="absolute inset-0 z-0" style="background-color: <?php echo $background_overlay; ?>"></div>
     <?php endif ?>

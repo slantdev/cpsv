@@ -11,10 +11,12 @@ jQuery(function ($) {
   );
 
   $(".menu-has-article").hover(function () {
-    $(".menu-article").hide();
+    $(".menu-article").removeClass("active").addClass("inactive");
     let dataArticle = $(this).data("target");
     //console.log(dataArticle);
-    $("#" + dataArticle).show();
+    $("#" + dataArticle)
+      .removeClass("inactive")
+      .addClass("active");
   });
   $(".menu-article").hover(
     function () {

@@ -16,10 +16,10 @@ jQuery(function ($) {
     $(".menu-article").removeAttr("style");
   });
   $(".menu-has-article").hover(function () {
-    $(".menu-article").hide();
+    $(".menu-article").removeClass("active").addClass("inactive");
     var dataArticle = $(this).data("target");
     //console.log(dataArticle);
-    $("#" + dataArticle).show();
+    $("#" + dataArticle).removeClass("inactive").addClass("active");
   });
   $(".menu-article").hover(function () {
     $(".menu-has-article[data-target='" + $(this).attr("id") + "'] .menu-icon").css({
