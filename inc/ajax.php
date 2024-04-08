@@ -101,7 +101,12 @@ function pagination_load_posttypes()
       while ($all_posts->have_posts()) {
         $postCount++;
         $all_posts->the_post();
-        $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        $the_id = get_the_ID();
+        $page_header = get_field('page_header', $the_id);
+        $image = $page_header['page_header_settings']['background']['background_image']['url'] ?? '';
+        if (has_post_thumbnail($the_id)) {
+          $image = get_the_post_thumbnail_url($the_id, 'large');
+        }
         $title =  get_the_title();
         // $date =  get_the_date();
         // $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 30, $more = null);
@@ -320,7 +325,12 @@ function pagination_load_postgrid()
       while ($all_posts->have_posts()) {
         $postCount++;
         $all_posts->the_post();
-        $image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+        $the_id = get_the_ID();
+        $page_header = get_field('page_header', $the_id);
+        $image = $page_header['page_header_settings']['background']['background_image']['url'] ?? '';
+        if (has_post_thumbnail($the_id)) {
+          $image = get_the_post_thumbnail_url($the_id, 'large');
+        }
         $title =  get_the_title();
         // $date =  get_the_date();
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
