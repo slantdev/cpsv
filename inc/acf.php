@@ -89,10 +89,12 @@ function acf_icon_path_suffix($path_suffix)
  * @array       $field      Field settings
  * @array       $layout     Layout settings
  */
-//add_filter('acfe/flexible/thumbnail/layout=accordion', 'accordion_layout_thumbnail', 10, 3);
-function accordion_layout_thumbnail($thumbnail, $field, $layout)
-{
-  return get_stylesheet_directory_uri() . '/assets/images/layouts/accordion.jpg';
+$layouts = ['adopt_cats', 'card_slider', 'cta', 'faqs', 'hero_slider', 'posts_card', 'posts_grid', 'shop', 'testimonial', 'two_columns'];
+foreach ($layouts as $prefix) {
+  $functionName = function ($thumbnail, $field, $layout) use ($prefix) {
+    return get_stylesheet_directory_uri() . '/assets/images/layouts/' . $prefix . '.jpg';
+  };
+  add_filter('acfe/flexible/thumbnail/layout=' . $prefix, $functionName, 10, 3);
 }
 
 
