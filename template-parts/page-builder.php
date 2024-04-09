@@ -31,6 +31,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'posts_grid') :
       get_template_part('template-parts/sections/posts_grid');
 
+    elseif (get_row_layout() == 'foster_care') :
+      get_template_part('template-parts/sections/foster_care');
+
     elseif (get_row_layout() == 'cta') :
       get_template_part('template-parts/sections/cta');
 

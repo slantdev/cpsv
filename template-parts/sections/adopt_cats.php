@@ -158,7 +158,6 @@ $section_adoptcats_class = 'section-adopt-cats-' . uniqid();
                 <?php
                 $adopt_cats_posts->the_post();
                 $id = get_the_ID();
-                $image = get_the_post_thumbnail_url($id, 'large');
                 $title =  get_the_title();
                 $link = get_the_permalink();
                 $adopt_cat_data = get_field('adopt_cat_data', $id);
@@ -178,22 +177,37 @@ $section_adoptcats_class = 'section-adopt-cats-' . uniqid();
                       $ageString .= "s";
                     }
                   }
-                  // if ($months > 0) {
-                  //   if ($years > 0) {
-                  //     $ageString .= " ";
-                  //   }
-                  //   $ageString .= $months . " Month";
-                  //   if ($months > 1) {
-                  //     $ageString .= "s";
-                  //   }
-                  // }
+                  if ($months > 0) {
+                    if ($years > 0) {
+                      $ageString .= " ";
+                    }
+                    $ageString .= $months . " Month";
+                    if ($months > 1) {
+                      $ageString .= "s";
+                    }
+                  }
                   $age = $ageString;
+                }
+                $cat_photos = get_field('cat_photos', $id);
+                $cat_gallery = $cat_photos['cat_photos'] ?? '';
+                $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+                if ($cat_gallery) {
+                  $image = $cat_gallery[0]['url'] ?? '';
+                }
+                if ($featured_thumbnail) {
+                  $image = $featured_thumbnail['url'] ?? '';
+                } else if (has_post_thumbnail($id)) {
+                  $image = get_the_post_thumbnail_url($id, 'large');
                 }
                 ?>
                 <div class="swiper-slide p-4">
                   <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                     <div class="aspect-w-1 aspect-h-1 overflow-hidden">
-                      <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                      <?php if ($image) : ?>
+                        <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                      <?php else : ?>
+                        <div class="w-full h-full bg-slate-50"></div>
+                      <?php endif; ?>
                     </div>
                     <div class="px-4 py-2 xl:px-8 xl:py-4">
                       <div class="flex justify-between gap-x-4">

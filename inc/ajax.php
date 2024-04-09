@@ -413,6 +413,183 @@ function pagination_load_postgrid()
           <?php } ?>
         </ul>
       </div>
+      <?php
+    endif;
+  }
+  exit();
+}
+
+// Load Posts Grid
+add_action('wp_ajax_pagination_load_fostergrid', 'pagination_load_fostergrid');
+add_action('wp_ajax_nopriv_pagination_load_fostergrid', 'pagination_load_fostergrid');
+function pagination_load_fostergrid()
+{
+  global $wpdb;
+  // Set default variables
+  $msg = '';
+  if (isset($_POST['page'])) {
+    // Sanitize the received page
+    $page = sanitize_text_field($_POST['page']);
+    $post_type = 'foster-care';
+    $per_page = sanitize_text_field($_POST['per_page']);
+    $pagination = sanitize_text_field($_POST['pagination']);
+    $cur_page = $page;
+    $page -= 1;
+    $previous_btn = true;
+    $next_btn = true;
+    $first_btn = true;
+    $last_btn = true;
+    $start = $page * $per_page;
+
+    $all_posts = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'orderby'           => 'menu_order',
+        'order'             => 'ASC',
+        'posts_per_page'    => $per_page,
+        'offset'            => $start
+      )
+    );
+    $count = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'posts_per_page'    => -1
+      )
+    );
+
+    $count = $count->post_count;
+    if ($all_posts->have_posts()) {
+      $postCount = 0;
+      echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-6">';
+      while ($all_posts->have_posts()) {
+        $postCount++;
+        $all_posts->the_post();
+        $id = get_the_ID();
+        $image = $page_header['page_header_settings']['background']['background_image']['url'] ?? '';
+        $title =  get_the_title();
+        $link = get_the_permalink();
+        $foster_cat_data = get_field('foster_cat_data', $id);
+        $cat_name = $foster_cat_data['cat_name'] ?? '';
+        if ($cat_name) {
+          $title = $cat_name;
+        }
+        $gender = $foster_cat_data['gender'] ?? '';
+        $breed = $foster_cat_data['breed'] ?? '';
+        $birth = $foster_cat_data['birth'] ?? '';
+        $age = '';
+        if ($birth) {
+          $dateString = $birth;
+          $birthdate = DateTime::createFromFormat('d/m/Y', $birth);
+          $currentDate = new DateTime();
+          $interval = $currentDate->diff($birthdate);
+          $years = $interval->y;
+          $months = $interval->m;
+          $ageString = "";
+          if ($years > 0) {
+            $ageString .= $years . " Year";
+            if ($years > 1) {
+              $ageString .= "s";
+            }
+          }
+          if ($months > 0) {
+            if ($years > 0) {
+              $ageString .= " ";
+            }
+            $ageString .= $months . " Month";
+            if ($months > 1) {
+              $ageString .= "s";
+            }
+          }
+          $age = $ageString;
+        }
+        $cat_photos = get_field('cat_photos', $id);
+        $cat_gallery = $cat_photos['cat_photos'] ?? '';
+        $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+        if ($cat_gallery) {
+          $image = $cat_gallery[0]['url'] ?? '';
+        }
+        if ($featured_thumbnail) {
+          $image = $featured_thumbnail['url'] ?? '';
+        } else if (has_post_thumbnail($id)) {
+          $image = get_the_post_thumbnail_url($id, 'large');
+        }
+      ?>
+        <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
+          <div class="aspect-1">
+            <?php if ($image) : ?>
+              <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+            <?php else : ?>
+              <div class="w-full h-full bg-slate-50"></div>
+            <?php endif; ?>
+          </div>
+          <div class="px-4 py-2 xl:px-8 xl:py-4">
+            <h4 class="text-3xl text-center font-semibold text-brand-tomato" style="color: var(--section-link-color)"><?php echo $title ?></h4>
+            <div class="text-base leading-snug text-slate-500 mt-2"><?php echo $age ?>, <?php echo $gender ?> <?php echo $breed ?></div>
+          </div>
+        </a>
+      <?php }
+      echo '</div>';
+    }
+
+    if ($pagination) :
+      // Paginations
+      $no_of_paginations = ceil($count / $per_page);
+      if ($cur_page >= 7) {
+        $start_loop = $cur_page - 3;
+        if ($no_of_paginations > $cur_page + 3)
+          $end_loop = $cur_page + 3;
+        else if ($cur_page <= $no_of_paginations && $cur_page > $no_of_paginations - 6) {
+          $start_loop = $no_of_paginations - 6;
+          $end_loop = $no_of_paginations;
+        } else {
+          $end_loop = $no_of_paginations;
+        }
+      } else {
+        $start_loop = 1;
+        if ($no_of_paginations > 7)
+          $end_loop = 7;
+        else
+          $end_loop = $no_of_paginations;
+      }
+      // Pagination Buttons logic
+      ?>
+      <div class='posts-pagination mt-10 pt-4 border-t border-slate-200'>
+        <ul>
+          <?php if ($first_btn && $cur_page > 1) { ?>
+            <li data-page='1' class='active'>&laquo;</li>
+          <?php } else if ($first_btn) { ?>
+            <li data-page='1' class='inactive'>&laquo;</li>
+          <?php } ?>
+          <?php if ($previous_btn && $cur_page > 1) {
+            $pre = $cur_page - 1;
+          ?>
+            <li data-page='<?php echo $pre; ?>' class='active'>&lsaquo;</li>
+          <?php } else if ($previous_btn) { ?>
+            <li class='inactive p-2'>&lsaquo;</li>
+          <?php } ?>
+          <?php for ($i = $start_loop; $i <= $end_loop; $i++) {
+            if ($cur_page == $i) {
+          ?>
+              <li data-page='<?php echo $i; ?>' class='selected'><?php echo $i; ?></li>
+            <?php } else { ?>
+              <li data-page='<?php echo $i; ?>' class='active'><?php echo $i; ?></li>
+          <?php }
+          } ?>
+          <?php if ($next_btn && $cur_page < $no_of_paginations) {
+            $nex = $cur_page + 1; ?>
+            <li data-page='<?php echo $nex; ?>' class='active'>&rsaquo;</li>
+          <?php } else if ($next_btn) { ?>
+            <li class='inactive'>&rsaquo;</li>
+          <?php } ?>
+          <?php if ($last_btn && $cur_page < $no_of_paginations) { ?>
+            <li data-page='<?php echo $no_of_paginations; ?>' class='active'>&raquo;</li>
+          <?php } else if ($last_btn) { ?>
+            <li data-page='<?php echo $no_of_paginations; ?>' class='inactive'>&raquo;</li>
+          <?php } ?>
+        </ul>
+      </div>
     <?php
     endif;
   }

@@ -38,7 +38,7 @@ $section_padding_bottom = $spacing_bottom_map[$spacing_bottom] ?? '';
 $section_container_class = $section_padding_top . ' ' . $section_padding_bottom  . ' ';
 
 // Spacing - Separator
-$separator_settings = $section_settings['section_spacing']['line_separator'];
+$separator_settings = $section_settings['section_spacing']['line_separator'] ?? '';
 $top_separator = $separator_settings['top_separator']['show_top_separator'] ?? false;
 $bottom_separator = $separator_settings['bottom_separator']['show_bottom_separator'] ?? false;
 $top_separator_color = $separator_settings['top_separator']['top_separator_color'] ?? '';
@@ -47,20 +47,20 @@ $top_separator_style = $top_separator ? "border-color: $top_separator_color;" : 
 $bottom_separator_style = $bottom_separator ? "border-color: $bottom_separator_color;" : '';
 
 // Background - Color/Image
-$background_settings = $section_settings['background'];
+$background_settings = $section_settings['background'] ?? '';
 $section_background_color = $background_settings['background_color'] ?? '';
 $section_background_image = $background_settings['background_image'] ?? '';
 $section_style .= $section_background_color ? "background-color: $section_background_color;" : '';
 $section_style .= $section_background_image ? "background-image: url($section_background_image); background-size: cover; background-repeat: no-repeat;" : '';
 
 // Background - Ornament
-$ornament_settings = $section_settings['background_ornament'];
+$ornament_settings = $section_settings['background_ornament'] ?? '';
 $section_ornament_shape = $ornament_settings['ornament_shape'] ?? '';
 $section_ornament_color = $ornament_settings['ornament_color'] ?? '';
 $section_ornament_position = $ornament_settings['ornament_position'] ?? '';
 
 // Text & Link
-$text_link_settings = $section_settings['text_link'];
+$text_link_settings = $section_settings['text_link'] ?? '';
 $section_text_color = $text_link_settings['text_color'] ?? '';
 $section_link_color = $text_link_settings['link_color'] ?? '';
 $section_style .= $section_text_color && $section_text_color !== 'default' ? "color: $section_text_color;" : '';
