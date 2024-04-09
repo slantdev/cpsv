@@ -526,7 +526,7 @@ function pagination_load_fostergrid()
           </div>
           <div class="px-4 py-2 xl:px-8 xl:py-4">
             <h4 class="text-3xl text-center font-semibold text-brand-tomato" style="color: var(--section-link-color)"><?php echo $title ?></h4>
-            <div class="text-base leading-snug text-slate-500 mt-2"><?php echo $age ?>, <?php echo $gender ?> <?php echo $breed ?></div>
+            <div class="text-base text-center leading-snug text-slate-500 mt-2"><?php echo $age ?>, <?php echo $gender ?> <?php echo $breed ?></div>
           </div>
         </a>
       <?php }
