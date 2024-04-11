@@ -4357,6 +4357,9 @@ details.collapse summary::-webkit-details-marker {
 .right-4 {
   right: 1rem;
 }
+.right-6 {
+  right: 1.5rem;
+}
 .top-0 {
   top: 0px;
 }
@@ -4365,6 +4368,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .top-3 {
   top: 0.75rem;
+}
+.top-6 {
+  top: 1.5rem;
 }
 .top-auto {
   top: auto;
@@ -4648,6 +4654,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .h-full {
   height: 100%;
+}
+.max-h-\[50vh\] {
+  max-height: 50vh;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -5000,6 +5009,9 @@ details.collapse summary::-webkit-details-marker {
 .overflow-clip {
   overflow: clip;
 }
+.overflow-y-auto {
+  overflow-y: auto;
+}
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -5132,6 +5144,9 @@ details.collapse summary::-webkit-details-marker {
 .border-zinc-300 {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
+}
+.bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
 }
 .bg-brand-blue {
   --tw-bg-opacity: 1;
@@ -5308,6 +5323,9 @@ details.collapse summary::-webkit-details-marker {
   -o-object-position: top;
      object-position: top;
 }
+.\!p-0 {
+  padding: 0px !important;
+}
 .p-0 {
   padding: 0px;
 }
@@ -5427,6 +5445,9 @@ details.collapse summary::-webkit-details-marker {
 .\!pb-2\.5 {
   padding-bottom: 0.625rem !important;
 }
+.\!pt-\[15px\] {
+  padding-top: 15px !important;
+}
 .pb-0 {
   padding-bottom: 0px;
 }
@@ -5475,6 +5496,9 @@ details.collapse summary::-webkit-details-marker {
 .pr-12 {
   padding-right: 3rem;
 }
+.pr-4 {
+  padding-right: 1rem;
+}
 .pr-\[30\%\] {
   padding-right: 30%;
 }
@@ -5516,9 +5540,6 @@ details.collapse summary::-webkit-details-marker {
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.\!pt-\[15px\] {
-  padding-top: 15px !important;
 }
 .text-left {
   text-align: left;
@@ -7124,10 +7145,6 @@ details.collapse summary::-webkit-details-marker {
   --tw-brightness: brightness(.9);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
-.hover\:brightness-75:hover {
-  --tw-brightness: brightness(.75);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
 .hover\:checked\:bg-transparent:checked:hover {
   background-color: transparent;
 }
@@ -7524,6 +7541,10 @@ details.collapse summary::-webkit-details-marker {
     padding-bottom: 1.5rem;
   }
 
+  .xl\:pb-12 {
+    padding-bottom: 3rem;
+  }
+
   .xl\:pb-14 {
     padding-bottom: 3.5rem;
   }
@@ -7546,6 +7567,14 @@ details.collapse summary::-webkit-details-marker {
 
   .xl\:pb-8 {
     padding-bottom: 2rem;
+  }
+
+  .xl\:pl-12 {
+    padding-left: 3rem;
+  }
+
+  .xl\:pr-8 {
+    padding-right: 2rem;
   }
 
   .xl\:pt-0 {

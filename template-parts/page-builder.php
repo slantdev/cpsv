@@ -34,6 +34,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'foster_care') :
       get_template_part('template-parts/sections/foster_care');
 
+    elseif (get_row_layout() == 'where_are_they') :
+      get_template_part('template-parts/sections/where_are_they');
+
     elseif (get_row_layout() == 'cta') :
       get_template_part('template-parts/sections/cta');
 

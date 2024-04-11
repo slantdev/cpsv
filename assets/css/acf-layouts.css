@@ -3910,6 +3910,10 @@
   --tw-aspect-h: 6;
 }
 
+#poststuff .acf-layout .aspect-h-8 {
+  --tw-aspect-h: 8;
+}
+
 #poststuff .acf-layout .aspect-h-9 {
   --tw-aspect-h: 9;
 }
@@ -4026,10 +4030,6 @@
   left: 0;
 }
 
-#poststuff .acf-layout .aspect-h-8 {
-  --tw-aspect-h: 8;
-}
-
 #poststuff .acf-layout .visible {
   visibility: visible;
 }
@@ -4102,6 +4102,10 @@
   right: 1rem;
 }
 
+#poststuff .acf-layout .right-6 {
+  right: 1.5rem;
+}
+
 #poststuff .acf-layout .top-0 {
   top: 0px;
 }
@@ -4114,12 +4118,12 @@
   top: 0.75rem;
 }
 
-#poststuff .acf-layout .top-auto {
-  top: auto;
+#poststuff .acf-layout .top-6 {
+  top: 1.5rem;
 }
 
-#poststuff .acf-layout .top-4 {
-  top: 1rem;
+#poststuff .acf-layout .top-auto {
+  top: auto;
 }
 
 #poststuff .acf-layout .\!z-20 {
@@ -4178,10 +4182,6 @@
   margin: 2rem;
 }
 
-#poststuff .acf-layout .m-\[5px\] {
-  margin: 5px;
-}
-
 #poststuff .acf-layout .-mx-4 {
   margin-left: -1rem;
   margin-right: -1rem;
@@ -4215,11 +4215,6 @@
 #poststuff .acf-layout .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-#poststuff .acf-layout .my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 #poststuff .acf-layout .\!ml-0 {
@@ -4499,6 +4494,10 @@
 
 #poststuff .acf-layout .h-full {
   height: 100%;
+}
+
+#poststuff .acf-layout .max-h-\[50vh\] {
+  max-height: 50vh;
 }
 
 #poststuff .acf-layout .min-h-screen {
@@ -4787,11 +4786,6 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-#poststuff .acf-layout .-rotate-90 {
-  --tw-rotate: -90deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 #poststuff .acf-layout .rotate-90 {
   --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -4951,22 +4945,8 @@
   border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
 }
 
-#poststuff .acf-layout .divide-y > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-y-reverse: 0;
-  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
-}
-
 #poststuff .acf-layout .divide-white\/70 > :not([hidden]) ~ :not([hidden]) {
   border-color: rgb(255 255 255 / 0.7);
-}
-
-#poststuff .acf-layout .divide-black\/30 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(0 0 0 / 0.3);
-}
-
-#poststuff .acf-layout .divide-white\/30 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(255 255 255 / 0.3);
 }
 
 #poststuff .acf-layout .overflow-auto {
@@ -4979,6 +4959,10 @@
 
 #poststuff .acf-layout .overflow-clip {
   overflow: clip;
+}
+
+#poststuff .acf-layout .overflow-y-auto {
+  overflow-y: auto;
 }
 
 #poststuff .acf-layout .whitespace-nowrap {
@@ -5114,6 +5098,11 @@
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
+#poststuff .acf-layout .border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 #poststuff .acf-layout .border-primary {
   --tw-border-opacity: 1;
   border-color: var(--fallback-p,oklch(var(--p)/var(--tw-border-opacity)));
@@ -5148,9 +5137,8 @@
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
 }
 
-#poststuff .acf-layout .border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+#poststuff .acf-layout .bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
 }
 
 #poststuff .acf-layout .bg-brand-blue {
@@ -5376,6 +5364,10 @@
      object-position: top;
 }
 
+#poststuff .acf-layout .\!p-0 {
+  padding: 0px !important;
+}
+
 #poststuff .acf-layout .p-0 {
   padding: 0px;
 }
@@ -5402,18 +5394,6 @@
 
 #poststuff .acf-layout .p-8 {
   padding: 2rem;
-}
-
-#poststuff .acf-layout .p-\[5px\] {
-  padding: 5px;
-}
-
-#poststuff .acf-layout .p-1 {
-  padding: 0.25rem;
-}
-
-#poststuff .acf-layout .p-1\.5 {
-  padding: 0.375rem;
 }
 
 #poststuff .acf-layout .\!px-10 {
@@ -5491,6 +5471,11 @@
   padding-bottom: 0.5rem;
 }
 
+#poststuff .acf-layout .py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 #poststuff .acf-layout .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -5526,17 +5511,16 @@
   padding-bottom: 26px;
 }
 
-#poststuff .acf-layout .py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
-
 #poststuff .acf-layout .\!pb-2 {
   padding-bottom: 0.5rem !important;
 }
 
 #poststuff .acf-layout .\!pb-2\.5 {
   padding-bottom: 0.625rem !important;
+}
+
+#poststuff .acf-layout .\!pt-\[15px\] {
+  padding-top: 15px !important;
 }
 
 #poststuff .acf-layout .pb-0 {
@@ -5603,6 +5587,10 @@
   padding-right: 3rem;
 }
 
+#poststuff .acf-layout .pr-4 {
+  padding-right: 1rem;
+}
+
 #poststuff .acf-layout .pr-\[30\%\] {
   padding-right: 30%;
 }
@@ -5657,10 +5645,6 @@
 
 #poststuff .acf-layout .pt-8 {
   padding-top: 2rem;
-}
-
-#poststuff .acf-layout .\!pt-\[15px\] {
-  padding-top: 15px !important;
 }
 
 #poststuff .acf-layout .text-left {
@@ -5885,11 +5869,6 @@
   color: rgb(161 161 170 / var(--tw-text-opacity));
 }
 
-#poststuff .acf-layout .text-brand-red {
-  --tw-text-opacity: 1;
-  color: rgb(240 49 5 / var(--tw-text-opacity));
-}
-
 #poststuff .acf-layout .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -5914,10 +5893,6 @@
 
 #poststuff .acf-layout .opacity-75 {
   opacity: 0.75;
-}
-
-#poststuff .acf-layout .opacity-0 {
-  opacity: 0;
 }
 
 #poststuff .acf-layout .bg-blend-multiply {
@@ -7009,11 +6984,6 @@
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-#poststuff .acf-layout .hover\:brightness-75:hover {
-  --tw-brightness: brightness(.75);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 #poststuff .acf-layout .hover\:checked\:bg-transparent:checked:hover {
   background-color: transparent;
 }
@@ -7279,14 +7249,6 @@
     margin-bottom: 3rem;
   }
 
-  #poststuff .acf-layout .xl\:ml-auto {
-    margin-left: auto;
-  }
-
-  #poststuff .acf-layout .xl\:mt-0 {
-    margin-top: 0px;
-  }
-
   #poststuff .acf-layout .xl\:mt-16 {
     margin-top: 4rem;
   }
@@ -7355,20 +7317,12 @@
     width: 1.5rem;
   }
 
-  #poststuff .acf-layout .xl\:w-64 {
-    width: 16rem;
-  }
-
   #poststuff .acf-layout .xl\:w-\[128px\] {
     width: 128px;
   }
 
   #poststuff .acf-layout .xl\:w-\[480px\] {
     width: 480px;
-  }
-
-  #poststuff .acf-layout .xl\:w-2\/4 {
-    width: 50%;
   }
 
   #poststuff .acf-layout .xl\:grid-cols-4 {
@@ -7401,16 +7355,12 @@
          column-gap: 5rem;
   }
 
-  #poststuff .acf-layout .xl\:border-0 {
-    border-width: 0px;
+  #poststuff .acf-layout .xl\:p-6 {
+    padding: 1.5rem;
   }
 
   #poststuff .acf-layout .xl\:p-8 {
     padding: 2rem;
-  }
-
-  #poststuff .acf-layout .xl\:p-6 {
-    padding: 1.5rem;
   }
 
   #poststuff .acf-layout .xl\:px-12 {
@@ -7443,6 +7393,10 @@
     padding-bottom: 1.5rem;
   }
 
+  #poststuff .acf-layout .xl\:pb-12 {
+    padding-bottom: 3rem;
+  }
+
   #poststuff .acf-layout .xl\:pb-14 {
     padding-bottom: 3.5rem;
   }
@@ -7453,10 +7407,6 @@
 
   #poststuff .acf-layout .xl\:pb-28 {
     padding-bottom: 7rem;
-  }
-
-  #poststuff .acf-layout .xl\:pb-3 {
-    padding-bottom: 0.75rem;
   }
 
   #poststuff .acf-layout .xl\:pb-36 {
@@ -7471,12 +7421,12 @@
     padding-bottom: 2rem;
   }
 
-  #poststuff .acf-layout .xl\:pl-16 {
-    padding-left: 4rem;
+  #poststuff .acf-layout .xl\:pl-12 {
+    padding-left: 3rem;
   }
 
-  #poststuff .acf-layout .xl\:pr-0 {
-    padding-right: 0px;
+  #poststuff .acf-layout .xl\:pr-8 {
+    padding-right: 2rem;
   }
 
   #poststuff .acf-layout .xl\:pt-0 {
@@ -7551,11 +7501,6 @@
 
 @media (min-width: 1536px) {
 
-  #poststuff .acf-layout .\34xl\:gap-x-8 {
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
-  }
-
   #poststuff .acf-layout .\34xl\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -7576,19 +7521,9 @@
     width: 2.25rem;
   }
 
-  #poststuff .acf-layout .\35xl\:gap-x-10 {
-    -moz-column-gap: 2.5rem;
-         column-gap: 2.5rem;
-  }
-
   #poststuff .acf-layout .\35xl\:px-7 {
     padding-left: 1.75rem;
     padding-right: 1.75rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 
   #poststuff .acf-layout .\35xl\:py-8 {

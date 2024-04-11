@@ -8,18 +8,19 @@ include get_template_directory() . '/template-parts/global/section_settings.php'
  * $section_padding_bottom
 */
 $section_id = $section_id ? 'id="' . $section_id . '"' : '';
+$section_link_color = $section_link_color;
 
-$foster_care = get_sub_field('foster_care') ?: []; // Group
+$where_are_they = get_sub_field('where_are_they') ?: []; // Group
 
-$heading_text = $foster_care['heading']['heading_text'] ?? '';
-$text_area = $foster_care['text_area']['text_area'] ?? '';
-//$button_url = $foster_care['button']['button_link']['url'] ?? '';
-$foster_care_settings = $foster_care['foster_care_settings'] ?? [];
-$posts_per_page = $foster_care_settings['posts_per_page'] ?? '';
-$show_pagination = $foster_care_settings['show_pagination'] ?? '';
+$heading_text = $where_are_they['heading']['heading_text'] ?? '';
+$text_area = $where_are_they['text_area']['text_area'] ?? '';
+//$button_url = $where_are_they['button']['button_link']['url'] ?? '';
+$where_are_they_settings = $where_are_they['where_are_they_settings'] ?? [];
+$posts_per_page = $where_are_they_settings['posts_per_page'] ?? '';
+$show_pagination = $where_are_they_settings['show_pagination'] ?? '';
 
 $uniqid = uniqid();
-$section_class = 'section-foster_care-' . $uniqid;
+$section_class = 'section-where_are_they-' . $uniqid;
 
 ?>
 
@@ -34,38 +35,22 @@ $section_class = 'section-foster_care-' . $uniqid;
             <?php
             if ($heading_text) {
               echo '<div class="mb-4">';
-              get_template_part('template-parts/components/heading', '', array('field' => $foster_care, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+              get_template_part('template-parts/components/heading', '', array('field' => $where_are_they, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
               echo '</div>';
             }
             ?>
             <?php
             if ($text_area) {
               echo '<div class="w-full">';
-              get_template_part('template-parts/components/textarea', '', array('field' => $foster_care, 'align' => 'text-left', 'weight' => 'font-medium'));
+              get_template_part('template-parts/components/textarea', '', array('field' => $where_are_they, 'align' => 'text-left', 'weight' => 'font-medium'));
               echo '</div>';
             }
             ?>
           </div>
-          <div class="w-full xl:w-1/3">
-            <div class="flex gap-x-4 justify-end">
-              <select name="filter-age" id="filter-age" class="select select-bordered rounded-full">
-                <option value="" disabled selected>Filter by age</option>
-                <option value="">Option 1</option>
-                <option value="">Option 2</option>
-                <option value="">Option 3</option>
-              </select>
-              <select name="filter-foster" id="filter-foster" class="select select-bordered rounded-full">
-                <option value="" disabled selected>Filter by foster required</option>
-                <option value="">Option 1</option>
-                <option value="">Option 2</option>
-                <option value="">Option 3</option>
-              </select>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="foster_care-container relative container max-w-screen-2xl my-8 xl:my-12">
-        <div class="foster-grid-<?php echo $uniqid ?>">
+      <div class="where_are_they-container relative container max-w-screen-2xl my-8 xl:my-12">
+        <div class="where-they-<?php echo $uniqid ?>">
         </div>
         <div class="posts-loader absolute inset-0 bg-white bg-opacity-80 z-10 transition-all duration-500 hidden">
           <div class="h-full w-full flex justify-center">
@@ -80,34 +65,35 @@ $section_class = 'section-foster_care-' . $uniqid;
         jQuery(document).ready(function($) {
           let ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
-          function load_fostercare_<?php echo $uniqid ?>(page) {
-            $('.foster-grid-<?php echo $uniqid ?>').next('.posts-loader').show();
+          function load_wherethey_<?php echo $uniqid ?>(page) {
+            $('.where-they-<?php echo $uniqid ?>').next('.posts-loader').show();
             let data = {
               page: page,
               per_page: '<?php echo $posts_per_page ?>',
               pagination: '<?php echo $show_pagination ?>',
-              action: 'pagination_load_fostergrid',
+              link_color: '<?php echo $section_link_color ?>',
+              action: 'pagination_load_wherethey',
             };
             //console.log(data);
             $.post(ajaxurl, data, function(response) {
               //console.log(response);
-              $('.foster-grid-<?php echo $uniqid ?>').html('').prepend(response);
-              $('.foster-grid-<?php echo $uniqid ?>').next('.posts-loader').hide();
+              $('.where-they-<?php echo $uniqid ?>').html('').prepend(response);
+              $('.where-they-<?php echo $uniqid ?>').next('.posts-loader').hide();
             });
           }
-          load_fostercare_<?php echo $uniqid ?>(1);
+          load_wherethey_<?php echo $uniqid ?>(1);
 
           $(document).on(
             'click',
-            '.foster-grid-<?php echo $uniqid ?> .posts-pagination li.active',
+            '.where-they-<?php echo $uniqid ?> .posts-pagination li.active',
             function() {
               $('html').animate({
-                  scrollTop: $(".foster-grid-<?php echo $uniqid ?>").offset().top - 100,
+                  scrollTop: $(".where-they-<?php echo $uniqid ?>").offset().top - 100,
                 },
                 800
               );
               let page = $(this).data('page');
-              load_fostercare_<?php echo $uniqid ?>(page);
+              load_wherethey_<?php echo $uniqid ?>(page);
             }
           );
 

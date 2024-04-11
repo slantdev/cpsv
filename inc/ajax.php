@@ -320,10 +320,8 @@ function pagination_load_postgrid()
 
     $count = $count->post_count;
     if ($all_posts->have_posts()) {
-      $postCount = 0;
       echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">';
       while ($all_posts->have_posts()) {
-        $postCount++;
         $all_posts->the_post();
         $the_id = get_the_ID();
         $page_header = get_field('page_header', $the_id);
@@ -419,7 +417,7 @@ function pagination_load_postgrid()
   exit();
 }
 
-// Load Posts Grid
+// Load Foster Grid
 add_action('wp_ajax_pagination_load_fostergrid', 'pagination_load_fostergrid');
 add_action('wp_ajax_nopriv_pagination_load_fostergrid', 'pagination_load_fostergrid');
 function pagination_load_fostergrid()
@@ -590,11 +588,201 @@ function pagination_load_fostergrid()
           <?php } ?>
         </ul>
       </div>
+      <?php
+    endif;
+  }
+  exit();
+}
+
+// Where They Grid
+add_action('wp_ajax_pagination_load_wherethey', 'pagination_load_wherethey');
+add_action('wp_ajax_nopriv_pagination_load_wherethey', 'pagination_load_wherethey');
+function pagination_load_wherethey()
+{
+  global $wpdb;
+  // Set default variables
+  $msg = '';
+  if (isset($_POST['page'])) {
+    // Sanitize the received page
+    $page = sanitize_text_field($_POST['page']);
+    $post_type = 'where-are-they';
+    $per_page = sanitize_text_field($_POST['per_page']);
+    $pagination = sanitize_text_field($_POST['pagination']);
+    $link_color = sanitize_text_field($_POST['link_color']);
+    $cur_page = $page;
+    $page -= 1;
+    $previous_btn = true;
+    $next_btn = true;
+    $first_btn = true;
+    $last_btn = true;
+    $start = $page * $per_page;
+
+    $all_posts = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'orderby'           => 'menu_order',
+        'order'             => 'ASC',
+        'posts_per_page'    => $per_page,
+        'offset'            => $start
+      )
+    );
+    $count = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'posts_per_page'    => -1
+      )
+    );
+
+    $count = $count->post_count;
+    if ($all_posts->have_posts()) {
+      echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">';
+      while ($all_posts->have_posts()) {
+        $all_posts->the_post();
+        $the_id = get_the_ID();
+        $image = '';
+        if (has_post_thumbnail($the_id)) {
+          $image = get_the_post_thumbnail_url($the_id, 'large') ?? '';
+        }
+        $title =  get_the_title();
+        $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
+        $link = get_the_permalink();
+      ?>
+        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+          <button type="button" data-fancybox="where" data-src="#cat-<?php echo $the_id ?>" class="group block relative rounded-t-xl overflow-clip">
+            <div class="aspect-w-16 aspect-h-9 overflow-clip">
+              <?php if ($image) : ?>
+                <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+              <?php else : ?>
+                <div class="w-full h-full bg-slate-50"></div>
+              <?php endif; ?>
+            </div>
+            <div class="p-4 xl:p-6 bg-white grow flex flex-col text-left">
+              <h4 class="text-left text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline mb-4" style="color: var(--section-link-color)"><?php echo $title ?></h4>
+              <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
+              <div class="mt-auto font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</div>
+            </div>
+          </button>
+        </div>
+      <?php }
+      echo '</div>';
+      echo '
+        <style>
+        .fancybox__content>.f-button.is-close-btn {
+          top: 20px;
+          right: 20px;
+          height: 40px;
+          width: 40px;
+          border-radius: 999px;
+          background: rgba(0,0,0,.5);
+        }
+        </style>
+      ';
+    }
+
+    if ($all_posts->have_posts()) {
+      $title_style = '';
+      if ($link_color) {
+        $title_style = 'color:' . $link_color . ';';
+      }
+      echo '<div class="modals">';
+      while ($all_posts->have_posts()) {
+        $all_posts->the_post();
+        $the_id = get_the_ID();
+        $image = '';
+        if (has_post_thumbnail($the_id)) {
+          $image = get_the_post_thumbnail_url($the_id, 'large') ?? '';
+        }
+        $title =  get_the_title();
+        $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
+      ?>
+        <div id="cat-<?php echo $the_id ?>" class="max-w-screen-lg bg-white rounded-xl overflow-clip !p-0" style="display:none;">
+          <div class="flex">
+            <div class="w-1/2">
+              <?php if ($image) : ?>
+                <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+              <?php else : ?>
+                <div class="w-full h-full bg-slate-50"></div>
+              <?php endif; ?>
+            </div>
+            <div class="w-1/2">
+              <div class="pl-6 pt-6 pr-4 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
+                <h3 class="text-left text-3xl leading-tight font-semibold text-brand-blue" style="<?php echo $title_style ?>"><?php echo $title ?></h3>
+                <div class="mt-6 prose max-h-[50vh] overflow-y-auto">
+                  <?php the_content() ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php }
+      echo '</div>';
+    }
+
+    if ($pagination) :
+      // Paginations
+      $no_of_paginations = ceil($count / $per_page);
+      if ($cur_page >= 7) {
+        $start_loop = $cur_page - 3;
+        if ($no_of_paginations > $cur_page + 3)
+          $end_loop = $cur_page + 3;
+        else if ($cur_page <= $no_of_paginations && $cur_page > $no_of_paginations - 6) {
+          $start_loop = $no_of_paginations - 6;
+          $end_loop = $no_of_paginations;
+        } else {
+          $end_loop = $no_of_paginations;
+        }
+      } else {
+        $start_loop = 1;
+        if ($no_of_paginations > 7)
+          $end_loop = 7;
+        else
+          $end_loop = $no_of_paginations;
+      }
+      // Pagination Buttons logic
+      ?>
+      <div class='posts-pagination mt-10 pt-4 border-t border-slate-200'>
+        <ul>
+          <?php if ($first_btn && $cur_page > 1) { ?>
+            <li data-page='1' class='active'>&laquo;</li>
+          <?php } else if ($first_btn) { ?>
+            <li data-page='1' class='inactive'>&laquo;</li>
+          <?php } ?>
+          <?php if ($previous_btn && $cur_page > 1) {
+            $pre = $cur_page - 1;
+          ?>
+            <li data-page='<?php echo $pre; ?>' class='active'>&lsaquo;</li>
+          <?php } else if ($previous_btn) { ?>
+            <li class='inactive p-2'>&lsaquo;</li>
+          <?php } ?>
+          <?php for ($i = $start_loop; $i <= $end_loop; $i++) {
+            if ($cur_page == $i) {
+          ?>
+              <li data-page='<?php echo $i; ?>' class='selected'><?php echo $i; ?></li>
+            <?php } else { ?>
+              <li data-page='<?php echo $i; ?>' class='active'><?php echo $i; ?></li>
+          <?php }
+          } ?>
+          <?php if ($next_btn && $cur_page < $no_of_paginations) {
+            $nex = $cur_page + 1; ?>
+            <li data-page='<?php echo $nex; ?>' class='active'>&rsaquo;</li>
+          <?php } else if ($next_btn) { ?>
+            <li class='inactive'>&rsaquo;</li>
+          <?php } ?>
+          <?php if ($last_btn && $cur_page < $no_of_paginations) { ?>
+            <li data-page='<?php echo $no_of_paginations; ?>' class='active'>&raquo;</li>
+          <?php } else if ($last_btn) { ?>
+            <li data-page='<?php echo $no_of_paginations; ?>' class='inactive'>&raquo;</li>
+          <?php } ?>
+        </ul>
+      </div>
     <?php
     endif;
   }
   exit();
 }
+
 
 // Load FAQS
 add_action('wp_ajax_pagination_load_faqs', 'pagination_load_faqs');
