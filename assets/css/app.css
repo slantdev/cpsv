@@ -5655,6 +5655,9 @@ details.collapse summary::-webkit-details-marker {
 .-tracking-\[0\.0125em\] {
   letter-spacing: -0.0125em;
 }
+.tracking-\[-0\.2em\] {
+  letter-spacing: -0.2em;
+}
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -5729,6 +5732,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .opacity-40 {
   opacity: 0.4;
+}
+.opacity-50 {
+  opacity: 0.5;
 }
 .opacity-75 {
   opacity: 0.75;
@@ -6499,6 +6505,33 @@ details.collapse summary::-webkit-details-marker {
     .nav-links .page-numbers.next {
   width: auto;
   border-radius: 0;
+}
+/* Adopt Cats */
+.adopt-filter-icon {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+.adopt-filter-indicator .adopt-filter-inactive {
+  display: block;
+}
+.adopt-filter-indicator .adopt-filter-active {
+  display: none;
+}
+.adopt-filter-clear {
+  display: none;
+}
+.adopt-filter-btn.active .adopt-filter-icon {
+  --tw-text-opacity: 1;
+  color: rgb(16 104 240 / var(--tw-text-opacity));
+}
+.adopt-filter-btn.active .adopt-filter-indicator .adopt-filter-inactive {
+  display: none;
+}
+.adopt-filter-btn.active .adopt-filter-indicator .adopt-filter-active {
+  display: block;
+}
+.adopt-filter-container.has_active .adopt-filter-clear {
+  display: flex;
 }
 @media (min-width: 1024px) {
 
@@ -7348,6 +7381,11 @@ details.collapse summary::-webkit-details-marker {
   .lg\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .after\:lg\:text-5xl::after {

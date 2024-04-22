@@ -22,6 +22,12 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'card_slider') :
       get_template_part('template-parts/sections/card_slider');
 
+    elseif (get_row_layout() == 'custom_card') :
+      get_template_part('template-parts/sections/custom_card');
+
+    elseif (get_row_layout() == 'custom_card_2') :
+      get_template_part('template-parts/sections/custom_card_2');
+
     elseif (get_row_layout() == 'testimonial') :
       get_template_part('template-parts/sections/testimonial');
 

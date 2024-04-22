@@ -62,3 +62,41 @@
     }
   }
 }
+
+/* Adopt Cats */
+.adopt-filter-icon {
+  @apply text-slate-500;
+}
+.adopt-filter-indicator {
+  .adopt-filter-inactive {
+    @apply block;
+  }
+  .adopt-filter-active {
+    @apply hidden;
+  }
+}
+.adopt-filter-clear {
+  @apply hidden;
+}
+.adopt-filter-btn {
+  &.active {
+    .adopt-filter-icon {
+      @apply text-brand-blue;
+    }
+    .adopt-filter-indicator {
+      .adopt-filter-inactive {
+        @apply hidden;
+      }
+      .adopt-filter-active {
+        @apply block;
+      }
+    }
+  }
+}
+.adopt-filter-container {
+  &.has_active {
+    .adopt-filter-clear {
+      @apply flex;
+    }
+  }
+}

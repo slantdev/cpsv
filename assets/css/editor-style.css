@@ -4752,6 +4752,9 @@ details.collapse summary::-webkit-details-marker {
 .tracking-tighter {
     letter-spacing: -0.05em;
 }
+.tracking-\[-0\.2em\] {
+    letter-spacing: -0.2em;
+}
 .text-brand-blue {
     --tw-text-opacity: 1;
     color: rgb(16 104 240 / var(--tw-text-opacity));
@@ -4823,6 +4826,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .opacity-75 {
     opacity: 0.75;
+}
+.opacity-50 {
+    opacity: 0.5;
 }
 .bg-blend-multiply {
     background-blend-mode: multiply;
@@ -5659,6 +5665,10 @@ body {
     .lg\:text-base {
         font-size: 1rem;
         line-height: 1.5rem;
+    }
+    .lg\:text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
     }
     .after\:lg\:text-5xl::after {
         content: var(--tw-content);

@@ -177,6 +177,96 @@
                     "acfe_flexible_settings_size": "medium",
                     "acfe_flexible_category": false
                 },
+                "layout_662552ee8cb6d": {
+                    "key": "layout_662552ee8cb6d",
+                    "name": "custom_card",
+                    "label": "Custom Card 1",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_662552ee8cb6f",
+                            "label": "Custom Card",
+                            "name": "custom_card",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6625516888f74"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0,
+                            "acfe_seamless_style": 0,
+                            "acfe_clone_modal": 0,
+                            "acfe_clone_modal_close": 0,
+                            "acfe_clone_modal_button": "",
+                            "acfe_clone_modal_size": "large"
+                        }
+                    ],
+                    "min": "",
+                    "max": "",
+                    "acfe_flexible_render_template": "acf-layouts\/custom_card.php",
+                    "acfe_flexible_render_style": "",
+                    "acfe_flexible_render_script": "",
+                    "acfe_flexible_modal_edit_size": "",
+                    "acfe_flexible_thumbnail": "",
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_flexible_category": false
+                },
+                "layout_662559d9855d2": {
+                    "key": "layout_662559d9855d2",
+                    "name": "custom_card_2",
+                    "label": "Custom Card 2",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_662559d9855d4",
+                            "label": "Custom Card 2",
+                            "name": "custom_card_2",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_6625596776e98"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0,
+                            "acfe_seamless_style": 0,
+                            "acfe_clone_modal": 0,
+                            "acfe_clone_modal_close": 0,
+                            "acfe_clone_modal_button": "",
+                            "acfe_clone_modal_size": "large"
+                        }
+                    ],
+                    "min": "",
+                    "max": "",
+                    "acfe_flexible_render_template": "acf-layouts\/custom_card_2.php",
+                    "acfe_flexible_render_style": "",
+                    "acfe_flexible_render_script": "",
+                    "acfe_flexible_modal_edit_size": "",
+                    "acfe_flexible_thumbnail": "",
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_flexible_category": false
+                },
                 "layout_660a05d330d1f": {
                     "key": "layout_660a05d330d1f",
                     "name": "faqs",
@@ -649,14 +739,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "help-advice"
+                "value": "campaign"
             }
         ],
         [
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "campaign"
+                "value": "post"
             }
         ]
     ],
@@ -683,7 +773,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1712629388,
+    "modified": 1713723888,
     "acfe_categories": {
         "flexible-content": "Flexible Content"
     }

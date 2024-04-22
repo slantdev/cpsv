@@ -5796,6 +5796,10 @@
   letter-spacing: -0.0125em;
 }
 
+#poststuff .acf-layout .tracking-\[-0\.2em\] {
+  letter-spacing: -0.2em;
+}
+
 #poststuff .acf-layout .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -5889,6 +5893,10 @@
 
 #poststuff .acf-layout .opacity-40 {
   opacity: 0.4;
+}
+
+#poststuff .acf-layout .opacity-50 {
+  opacity: 0.5;
 }
 
 #poststuff .acf-layout .opacity-75 {
@@ -6060,6 +6068,122 @@
 #poststuff .acf-layout :where(.collapse > input[type="checkbox"]),
 #poststuff .acf-layout :where(.collapse > input[type="radio"]) {
   width: auto;
+}
+
+/* Posts Pagination */
+
+#poststuff .acf-layout .posts-pagination > ul, #poststuff .acf-layout .ajax-pagination > ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
+
+#poststuff .acf-layout .posts-pagination > ul > li, #poststuff .acf-layout .ajax-pagination > ul > li {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.5rem;
+}
+
+#poststuff .acf-layout .posts-pagination > ul > li:hover, #poststuff .acf-layout .ajax-pagination > ul > li:hover {
+  --tw-text-opacity: 1;
+  color: rgb(2 0 68 / var(--tw-text-opacity));
+        color: var(--section-link-color);
+}
+
+#poststuff .acf-layout .posts-pagination > ul > li.inactive, #poststuff .acf-layout .ajax-pagination > ul > li.inactive {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#poststuff .acf-layout .posts-pagination > ul > li.selected, #poststuff .acf-layout .ajax-pagination > ul > li.selected {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 0 68 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+        background-color: var(--section-link-color);
+}
+
+#poststuff .acf-layout .posts-pagination > ul > li:first-child,
+      #poststuff .acf-layout .posts-pagination > ul > li:last-child,
+      #poststuff .acf-layout .ajax-pagination > ul > li:first-child,
+      #poststuff .acf-layout .ajax-pagination > ul > li:last-child {
+  letter-spacing: -0.2em;
+}
+
+#poststuff .acf-layout .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
+
+#poststuff .acf-layout .nav-links .page-numbers {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.5rem;
+}
+
+#poststuff .acf-layout .nav-links .page-numbers.current {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 0 68 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+      background-color: var(--section-link-color);
+}
+
+#poststuff .acf-layout .nav-links .page-numbers.prev,
+    #poststuff .acf-layout .nav-links .page-numbers.next {
+  width: auto;
+  border-radius: 0;
+}
+
+/* Adopt Cats */
+
+#poststuff .acf-layout .adopt-filter-icon {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
+#poststuff .acf-layout .adopt-filter-indicator .adopt-filter-inactive {
+  display: block;
+}
+
+#poststuff .acf-layout .adopt-filter-indicator .adopt-filter-active {
+  display: none;
+}
+
+#poststuff .acf-layout .adopt-filter-clear {
+  display: none;
+}
+
+#poststuff .acf-layout .adopt-filter-btn.active .adopt-filter-icon {
+  --tw-text-opacity: 1;
+  color: rgb(16 104 240 / var(--tw-text-opacity));
+}
+
+#poststuff .acf-layout .adopt-filter-btn.active .adopt-filter-indicator .adopt-filter-inactive {
+  display: none;
+}
+
+#poststuff .acf-layout .adopt-filter-btn.active .adopt-filter-indicator .adopt-filter-active {
+  display: block;
+}
+
+#poststuff .acf-layout .adopt-filter-container.has_active .adopt-filter-clear {
+  display: flex;
 }
 
 /* #titlediv #title-prompt-text {
@@ -7199,6 +7323,11 @@
   #poststuff .acf-layout .lg\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  #poststuff .acf-layout .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   #poststuff .acf-layout .after\:lg\:text-5xl::after {

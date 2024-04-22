@@ -417,6 +417,242 @@ function pagination_load_postgrid()
   exit();
 }
 
+// Load Adopt Slide
+add_action('wp_ajax_load_adopt_cat', 'load_adopt_cat');
+add_action('wp_ajax_nopriv_load_adopt_cat', 'load_adopt_cat');
+function load_adopt_cat()
+{
+  global $wpdb;
+  if (isset($_POST['page'])) {
+    // Sanitize the received page
+    $page = sanitize_text_field($_POST['page']);
+    $post_type = 'adopt-cat';
+    $per_page = sanitize_text_field($_POST['per_page']);
+    $style = sanitize_text_field($_POST['style']);
+    $show_pagination = sanitize_text_field($_POST['show_pagination']);
+    $section_class = sanitize_text_field($_POST['section_class']);
+    $cur_page = $page;
+    $page -= 1;
+    $previous_btn = true;
+    $next_btn = true;
+    $first_btn = true;
+    $last_btn = true;
+    $start = $page * $per_page;
+
+    $all_posts = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'orderby'           => 'menu_order',
+        'order'             => 'ASC',
+        'posts_per_page'    => $per_page,
+        'offset'            => $start
+      )
+    );
+    $count = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'posts_per_page'    => -1
+      )
+    );
+
+    $count = $count->post_count;
+    if ($all_posts->have_posts()) {
+      if ($style == 'slider') {
+      ?>
+        <div class="swiper -mx-4 xl:-mx-6">
+          <div class="swiper-wrapper">
+            <?php while ($all_posts->have_posts()) {
+              $all_posts->the_post();
+              $id = get_the_ID();
+              $title =  get_the_title();
+              $link = get_the_permalink();
+              $adopt_cat_data = get_field('adopt_cat_data', $id);
+              $birth = $adopt_cat_data['birth'] ?? '';
+              $age = '';
+              if ($birth) {
+                $dateString = $birth;
+                $birthdate = DateTime::createFromFormat('d/m/Y', $birth);
+                $currentDate = new DateTime();
+                $interval = $currentDate->diff($birthdate);
+                $years = $interval->y;
+                $months = $interval->m;
+                $ageString = "";
+                if ($years > 0) {
+                  $ageString .= $years . " Year";
+                  if ($years > 1) {
+                    $ageString .= "s";
+                  }
+                }
+                if ($months > 0) {
+                  if ($years > 0) {
+                    $ageString .= " ";
+                  }
+                  $ageString .= $months . " Month";
+                  if ($months > 1) {
+                    $ageString .= "s";
+                  }
+                }
+                $age = $ageString;
+              }
+              $cat_photos = get_field('cat_photos', $id);
+              $cat_gallery = $cat_photos['cat_photos'] ?? '';
+              $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+              if ($cat_gallery) {
+                $image = $cat_gallery[0]['url'] ?? '';
+              }
+              if ($featured_thumbnail) {
+                $image = $featured_thumbnail['url'] ?? '';
+              } else if (has_post_thumbnail($id)) {
+                $image = get_the_post_thumbnail_url($id, 'large');
+              }
+            ?>
+              <div class="swiper-slide p-4">
+                <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                  <div class="aspect-w-1 aspect-h-1 overflow-hidden">
+                    <?php if ($image) : ?>
+                      <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                    <?php else : ?>
+                      <div class="w-full h-full bg-slate-50"></div>
+                    <?php endif; ?>
+                  </div>
+                  <div class="px-4 py-2 xl:px-8 xl:py-4">
+                    <div class="flex justify-between items-center gap-x-4">
+                      <div class="text-xl"><?php echo $title ?></div>
+                      <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="absolute inset-0">
+          <div class="container max-w-screen-2xl relative h-full">
+            <button type="button" class="swiper-btn-prev absolute z-10 left-0 xl:-left-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+              <?php echo cpsv_icon(array('icon' => 'chevron-left', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
+            </button>
+            <button type="button" class="swiper-btn-next absolute z-10 right-0 xl:-right-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+              <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
+            </button>
+          </div>
+        </div>
+        <div class="absolute -bottom-20 left-0 right-0">
+          <div class="container max-w-screen-2xl px-4 xl:px-8">
+            <div class="relative">
+              <div class="swiper-pagination [&>.swiper-pagination-bullet]:rounded-lg" style="--swiper-pagination-bullet-width: 80px;--swiper-pagination-color:#1068F0;"></div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          jQuery(function($) {
+            new Swiper('.<?php echo $section_class ?> .swiper', {
+              slidesPerView: 4,
+              spaceBetween: 0,
+              loop: false,
+              speed: 500,
+              //watchOverflow: true,
+              //centerInsufficientSlides: true,
+              //autoHeight: true,
+              slidesPerGroup: 2,
+              grid: {
+                fill: 'row',
+                rows: 2,
+              },
+              pagination: {
+                el: ".<?php echo $section_class ?> .swiper-pagination",
+                clickable: true
+              },
+              navigation: {
+                nextEl: '.<?php echo $section_class ?> .swiper-btn-next',
+                prevEl: '.<?php echo $section_class ?> .swiper-btn-prev',
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 'auto',
+                  spaceBetween: 24
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 0
+                }
+              }
+            });
+          });
+        </script>
+      <?php } else { ?>
+        <div class="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-5 mt-12">
+          <?php while ($all_posts->have_posts()) {
+            $all_posts->the_post();
+            $id = get_the_ID();
+            $title =  get_the_title();
+            $link = get_the_permalink();
+            $adopt_cat_data = get_field('adopt_cat_data', $id);
+            $birth = $adopt_cat_data['birth'] ?? '';
+            $age = '';
+            if ($birth) {
+              $dateString = $birth;
+              $birthdate = DateTime::createFromFormat('d/m/Y', $birth);
+              $currentDate = new DateTime();
+              $interval = $currentDate->diff($birthdate);
+              $years = $interval->y;
+              $months = $interval->m;
+              $ageString = "";
+              if ($years > 0) {
+                $ageString .= $years . " Year";
+                if ($years > 1) {
+                  $ageString .= "s";
+                }
+              }
+              if ($months > 0) {
+                if ($years > 0) {
+                  $ageString .= " ";
+                }
+                $ageString .= $months . " Month";
+                if ($months > 1) {
+                  $ageString .= "s";
+                }
+              }
+              $age = $ageString;
+            }
+            $cat_photos = get_field('cat_photos', $id);
+            $cat_gallery = $cat_photos['cat_photos'] ?? '';
+            $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+            if ($cat_gallery) {
+              $image = $cat_gallery[0]['url'] ?? '';
+            }
+            if ($featured_thumbnail) {
+              $image = $featured_thumbnail['url'] ?? '';
+            } else if (has_post_thumbnail($id)) {
+              $image = get_the_post_thumbnail_url($id, 'large');
+            }
+          ?>
+            <div class="">
+              <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                <div class="aspect-w-1 aspect-h-1 overflow-hidden">
+                  <?php if ($image) : ?>
+                    <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                  <?php else : ?>
+                    <div class="w-full h-full bg-slate-50"></div>
+                  <?php endif; ?>
+                </div>
+                <div class="px-4 py-2 xl:px-8 xl:py-4">
+                  <div class="flex justify-between items-center gap-x-4">
+                    <div class="text-xl"><?php echo $title ?></div>
+                    <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php } ?>
+        </div>
+      <?php }
+    }
+  }
+  exit();
+}
+
 // Load Foster Grid
 add_action('wp_ajax_pagination_load_fostergrid', 'pagination_load_fostergrid');
 add_action('wp_ajax_nopriv_pagination_load_fostergrid', 'pagination_load_fostergrid');
@@ -941,7 +1177,7 @@ function pagination_load_faqs()
           <?php } ?>
         </ul>
       </div>
-<?php
+      <?php
     endif;
   }
   exit();
@@ -1009,3 +1245,272 @@ function filter_faqs()
 }
 add_action('wp_ajax_filter_faqs', 'filter_faqs');
 add_action('wp_ajax_nopriv_filter_faqs', 'filter_faqs');
+
+// Filter Adopt Cat
+function filter_adopt_cat()
+{
+  global $wpdb;
+  if (isset($_POST['page'])) {
+    // Sanitize the received page
+    $page = sanitize_text_field($_POST['page']);
+    $post_type = 'adopt-cat';
+    $per_page = sanitize_text_field($_POST['per_page']);
+    $per_page = '-1';
+    $style = sanitize_text_field($_POST['style']);
+    $show_pagination = sanitize_text_field($_POST['show_pagination']);
+    $section_class = sanitize_text_field($_POST['section_class']);
+    $meta_array_json = $_POST['meta_array'];
+    $meta_array = json_decode(stripslashes($meta_array_json));
+    //$meta_array = json_decode($meta_array_json);
+    $cur_page = $page;
+    $page -= 1;
+    $previous_btn = true;
+    $next_btn = true;
+    $first_btn = true;
+    $last_btn = true;
+    $start = $page * $per_page;
+
+    // $meta_query = array(
+    //   array(
+    //     'key'     => 'cat_filters_cat_filters',
+    //     'value'   => $meta_array,
+    //     'compare' => 'LIKE'
+    //   )
+    // );
+    $meta_query = array('relation' => 'AND');
+    foreach ($meta_array as $meta_value) {
+      $meta_query[] = array(
+        'key'     => 'cat_filters_cat_filters',
+        'value'   => $meta_value,
+        'compare' => 'LIKE'
+      );
+    }
+
+    //echo $meta_query;
+    //preint_r($meta_query);
+
+    //exit();
+
+    $all_posts = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'orderby'           => 'menu_order',
+        'order'             => 'ASC',
+        'posts_per_page'    => $per_page,
+        'offset'            => $start,
+        'meta_query'        => $meta_query
+      )
+    );
+
+    //preint_r($all_posts);
+
+    // exit();
+
+    $count = new WP_Query(
+      array(
+        'post_type'         => $post_type,
+        'post_status '      => 'publish',
+        'posts_per_page'    => -1
+      )
+    );
+
+    $count = $count->post_count;
+    if ($all_posts->have_posts()) {
+      if ($style == 'slider') {
+      ?>
+        <div class="swiper -mx-4 xl:-mx-6">
+          <div class="swiper-wrapper">
+            <?php while ($all_posts->have_posts()) {
+              $all_posts->the_post();
+              $id = get_the_ID();
+              $title =  get_the_title();
+              $link = get_the_permalink();
+              $adopt_cat_data = get_field('adopt_cat_data', $id);
+              $birth = $adopt_cat_data['birth'] ?? '';
+              $age = '';
+              if ($birth) {
+                $dateString = $birth;
+                $birthdate = DateTime::createFromFormat('d/m/Y', $birth);
+                $currentDate = new DateTime();
+                $interval = $currentDate->diff($birthdate);
+                $years = $interval->y;
+                $months = $interval->m;
+                $ageString = "";
+                if ($years > 0) {
+                  $ageString .= $years . " Year";
+                  if ($years > 1) {
+                    $ageString .= "s";
+                  }
+                }
+                if ($months > 0) {
+                  if ($years > 0) {
+                    $ageString .= " ";
+                  }
+                  $ageString .= $months . " Month";
+                  if ($months > 1) {
+                    $ageString .= "s";
+                  }
+                }
+                $age = $ageString;
+              }
+              $cat_photos = get_field('cat_photos', $id);
+              $cat_gallery = $cat_photos['cat_photos'] ?? '';
+              $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+              if ($cat_gallery) {
+                $image = $cat_gallery[0]['url'] ?? '';
+              }
+              if ($featured_thumbnail) {
+                $image = $featured_thumbnail['url'] ?? '';
+              } else if (has_post_thumbnail($id)) {
+                $image = get_the_post_thumbnail_url($id, 'large');
+              }
+            ?>
+              <div class="swiper-slide p-4">
+                <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                  <div class="aspect-w-1 aspect-h-1 overflow-hidden">
+                    <?php if ($image) : ?>
+                      <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                    <?php else : ?>
+                      <div class="w-full h-full bg-slate-50"></div>
+                    <?php endif; ?>
+                  </div>
+                  <div class="px-4 py-2 xl:px-8 xl:py-4">
+                    <div class="flex justify-between items-center gap-x-4">
+                      <div class="text-xl"><?php echo $title ?></div>
+                      <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
+        <div class="absolute inset-0">
+          <div class="container max-w-screen-2xl relative h-full">
+            <button type="button" class="swiper-btn-prev absolute z-10 left-0 xl:-left-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+              <?php echo cpsv_icon(array('icon' => 'chevron-left', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
+            </button>
+            <button type="button" class="swiper-btn-next absolute z-10 right-0 xl:-right-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+              <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
+            </button>
+          </div>
+        </div>
+        <div class="absolute -bottom-20 left-0 right-0">
+          <div class="container max-w-screen-2xl px-4 xl:px-8">
+            <div class="relative">
+              <div class="swiper-pagination [&>.swiper-pagination-bullet]:rounded-lg" style="--swiper-pagination-bullet-width: 80px;--swiper-pagination-color:#1068F0;"></div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          jQuery(function($) {
+            new Swiper('.<?php echo $section_class ?> .swiper', {
+              slidesPerView: 4,
+              spaceBetween: 0,
+              loop: false,
+              speed: 500,
+              //watchOverflow: true,
+              //centerInsufficientSlides: true,
+              //autoHeight: true,
+              slidesPerGroup: 2,
+              grid: {
+                fill: 'row',
+                rows: 2,
+              },
+              pagination: {
+                el: ".<?php echo $section_class ?> .swiper-pagination",
+                clickable: true
+              },
+              navigation: {
+                nextEl: '.<?php echo $section_class ?> .swiper-btn-next',
+                prevEl: '.<?php echo $section_class ?> .swiper-btn-prev',
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 'auto',
+                  spaceBetween: 24
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 0
+                }
+              }
+            });
+          });
+        </script>
+      <?php } else { ?>
+        <div class="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-5 mt-12">
+          <?php while ($all_posts->have_posts()) {
+            $all_posts->the_post();
+            $id = get_the_ID();
+            $title =  get_the_title();
+            $link = get_the_permalink();
+            $adopt_cat_data = get_field('adopt_cat_data', $id);
+            $birth = $adopt_cat_data['birth'] ?? '';
+            $age = '';
+            if ($birth) {
+              $dateString = $birth;
+              $birthdate = DateTime::createFromFormat('d/m/Y', $birth);
+              $currentDate = new DateTime();
+              $interval = $currentDate->diff($birthdate);
+              $years = $interval->y;
+              $months = $interval->m;
+              $ageString = "";
+              if ($years > 0) {
+                $ageString .= $years . " Year";
+                if ($years > 1) {
+                  $ageString .= "s";
+                }
+              }
+              if ($months > 0) {
+                if ($years > 0) {
+                  $ageString .= " ";
+                }
+                $ageString .= $months . " Month";
+                if ($months > 1) {
+                  $ageString .= "s";
+                }
+              }
+              $age = $ageString;
+            }
+            $cat_photos = get_field('cat_photos', $id);
+            $cat_gallery = $cat_photos['cat_photos'] ?? '';
+            $featured_thumbnail = $cat_photos['featured_thumbnail'] ?? '';
+            if ($cat_gallery) {
+              $image = $cat_gallery[0]['url'] ?? '';
+            }
+            if ($featured_thumbnail) {
+              $image = $featured_thumbnail['url'] ?? '';
+            } else if (has_post_thumbnail($id)) {
+              $image = get_the_post_thumbnail_url($id, 'large');
+            }
+          ?>
+            <div class="">
+              <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                <div class="aspect-w-1 aspect-h-1 overflow-hidden">
+                  <?php if ($image) : ?>
+                    <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
+                  <?php else : ?>
+                    <div class="w-full h-full bg-slate-50"></div>
+                  <?php endif; ?>
+                </div>
+                <div class="px-4 py-2 xl:px-8 xl:py-4">
+                  <div class="flex justify-between items-center gap-x-4">
+                    <div class="text-xl"><?php echo $title ?></div>
+                    <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php } ?>
+        </div>
+<?php }
+    } else {
+      echo '<div class="text-center lg:text-lg">Sorry, there are no cats available in this criteria.</div>';
+    }
+  }
+  exit();
+}
+add_action('wp_ajax_filter_adopt_cat', 'filter_adopt_cat');
+add_action('wp_ajax_nopriv_filter_adopt_cat', 'filter_adopt_cat');
