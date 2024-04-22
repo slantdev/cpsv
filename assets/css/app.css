@@ -4303,6 +4303,9 @@ details.collapse summary::-webkit-details-marker {
   bottom: 0;
   left: 0;
 }
+.aspect-h-7 {
+  --tw-aspect-h: 7;
+}
 .visible {
   visibility: visible;
 }

@@ -4030,6 +4030,10 @@
   left: 0;
 }
 
+#poststuff .acf-layout .aspect-h-7 {
+  --tw-aspect-h: 7;
+}
+
 #poststuff .acf-layout .visible {
   visibility: visible;
 }
