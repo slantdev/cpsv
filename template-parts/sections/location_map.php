@@ -208,7 +208,7 @@ $section_class = 'section-location_map-' . $uniqid;
               $text_content = $info['text_content'] ?? '';
             ?>
               <div>
-                <div class="border-b border-slate-300 pb-4">
+                <div class="border-slate-300 border-solid border-b border-x-0 border-t-0 pb-4">
                   <h4 class="text-[28px] leading-tight font-bold" style="color: var(--section-link-color)"><?php echo $title ?></h4>
                 </div>
                 <div class="pt-4">
