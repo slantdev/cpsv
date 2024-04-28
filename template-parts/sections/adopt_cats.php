@@ -47,26 +47,34 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
       <div class="search-filter-container container mx-auto max-w-screen-2xl my-8 xl:my-16">
         <?php if ($show_search_bar) : ?>
           <div class="adopt-search-<?php echo $uniqid ?>">
-            <div class="flex gap-x-4">
-              <input type="text" placeholder="Animal ID:" class="grow input input-bordered rounded-full">
-              <select name="filter-shelter" id="filter-shelter" class="select select-bordered rounded-full">
-                <option value="" disabled selected>Filter by time in shelter</option>
-                <option value="">Option 1</option>
-                <option value="">Option 2</option>
-                <option value="">Option 3</option>
-              </select>
-              <select name="filter-age" id="filter-age" class="select select-bordered rounded-full">
-                <option value="" disabled selected>Filter by age</option>
-                <option value="">Option 1</option>
-                <option value="">Option 2</option>
-                <option value="">Option 3</option>
-              </select>
-              <select name="filter-gender" id="filter-gender" class="select select-bordered rounded-full">
-                <option value="" disabled selected>Filter by gender</option>
-                <option value="">Male</option>
-                <option value="">Female</option>
-              </select>
-              <button type="button" class="!btn !btn-secondary !border-secondary !text-base !px-10 !rounded-full">Search</button>
+            <div class="flex gap-x-8 items-center">
+              <div class="w-full lg:w-2/3 flex gap-x-4">
+                <select name="filter-shelter" id="filter-shelter" class="select-filter select select-bordered rounded-full grow">
+                  <option value="" disabled selected>Filter by time in shelter</option>
+                  <option value="shelter_1">Less than 1 month</option>
+                  <option value="shelter_2">1-3months</option>
+                  <option value="shelter_3">3months+</option>
+                </select>
+                <select name="filter-age" id="filter-age" class="select-filter select select-bordered rounded-full grow">
+                  <option value="" disabled selected>Filter by age</option>
+                  <option value="age_kitten">Kitten 3-6months</option>
+                  <option value="age_teenager">Teenager 6months-2years</option>
+                  <option value="age_adult">Adult 2years-7 years</option>
+                  <option value="age_senior">Senior 7years +</option>
+                </select>
+                <select name="filter-gender" id="filter-gender" class="select-filter select select-bordered rounded-full grow">
+                  <option value="" disabled selected>Filter by gender</option>
+                  <option value="gender_male">Male</option>
+                  <option value="gender_female">Female</option>
+                </select>
+              </div>
+              <div class="flex-none">- OR -</div>
+              <div class="w-full lg:w-1/3">
+                <div class="search-cat-id w-full relative">
+                  <input type="text" placeholder="Animal ID:" class="search-cat-id-input grow input input-bordered rounded-full w-full">
+                  <button type="button" class="search-cat-id-btn !btn !btn-secondary !border-secondary !text-base !px-8 !rounded-full !h-[42px] !min-h-[42px] absolute right-[3px] top-[3px]">Search</button>
+                </div>
+              </div>
             </div>
           </div>
         <?php endif; ?>
@@ -192,6 +200,12 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
           }
           load_adopt_cat_<?php echo $uniqid ?>(1);
 
+          let selectFilters_<?php echo $uniqid ?> = {
+            shelter: '',
+            age: '',
+            gender: '',
+
+          }; // Array to store active filter select value
 
           let activeFilters_<?php echo $uniqid ?> = []; // Array to store active filter data-ids
 
@@ -202,31 +216,66 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
             } else {
               $('.adopt-filter-<?php echo $uniqid ?>').removeClass('has_active');
             }
-            //console.log(activeFilters_<?php echo $uniqid ?>);
             $('.adopt-card-<?php echo $uniqid ?>').next('.posts-loader').show();
+
+            let filter_array = '';
+            if (selectFilters_<?php echo $uniqid ?>) {
+              filter_array = JSON.stringify(selectFilters_<?php echo $uniqid ?>);
+            }
 
             let meta_array = '';
             if (activeFilters_<?php echo $uniqid ?>) {
               meta_array = JSON.stringify(activeFilters_<?php echo $uniqid ?>);
             }
 
-            //console.log(meta_array)
+            //console.log(filter_array);
+
             let data = {
               page: page,
               per_page: '<?php echo $posts_per_page ?>',
               style: '<?php echo $style ?>',
               show_pagination: '<?php echo $show_pagination ?>',
               section_class: '<?php echo $section_adoptcats_class ?>',
+              filter_array: filter_array,
               meta_array: meta_array,
               action: 'filter_adopt_cat',
             };
             //console.log(data);
+
             $.post(ajaxurl, data, function(response) {
-              console.log(response);
+              //console.log(response);
               $('.adopt-card-<?php echo $uniqid ?>').html('').prepend(response);
               $('.adopt-card-<?php echo $uniqid ?>').next('.posts-loader').hide();
             });
           }
+
+          // Click event for '.select-filter'
+          $('.adopt-search-<?php echo $uniqid ?> #filter-shelter').change(function(e) {
+            e.preventDefault();
+            let filterValue = $(this).val();
+            //console.log(filterValue);
+            selectFilters_<?php echo $uniqid ?>['shelter'] = filterValue;
+            //console.log(selectFilters_<?php echo $uniqid ?>);
+            updateUI_<?php echo $uniqid ?>(1); // Update UI
+          });
+
+          $('.adopt-search-<?php echo $uniqid ?> #filter-age').change(function(e) {
+            e.preventDefault();
+            let filterValue = $(this).val();
+            //console.log(filterValue);
+            selectFilters_<?php echo $uniqid ?>['age'] = filterValue;
+            //console.log(selectFilters_<?php echo $uniqid ?>);
+            updateUI_<?php echo $uniqid ?>(1); // Update UI
+          });
+
+          $('.adopt-search-<?php echo $uniqid ?> #filter-gender').change(function(e) {
+            e.preventDefault();
+            let filterValue = $(this).val();
+            //console.log(filterValue);
+            selectFilters_<?php echo $uniqid ?>['gender'] = filterValue;
+            //console.log(selectFilters_<?php echo $uniqid ?>);
+            updateUI_<?php echo $uniqid ?>(1); // Update UI
+          });
 
           // Click event for '.adopt-filter-btn'
           $('.adopt-filter-<?php echo $uniqid ?> .adopt-filter-btn').click(function(e) {

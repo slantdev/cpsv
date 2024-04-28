@@ -8,6 +8,7 @@ $section_id_attr = $section_id ? 'id="' . $section_id . '"' : '';
 $hero_slider = get_sub_field('hero_slider') ?: [];
 $hero_slider_repeater = $hero_slider['hero_slider'] ?? '';
 $stats_repeater = $hero_slider['stats'] ?? '';
+$disclaimer_text = $hero_slider['disclaimer_text'] ?? '';
 
 ?>
 <section <?php echo $section_id_attr ?> class="section-hero relative -mt-[136px]" style="<?php echo $section_style ?>">
@@ -120,6 +121,9 @@ $stats_repeater = $hero_slider['stats'] ?? '';
             </div>
           <?php endforeach ?>
         </div>
+        <?php if ($disclaimer_text) : ?>
+          <div class="text-sm text-center italic text-white mt-8"><?php echo $disclaimer_text ?></div>
+        <?php endif ?>
       </div>
     </div>
   <?php endif ?>

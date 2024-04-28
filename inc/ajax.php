@@ -1261,7 +1261,8 @@ function filter_adopt_cat()
     $section_class = sanitize_text_field($_POST['section_class']);
     $meta_array_json = $_POST['meta_array'];
     $meta_array = json_decode(stripslashes($meta_array_json));
-    //$meta_array = json_decode($meta_array_json);
+    $filter_array_json = $_POST['filter_array'];
+    $filter_array = json_decode(stripslashes($meta_array_json));
     $cur_page = $page;
     $page -= 1;
     $previous_btn = true;

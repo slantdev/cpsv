@@ -56,7 +56,6 @@ $section_class = 'section-posts_grid-' . $uniqid;
             echo '</div>';
           }
           ?>
-
         </div>
       </div>
       <div class="posts_grid-container relative container max-w-screen-2xl my-8 xl:my-12">

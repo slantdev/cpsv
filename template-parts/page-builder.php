@@ -31,6 +31,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'location_map') :
       get_template_part('template-parts/sections/location_map');
 
+    elseif (get_row_layout() == 'team') :
+      get_template_part('template-parts/sections/team');
+
     elseif (get_row_layout() == 'testimonial') :
       get_template_part('template-parts/sections/testimonial');
 

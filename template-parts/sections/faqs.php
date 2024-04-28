@@ -97,7 +97,7 @@ $faqs_id = $uniqid;
               if (select_category) {
                 terms = JSON.stringify(select_category);
               }
-              console.log(terms);
+              //console.log(terms);
               let data = {
                 faq_id: '<?php echo $faqs_id ?>',
                 page: page,
@@ -106,7 +106,7 @@ $faqs_id = $uniqid;
                 pagination: pagination,
                 action: 'pagination_load_faqs',
               };
-              console.log(data);
+              //console.log(data);
               $.post(ajaxurl, data, function(response) {
                 //console.log(response);
                 $('.faqs-accordion-<?php echo $faqs_id ?>').html('').prepend(response);

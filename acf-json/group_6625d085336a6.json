@@ -1,9 +1,9 @@
 {
-    "key": "group_6625c16859cef",
-    "title": "Layout - Location Map",
+    "key": "group_6625d085336a6",
+    "title": "Layout - Team",
     "fields": [
         {
-            "key": "field_6625c1694ddbc",
+            "key": "field_6625d08588c1e",
             "label": "Content Settings",
             "name": "",
             "aria-label": "",
@@ -20,9 +20,9 @@
             "endpoint": 0
         },
         {
-            "key": "field_6625c1694ddda",
-            "label": "Location Map",
-            "name": "location_map",
+            "key": "field_6625d08588c27",
+            "label": "Team",
+            "name": "team",
             "aria-label": "",
             "type": "group",
             "instructions": "",
@@ -39,7 +39,7 @@
             "acfe_permissions": "",
             "sub_fields": [
                 {
-                    "key": "field_6625c16951068",
+                    "key": "field_6625d0858b6ee",
                     "label": "Intro",
                     "name": "",
                     "aria-label": "",
@@ -57,7 +57,7 @@
                     "acfe_permissions": ""
                 },
                 {
-                    "key": "field_6625c16951073",
+                    "key": "field_6625d0858b6f6",
                     "label": "Headline",
                     "name": "headline",
                     "aria-label": "",
@@ -86,7 +86,7 @@
                     "acfe_clone_modal_size": "large"
                 },
                 {
-                    "key": "field_6625c1695107d",
+                    "key": "field_6625d0858b6fc",
                     "label": "Text",
                     "name": "text",
                     "aria-label": "",
@@ -115,37 +115,8 @@
                     "acfe_clone_modal_size": "large"
                 },
                 {
-                    "key": "field_6625c16951083",
-                    "label": "Button",
-                    "name": "button",
-                    "aria-label": "",
-                    "type": "clone",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "clone": [
-                        "group_62af6b15dc7c2"
-                    ],
-                    "display": "group",
-                    "layout": "table",
-                    "prefix_label": 0,
-                    "prefix_name": 0,
-                    "acfe_seamless_style": 1,
-                    "acfe_settings": "",
-                    "acfe_permissions": "",
-                    "acfe_clone_modal": 0,
-                    "acfe_clone_modal_close": 0,
-                    "acfe_clone_modal_button": "",
-                    "acfe_clone_modal_size": "large"
-                },
-                {
-                    "key": "field_6625c1695108d",
-                    "label": "Location",
+                    "key": "field_6625d0858b708",
+                    "label": "Team",
                     "name": "",
                     "aria-label": "",
                     "type": "tab",
@@ -162,9 +133,9 @@
                     "acfe_permissions": ""
                 },
                 {
-                    "key": "field_6625c16951096",
-                    "label": "Location",
-                    "name": "location_settings",
+                    "key": "field_6625d0858b70e",
+                    "label": "Team Settings",
+                    "name": "team_settings",
                     "aria-label": "",
                     "type": "group",
                     "instructions": "",
@@ -181,11 +152,11 @@
                     "acfe_permissions": "",
                     "sub_fields": [
                         {
-                            "key": "field_6625c20d82db4",
-                            "label": "Google Map",
-                            "name": "google_map",
+                            "key": "field_6625d0d0dd44f",
+                            "label": "Layout Style",
+                            "name": "layout_style",
                             "aria-label": "",
-                            "type": "google_map",
+                            "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -195,19 +166,28 @@
                                 "id": ""
                             },
                             "acfe_permissions": "",
-                            "center_lat": "",
-                            "center_lng": "",
-                            "zoom": "",
-                            "height": "",
+                            "choices": {
+                                "boxed": "Boxed Grid",
+                                "plain": "Plain"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
                             "acfe_settings": "",
-                            "acfe_validate": ""
+                            "acfe_validate": "",
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_custom": 0,
+                            "search_placeholder": ""
                         },
                         {
-                            "key": "field_6625c16957ddc",
-                            "label": "Contact Info",
-                            "name": "contact_info",
+                            "key": "field_6625d08597e61",
+                            "label": "Team Members",
+                            "name": "team_members",
                             "aria-label": "",
-                            "type": "repeater",
+                            "type": "relationship",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -217,65 +197,29 @@
                                 "id": ""
                             },
                             "acfe_permissions": "",
-                            "acfe_repeater_stylised_button": 1,
-                            "layout": "block",
-                            "pagination": 0,
+                            "post_type": [
+                                "team"
+                            ],
+                            "post_status": [
+                                "publish"
+                            ],
+                            "taxonomy": "",
+                            "filters": [
+                                "search",
+                                "post_type",
+                                "taxonomy"
+                            ],
+                            "return_format": "id",
+                            "acfe_bidirectional": {
+                                "acfe_bidirectional_enabled": "0"
+                            },
                             "acfe_settings": "",
-                            "min": 0,
-                            "max": 0,
-                            "collapsed": "field_662551ec00e56",
-                            "button_label": "Add Card",
-                            "rows_per_page": 20,
-                            "sub_fields": [
-                                {
-                                    "key": "field_6625c169590da",
-                                    "label": "Title",
-                                    "name": "title",
-                                    "aria-label": "",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "100",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "acfe_settings": "",
-                                    "acfe_validate": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "parent_repeater": "field_6625c16957ddc"
-                                },
-                                {
-                                    "key": "field_6625c1d282db3",
-                                    "label": "Text Content",
-                                    "name": "text_content",
-                                    "aria-label": "",
-                                    "type": "textarea",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "acfe_permissions": "",
-                                    "default_value": "",
-                                    "acfe_textarea_code": 0,
-                                    "acfe_settings": "",
-                                    "acfe_validate": "",
-                                    "maxlength": "",
-                                    "rows": 3,
-                                    "placeholder": "",
-                                    "new_lines": "br",
-                                    "parent_repeater": "field_6625c16957ddc"
-                                }
-                            ]
+                            "acfe_validate": "",
+                            "min": "",
+                            "max": "",
+                            "elements": "",
+                            "bidirectional": 0,
+                            "bidirectional_target": []
                         }
                     ],
                     "acfe_group_modal": 0,
@@ -290,7 +234,7 @@
             "acfe_group_modal_size": "large"
         },
         {
-            "key": "field_6625c1694dde7",
+            "key": "field_6625d08588c2e",
             "label": "Section Settings",
             "name": "",
             "aria-label": "",
@@ -307,7 +251,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_6625c1694ddff",
+            "key": "field_6625d08588c35",
             "label": "Section Settings",
             "name": "section_settings",
             "aria-label": "",
@@ -362,7 +306,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1713843119,
+    "modified": 1713843416,
     "acfe_categories": {
         "layout": "Layout"
     }

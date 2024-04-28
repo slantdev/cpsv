@@ -14,7 +14,7 @@
 
 	<?php do_action('cpsv_site_before'); ?>
 
-	<div id="page" class="min-h-screen flex flex-col">
+	<div id="page" class="min-h-screen flex flex-col overflow-x-hidden">
 
 		<?php do_action('cpsv_header'); ?>
 

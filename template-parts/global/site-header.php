@@ -51,35 +51,6 @@ $sign_in_register = $top_navigation['sign_in_register'] ?? '';
   </div>
 </div>
 
-<!-- <div class="top-header relative z-50 bg-brand-dark-blue py-3">
-  <div class="container max-w-screen-5xl">
-    <div class="flex items-center justify-end">
-      <ul class="top-nav flex gap-x-6 text-sm 4xl:text-base leading-tight">
-        <li><a href="#" class="text-white font-medium hover:opacity-75">About Us</a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75">What we do</a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75">What’s on</a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75">News & Media</a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75">Careers</a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75">Contact us</a></li>
-      </ul>
-      <ul class="social-link flex gap-x-1 px-6">
-        <li><a href="#" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => 'instagram', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => 'tiktok', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
-        <li><a href="#" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
-      </ul>
-      <div class="pl-6 border-l border-white border-solid">
-        <button type="button" class="flex items-center gap-x-2 text-sm 4xl:text-base leading-tight text-white font-medium hover:opacity-75">
-          <div>
-            <?php echo cpsv_icon(array('icon' => 'account', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?>
-          </div>
-          <div>Sign in / Register</div>
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <?php
 $header_logo = get_field('header_logo', 'option');
 $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg';
