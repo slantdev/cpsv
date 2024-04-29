@@ -248,77 +248,52 @@ function pagination_load_postgrid()
     $last_btn = true;
     $start = $page * $per_page;
 
-    $all_posts = new WP_Query(
-      array(
-        'post_type'         => $post_type,
-        'post_status '      => 'publish',
-        'orderby'           => 'post_date',
-        'order'             => 'DESC',
-        'posts_per_page'    => $per_page,
-        'offset'            => $start
-      )
+    $defaultsArgs = array(
+      'post_type'         => $post_type,
+      'post_status '      => 'publish',
+      'orderby'           => 'post_date',
+      'order'             => 'DESC',
+      'posts_per_page'    => $per_page,
+      'offset'            => $start
     );
-    $count = new WP_Query(
-      array(
-        'post_type'         => $post_type,
-        'post_status '      => 'publish',
-        'posts_per_page'    => -1
-      )
+    $countDefaults = array(
+      'post_type'         => $post_type,
+      'post_status '      => 'publish',
+      'posts_per_page'    => -1
     );
 
-    // if ($terms) {
-    //   $all_posts = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'orderby'           => 'post_date',
-    //       'order'             => 'DESC',
-    //       'posts_per_page'    => $per_page,
-    //       'offset'            => $start,
-    //       'tax_query' => array(
-    //         array(
-    //           'taxonomy' => 'category',
-    //           'field' => 'id',
-    //           'terms' => $terms,
-    //         ),
-    //       ),
-    //     )
-    //   );
-    //   $count = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'posts_per_page'    => -1,
-    //       'tax_query' => array(
-    //         array(
-    //           'taxonomy' => 'category',
-    //           'field' => 'id',
-    //           'terms' => $terms,
-    //         ),
-    //       ),
-    //     )
-    //   );
-    // } else {
-    //   $all_posts = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'orderby'           => 'post_date',
-    //       'order'             => 'DESC',
-    //       'posts_per_page'    => $per_page,
-    //       'offset'            => $start
-    //     )
-    //   );
-    //   $count = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'posts_per_page'    => -1
-    //     )
-    //   );
-    // }
+    if ($terms) {
+      $taxonomy = 'category';
+      if ($post_type == 'campaign') {
+        $taxonomy = 'campaign-category';
+      }
+      $postArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+      $countArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+    }
 
-    $count = $count->post_count;
+    $args = wp_parse_args($postArgs, $defaultsArgs);
+    $count = wp_parse_args($countArgs, $countDefaults);
+
+    $all_posts = new WP_Query($args);
+    $count_query = new WP_Query($args);
+
+    $count = $count_query->post_count;
     if ($all_posts->have_posts()) {
       echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">';
       while ($all_posts->have_posts()) {
@@ -357,61 +332,63 @@ function pagination_load_postgrid()
     if ($pagination) :
       // Paginations
       $no_of_paginations = ceil($count / $per_page);
-      if ($cur_page >= 7) {
-        $start_loop = $cur_page - 3;
-        if ($no_of_paginations > $cur_page + 3)
-          $end_loop = $cur_page + 3;
-        else if ($cur_page <= $no_of_paginations && $cur_page > $no_of_paginations - 6) {
-          $start_loop = $no_of_paginations - 6;
-          $end_loop = $no_of_paginations;
+      if ($no_of_paginations > 1) :
+        if ($cur_page >= 7) {
+          $start_loop = $cur_page - 3;
+          if ($no_of_paginations > $cur_page + 3)
+            $end_loop = $cur_page + 3;
+          else if ($cur_page <= $no_of_paginations && $cur_page > $no_of_paginations - 6) {
+            $start_loop = $no_of_paginations - 6;
+            $end_loop = $no_of_paginations;
+          } else {
+            $end_loop = $no_of_paginations;
+          }
         } else {
-          $end_loop = $no_of_paginations;
+          $start_loop = 1;
+          if ($no_of_paginations > 7)
+            $end_loop = 7;
+          else
+            $end_loop = $no_of_paginations;
         }
-      } else {
-        $start_loop = 1;
-        if ($no_of_paginations > 7)
-          $end_loop = 7;
-        else
-          $end_loop = $no_of_paginations;
-      }
-      // Pagination Buttons logic
+        // Pagination Buttons logic
       ?>
-      <div class='posts-pagination mt-10 pt-4 border-t border-slate-200'>
-        <ul>
-          <?php if ($first_btn && $cur_page > 1) { ?>
-            <li data-page='1' class='active'>&laquo;</li>
-          <?php } else if ($first_btn) { ?>
-            <li data-page='1' class='inactive'>&laquo;</li>
-          <?php } ?>
-          <?php if ($previous_btn && $cur_page > 1) {
-            $pre = $cur_page - 1;
-          ?>
-            <li data-page='<?php echo $pre; ?>' class='active'>&lsaquo;</li>
-          <?php } else if ($previous_btn) { ?>
-            <li class='inactive p-2'>&lsaquo;</li>
-          <?php } ?>
-          <?php for ($i = $start_loop; $i <= $end_loop; $i++) {
-            if ($cur_page == $i) {
-          ?>
-              <li data-page='<?php echo $i; ?>' class='selected'><?php echo $i; ?></li>
-            <?php } else { ?>
-              <li data-page='<?php echo $i; ?>' class='active'><?php echo $i; ?></li>
-          <?php }
-          } ?>
-          <?php if ($next_btn && $cur_page < $no_of_paginations) {
-            $nex = $cur_page + 1; ?>
-            <li data-page='<?php echo $nex; ?>' class='active'>&rsaquo;</li>
-          <?php } else if ($next_btn) { ?>
-            <li class='inactive'>&rsaquo;</li>
-          <?php } ?>
-          <?php if ($last_btn && $cur_page < $no_of_paginations) { ?>
-            <li data-page='<?php echo $no_of_paginations; ?>' class='active'>&raquo;</li>
-          <?php } else if ($last_btn) { ?>
-            <li data-page='<?php echo $no_of_paginations; ?>' class='inactive'>&raquo;</li>
-          <?php } ?>
-        </ul>
-      </div>
+        <div class='posts-pagination mt-10 pt-4 border-t border-slate-200'>
+          <ul>
+            <?php if ($first_btn && $cur_page > 1) { ?>
+              <li data-page='1' class='active'>&laquo;</li>
+            <?php } else if ($first_btn) { ?>
+              <li data-page='1' class='inactive'>&laquo;</li>
+            <?php } ?>
+            <?php if ($previous_btn && $cur_page > 1) {
+              $pre = $cur_page - 1;
+            ?>
+              <li data-page='<?php echo $pre; ?>' class='active'>&lsaquo;</li>
+            <?php } else if ($previous_btn) { ?>
+              <li class='inactive p-2'>&lsaquo;</li>
+            <?php } ?>
+            <?php for ($i = $start_loop; $i <= $end_loop; $i++) {
+              if ($cur_page == $i) {
+            ?>
+                <li data-page='<?php echo $i; ?>' class='selected'><?php echo $i; ?></li>
+              <?php } else { ?>
+                <li data-page='<?php echo $i; ?>' class='active'><?php echo $i; ?></li>
+            <?php }
+            } ?>
+            <?php if ($next_btn && $cur_page < $no_of_paginations) {
+              $nex = $cur_page + 1; ?>
+              <li data-page='<?php echo $nex; ?>' class='active'>&rsaquo;</li>
+            <?php } else if ($next_btn) { ?>
+              <li class='inactive'>&rsaquo;</li>
+            <?php } ?>
+            <?php if ($last_btn && $cur_page < $no_of_paginations) { ?>
+              <li data-page='<?php echo $no_of_paginations; ?>' class='active'>&raquo;</li>
+            <?php } else if ($last_btn) { ?>
+              <li data-page='<?php echo $no_of_paginations; ?>' class='inactive'>&raquo;</li>
+            <?php } ?>
+          </ul>
+        </div>
       <?php
+      endif;
     endif;
   }
   exit();
@@ -1506,7 +1483,7 @@ function filter_adopt_cat()
             </div>
           <?php } ?>
         </div>
-<?php }
+      <?php }
     } else {
       echo '<div class="text-center lg:text-lg">Sorry, there are no cats available in this criteria.</div>';
     }
@@ -1515,3 +1492,177 @@ function filter_adopt_cat()
 }
 add_action('wp_ajax_filter_adopt_cat', 'filter_adopt_cat');
 add_action('wp_ajax_nopriv_filter_adopt_cat', 'filter_adopt_cat');
+
+
+// Load Posts Grid
+add_action('wp_ajax_filter_postgrid', 'filter_postgrid');
+add_action('wp_ajax_nopriv_filter_postgrid', 'filter_postgrid');
+function filter_postgrid()
+{
+  global $wpdb;
+  // Set default variables
+  $msg = '';
+  if (isset($_POST['page'])) {
+    // Sanitize the received page
+    $page = sanitize_text_field($_POST['page']);
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $per_page = sanitize_text_field($_POST['per_page']);
+    //$pagination = sanitize_text_field($_POST['pagination']);
+    $pagination = false;
+    $terms = sanitize_text_field($_POST['terms']);
+    $terms = json_decode(stripslashes($terms));
+    $cur_page = $page;
+    $page -= 1;
+    $previous_btn = true;
+    $next_btn = true;
+    $first_btn = true;
+    $last_btn = true;
+    $start = $page * $per_page;
+
+    $defaultsArgs = array(
+      'post_type'         => $post_type,
+      'post_status '      => 'publish',
+      'orderby'           => 'post_date',
+      'order'             => 'DESC',
+      'posts_per_page'    => $per_page,
+      'offset'            => $start
+    );
+    $countDefaults = array(
+      'post_type'         => $post_type,
+      'post_status '      => 'publish',
+      'posts_per_page'    => -1
+    );
+
+    if ($terms) {
+      $taxonomy = 'category';
+      if ($post_type == 'campaign') {
+        $taxonomy = 'campaign-category';
+      }
+      $postArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+      $countArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+    }
+
+    $args = wp_parse_args($postArgs, $defaultsArgs);
+    $count = wp_parse_args($countArgs, $countDefaults);
+
+    $all_posts = new WP_Query($args);
+    $count_query = new WP_Query($args);
+
+    $count = $count_query->post_count;
+    if ($all_posts->have_posts()) {
+      echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">';
+      while ($all_posts->have_posts()) {
+        $all_posts->the_post();
+        $the_id = get_the_ID();
+        $page_header = get_field('page_header', $the_id);
+        $image = $page_header['page_header_settings']['background']['background_image']['url'] ?? '';
+        if (has_post_thumbnail($the_id)) {
+          $image = get_the_post_thumbnail_url($the_id, 'large');
+        }
+        $title =  get_the_title();
+        // $date =  get_the_date();
+        $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
+        $link = get_the_permalink();
+      ?>
+        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+          <a href="<?php echo $link ?>" class="group block relative rounded-t-xl overflow-clip">
+            <div class="aspect-w-16 aspect-h-9">
+              <?php if ($image) : ?>
+                <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+              <?php else : ?>
+                <div class="w-full h-full bg-slate-50"></div>
+              <?php endif; ?>
+            </div>
+          </a>
+          <div class="p-4 xl:p-6 bg-white grow flex flex-col">
+            <h4 class="mb-4"><a href="<?php echo $link ?>" class="text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
+            <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
+            <div class="mt-auto"><a href="<?php echo $link ?>" class="font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</a></div>
+          </div>
+        </div>
+      <?php }
+      echo '</div>';
+    } else {
+      echo '<div class="text-center lg:text-lg">Sorry, there are no posts in this criteria.</div>';
+    }
+
+    if ($pagination) :
+      // Paginations
+      $no_of_paginations = ceil($count / $per_page);
+      if ($no_of_paginations > 1) :
+        if ($cur_page >= 7) {
+          $start_loop = $cur_page - 3;
+          if ($no_of_paginations > $cur_page + 3)
+            $end_loop = $cur_page + 3;
+          else if ($cur_page <= $no_of_paginations && $cur_page > $no_of_paginations - 6) {
+            $start_loop = $no_of_paginations - 6;
+            $end_loop = $no_of_paginations;
+          } else {
+            $end_loop = $no_of_paginations;
+          }
+        } else {
+          $start_loop = 1;
+          if ($no_of_paginations > 7)
+            $end_loop = 7;
+          else
+            $end_loop = $no_of_paginations;
+        }
+        // Pagination Buttons logic
+      ?>
+        <div class='posts-pagination mt-10 pt-4 border-t border-slate-200'>
+          <ul>
+            <?php if ($first_btn && $cur_page > 1) { ?>
+              <li data-page='1' class='active'>&laquo;</li>
+            <?php } else if ($first_btn) { ?>
+              <li data-page='1' class='inactive'>&laquo;</li>
+            <?php } ?>
+            <?php if ($previous_btn && $cur_page > 1) {
+              $pre = $cur_page - 1;
+            ?>
+              <li data-page='<?php echo $pre; ?>' class='active'>&lsaquo;</li>
+            <?php } else if ($previous_btn) { ?>
+              <li class='inactive p-2'>&lsaquo;</li>
+            <?php } ?>
+            <?php for ($i = $start_loop; $i <= $end_loop; $i++) {
+              if ($cur_page == $i) {
+            ?>
+                <li data-page='<?php echo $i; ?>' class='selected'><?php echo $i; ?></li>
+              <?php } else { ?>
+                <li data-page='<?php echo $i; ?>' class='active'><?php echo $i; ?></li>
+            <?php }
+            } ?>
+            <?php if ($next_btn && $cur_page < $no_of_paginations) {
+              $nex = $cur_page + 1; ?>
+              <li data-page='<?php echo $nex; ?>' class='active'>&rsaquo;</li>
+            <?php } else if ($next_btn) { ?>
+              <li class='inactive'>&rsaquo;</li>
+            <?php } ?>
+            <?php if ($last_btn && $cur_page < $no_of_paginations) { ?>
+              <li data-page='<?php echo $no_of_paginations; ?>' class='active'>&raquo;</li>
+            <?php } else if ($last_btn) { ?>
+              <li data-page='<?php echo $no_of_paginations; ?>' class='inactive'>&raquo;</li>
+            <?php } ?>
+          </ul>
+        </div>
+<?php
+      endif;
+    endif;
+  }
+  exit();
+}

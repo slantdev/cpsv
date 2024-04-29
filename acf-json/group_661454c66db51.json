@@ -237,15 +237,13 @@
                             "acfe_permissions": "",
                             "taxonomy": [
                                 "campaign-category",
-                                "help-advice-category",
-                                "category",
-                                "post_tag"
+                                "category"
                             ],
                             "allow_terms": "",
                             "allow_level": "",
                             "field_type": "select",
                             "default_value": [],
-                            "return_format": "object",
+                            "return_format": "id",
                             "ui": 1,
                             "allow_null": 1,
                             "placeholder": "",
@@ -272,7 +270,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
@@ -297,7 +295,30 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33.33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "acfe_permissions": "",
+                            "message": "",
+                            "default_value": 0,
+                            "acfe_settings": "",
+                            "acfe_validate": "",
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_662dd07842a33",
+                            "label": "Show Dropdown Filter",
+                            "name": "show_dropdown_filter",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
@@ -391,7 +412,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1713723455,
+    "modified": 1714278554,
     "acfe_categories": {
         "layout": "Layout"
     }

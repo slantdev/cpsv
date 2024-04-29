@@ -19,9 +19,12 @@ $select_post_type = $posts_settings['select_post_type'] ?? '';
 $select_category = $posts_settings['select_category'] ?? '';
 $posts_per_page = $posts_settings['posts_per_page'] ?? '';
 $show_pagination = $posts_settings['show_pagination'] ?? '';
+$show_dropdown_filter = $posts_settings['show_dropdown_filter'] ?? '';
 
 $uniqid = uniqid();
 $section_class = 'section-posts_grid-' . $uniqid;
+
+//preint_r($select_category);
 
 ?>
 
@@ -49,13 +52,29 @@ $section_class = 'section-posts_grid-' . $uniqid;
             ?>
           </div>
           <?php
-          if ($button_url) {
-            echo '<div class="w-full xl:w-1/3 flex justify-end">';
-            get_template_part('template-parts/components/button', '', array('field' => $posts_grid['button'], 'align' => 'text-left', 'weight' => 'font-medium'));
-            //echo '<a href="#" class="btn btn-primary btn-outline rounded-full text-base px-16">View all</a>';
-            echo '</div>';
-          }
+          if ($show_dropdown_filter && $select_category && $select_post_type) :
+            $taxonomy = 'category';
+            if ($select_post_type == 'campaign') {
+              $taxonomy = 'campaign-category';
+            }
           ?>
+            <div class="w-full xl:w-1/3 flex justify-end">
+              <div class="filter-dropdown-<?php echo $uniqid ?> dropdown dropdown-end block gap-x-8 min-w-56 relative z-20">
+                <div tabindex="0" role="button" class="dropdown-button flex justify-between items-center font-bold border-b border-solid border-slate-300 pb-1 mb-1">
+                  <span class="dropdown-title">Filter</span>
+                  <?php echo cpsv_icon(array('icon' => 'chevron-down', 'group' => 'utilities', 'size' => '16', 'class' => 'w-3 h-3')); ?>
+                </div>
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded border border-slate-200 w-56">
+                  <?php
+                  foreach ($select_category as $category) :
+                    $term = get_term($category, $taxonomy);
+                  ?>
+                    <li><button class="filter-button" type="button" data-id="<?php echo $term->term_id ?>"><?php echo $term->name ?></button></li>
+                  <?php endforeach ?>
+                </ul>
+              </div>
+            </div>
+          <?php endif ?>
         </div>
       </div>
       <div class="posts_grid-container relative container max-w-screen-2xl my-8 xl:my-12">
@@ -83,7 +102,7 @@ $section_class = 'section-posts_grid-' . $uniqid;
             if (select_category) {
               terms = JSON.stringify(select_category);
             }
-            //console.log(terms);
+            console.log(terms);
             let data = {
               page: page,
               post_type: post_type,
@@ -100,6 +119,43 @@ $section_class = 'section-posts_grid-' . $uniqid;
             });
           }
           load_posttypes_<?php echo $uniqid ?>(1);
+
+          function filter_postgrid_<?php echo $uniqid ?>(page, terms) {
+            $('.posts-grid-<?php echo $uniqid ?>').next('.posts-loader').show();
+            let post_type = '<?php echo $select_post_type ?>';
+            let select_category = <?php echo json_encode($select_category) ?>;
+            let pagination = false;
+            // if (select_category) {
+            //   terms = JSON.stringify(select_category);
+            // }
+            console.log(terms);
+            let data = {
+              page: page,
+              post_type: post_type,
+              per_page: <?php echo $posts_per_page ?>,
+              terms: terms,
+              pagination: pagination,
+              action: 'filter_postgrid',
+            };
+            //console.log(data);
+            $.post(ajaxurl, data, function(response) {
+              //console.log(response);
+              $('.posts-grid-<?php echo $uniqid ?>').html('').prepend(response);
+              $('.posts-grid-<?php echo $uniqid ?>').next('.posts-loader').hide();
+            });
+          }
+
+          $(document).on(
+            'click',
+            '.filter-dropdown-<?php echo $uniqid ?> .filter-button',
+            function() {
+              $term_id = $(this).data('id');
+              $term_name = $(this).text();
+              $('.filter-dropdown-<?php echo $uniqid ?> .dropdown-title').text($term_name);
+              $(this).blur();
+              filter_postgrid_<?php echo $uniqid ?>(1, $term_id);
+            }
+          );
 
           $(document).on(
             'click',
