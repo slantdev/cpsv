@@ -52,7 +52,7 @@ switch ($column_settings) {
 
 ?>
 
-<section <?php echo $section_id ?> class="section-wrapper section-two_columns relative overflow-hidden" style="<?php echo $section_style ?>">
+<section <?php echo $section_id ?> class="section-wrapper section-two_columns relative" style="<?php echo $section_style ?>">
 
   <?php get_template_part('template-parts/global/separator', '', array('location' => 'top', 'active' => $top_separator, 'color' => $top_separator_color, 'class' => '')); ?>
   <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">

@@ -73,19 +73,38 @@ $section_class = 'section-custom_cards-' . $uniqid;
                 $link_target = $card['card_content']['link']['target'] ?? '_self';
               ?>
                 <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
-                  <a href="<?php echo $link ?>" class="group block relative rounded-t-xl overflow-clip">
-                    <div class="aspect-w-16 aspect-h-9">
-                      <?php if ($image) : ?>
-                        <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
-                      <?php else : ?>
-                        <div class="w-full h-full bg-slate-50"></div>
-                      <?php endif; ?>
-                    </div>
-                  </a>
+                  <?php if ($link) {
+                    echo '<a href="' . $link . '" class="group block relative rounded-t-xl overflow-clip">';
+                  } else {
+                    echo '<div class="block relative rounded-t-xl overflow-clip">';
+                  } ?>
+                  <div class="aspect-w-16 aspect-h-9">
+                    <?php if ($image) : ?>
+                      <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                    <?php else : ?>
+                      <div class="w-full h-full bg-slate-50"></div>
+                    <?php endif; ?>
+                  </div>
+                  <?php if ($link) {
+                    echo '</a>';
+                  } else {
+                    echo '</div>';
+                  } ?>
                   <div class="p-4 xl:p-6 bg-white grow flex flex-col">
-                    <h4 class="mb-4"><a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
+                    <h4 class="mb-4 text-2xl leading-tight font-semibold text-brand-dark-blue" style="color: var(--section-link-color)">
+                      <?php if ($link) : ?>
+                        <a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="hover:underline" style="color: var(--section-link-color)">
+                        <?php endif ?>
+                        <?php echo $title ?>
+                        <?php if ($link) : ?>
+                        </a>
+                      <?php endif ?>
+                    </h4>
                     <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
-                    <div class="mt-auto"><a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)"><?php echo $link_title ?></a></div>
+                    <?php if ($link) : ?>
+                      <div class="mt-auto"><a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)"><?php echo $link_title ?></a></div>
+                    <?php endif ?>
+
                   </div>
                 </div>
               <?php endforeach ?>

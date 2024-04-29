@@ -50,8 +50,8 @@ $content_class = implode(' ', $class_list);
   <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
 
-    <div class="section-content container mx-auto animation-wrapper">
-      <div class="container mx-auto z-[1] <?php echo $content_class ?> <?php echo $entrance_animation_class ?>">
+    <div class="section-content container mx-auto max-w-screen-2xl animation-wrapper">
+      <div class="<?php echo $content_class ?> <?php echo $entrance_animation_class ?>">
         <?php get_template_part('template-parts/components/components', '', array('field' => $components)); ?>
       </div>
     </div>
