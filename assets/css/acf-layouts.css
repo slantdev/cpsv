@@ -4178,6 +4178,10 @@
   z-index: 20;
 }
 
+#poststuff .acf-layout .-z-0 {
+  z-index: 0;
+}
+
 #poststuff .acf-layout .order-1 {
   order: 1;
 }
@@ -7549,6 +7553,10 @@
 
   #poststuff .acf-layout .lg\:pt-8 {
     padding-top: 2rem;
+  }
+
+  #poststuff .acf-layout .lg\:pt-2 {
+    padding-top: 0.5rem;
   }
 
   #poststuff .acf-layout .lg\:text-2xl {

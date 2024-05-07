@@ -21,9 +21,9 @@ $components = $one_column['components'] ?? '';
 $column_settings = $one_column['column_settings'] ?? [];
 $alignment = $column_settings['alignment'] ?? '';
 $alignment_classes = [
-  "left" => 'text-left',
-  "center" => 'text-center',
-  "right" => 'text-right',
+  "left" => 'text-left mr-auto',
+  "center" => 'text-center mx-auto',
+  "right" => 'text-right ml-auto',
 ];
 $alignment_class = $alignment_classes[$alignment] ?? 'text-center';
 $max_width = $column_settings['max_width'] ?? '';

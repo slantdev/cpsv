@@ -56,12 +56,12 @@ if ($numbered_list_repeater) { ?>
       ?>
         <div class="flex gap-x-10">
           <div class="flex-none relative">
-            <div class="<?php echo $circle_class ?> font-bold text-white rounded-full bg-brand-blue flex items-center justify-center" style="<?php echo $circle_style ?>"><?php echo $number ?></div>
+            <div class="<?php echo $circle_class ?> relative z-10 font-bold text-white rounded-full bg-brand-blue flex items-center justify-center" style="<?php echo $circle_style ?>"><?php echo $number ?></div>
             <?php if ($key != $last_key) : ?>
-              <div class="absolute -z-10 top-0 left-1/2 bottom-0 border-r border-brand-blue" style="<?php echo $border_style ?>"></div>
+              <div class="absolute -z-0 top-0 left-1/2 bottom-0 border-r border-solid border-brand-blue" style="<?php echo $border_style ?>"></div>
             <?php endif ?>
           </div>
-          <div class="<?php echo $text_class ?> prose xl:prose-lg font-medium max-w-none" style="<?php echo $text_style ?>">
+          <div class="<?php echo $text_class ?> prose xl:prose-lg font-medium max-w-none text-left lg:pt-2" style="<?php echo $text_style ?>">
             <?php if ($text) : ?>
               <p><?php echo $text ?></p>
             <?php endif ?>
