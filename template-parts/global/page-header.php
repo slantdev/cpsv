@@ -56,7 +56,7 @@ if (($page_header = get_field('page_header', $the_id)) && isset($page_header['en
               <?php yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
             <?php endif; ?>
             <?php if ($title) : ?>
-              <h2 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h2>
+              <h1 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h1>
             <?php endif; ?>
             <?php if ($description) : ?>
               <div class="text-sm xl:text-xl xl:leading-snug font-medium mt-4" style="<?php echo $description_style ?>">
