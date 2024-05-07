@@ -101,8 +101,14 @@ if ($dynamic_custom) {
               <?php foreach ($testimonial_array as $testimonial) : ?>
                 <div class="swiper-slide">
                   <div class="container max-w-screen-xl">
-                    <?php if ($testimonial['content']) : ?>
-                      <div class="testimonial-text text-4xl leading-tight font-light text-center text-slate-500">
+                    <?php
+                    if ($testimonial['content']) :
+                      $testimonial_style = '';
+                      if ($section_text_color) {
+                        $testimonial_style = 'color: ' . $section_text_color . ';';
+                      }
+                    ?>
+                      <div class="testimonial-text text-4xl leading-tight font-light text-center text-slate-500" style="<?php echo $testimonial_style ?>">
                         <?php echo $testimonial['content'] ?>
                       </div>
                     <?php endif; ?>

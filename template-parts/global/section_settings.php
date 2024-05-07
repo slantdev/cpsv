@@ -63,7 +63,7 @@ $section_ornament_position = $ornament_settings['ornament_position'] ?? '';
 $text_link_settings = $section_settings['text_link'] ?? '';
 $section_text_color = $text_link_settings['text_color'] ?? '';
 $section_link_color = $text_link_settings['link_color'] ?? '';
-$section_style .= $section_text_color && $section_text_color !== 'default' ? "color: $section_text_color;" : '';
+$section_style .= $section_text_color && $section_text_color !== 'default' ? "color: $section_text_color; --section-text-color: $section_text_color;" : '';
 $section_style .= $section_link_color ? "--section-link-color: $section_link_color;" : '';
 
 // Extras - Anchor
