@@ -1082,7 +1082,7 @@ function pagination_load_faqs()
       while ($all_faqs->have_posts()) {
         $all_faqs->the_post();
         echo '<div class="collapse collapse-plus bg-brand-light-gray rounded-lg border border-solid border-slate-300 shadow-md mb-6">';
-        echo '<input type="radio" class="faq-radio-btn w-full h-full block" name="faq-' . $faq_id . '" />';
+        echo '<input type="checkbox" class="faq-radio-btn w-full h-full block" name="faq-' . $faq_id . '" />';
         echo '<div class="collapse-title bg-white text-xl lg:text-2xl border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-5 pl-8 pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">';
         echo get_the_title();
         echo '</div>';
