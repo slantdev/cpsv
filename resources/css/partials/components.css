@@ -100,3 +100,8 @@
     }
   }
 }
+
+/* Give WP */
+.givewp-donation-form {
+  @apply p-0;
+}

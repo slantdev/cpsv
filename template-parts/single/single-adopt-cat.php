@@ -285,17 +285,37 @@ $components = isset($cat_description['components']) ? $cat_description['componen
           </div>
         </div>
         <div class="xl:w-2/5 order-2">
-          <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
-            <h4 class="text-[28px] leading-tight font-bold mb-3">Quick Links</h4>
-            <ul class="flex flex-col gap-y-3">
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Cats for adoption search <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Our adoption process <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption fees & FAQ’s <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Help & advice <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption success stories <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Ready to adopt? <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-            </ul>
-          </div>
+          <?php
+          $adopt_cats_settings = get_field('adopt_cats_settings', 'option');
+          $quick_links = $adopt_cats_settings['quick_links'] ?? '';
+          $buttons = $adopt_cats_settings['buttons'] ?? '';
+          $quick_links_label = $quick_links['label'] ?? '';
+          $quick_links_links = $quick_links['links'] ?? '';
+          ?>
+          <?php if ($quick_links) : ?>
+            <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
+              <?php if ($quick_links_label) : ?>
+                <h4 class="text-[28px] leading-tight font-bold mb-3"><?php echo $quick_links_label ?></h4>
+              <?php endif; ?>
+
+              <ul class="flex flex-col gap-y-3">
+                <?php
+                foreach ($quick_links_links as $link) :
+                  $link_url = $link['link']['url'] ?? '';
+                  $link_title = $link['link']['title'] ?? '';
+                  $link_target = $link['link']['target'] ?? '_self';
+                ?>
+                  <li class="pt-3 border-t border-slate-300"><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-xl flex justify-between hover:underline"><?php echo $link_title ?> <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                <?php endforeach ?>
+
+                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Our adoption process <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption fees & FAQ’s <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Help & advice <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption success stories <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Ready to adopt? <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+              </ul>
+            </div>
+          <?php endif; ?>
           <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
             <div class="social-link flex mb-4">
               <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
@@ -309,9 +329,11 @@ $components = isset($cat_description['components']) ? $cat_description['componen
               <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Email profile link</a></li>
             </ul>
           </div>
-          <div class="mt-8 flex gap-x-4">
-            <a href="/adopt-a-cat/adoption-application/" class="btn btn-secondary btn-lg rounded-full text-xl text-white leading-tight px-8 h-auto flex justify-between">Apply to adopt now <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'ml-4 w-4 h-4 text-white')); ?></a>
-          </div>
+          <?php if ($buttons) : ?>
+            <div class="mt-8 flex gap-x-4">
+              <?php get_template_part('template-parts/components/buttons', '', array('field' => $buttons)); ?>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>

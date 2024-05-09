@@ -5,10 +5,20 @@ $class = $args['class'] ?? '';
 
 $donation_form = $field && is_array($field) ? $field : get_sub_field($field ?: 'donation_form');
 $donation_form = $donation_form['donation_form'] ?? '';
+$donation_form_shortcode = $donation_form['donation_form_shortcode'] ?? '';
 
-if ($donation_form) :
+if ($donation_form_shortcode) :
 ?>
   <div class="donation-box rounded-2xl overflow-clip pb-6 bg-brand-blue -mt-[300px]">
+    <div class="bg-brand-blue py-10 px-10">
+      <h3 class="text-5xl leading-tight text-white font-semibold">Donation Details</h3>
+    </div>
+    <div class="bg-brand-light-gray rounded-b-2xl">
+      <?php echo do_shortcode($donation_form_shortcode) ?>
+    </div>
+  </div>
+
+  <!-- <div class="donation-box rounded-2xl overflow-clip pb-6 bg-brand-blue">
     <div class="bg-brand-blue py-10 px-10">
       <h3 class="text-5xl leading-tight text-white font-semibold">Donation Details</h3>
     </div>
@@ -45,5 +55,5 @@ if ($donation_form) :
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <?php endif ?>

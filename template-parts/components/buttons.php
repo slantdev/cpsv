@@ -114,4 +114,6 @@ if ($buttons_repeater) {
       echo '<a href="' . $button_url . '" class="' . $class . '" style="' . $print_button_style . '" title="' . $button_title . '" target="' . $button_target . '"><span>' . $button_title . '</span></a>';
     }
   }
+
+  echo '</div>';
 }
