@@ -307,12 +307,6 @@ $components = isset($cat_description['components']) ? $cat_description['componen
                 ?>
                   <li class="pt-3 border-t border-slate-300"><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-xl flex justify-between hover:underline"><?php echo $link_title ?> <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
                 <?php endforeach ?>
-
-                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Our adoption process <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption fees & FAQ’s <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Help & advice <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Adoption success stories <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
-                <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between hover:underline">Ready to adopt? <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
               </ul>
             </div>
           <?php endif; ?>
