@@ -21,6 +21,8 @@ $arrow_normal = $testimonial['testimonial_settings']['settings']['more_settings'
 $arrow_hover = $testimonial['testimonial_settings']['settings']['more_settings']['arrow_hover'] ?? '';
 $select_testimonial_categories = $testimonial['testimonial_settings']['select_testimonial_categories'] ?? [];
 $choose_testimonial = $testimonial['testimonial_settings']['choose_testimonial'] ?? [];
+$autoplay_delay = $testimonial['testimonial_settings']['autoplay_delay'] ?? '8';
+$autoplay_delay = $autoplay_delay * 1000;
 
 $testimonial_array = [];
 
@@ -167,7 +169,7 @@ if ($dynamic_custom) {
                 watchOverflow: true,
                 //centerInsufficientSlides: true,
                 autoplay: {
-                  speed: 8000
+                  delay: <?php echo $autoplay_delay ?>
                 },
                 navigation: {
                   nextEl: '.<?php echo $section_testimonial ?> .swiper-btn-next',

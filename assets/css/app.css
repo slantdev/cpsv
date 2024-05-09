@@ -7829,6 +7829,14 @@ details.collapse summary::-webkit-details-marker {
     font-size: 1.25rem;
   }
 
+  .xl\:text-\[48px\] {
+    font-size: 48px;
+  }
+
+  .xl\:text-\[56px\] {
+    font-size: 56px;
+  }
+
   .xl\:leading-snug {
     line-height: 1.375;
   }

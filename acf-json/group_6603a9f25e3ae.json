@@ -357,6 +357,26 @@
                             "elements": "",
                             "bidirectional": 0,
                             "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_663c31993bee9",
+                            "label": "Autoplay Delay",
+                            "name": "autoplay_delay",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 8,
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "Seconds"
                         }
                     ],
                     "acfe_group_modal": 0,
@@ -442,7 +462,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711743152,
+    "modified": 1715221250,
     "acfe_categories": {
         "layout": "Layout"
     }

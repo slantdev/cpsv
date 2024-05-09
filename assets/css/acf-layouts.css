@@ -7864,6 +7864,14 @@
     font-size: 1.25rem;
   }
 
+  #poststuff .acf-layout .xl\:text-\[48px\] {
+    font-size: 48px;
+  }
+
+  #poststuff .acf-layout .xl\:text-\[56px\] {
+    font-size: 56px;
+  }
+
   #poststuff .acf-layout .xl\:leading-snug {
     line-height: 1.375;
   }
