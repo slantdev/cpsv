@@ -237,7 +237,8 @@
                             },
                             "choices": {
                                 "year": "Year",
-                                "month": "Month"
+                                "month": "Month",
+                                "week": "Week"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -451,7 +452,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1712619638,
+    "modified": 1715223166,
     "acfe_categories": {
         "foster": "Foster"
     }
