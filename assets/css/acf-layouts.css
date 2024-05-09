@@ -4146,6 +4146,14 @@
   top: 3px;
 }
 
+#poststuff .acf-layout .top-4 {
+  top: 1rem;
+}
+
+#poststuff .acf-layout .top-5 {
+  top: 1.25rem;
+}
+
 #poststuff .acf-layout .\!z-20 {
   z-index: 20 !important;
 }
@@ -5113,6 +5121,11 @@
 #poststuff .acf-layout .rounded-t-xl {
   border-top-left-radius: 1.25rem;
   border-top-right-radius: 1.25rem;
+}
+
+#poststuff .acf-layout .rounded-l-full {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
 }
 
 #poststuff .acf-layout .border {

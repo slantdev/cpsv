@@ -447,6 +447,7 @@ function load_adopt_cat()
               $link = get_the_permalink();
               $adopt_cat_data = get_field('adopt_cat_data', $id);
               $birth = $adopt_cat_data['birth'] ?? '';
+              $status = $adopt_cat_data['status'] ?? '';
               $age = '';
               if ($birth) {
                 $dateString = $birth;
@@ -486,7 +487,7 @@ function load_adopt_cat()
               }
             ?>
               <div class="swiper-slide p-4">
-                <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                <a href="<?php echo $link ?>" class="relative block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                   <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                     <?php if ($image) : ?>
                       <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -494,6 +495,15 @@ function load_adopt_cat()
                       <div class="w-full h-full bg-slate-50"></div>
                     <?php endif; ?>
                   </div>
+                  <?php
+                  if ($status == 'available') {
+                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-blue rounded-l-full">Available</div>';
+                  } else if ($status == 'adopted') {
+                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-teal rounded-l-full">Adopted</div>';
+                  } else if ($status == 'foster') {
+                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                  }
+                  ?>
                   <div class="px-4 py-2 xl:px-8 xl:py-4">
                     <div class="flex justify-between items-center gap-x-4">
                       <div class="text-xl"><?php echo $title ?></div>
@@ -567,6 +577,7 @@ function load_adopt_cat()
             $link = get_the_permalink();
             $adopt_cat_data = get_field('adopt_cat_data', $id);
             $birth = $adopt_cat_data['birth'] ?? '';
+            $status = $adopt_cat_data['status'] ?? '';
             $age = '';
             if ($birth) {
               $dateString = $birth;
@@ -614,6 +625,15 @@ function load_adopt_cat()
                     <div class="w-full h-full bg-slate-50"></div>
                   <?php endif; ?>
                 </div>
+                <?php
+                if ($status == 'available') {
+                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-blue rounded-l-full">Available</div>';
+                } else if ($status == 'adopted') {
+                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-teal rounded-l-full">Adopted</div>';
+                } else if ($status == 'foster') {
+                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                }
+                ?>
                 <div class="px-4 py-2 xl:px-8 xl:py-4">
                   <div class="flex justify-between items-center gap-x-4">
                     <div class="text-xl"><?php echo $title ?></div>

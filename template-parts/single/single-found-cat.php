@@ -186,6 +186,21 @@ $components = $cat_description['components'] ?? '';
             <?php get_template_part('template-parts/components/components', '', array('field' => $components)); ?>
           </div>
         </div>
+        <div class="xl:w-2/5 order-2">
+          <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
+            <div class="social-link flex mb-4">
+              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'whatsapp', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+            </div>
+            <ul class="flex flex-col gap-y-3">
+              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Print profile</a></li>
+              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Email profile link</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

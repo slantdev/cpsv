@@ -3482,6 +3482,12 @@ details.collapse summary::-webkit-details-marker {
 .top-\[3px\] {
     top: 3px;
 }
+.top-4 {
+    top: 1rem;
+}
+.top-5 {
+    top: 1.25rem;
+}
 .\!z-20 {
     z-index: 20 !important;
 }
@@ -4215,6 +4221,10 @@ details.collapse summary::-webkit-details-marker {
 .rounded-t-xl {
     border-top-left-radius: 1.25rem;
     border-top-right-radius: 1.25rem;
+}
+.rounded-l-full {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
 }
 .border {
     border-width: 1px;
