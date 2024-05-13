@@ -1390,7 +1390,7 @@ function pagination_load_reportsgrid()
         $cover_image = $annual_report['cover_image'] ?? '';
       ?>
         <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
-          <a href="<?php echo $file_pdf ?>" class="group block relative rounded-t-xl overflow-clip">
+          <a href="<?php echo $file_pdf ?>" target="_blank" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-[128] aspect-h-[181]">
               <?php if ($cover_image) : ?>
                 <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $cover_image ?>" alt="">
@@ -1401,7 +1401,7 @@ function pagination_load_reportsgrid()
           </a>
           <div class="p-4 xl:p-6 bg-white grow flex flex-col">
             <h4 class="mb-4 text-[20px] leading-tight font-semibold text-brand-dark-blue"><?php echo $title ?></h4>
-            <div class="mt-auto"><a href="<?php echo $file_pdf ?>" class="font-semibold text-sm text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)"><?php echo $link_text ?></a></div>
+            <div class="mt-auto"><a href="<?php echo $file_pdf ?>" target="_blank" class="font-semibold text-sm text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)"><?php echo $link_text ?></a></div>
           </div>
         </div>
       <?php }
