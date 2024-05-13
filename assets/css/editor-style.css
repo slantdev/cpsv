@@ -3398,6 +3398,23 @@ details.collapse summary::-webkit-details-marker {
     bottom: 0;
     left: 0;
 }
+.aspect-h-\[181\] {
+    --tw-aspect-h: 181;
+}
+.aspect-w-\[128\] {
+    position: relative;
+    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+    --tw-aspect-w: 128;
+}
+.aspect-w-\[128\] > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 .visible {
     visibility: visible;
 }
@@ -4813,6 +4830,9 @@ details.collapse summary::-webkit-details-marker {
 .text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
+}
+.text-\[20px\] {
+    font-size: 20px;
 }
 .font-bold {
     font-weight: 700;

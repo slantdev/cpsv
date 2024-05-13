@@ -13,6 +13,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'adopt_cats') :
       get_template_part('template-parts/sections/adopt_cats');
 
+    elseif (get_row_layout() == 'annual_reports') :
+      get_template_part('template-parts/sections/annual_reports');
+
     elseif (get_row_layout() == 'hero_slider') :
       get_template_part('template-parts/sections/hero_slider');
 

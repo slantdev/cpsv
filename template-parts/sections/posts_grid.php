@@ -102,7 +102,7 @@ $section_class = 'section-posts_grid-' . $uniqid;
             if (select_category) {
               terms = JSON.stringify(select_category);
             }
-            console.log(terms);
+            //console.log(terms);
             let data = {
               page: page,
               post_type: post_type,
@@ -125,10 +125,10 @@ $section_class = 'section-posts_grid-' . $uniqid;
             let post_type = '<?php echo $select_post_type ?>';
             let select_category = <?php echo json_encode($select_category) ?>;
             let pagination = false;
-            // if (select_category) {
-            //   terms = JSON.stringify(select_category);
-            // }
-            console.log(terms);
+            if (select_category) {
+              terms = JSON.stringify(select_category);
+            }
+            //console.log(terms);
             let data = {
               page: page,
               post_type: post_type,
