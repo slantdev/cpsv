@@ -38,40 +38,6 @@ $section_card_class = 'section-cards-' . uniqid();
       ?>
     </div>
     <div class="swiper-container relative mt-8 mb-8 xl:mt-16 xl:mb-12">
-      <?php
-      $content = array(
-        [
-          'title' => 'Adopt a cat',
-          'text' => 'Adopting a cat with CPSV not only brings a furry companion into your life but also helps support their mission of finding loving homes for feline friends in need.',
-          'image' => site_url() . '/wp-content/uploads/2024/03/617278.jpg',
-          'link' => '#'
-        ],
-        [
-          'title' => 'Visit the Vet Clinic',
-          'text' => 'Visiting the vet clinic at CPSV ensures your beloved pet receives top-notch care and attention from experienced professionals dedicated to their well-being.',
-          'image' => site_url() . '/wp-content/uploads/2024/03/747795.jpg',
-          'link' => '#'
-        ],
-        [
-          'title' => 'Support us',
-          'text' => 'Supporting CPSV means making a positive impact on the lives of countless animals by contributing to their rescue, rehabilitation, and rehoming efforts.',
-          'image' => site_url() . '/wp-content/uploads/2024/03/1543793.jpg',
-          'link' => '#'
-        ],
-        [
-          'title' => 'Help & Advice',
-          'text' => 'The dedicated work of CPSV encompasses the rescue, care, and placement of homeless cats, ensuring they find loving homes and receive the support they deserve.',
-          'image' => site_url() . '/wp-content/uploads/2024/03/1644602.jpg',
-          'link' => '#'
-        ],
-        [
-          'title' => 'Lorem Ipsum Dolor',
-          'text' => 'In ac felis quis tortor malesuada pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Fusce convallis metus.',
-          'image' => site_url() . '/wp-content/uploads/2024/03/1981158.jpg',
-          'link' => '#'
-        ],
-      );
-      ?>
       <div class="swiper">
         <div class="swiper-wrapper">
           <?php foreach ($card_slides as $card) : ?>
@@ -79,18 +45,24 @@ $section_card_class = 'section-cards-' . uniqid();
             $title = $card['title'] ?? '';
             $text = $card['text'] ?? '';
             $background_image = $card['background_image']['url'] ?? '';
+            $overlay = $card['overlay'] ?? '';
             $link = $card['link']['url'] ?? '#';
+
+            $overlay_style = '';
+            if ($overlay) {
+              $overlay_style = '--tw-gradient-stops: ' . $overlay . ' 0%, transparent 100%;';
+            }
             ?>
-            <div class="swiper-slide max-w-[418px]">
+            <div class="swiper-slide max-w-[418px]" style="<?php echo $overlay_style ?>">
               <a href="<?php echo $link ?>" class="group block bg-slate-100 rounded-xl overflow-clip transition-all duration-300">
                 <div class="aspect-w-4 aspect-h-5">
                   <img src="<?php echo $background_image ?>" class="object-cover h-full w-full transition-all duration-500 group-hover:scale-105" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black from-0% to-transparent to-100% bg-blend-multiply flex flex-col justify-end">
+                  <div class="absolute inset-0 bg-gradient-to-t bg-blend-multiply flex flex-col justify-end">
                     <div class="p-4 xl:p-8 text-white">
                       <h4 class="text-[34px] font-medium"><?php echo $title ?></h4>
                       <div class="mt-2 text-base font-medium"><?php echo $text ?></div>
                     </div>
-                    <div class="absolute inset-0 bg-transparent rounded-xl transition-all duration-300 group-hover:shadow-[0_0px_0px_16px_rgba(0,0,0,0.24)_inset]"></div>
+                    <!-- <div class="absolute inset-0 bg-transparent rounded-xl transition-all duration-300 group-hover:shadow-[0_0px_0px_16px_rgba(0,0,0,0.24)_inset]"></div> -->
                   </div>
                 </div>
               </a>

@@ -167,10 +167,11 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
+                            "acfe_permissions": "",
                             "uploader": "",
                             "return_format": "array",
                             "acfe_thumbnail": 0,
@@ -185,6 +186,28 @@
                             "mime_types": "",
                             "preview_size": "thumbnail",
                             "library": "all",
+                            "parent_repeater": "field_6603a1f93bc30"
+                        },
+                        {
+                            "key": "field_6643a2d24bfb3",
+                            "label": "Overlay",
+                            "name": "overlay",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "acfe_permissions": "",
+                            "default_value": "rgba(0,0,0,1)",
+                            "enable_opacity": 1,
+                            "return_format": "string",
+                            "acfe_settings": "",
+                            "acfe_validate": "",
                             "parent_repeater": "field_6603a1f93bc30"
                         },
                         {
@@ -334,7 +357,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711900876,
+    "modified": 1715708705,
     "acfe_categories": {
         "layout": "Layout"
     }
