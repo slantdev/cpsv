@@ -4699,6 +4699,9 @@ details.collapse summary::-webkit-details-marker {
 .h-full {
   height: 100%;
 }
+.h-\[36px\] {
+  height: 36px;
+}
 .max-h-\[50vh\] {
   max-height: 50vh;
 }
@@ -5065,6 +5068,18 @@ details.collapse summary::-webkit-details-marker {
 }
 .gap-y-4 {
   row-gap: 1rem;
+}
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
+.gap-y-1 {
+  row-gap: 0.25rem;
+}
+.gap-y-0 {
+  row-gap: 0px;
+}
+.gap-y-0\.5 {
+  row-gap: 0.125rem;
 }
 .divide-x > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-x-reverse: 0;
@@ -5748,6 +5763,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .leading-tight {
   line-height: 1.25;
+}
+.leading-normal {
+  line-height: 1.5;
 }
 .-tracking-\[0\.0125em\] {
   letter-spacing: -0.0125em;

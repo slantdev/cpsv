@@ -4568,6 +4568,10 @@
   height: 42px !important;
 }
 
+#poststuff .acf-layout .h-\[36px\] {
+  height: 36px;
+}
+
 #poststuff .acf-layout .max-h-\[50vh\] {
   max-height: 50vh;
 }
@@ -5061,6 +5065,22 @@
 
 #poststuff .acf-layout .gap-y-4 {
   row-gap: 1rem;
+}
+
+#poststuff .acf-layout .gap-y-2 {
+  row-gap: 0.5rem;
+}
+
+#poststuff .acf-layout .gap-y-1 {
+  row-gap: 0.25rem;
+}
+
+#poststuff .acf-layout .gap-y-0 {
+  row-gap: 0px;
+}
+
+#poststuff .acf-layout .gap-y-0\.5 {
+  row-gap: 0.125rem;
 }
 
 #poststuff .acf-layout .divide-x > :not([hidden]) ~ :not([hidden]) {
@@ -5959,6 +5979,10 @@
 
 #poststuff .acf-layout .leading-tight {
   line-height: 1.25;
+}
+
+#poststuff .acf-layout .leading-normal {
+  line-height: 1.5;
 }
 
 #poststuff .acf-layout .-tracking-\[0\.0125em\] {
