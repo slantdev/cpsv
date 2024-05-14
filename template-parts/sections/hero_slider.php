@@ -112,7 +112,7 @@ $disclaimer_text = $hero_slider['disclaimer_text'] ?? '';
                   <?php endif; ?>
                 </div>
                 <?php if (!empty($stat['icon'])) : ?>
-                  <div class="font-semibold text-[44px] leading-tight"><?php echo number_format($stat['number']) ?></div>
+                  <div class="font-semibold text-[44px] leading-tight"><span class="counterNumber"><?php echo number_format($stat['number']) ?></span></div>
                 <?php endif; ?>
               </div>
               <?php if (!empty($stat['icon'])) : ?>

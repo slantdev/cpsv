@@ -15,7 +15,7 @@ function cpsv_enqueue_scripts()
 
   wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), '8.4.7');
   wp_enqueue_script('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js', array(), '5.0.0');
-  // wp_enqueue_script('counterup', cpsv_asset('js/counterup.js'), array(), '2.0.2', false);
+  wp_enqueue_script('counterup', cpsv_asset('js/counterup.js'), array(), '2.0.2', false);
   // wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), $theme->get('Version'), true);
 
   //wp_enqueue_script('fancybox', cpsv_asset('js/fancybox.js'), array(), $theme->get('Version'));
