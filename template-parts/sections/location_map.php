@@ -13,7 +13,8 @@ $location_map = get_sub_field('location_map') ?: []; // Group
 
 $heading_text = $location_map['heading']['heading_text'] ?? '';
 $text_area = $location_map['text_area']['text_area'] ?? '';
-$button_url = $location_map['button']['button_link']['url'] ?? '';
+$footer_text = $location_map['footer_group']['footer_text'] ?? '';
+$footer_buttons = $location_map['footer_group']['footer_buttons'] ?? '';
 $location_settings = $location_map['location_settings'] ?? []; // Group
 $google_map = $location_settings['google_map'] ?? [];
 $contact_info = $location_settings['contact_info'] ?? []; // Repeater
@@ -200,7 +201,7 @@ $section_class = 'section-location_map-' . $uniqid;
         </div>
       <?php endif; ?>
       <?php if ($contact_info) : ?>
-        <div class="relative container max-w-screen-2xl my-8 xl:my-12">
+        <div class="relative container max-w-screen-2xl mt-8 xl:mt-12">
           <div class="grid grid-cols-1 lg:grid-cols-3">
             <?php
             foreach ($contact_info as $info) :
@@ -219,6 +220,21 @@ $section_class = 'section-location_map-' . $uniqid;
           </div>
         </div>
       <?php endif; ?>
+
+      <div class="relative container max-w-screen-2xl mt-12 xl:mt-16">
+        <div class="flex gap-x-16">
+          <div class="w-1/2">
+            <?php if ($footer_text) {
+              echo get_template_part('template-parts/components/textarea', '', array('field' => $footer_text, 'size' => 'lg:text-lg xl:text-xl', 'leading' => 'leading-snug', 'weight' => 'font-normal'));
+            } ?>
+          </div>
+          <div class="w-1/2">
+            <?php if ($footer_buttons) {
+              echo get_template_part('template-parts/components/buttons', '', array('field' => $footer_buttons));
+            } ?>
+          </div>
+        </div>
+      </div>
     </div>
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'bottom', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
   </div>
