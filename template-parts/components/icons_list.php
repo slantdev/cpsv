@@ -50,8 +50,15 @@ if ($icons_list_repeater) {
       foreach ($icons_list_repeater as $list) :
         $icon = $list['icon'] ?? '';
         $text = $list['text'] ?? '';
+        $link = $list['link'] ?? '';
+        $link_url = $list['link']['url'] ?? '';
+        $link_title = $list['link']['title'] ?? '';
+        $link_target = $list['link']['target'] ?? '_self';
       ?>
         <div class="flex flex-col gap-4 text-center">
+          <?php if ($link_url) {
+            echo '<a href="' . $link_url . '" target="' . $link_target . '">';
+          } ?>
           <?php if ($icon) {
             echo '<div style="' . $text_style . '">';
             echo cpsv_icon(array('icon' => $icon, 'group' => 'content', 'size' => '16', 'class' => $icon_class));
@@ -60,6 +67,9 @@ if ($icons_list_repeater) {
           <?php if ($text) : ?>
             <div class="text-lg leading-tight font-bold" style="<?php echo $text_style ?>"><?php echo $text ?></div>
           <?php endif ?>
+          <?php if ($link_url) {
+            echo '</a>';
+          } ?>
         </div>
       <?php endforeach; ?>
     </div>
