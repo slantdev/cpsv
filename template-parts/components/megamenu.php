@@ -204,9 +204,13 @@ function output_megamenu($menu_id, $megamenu_items)
                 $link_url = $link['url'] ?? '';
                 $link_title = $link['title'] ?? 'Learn More';
                 $link_target = $link['target'] ?? '_self';
+                $active_class = 'inactive';
+                if ($submenu_id == '0') {
+                  $active_class = 'active';
+                }
               ?>
                 <?php if ($featured) : ?>
-                  <div id="<?php echo $article_id; ?>" class="menu-article" tabindex="-1">
+                  <div id="<?php echo $article_id; ?>" class="menu-article <?php echo $active_class ?>" tabindex="-1">
                     <div class="flex flex-col gap-y-4">
                       <?php if ($thumbnail) : ?>
                         <?php if ($link_url) {

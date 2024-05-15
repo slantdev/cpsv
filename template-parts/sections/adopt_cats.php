@@ -228,7 +228,8 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
               meta_array = JSON.stringify(activeFilters_<?php echo $uniqid ?>);
             }
 
-            //console.log(filter_array);
+            // console.log(filter_array);
+            // console.log(meta_array);
 
             let data = {
               page: page,
@@ -301,6 +302,7 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
           $('.adopt-filter-<?php echo $uniqid ?> .adopt-filter-clear').click(function(e) {
             e.preventDefault();
             $('.adopt-filter-<?php echo $uniqid ?> .adopt-filter-btn').removeClass('active');
+            selectFilters_<?php echo $uniqid ?> = []; // Clear selectFilters array
             activeFilters_<?php echo $uniqid ?> = []; // Clear activeFilters array
             updateUI_<?php echo $uniqid ?>(1); // Update UI
           });

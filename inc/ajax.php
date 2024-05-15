@@ -1552,7 +1552,7 @@ function filter_adopt_cat()
     $meta_array_json = $_POST['meta_array'];
     $meta_array = json_decode(stripslashes($meta_array_json));
     $filter_array_json = $_POST['filter_array'];
-    $filter_array = json_decode(stripslashes($meta_array_json));
+    $filter_array = (array) json_decode(stripslashes($filter_array_json));
     $cur_page = $page;
     $page -= 1;
     $previous_btn = true;
@@ -1561,19 +1561,128 @@ function filter_adopt_cat()
     $last_btn = true;
     $start = $page * $per_page;
 
-    // $meta_query = array(
-    //   array(
-    //     'key'     => 'cat_filters_cat_filters',
-    //     'value'   => $meta_array,
-    //     'compare' => 'LIKE'
-    //   )
-    // );
+    // preint_r($meta_array);
+    // preint_r($filter_array);
+
     $meta_query = array('relation' => 'AND');
     foreach ($meta_array as $meta_value) {
       $meta_query[] = array(
         'key'     => 'cat_filters_cat_filters',
         'value'   => $meta_value,
         'compare' => 'LIKE'
+      );
+    }
+
+    $currentDate = new DateTime();
+    $filter_shelter = $filter_array['shelter'] ?? '';
+    if ($filter_shelter == 'shelter_1') {
+      // Less than 1 month
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-1 month');
+      $comparedDate = $compared_date->format('Ymd');
+      $start_date = clone $currentDate;
+      $startDate = $start_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_available_since',
+        'value' => array($comparedDate, $startDate),
+        'compare' => 'BETWEEN',
+        'type' => 'DATE'
+      );
+    } else if ($filter_shelter == 'shelter_2') {
+      // 1-3 month
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-3 months');
+      $comparedDate = $compared_date->format('Ymd');
+      $start_date = clone $currentDate;
+      $start_date->modify('-1 month');
+      $startDate = $start_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_available_since',
+        'value' => array($comparedDate, $startDate),
+        'compare' => 'BETWEEN',
+        'type' => 'DATE'
+      );
+    } else if ($filter_shelter == 'shelter_3') {
+      // 3 months+
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-3 months');
+      $comparedDate = $compared_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_available_since',
+        'value' => $comparedDate,
+        'compare'   => '<',
+        'type' => 'DATE'
+      );
+    }
+
+    $filter_age = $filter_array['age'] ?? '';
+    if ($filter_age == 'age_kitten') {
+      //3-6 months      
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-6 months');
+      $comparedDate = $compared_date->format('Ymd');
+      $start_date = clone $currentDate;
+      $start_date->modify('-3 months');
+      $startDate = $start_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_birth',
+        'value' => array($comparedDate, $startDate),
+        'compare' => 'BETWEEN',
+        'type' => 'DATE'
+      );
+    } else if ($filter_age == 'age_teenager') {
+      //6 months to 2 years
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-2 years');
+      $comparedDate = $compared_date->format('Ymd');
+      $start_date = clone $currentDate;
+      $start_date->modify('-6 months');
+      $startDate = $start_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_birth',
+        'value' => array($comparedDate, $startDate),
+        'compare' => 'BETWEEN',
+        'type' => 'DATE'
+      );
+    } else if ($filter_age == 'age_adult') {
+      // 2 years to 7 years
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-7 years');
+      $comparedDate = $compared_date->format('Ymd');
+      $start_date = clone $currentDate;
+      $start_date->modify('-2 years');
+      $startDate = $start_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_birth',
+        'value' => array($comparedDate, $startDate),
+        'compare' => 'BETWEEN',
+        'type' => 'DATE'
+      );
+    } else if ($filter_age == 'age_senior') {
+      //7 years +
+      $compared_date = clone $currentDate;
+      $compared_date->modify('-7 years');
+      $comparedDate = $compared_date->format('Ymd');
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_birth',
+        'value' => $comparedDate,
+        'compare'   => '<',
+        'type' => 'DATE'
+      );
+    }
+
+    $filter_gender = $filter_array['gender'] ?? '';
+    if ($filter_gender == 'gender_male') {
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_gender',
+        'value'   => 'Male',
+        'compare' => '='
+      );
+    } else if ($filter_gender == 'gender_female') {
+      $meta_query[] = array(
+        'key'     => 'adopt_cat_data_gender',
+        'value'   => 'Female',
+        'compare' => '='
       );
     }
 
