@@ -50,20 +50,20 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
             <div class="flex gap-x-8 items-center">
               <div class="w-full lg:w-2/3 flex gap-x-4">
                 <select name="filter-shelter" id="filter-shelter" class="select-filter select select-bordered rounded-full grow">
-                  <option value="" disabled selected>Filter by time in shelter</option>
+                  <option value="" selected>Filter by time in shelter</option>
                   <option value="shelter_1">Less than 1 month</option>
                   <option value="shelter_2">1-3months</option>
                   <option value="shelter_3">3months+</option>
                 </select>
                 <select name="filter-age" id="filter-age" class="select-filter select select-bordered rounded-full grow">
-                  <option value="" disabled selected>Filter by age</option>
+                  <option value="" selected>Filter by age</option>
                   <option value="age_kitten">Kitten 3-6months</option>
                   <option value="age_teenager">Teenager 6months-2years</option>
                   <option value="age_adult">Adult 2years-7 years</option>
                   <option value="age_senior">Senior 7years +</option>
                 </select>
                 <select name="filter-gender" id="filter-gender" class="select-filter select select-bordered rounded-full grow">
-                  <option value="" disabled selected>Filter by gender</option>
+                  <option value="" selected>Filter by gender</option>
                   <option value="gender_male">Male</option>
                   <option value="gender_female">Female</option>
                 </select>
@@ -204,14 +204,14 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
             shelter: '',
             age: '',
             gender: '',
-
           }; // Array to store active filter select value
 
           let activeFilters_<?php echo $uniqid ?> = []; // Array to store active filter data-ids
 
           // Function to update the UI based on active filters
           function updateUI_<?php echo $uniqid ?>(page) {
-            if (activeFilters_<?php echo $uniqid ?>.length > 0) {
+            console.log();
+            if (activeFilters_<?php echo $uniqid ?>.length > 0 || selectFilters_<?php echo $uniqid ?>['shelter'] || selectFilters_<?php echo $uniqid ?>['age'] || selectFilters_<?php echo $uniqid ?>['gender']) {
               $('.adopt-filter-<?php echo $uniqid ?>').addClass('has_active');
             } else {
               $('.adopt-filter-<?php echo $uniqid ?>').removeClass('has_active');
@@ -302,7 +302,12 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
           $('.adopt-filter-<?php echo $uniqid ?> .adopt-filter-clear').click(function(e) {
             e.preventDefault();
             $('.adopt-filter-<?php echo $uniqid ?> .adopt-filter-btn').removeClass('active');
-            selectFilters_<?php echo $uniqid ?> = []; // Clear selectFilters array
+            $('.select-filter').val("");
+            selectFilters_<?php echo $uniqid ?> = {
+              shelter: '',
+              age: '',
+              gender: '',
+            }; // Clear selectFilters array
             activeFilters_<?php echo $uniqid ?> = []; // Clear activeFilters array
             updateUI_<?php echo $uniqid ?>(1); // Update UI
           });
