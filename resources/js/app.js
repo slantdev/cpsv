@@ -85,7 +85,11 @@ jQuery(function ($) {
   );
 
   $(".menu-has-article").hover(function () {
-    $(".menu-article").removeClass("active").addClass("inactive");
+    $(this)
+      .closest(".mega-menu--col-content")
+      .find(".menu-article")
+      .removeClass("active")
+      .addClass("inactive");
     let dataArticle = $(this).data("target");
     //console.log(dataArticle);
     $("#" + dataArticle)
