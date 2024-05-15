@@ -1,0 +1,22 @@
+{
+    "key": "ui_options_page_6644fee5503b5",
+    "title": "Foster Care Settings",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Foster Care Settings",
+    "menu_slug": "foster-care-settings",
+    "parent_slug": "edit.php?post_type=foster-care",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1715797733
+}

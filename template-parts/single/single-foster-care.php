@@ -229,23 +229,51 @@ $components = $cat_description['components'] ?? '';
           </div>
         </div>
         <div class="xl:w-2/5 order-2">
+          <?php
+          $foster_care_settings = get_field('foster_care_settings', 'option');
+          $button_1 = $foster_care_settings['button_1'] ?? '';
+          $button_2 = $foster_care_settings['button_2'] ?? '';
+
+          $page_url = get_permalink(get_the_ID());
+          $whatsapp_text = urlencode('Check out this cat profile! ' . $page_url);
+          $page_url_encode = urlencode($page_url);
+          ?>
           <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
             <div class="social-link flex mb-4">
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'whatsapp', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('Check out this cat! ' . $page_url) ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://wa.me/?text=<?php echo $whatsapp_text ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'whatsapp', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
             </div>
             <ul class="flex flex-col gap-y-3">
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Print profile</a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Email profile link</a></li>
+              <li class="pt-3 border-t border-slate-300"><button class="print-button text-xl flex justify-between hover:underline">Print profile</button></li>
+              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-xl flex justify-between hover:underline">Email profile link</a></li>
             </ul>
+            <script>
+              jQuery(document).ready(function($) {
+                $(".print-button").click(function() {
+                  window.print();
+                });
+              });
+            </script>
           </div>
-          <div class="mt-8 flex flex-col gap-4">
+
+          <?php if ($button_1 || $button_2) : ?>
+            <div class="mt-8 flex flex-col gap-y-3 gap-x-4">
+              <?php if ($button_1) {
+                get_template_part('template-parts/components/button', '', array('field' => $button_1));
+              } ?>
+              <?php if ($button_2) {
+                get_template_part('template-parts/components/button', '', array('field' => $button_2));
+              } ?>
+            </div>
+          <?php endif; ?>
+
+          <!-- <div class="mt-8 flex flex-col gap-4">
             <a href="#" class="btn btn-lg bg-brand-yellow hover:bg-brand-yellow hover:brightness-110 rounded-full text-xl text-white leading-tight px-8 h-auto flex justify-between">Registered Foster Career <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'ml-4 w-4 h-4 text-white')); ?></a>
             <a href="#" class="btn btn-lg bg-brand-tomato hover:bg-brand-tomato hover:brightness-110 rounded-full text-xl text-white leading-tight px-8 h-auto flex justify-between">New Foster Career <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'ml-4 w-4 h-4 text-white')); ?></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

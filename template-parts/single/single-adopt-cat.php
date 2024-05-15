@@ -291,6 +291,9 @@ $components = isset($cat_description['components']) ? $cat_description['componen
           $buttons = $adopt_cats_settings['buttons'] ?? '';
           $quick_links_label = $quick_links['label'] ?? '';
           $quick_links_links = $quick_links['links'] ?? '';
+          $page_url = get_permalink(get_the_ID());
+          $whatsapp_text = urlencode('Check out this cat profile! ' . $page_url);
+          $page_url_encode = urlencode($page_url);
           ?>
           <?php if ($quick_links) : ?>
             <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
@@ -312,16 +315,23 @@ $components = isset($cat_description['components']) ? $cat_description['componen
           <?php endif; ?>
           <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
             <div class="social-link flex mb-4">
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'whatsapp', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
-              <a href="#" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('Check out this cat! ' . $page_url) ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="https://wa.me/?text=<?php echo $whatsapp_text ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'whatsapp', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
+              <a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
             </div>
             <ul class="flex flex-col gap-y-3">
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Print profile</a></li>
-              <li class="pt-3 border-t border-slate-300"><a href="#" class="text-xl flex justify-between">Email profile link</a></li>
+              <li class="pt-3 border-t border-slate-300"><button class="print-button text-xl flex justify-between hover:underline">Print profile</button></li>
+              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-xl flex justify-between hover:underline">Email profile link</a></li>
             </ul>
+            <script>
+              jQuery(document).ready(function($) {
+                $(".print-button").click(function() {
+                  window.print();
+                });
+              });
+            </script>
           </div>
           <?php if ($buttons) : ?>
             <div class="mt-8 flex gap-x-4">
