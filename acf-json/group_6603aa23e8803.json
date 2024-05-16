@@ -196,7 +196,8 @@
                             },
                             "acfe_permissions": "",
                             "post_type": [
-                                "campaign"
+                                "campaign",
+                                "post"
                             ],
                             "field_type": "select",
                             "default_value": [],
@@ -232,13 +233,13 @@
                             "acfe_permissions": "",
                             "taxonomy": [
                                 "campaign-category",
-                                "help-advice-category"
+                                "category"
                             ],
                             "allow_terms": "",
                             "allow_level": "",
                             "field_type": "select",
                             "default_value": [],
-                            "return_format": "object",
+                            "return_format": "id",
                             "ui": 1,
                             "allow_null": 1,
                             "placeholder": "",
@@ -388,7 +389,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1713723457,
+    "modified": 1715820436,
     "acfe_categories": {
         "layout": "Layout"
     }

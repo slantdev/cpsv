@@ -24,77 +24,53 @@ function pagination_load_posttypes()
     $last_btn = true;
     $start = $page * $per_page;
 
-    $all_posts = new WP_Query(
-      array(
-        'post_type'         => $post_type,
-        'post_status '      => 'publish',
-        'orderby'           => 'post_date',
-        'order'             => 'DESC',
-        'posts_per_page'    => $per_page,
-        'offset'            => $start
-      )
+    $defaultsArgs = array(
+      'post_type'         => $post_type,
+      'post_status'       => 'publish',
+      'orderby'           => 'post_date',
+      'order'             => 'DESC',
+      'posts_per_page'    => $per_page,
+      'offset'            => $start
     );
-    $count = new WP_Query(
-      array(
-        'post_type'         => $post_type,
-        'post_status '      => 'publish',
-        'posts_per_page'    => -1
-      )
+    $countDefaults = array(
+      'post_type'         => $post_type,
+      'post_status '      => 'publish',
+      'posts_per_page'    => -1
     );
 
-    // if ($terms) {
-    //   $all_posts = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'orderby'           => 'post_date',
-    //       'order'             => 'DESC',
-    //       'posts_per_page'    => $per_page,
-    //       'offset'            => $start,
-    //       'tax_query' => array(
-    //         array(
-    //           'taxonomy' => 'category',
-    //           'field' => 'id',
-    //           'terms' => $terms,
-    //         ),
-    //       ),
-    //     )
-    //   );
-    //   $count = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'posts_per_page'    => -1,
-    //       'tax_query' => array(
-    //         array(
-    //           'taxonomy' => 'category',
-    //           'field' => 'id',
-    //           'terms' => $terms,
-    //         ),
-    //       ),
-    //     )
-    //   );
-    // } else {
-    //   $all_posts = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'orderby'           => 'post_date',
-    //       'order'             => 'DESC',
-    //       'posts_per_page'    => $per_page,
-    //       'offset'            => $start
-    //     )
-    //   );
-    //   $count = new WP_Query(
-    //     array(
-    //       'post_type'         => 'post',
-    //       'post_status '      => 'publish',
-    //       'posts_per_page'    => -1
-    //     )
-    //   );
-    // }
+    if ($terms) {
+      $taxonomy = 'category';
+      if ($post_type == 'campaign') {
+        $taxonomy = 'campaign-category';
+      }
+      $postArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+      $countArgs = array(
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'id',
+            'terms' => $terms,
+          ),
+        ),
+      );
+    }
 
-    $count = $count->post_count;
+    $args = wp_parse_args($postArgs, $defaultsArgs);
+    $count = wp_parse_args($countArgs, $countDefaults);
+
+    $all_posts = new WP_Query($args);
+    $count_query = new WP_Query($count);
+
+    $count = $count_query->post_count;
+
     if ($all_posts->have_posts()) {
       $postCount = 0;
       echo '<div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">';
@@ -291,7 +267,7 @@ function pagination_load_postgrid()
     $count = wp_parse_args($countArgs, $countDefaults);
 
     $all_posts = new WP_Query($args);
-    $count_query = new WP_Query($args);
+    $count_query = new WP_Query($count);
 
     $count = $count_query->post_count;
     if ($all_posts->have_posts()) {
