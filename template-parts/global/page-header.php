@@ -69,7 +69,7 @@ endif;
       <?php endif; ?>
       <div class="container max-w-screen-2xl relative z-auto">
         <div class="flex pt-28 pb-20 items-end">
-          <div class="w-full xl:w-1/2">
+          <div class="w-full xl:w-2/3">
             <?php if ($show_breadcrumbs && function_exists('yoast_breadcrumb')) : ?>
               <?php yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
             <?php endif; ?>
