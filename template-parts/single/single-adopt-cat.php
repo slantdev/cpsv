@@ -123,7 +123,7 @@ $cat_data = array(
   ],
   [
     'name' => 'Gender',
-    'value' => $gender
+    'value' => implode(", ", $gender)
   ],
   [
     'name' => 'Colour',

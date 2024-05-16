@@ -1651,14 +1651,14 @@ function filter_adopt_cat()
     if ($filter_gender == 'gender_male') {
       $meta_query[] = array(
         'key'     => 'adopt_cat_data_gender',
-        'value'   => 'Male',
-        'compare' => '='
+        'value'   => sprintf('"%s"', 'Male'),
+        'compare' => 'LIKE'
       );
     } else if ($filter_gender == 'gender_female') {
       $meta_query[] = array(
         'key'     => 'adopt_cat_data_gender',
-        'value'   => 'Female',
-        'compare' => '='
+        'value'   => sprintf('"%s"', 'Female'),
+        'compare' => 'LIKE'
       );
     }
 

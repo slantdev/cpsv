@@ -81,7 +81,7 @@
                     "label": "Gender",
                     "name": "gender",
                     "aria-label": "",
-                    "type": "radio",
+                    "type": "checkbox",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -94,12 +94,13 @@
                         "Male": "Male",
                         "Female": "Female"
                     },
-                    "default_value": "",
+                    "default_value": [],
                     "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
+                    "allow_custom": 0,
                     "layout": "vertical",
-                    "save_other_choice": 0
+                    "toggle": 0,
+                    "save_custom": 0,
+                    "custom_choice_button_text": "Add new choice"
                 },
                 {
                     "key": "field_66030c563483f",
@@ -516,7 +517,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1715714937,
+    "modified": 1715821639,
     "acfe_categories": {
         "adopt-cats": "Adopt Cats"
     }
