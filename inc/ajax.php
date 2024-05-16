@@ -1463,8 +1463,8 @@ function pagination_load_mediareleasesgrid()
     $post_type = 'media-release';
     $per_page = sanitize_text_field($_POST['per_page']);
     $pagination = sanitize_text_field($_POST['pagination']);
-    $terms = sanitize_text_field($_POST['terms']);
-    $terms = json_decode(stripslashes($terms));
+    // $terms = sanitize_text_field($_POST['terms']);
+    // $terms = json_decode(stripslashes($terms));
     $cur_page = $page;
     $page -= 1;
     $previous_btn = true;
