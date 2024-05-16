@@ -1,6 +1,6 @@
 {
     "key": "group_663c24fe6320a",
-    "title": "Adopt Cats Settings",
+    "title": "CPT - Adopt Cats Settings",
     "fields": [
         {
             "key": "field_663c250024771",
@@ -179,15 +179,16 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "acfe_display_title": "",
+    "acfe_display_title": "Adopt Cats Settings",
     "acfe_autosync": [
         "json"
     ],
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1715217971,
+    "modified": 1715827115,
     "acfe_categories": {
-        "adopt-cats": "Adopt Cats"
+        "adopt-cats": "Adopt Cats",
+        "cpt": "CPT"
     }
 }

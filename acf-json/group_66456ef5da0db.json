@@ -1,11 +1,11 @@
 {
-    "key": "group_664245cfa7f5b",
-    "title": "CPT - Annual Reports",
+    "key": "group_66456ef5da0db",
+    "title": "CPT - Media Release",
     "fields": [
         {
-            "key": "field_664245d1d7487",
-            "label": "Annual Report",
-            "name": "annual_report",
+            "key": "field_66456ef63380d",
+            "label": "Media Release",
+            "name": "media_release",
             "aria-label": "",
             "type": "group",
             "instructions": "",
@@ -20,9 +20,9 @@
             "acfe_seamless_style": 1,
             "sub_fields": [
                 {
-                    "key": "field_664245fad7488",
-                    "label": "Report Date",
-                    "name": "report_date",
+                    "key": "field_66456ef6352c4",
+                    "label": "Release Date",
+                    "name": "release_date",
                     "aria-label": "",
                     "type": "date_picker",
                     "instructions": "",
@@ -38,7 +38,7 @@
                     "first_day": 1
                 },
                 {
-                    "key": "field_66424618d7489",
+                    "key": "field_66456ef6352cf",
                     "label": "Title",
                     "name": "title",
                     "aria-label": "",
@@ -58,7 +58,7 @@
                     "append": ""
                 },
                 {
-                    "key": "field_66424621d748a",
+                    "key": "field_66456ef6352db",
                     "label": "Link Text",
                     "name": "link_text",
                     "aria-label": "",
@@ -78,7 +78,7 @@
                     "append": ""
                 },
                 {
-                    "key": "field_66424650d748b",
+                    "key": "field_66456ef6352e5",
                     "label": "File PDF",
                     "name": "file_pdf",
                     "aria-label": "",
@@ -99,7 +99,7 @@
                     "library": "all"
                 },
                 {
-                    "key": "field_6642465ed748c",
+                    "key": "field_66456ef6352f9",
                     "label": "Cover Image",
                     "name": "cover_image",
                     "aria-label": "",
@@ -137,7 +137,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "reports"
+                "value": "media-release"
             }
         ]
     ],
@@ -150,14 +150,14 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "acfe_display_title": "Annual Report",
+    "acfe_display_title": "Media Release",
     "acfe_autosync": [
         "json"
     ],
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1715826501,
+    "modified": 1715827187,
     "acfe_categories": {
         "cpt": "CPT"
     }

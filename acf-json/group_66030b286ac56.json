@@ -517,8 +517,9 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1715821639,
+    "modified": 1715826517,
     "acfe_categories": {
-        "adopt-cats": "Adopt Cats"
+        "adopt-cats": "Adopt Cats",
+        "cpt": "CPT"
     }
 }

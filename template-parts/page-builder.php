@@ -22,6 +22,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'two_columns') :
       get_template_part('template-parts/sections/two_columns');
 
+    elseif (get_row_layout() == 'media_releases') :
+      get_template_part('template-parts/sections/media_releases');
+
     elseif (get_row_layout() == 'card_slider') :
       get_template_part('template-parts/sections/card_slider');
 
