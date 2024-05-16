@@ -1336,7 +1336,7 @@ function pagination_load_reportsgrid()
       'post_type'         => $post_type,
       'post_status '      => 'publish',
       'orderby'           => 'menu_order',
-      'order'             => 'DESC',
+      'order'             => 'ASC',
       'posts_per_page'    => $per_page,
       'offset'            => $start
     );
