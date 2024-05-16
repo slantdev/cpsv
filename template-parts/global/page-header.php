@@ -7,7 +7,21 @@ $the_id = $term_id ? 'term_' . $term_id : get_the_ID();
 
 $breadcrumbs = $args['breadcrumbs'] ?? false;
 
-if (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header']) && $page_header['enable_page_header']) :
+if (is_singular('post')) :
+  $enable_page_header = true;
+  $title = get_the_title();
+  //$background_image = $background_settings['background_image'] ?? '';
+  $background_image_url = get_the_post_thumbnail_url($the_id, 'full');
+  $background_position = 'center';
+  $background_overlay = 'rgba(243,241,239,0.6)';
+  $bg_image_class = ' object-center';
+  $show_breadcrumbs = true;
+  $breadcrumbs_style = '--breadcrumbs-text-color:#020044;--breadcrumbs-separator-color:#FF6347;';
+  $title_style = 'color:#020044;';
+  $description = false;
+
+elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header'])) :
+  $enable_page_header = true;
   $page_header_settings = $page_header['page_header_settings'] ?? [];
   $breadcrumbs_settings = $page_header_settings['breadcrumbs'] ?? [];
   $show_breadcrumbs = $breadcrumbs_settings['show_breadcrumbs'] ?? false;
@@ -32,15 +46,19 @@ if (($page_header = get_field('page_header', $the_id)) && isset($page_header['en
 
   $background_settings = $page_header_settings['background'] ?? [];
   $background_image = $background_settings['background_image'] ?? '';
+  $background_image_url = $background_image['url'] ?? '';
   $background_position = $background_settings['background_position'] ?? '';
   $background_overlay = $background_settings['background_overlay'] ?? '';
   $bg_image_class = $background_position ? ' object-' . $background_position : '';
+
+endif;
 ?>
 
+<?php if ($enable_page_header) : ?>
   <section class="section-page-header relative -mt-[136px]">
-    <?php if ($background_image) : ?>
+    <?php if ($background_image_url) : ?>
       <div class="absolute inset-0 z-0">
-        <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
+        <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image_url ?>" alt="">
       </div>
     <?php endif; ?>
     <div class="relative z-auto pt-44">
@@ -69,5 +87,4 @@ if (($page_header = get_field('page_header', $the_id)) && isset($page_header['en
     </div>
     <div class="h-[60px]"></div>
   </section>
-
-<?php endif; ?>
+<?php endif;
