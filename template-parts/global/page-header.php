@@ -6,6 +6,7 @@ $term_id = ($queried_object = get_queried_object()) ? $queried_object->term_id :
 $the_id = $term_id ? 'term_' . $term_id : get_the_ID();
 
 $breadcrumbs = $args['breadcrumbs'] ?? false;
+$enable_page_header = false;
 
 if (is_singular('post')) :
   $enable_page_header = true;
@@ -20,7 +21,7 @@ if (is_singular('post')) :
   $title_style = 'color:#020044;';
   $description = false;
 
-elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header'])) :
+elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header']) && $page_header['enable_page_header']) :
   $enable_page_header = true;
   $page_header_settings = $page_header['page_header_settings'] ?? [];
   $breadcrumbs_settings = $page_header_settings['breadcrumbs'] ?? [];
