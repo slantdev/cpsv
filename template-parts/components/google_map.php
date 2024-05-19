@@ -11,7 +11,7 @@ $google_map_comp = is_array($field) ? $field : get_sub_field($field ?: 'google_m
 $google_map = $google_map_comp['google_map']['google_map'] ?? '';
 $text_color = $google_map_comp['google_map']['settings']['text_color'] ?? '';
 
-preint_r($google_map);
+//preint_r($google_map);
 
 $google_map_style = '';
 
