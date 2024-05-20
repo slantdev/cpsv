@@ -48,40 +48,38 @@ if ($text_color) {
 // Outputting card if info_repeater exists
 if ($info_repeater) {
 ?>
-  <div class="component-info-card relative">
-    <div class="rounded-xl shadow-lg border border-solid border-slate-200 p-12" style="<?php echo $card_style ?>">
-      <?php if ($title) : ?>
-        <h4 class="font-semibold text-3xl leading-tight mb-8" style="<?php echo $title_style ?>"><?php echo $title ?></h4>
-      <?php endif; ?>
-      <?php if ($info_repeater) : ?>
-        <div class="flex flex-col gap-y-3">
-          <?php
-          foreach ($info_repeater as $info) :
-            $icon = $info['icon'] ?? '';
-            $content = $info['content'] ?? [];
-            $text = $content['text'] ?? '';
-            $buttons = $content['buttons'] ?? [];
-          ?>
-            <div class="flex gap-x-8">
-              <?php if ($icon) : ?>
-                <div class="w-8 flex-none" style="<?php echo $icon_style ?>">
-                  <?php echo cpsv_icon(array('icon' => $icon, 'group' => 'content', 'size' => '16', 'class' => $icon_class)); ?>
-                </div>
-              <?php endif; ?>
-              <div class="flex flex-col gap-y-4">
-                <?php if ($text) {
-                  echo '<div class="text-xl" style="' . $text_style . '">' . $text . '</div>';
-                } ?>
-                <?php if ($buttons) {
-                  echo '<div>';
-                  echo get_template_part('template-parts/components/buttons', '', array('field' => $buttons));
-                  echo '</div>';
-                } ?>
+  <div class="component-info-card relative rounded-xl shadow-lg border border-solid border-slate-200 p-12" style="<?php echo $card_style ?>">
+    <?php if ($title) : ?>
+      <h4 class="font-semibold text-3xl leading-tight mb-8" style="<?php echo $title_style ?>"><?php echo $title ?></h4>
+    <?php endif; ?>
+    <?php if ($info_repeater) : ?>
+      <div class="flex flex-col gap-y-3">
+        <?php
+        foreach ($info_repeater as $info) :
+          $icon = $info['icon'] ?? '';
+          $content = $info['content'] ?? [];
+          $text = $content['text'] ?? '';
+          $buttons = $content['buttons'] ?? [];
+        ?>
+          <div class="flex gap-x-8">
+            <?php if ($icon) : ?>
+              <div class="w-8 flex-none" style="<?php echo $icon_style ?>">
+                <?php echo cpsv_icon(array('icon' => $icon, 'group' => 'content', 'size' => '16', 'class' => $icon_class)); ?>
               </div>
+            <?php endif; ?>
+            <div class="flex flex-col gap-y-4">
+              <?php if ($text) {
+                echo '<div class="text-xl" style="' . $text_style . '">' . $text . '</div>';
+              } ?>
+              <?php if ($buttons) {
+                echo '<div>';
+                echo get_template_part('template-parts/components/buttons', '', array('field' => $buttons));
+                echo '</div>';
+              } ?>
             </div>
-          <?php endforeach ?>
-        </div>
-      <?php endif ?>
-    </div>
+          </div>
+        <?php endforeach ?>
+      </div>
+    <?php endif ?>
   </div>
 <?php }

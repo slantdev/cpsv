@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_6649ee983d24f",
-            "label": "(Column 9\/12)",
+            "label": "(Column 10\/12)",
             "name": "",
             "aria-label": "",
             "type": "acfe_column",
@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "columns": "9\/12",
+            "columns": "10\/12",
             "endpoint": 0
         },
         {
@@ -135,6 +135,26 @@
                                     "new_lines": "br"
                                 },
                                 {
+                                    "key": "field_664ac511baacb",
+                                    "label": "Add Button",
+                                    "name": "add_button",
+                                    "aria-label": "",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "",
+                                    "default_value": 0,
+                                    "ui_on_text": "",
+                                    "ui_off_text": "",
+                                    "ui": 1
+                                },
+                                {
                                     "key": "field_6649ef28d1644",
                                     "label": "Buttons",
                                     "name": "buttons",
@@ -142,7 +162,15 @@
                                     "type": "clone",
                                     "instructions": "",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_664ac511baacb",
+                                                "operator": "==",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -178,7 +206,7 @@
         },
         {
             "key": "field_6649ee983d266",
-            "label": "(Column 3\/12)",
+            "label": "(Column 2\/12)",
             "name": "",
             "aria-label": "",
             "type": "acfe_column",
@@ -190,7 +218,7 @@
                 "class": "",
                 "id": ""
             },
-            "columns": "3\/12",
+            "columns": "2\/12",
             "endpoint": 0
         },
         {
@@ -256,7 +284,7 @@
                         {
                             "key": "field_664aa98905761",
                             "label": "Border Color",
-                            "name": "background_color",
+                            "name": "border_color",
                             "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
@@ -355,7 +383,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1716169160,
+    "modified": 1716177164,
     "acfe_categories": {
         "components": "Components"
     }

@@ -34,6 +34,9 @@ if (have_rows('section', $the_id)) :
     elseif (get_row_layout() == 'custom_card_2') :
       get_template_part('template-parts/sections/custom_card_2');
 
+    elseif (get_row_layout() == 'info_cards_grid') :
+      get_template_part('template-parts/sections/info_cards_grid');
+
     elseif (get_row_layout() == 'location_map') :
       get_template_part('template-parts/sections/location_map');
 

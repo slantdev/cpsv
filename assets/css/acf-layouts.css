@@ -7390,6 +7390,14 @@
     width: 50%;
   }
 
+  #poststuff .acf-layout .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #poststuff .acf-layout .md\:gap-6 {
+    gap: 1.5rem;
+  }
+
   #poststuff .acf-layout .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
