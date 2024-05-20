@@ -4217,11 +4217,11 @@ details.collapse summary::-webkit-details-marker {
 .rounded-none {
     border-radius: 0;
 }
-.rounded-xl {
-    border-radius: 1.25rem;
-}
 .rounded-sm {
     border-radius: 0.25rem;
+}
+.rounded-xl {
+    border-radius: 1.25rem;
 }
 .rounded-b-2xl {
     border-bottom-right-radius: 1.5rem;
@@ -4972,7 +4972,7 @@ details.collapse summary::-webkit-details-marker {
 }
 .shadow-none {
     --tw-shadow: 0 0 #0000;
-    --tw-shadow-colored: 0 0 #0000;
+    --tw-shadow-colored: 0 0 var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-sm {

@@ -15,6 +15,7 @@ $more_settings = $info_card_comp['settings']['more_settings'] ?? [];
 $title = $info_card_group['title'] ?? '';
 $info_repeater = $info_card_group['info'] ?? [];
 $background_color = $more_settings['background_color'] ?? '';
+$border_color = $more_settings['border_color'] ?? '';
 $title_color = $more_settings['title_color'] ?? '';
 $icon_color = $more_settings['icon_color'] ?? '';
 $text_color = $more_settings['text_color'] ?? '';
@@ -29,7 +30,10 @@ $text_style = '';
 
 // Updating styles and classes based on settings
 if ($background_color) {
-  $card_style = 'background-color: ' . $background_color . ';';
+  $card_style .= 'background-color: ' . $background_color . ';';
+}
+if ($border_color) {
+  $card_style .= 'border-color: ' . $border_color . ';';
 }
 if ($title_color) {
   $title_style = 'color: ' . $title_color . ';';
@@ -45,7 +49,7 @@ if ($text_color) {
 if ($info_repeater) {
 ?>
   <div class="component-info-card relative">
-    <div class="rounded-xl shadow-lg p-12" style="<?php echo $card_style ?>">
+    <div class="rounded-xl shadow-lg border border-solid border-slate-200 p-12" style="<?php echo $card_style ?>">
       <?php if ($title) : ?>
         <h4 class="font-semibold text-3xl leading-tight mb-8" style="<?php echo $title_style ?>"><?php echo $title ?></h4>
       <?php endif; ?>

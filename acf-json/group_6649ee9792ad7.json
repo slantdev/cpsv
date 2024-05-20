@@ -254,9 +254,9 @@
                             "return_format": "string"
                         },
                         {
-                            "key": "field_6649ef9bd1646",
-                            "label": "Title Color",
-                            "name": "title_color",
+                            "key": "field_664aa98905761",
+                            "label": "Border Color",
+                            "name": "background_color",
                             "aria-label": "",
                             "type": "color_picker",
                             "instructions": "",
@@ -267,7 +267,25 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "#374151",
+                            "default_value": "#e2e8f0",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_6649ef9bd1646",
+                            "label": "Title Color",
+                            "name": "title_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "33.33",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#1068F0",
                             "enable_opacity": 0,
                             "return_format": "string"
                         },
@@ -281,7 +299,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
@@ -299,7 +317,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "50",
+                                "width": "33.33",
                                 "class": "",
                                 "id": ""
                             },
@@ -308,101 +326,6 @@
                             "return_format": "string"
                         }
                     ]
-                },
-                {
-                    "key": "field_664aa097e831b",
-                    "label": "Settings (copy)",
-                    "name": "more_settings_copy",
-                    "aria-label": "",
-                    "type": "group",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "field-modal bl-0",
-                        "id": ""
-                    },
-                    "layout": "block",
-                    "acfe_group_modal": 1,
-                    "acfe_group_modal_close": 1,
-                    "acfe_group_modal_button": "<span class=\"dashicons dashicons-admin-settings\"><\/span>",
-                    "acfe_group_modal_size": "small",
-                    "sub_fields": [
-                        {
-                            "key": "field_664aa097e831c",
-                            "label": "Background Color",
-                            "name": "background_color",
-                            "aria-label": "",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#FFFFFF",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_664aa097e831d",
-                            "label": "Title Color",
-                            "name": "title_color",
-                            "aria-label": "",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#374151",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_664aa097e831e",
-                            "label": "Icon Color",
-                            "name": "icon_color",
-                            "aria-label": "",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#1068F0",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        },
-                        {
-                            "key": "field_664aa097e831f",
-                            "label": "Text Color",
-                            "name": "text_color",
-                            "aria-label": "",
-                            "type": "color_picker",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "50",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "#374151",
-                            "enable_opacity": 0,
-                            "return_format": "string"
-                        }
-                    ],
-                    "acfe_seamless_style": 0
                 }
             ]
         }
@@ -432,7 +355,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1716166814,
+    "modified": 1716169160,
     "acfe_categories": {
         "components": "Components"
     }
