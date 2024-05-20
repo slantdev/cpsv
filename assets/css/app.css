@@ -4684,6 +4684,9 @@ details.collapse summary::-webkit-details-marker {
 .h-\[5\.5rem\] {
   height: 5.5rem;
 }
+.h-\[500px\] {
+  height: 500px;
+}
 .h-\[50vh\] {
   height: 50vh;
 }
@@ -4698,6 +4701,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .h-full {
   height: 100%;
+}
+.h-\[621px\] {
+  height: 621px;
 }
 .max-h-\[50vh\] {
   max-height: 50vh;
@@ -4813,6 +4819,9 @@ details.collapse summary::-webkit-details-marker {
 .w-\[180px\] {
   width: 180px;
 }
+.w-\[420px\] {
+  width: 420px;
+}
 .w-\[5\.5rem\] {
   width: 5.5rem;
 }
@@ -4824,6 +4833,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .w-px {
   width: 1px;
+}
+.w-\[460px\] {
+  width: 460px;
 }
 .min-w-56 {
   min-width: 14rem;
@@ -6338,13 +6350,16 @@ details.collapse summary::-webkit-details-marker {
   display: none;
   opacity: 0;
 }
-.mega-menu .submenu-featured .menu-article:first-child {
-  display: block;
-}
+/* &:first-child {
+        @apply block;
+      }
+      &.active {
+        @apply block visible opacity-100;
+      } */
 .mega-menu .submenu-featured .menu-article.active {
-  visibility: visible;
-  display: block;
-  opacity: 1;
+  visibility: hidden;
+  display: none;
+  opacity: 0;
 }
 .mega-menu .submenu-featured .menu-article.inactive {
   visibility: hidden;
@@ -6374,7 +6389,7 @@ details.collapse summary::-webkit-details-marker {
     position: absolute;
     left: auto;
     bottom: auto;
-    z-index: 50;
+    z-index: -10;
     margin-left: -1rem;
     margin-right: -1rem;
     width: auto;
@@ -6457,10 +6472,16 @@ details.collapse summary::-webkit-details-marker {
   .has_submenu:hover .mega-menu,
     .has_submenu:hover .dropdown-menu {
     visibility: visible;
+    z-index: 50;
     --tw-translate-y: -0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     opacity: 1;
   }
+}
+.has_submenu:hover .mega-menu .submenu-featured .menu-article.active {
+  visibility: visible;
+  display: block;
+  opacity: 1;
 }
 .has_submenu .menu-right-btn {
   display: inline-flex;

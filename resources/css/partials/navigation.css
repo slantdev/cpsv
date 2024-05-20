@@ -86,11 +86,14 @@
     @apply relative;
     .menu-article {
       @apply invisible opacity-0 hidden;
-      &:first-child {
+      /* &:first-child {
         @apply block;
       }
       &.active {
         @apply block visible opacity-100;
+      } */
+      &.active {
+        @apply invisible opacity-0 hidden;
       }
       &.inactive {
         @apply invisible opacity-0 hidden;
@@ -100,7 +103,7 @@
 }
 .dropdown-menu {
   @apply absolute top-0 left-0 bottom-0 w-64 overflow-y-auto z-40 translate-x-full transition-all duration-500 bg-white;
-  @apply xl:absolute xl:left-auto xl:bottom-auto xl:w-auto xl:translate-x-0 xl:-mx-4 xl:overflow-hidden xl:z-50 xl:shadow-lg xl:invisible xl:opacity-0 xl:-translate-y-8 xl:bg-transparent;
+  @apply xl:absolute xl:left-auto xl:bottom-auto xl:w-auto xl:translate-x-0 xl:-mx-4 xl:overflow-hidden xl:-z-10 xl:shadow-lg xl:invisible xl:opacity-0 xl:-translate-y-8 xl:bg-transparent;
   @apply xl:top-[84px] 5xl:top-[92px];
   &.active {
     @apply translate-x-0;
@@ -124,7 +127,10 @@
     }
     .mega-menu,
     .dropdown-menu {
-      @apply xl:visible xl:opacity-100 xl:-translate-y-0;
+      @apply xl:visible xl:opacity-100 xl:-translate-y-0 xl:z-50;
+    }
+    .mega-menu .submenu-featured .menu-article.active {
+      @apply visible block opacity-100;
     }
   }
   .menu-right-btn {

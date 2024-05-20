@@ -49,7 +49,7 @@ $bottom_separator_style = $bottom_separator ? "border-color: $bottom_separator_c
 // Background - Color/Image
 $background_settings = $section_settings['background'] ?? '';
 $section_background_color = $background_settings['background_color'] ?? '';
-$section_background_image = $background_settings['background_image'] ?? '';
+$section_background_image = $background_settings['background_image']['url'] ?? '';
 $section_style .= $section_background_color ? "background-color: $section_background_color;" : '';
 $section_style .= $section_background_image ? "background-image: url($section_background_image); background-size: cover; background-repeat: no-repeat;" : '';
 
