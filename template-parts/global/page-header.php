@@ -79,10 +79,10 @@ endif;
         </div>
       <?php endif; ?>
       <div class="container max-w-screen-2xl relative z-auto">
-        <div class="flex justify-end">
-          <?php if ($show_breadcrumbs || $show_title || $show_description) : ?>
-            <div class="w-full xl:w-2/3">
-              <div class="flex pt-28 pb-20 items-end">
+        <div class="flex items-end justify-end xl:gap-x-12">
+          <div class="w-full xl:w-2/3">
+            <?php if ($show_breadcrumbs || $show_title || $show_description) : ?>
+              <div class="flex flex-col pt-28 pb-20">
                 <?php if ($show_breadcrumbs && function_exists('yoast_breadcrumb')) : ?>
                   <?php yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
                 <?php endif; ?>
@@ -95,10 +95,10 @@ endif;
                   </div>
                 <?php endif; ?>
               </div>
-            </div>
-          <?php endif; ?>
-          <?php if ($use_salesforce) : ?>
-            <?php if ($salesforce_form_id) : ?>
+            <?php endif; ?>
+          </div>
+          <div class="w-full xl:w-1/3">
+            <?php if ($use_salesforce && $salesforce_form_id) : ?>
               <style>
                 .npspPlusDonateDropIn {
                   position: absolute;
@@ -129,8 +129,7 @@ endif;
                 })
               </script>
             <?php endif; ?>
-
-          <?php endif; ?>
+          </div>
         </div>
       </div>
     </div>
