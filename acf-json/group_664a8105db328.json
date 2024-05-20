@@ -88,30 +88,67 @@
                     },
                     "layout": "block",
                     "acfe_seamless_style": 1,
-                    "acfe_group_modal": 0,
-                    "acfe_group_modal_close": 0,
-                    "acfe_group_modal_button": "",
-                    "acfe_group_modal_size": "large",
                     "sub_fields": [
                         {
-                            "key": "field_664a8106440fe",
-                            "label": "Color",
-                            "name": "text_color",
+                            "key": "field_664aa3f851e1b",
+                            "label": "Settings",
+                            "name": "more_settings",
                             "aria-label": "",
-                            "type": "color_picker",
+                            "type": "group",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
-                                "class": "",
+                                "class": "field-modal bl-0",
                                 "id": ""
                             },
-                            "default_value": "#374151",
-                            "enable_opacity": 0,
-                            "return_format": "string"
+                            "layout": "block",
+                            "acfe_group_modal": 1,
+                            "acfe_group_modal_close": 1,
+                            "acfe_group_modal_button": "<span class=\"dashicons dashicons-admin-settings\"><\/span>",
+                            "acfe_group_modal_size": "small",
+                            "sub_fields": [
+                                {
+                                    "key": "field_664aa3f851e1c",
+                                    "label": "Rounded Corners",
+                                    "name": "rounded_corners",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "default": "Default",
+                                        "none": "None",
+                                        "sm": "SM",
+                                        "md": "MD",
+                                        "lg": "LG",
+                                        "xl": "XL"
+                                    },
+                                    "default_value": "default",
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "allow_custom": 0,
+                                    "search_placeholder": ""
+                                }
+                            ],
+                            "acfe_seamless_style": 0
                         }
-                    ]
+                    ],
+                    "acfe_group_modal": 0,
+                    "acfe_group_modal_close": 0,
+                    "acfe_group_modal_button": "",
+                    "acfe_group_modal_size": "large"
                 }
             ],
             "acfe_group_modal": 0,
@@ -145,7 +182,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1716158838,
+    "modified": 1716167684,
     "acfe_categories": {
         "components": "Components"
     }

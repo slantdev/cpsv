@@ -9,16 +9,20 @@ $google_map_comp = is_array($field) ? $field : get_sub_field($field ?: 'google_m
 
 // Extracting content editor and text color from content editor component
 $google_map = $google_map_comp['google_map']['google_map'] ?? '';
-$text_color = $google_map_comp['google_map']['settings']['text_color'] ?? '';
+$more_settings = $google_map_comp['google_map']['settings']['more_settings'] ?? [];
 
-//preint_r($google_map);
+$rounded_corners = $more_settings['rounded_corners'] ?? '';
+$rounded_corners_classes = [
+  "default" => 'rounded-lg',
+  "none" => 'rounded-none',
+  "sm" => 'rounded-sm',
+  "md" => 'rounded-md',
+  "lg" => 'rounded-lg',
+  "xl" => 'rounded-xl',
+];
+$rounded_corners_class = $rounded_corners_classes[$rounded_corners] ?? '';
 
-$google_map_style = '';
-
-// Assigning text color to content editor style if available
-if ($text_color) {
-  $google_map_style = 'color:' . $text_color . ';';
-}
+//preint_r($google_map_comp);
 
 // Outputting content editor if available
 if ($google_map) { ?>
@@ -163,7 +167,7 @@ if ($google_map) { ?>
 
       })(jQuery);
     </script>
-    <div class="aspect-w-16 aspect-h-7 rounded-lg bg-slate-100 overflow-clip">
+    <div class="aspect-w-16 aspect-h-7 bg-slate-100 overflow-clip <?php echo $rounded_corners_class ?>">
       <div class="acf-map" data-zoom="16">
         <div class="marker" data-lat="<?php echo esc_attr($google_map['lat']); ?>" data-lng="<?php echo esc_attr($google_map['lng']); ?>"></div>
       </div>

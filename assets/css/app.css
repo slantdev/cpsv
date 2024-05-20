@@ -5129,6 +5129,9 @@ details.collapse summary::-webkit-details-marker {
 .rounded-xl {
   border-radius: 1.25rem;
 }
+.rounded-sm {
+  border-radius: 0.25rem;
+}
 .rounded-b-2xl {
   border-bottom-right-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;

@@ -5118,6 +5118,10 @@
   border-radius: 1.25rem;
 }
 
+#poststuff .acf-layout .rounded-sm {
+  border-radius: 0.25rem;
+}
+
 #poststuff .acf-layout .rounded-b-2xl {
   border-bottom-right-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
