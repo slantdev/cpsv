@@ -30,59 +30,104 @@ $copyright_links = $copyright_info['copyright_links'] ?? '';
 
 $top_navigation = get_field('top_navigation', 'option')['top_navigation'];
 $social_links = $top_navigation['social_links'] ?? '';
+
+$subscribe = get_field('subscribe', 'option')['subscribe'] ?? '';
+$subscribe_heading = $subscribe['heading'] ?? '';
+$subscribe_desciption = $subscribe['description'] ?? '';
+$subscribe_form_shortcode = $subscribe['form_shortcode'] ?? '';
+$subscribe_colors = $subscribe['subscribe_colors'] ?? '';
+$subscribe_background_color = $subscribe_colors['background_color'] ?? '';
+$subscribe_text_color = $subscribe_colors['text_color'] ?? '';
+$subscribe_style = '';
+if ($subscribe_background_color) {
+  $subscribe_style .= 'background-color: ' . $subscribe_background_color . ';';
+}
+if ($subscribe_text_color) {
+  $subscribe_style .= 'color: ' . $subscribe_text_color . ';';
+}
+
+$term_id = '';
+if (is_archive()) {
+  $term_id = get_queried_object()->term_id;
+}
+if ($term_id) {
+  $the_id = 'term_' . $term_id;
+} else {
+  $the_id = get_the_ID();
+}
+$disable_subscribe = get_field('disable_subscribe', $the_id);
+
 ?>
 
 <!-- Subscribe -->
 <?php
 $section_id = 'section-subscribe-' . uniqid();
 ?>
-<section class="relative bg-brand-blue <?php echo $section_id ?>">
-  <div class="relative pt-12 lg:pt-20 xl:pt-36 pb-12 lg:pb-20 xl:pb-36">
-    <div class="relative container mx-auto max-w-screen-xl">
-      <div class="text-center text-white max-w-prose mx-auto">
-        <h3 class="mb-4 font-semibold text-4xl -tracking-[0.0125em] leading-tight">Subscribe to our Newsletter</h3>
-        <div class="mt-4 text-xl">We’d love to keep in touch. Stay up to date with CPSV</div>
-      </div>
-    </div>
-    <div class="relative container mx-auto max-w-screen-xl mt-16">
-      <div class="flex gap-x-6">
-        <div class="grow">
-          <label class="form-control w-full">
-            <div class="label">
-              <span class="label-text text-white">First Name</span>
-            </div>
-            <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
-          </label>
-        </div>
-        <div class="grow">
-          <label class="form-control w-full">
-            <div class="label">
-              <span class="label-text text-white">Last Name</span>
-            </div>
-            <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
-          </label>
-        </div>
-        <div class="grow">
-          <label class="form-control w-full">
-            <div class="label">
-              <span class="label-text text-white">Email Address</span>
-            </div>
-            <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
-          </label>
-        </div>
-        <div class="flex-none">
-          <label class="form-control w-full">
-            <div class="label">
-              <span class="label-text text-white">&nbsp;</span>
-            </div>
-            <button type="button" class="btn btn-primary text-lg rounded-full px-16 hover:brightness-110 hover:shadow-lg transition duration-300">Submit</button>
-          </label>
 
+<?php
+if ($subscribe && !$disable_subscribe) :
+  $section_id = 'section-subscribe-' . uniqid();
+?>
+  <section class="<?php echo $section_id ?> relative bg-brand-blue" style="<?php echo $subscribe_style ?>">
+    <div class="relative pt-12 lg:pt-20 xl:pt-36 pb-12 lg:pb-20 xl:pb-36">
+      <?php if ($subscribe_heading || $subscribe_desciption) : ?>
+        <div class="relative container mx-auto max-w-screen-xl">
+          <div class="text-center text-white max-w-prose mx-auto">
+            <?php if ($subscribe_heading) : ?>
+              <h3 class="mb-4 font-semibold text-4xl -tracking-[0.0125em] leading-tight"><?php echo $subscribe_heading ?></h3>
+            <?php endif ?>
+            <?php if ($subscribe_desciption) : ?>
+              <div class="mt-4 text-xl"><?php echo $subscribe_desciption ?></div>
+            <?php endif ?>
+          </div>
         </div>
-      </div>
+      <?php endif; ?>
+      <?php if ($subscribe_form_shortcode) : ?>
+        <div class="relative container mx-auto max-w-screen-xl mt-16">
+          <?php echo do_shortcode($subscribe_form_shortcode) ?>
+        </div>
+      <?php else : ?>
+        <div class="relative container mx-auto max-w-screen-xl mt-16">
+          <div class="flex gap-x-6">
+            <div class="grow">
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text text-white">First Name</span>
+                </div>
+                <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
+              </label>
+            </div>
+            <div class="grow">
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text text-white">Last Name</span>
+                </div>
+                <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
+              </label>
+            </div>
+            <div class="grow">
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text text-white">Email Address</span>
+                </div>
+                <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
+              </label>
+            </div>
+            <div class="flex-none">
+              <label class="form-control w-full">
+                <div class="label">
+                  <span class="label-text text-white">&nbsp;</span>
+                </div>
+                <button type="button" class="btn btn-primary text-lg rounded-full px-16 hover:brightness-110 hover:shadow-lg transition duration-300">Submit</button>
+              </label>
+
+            </div>
+          </div>
+        </div>
+      <?php endif; ?>
     </div>
-  </div>
-</section>
+  </section>
+<?php endif; ?>
 
 <footer>
   <div class="bg-white py-24">
