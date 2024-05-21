@@ -593,7 +593,7 @@ function load_adopt_cat()
             }
           ?>
             <div class="">
-              <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <a href="<?php echo $link ?>" class="relative block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                 <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                   <?php if ($image) : ?>
                     <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
