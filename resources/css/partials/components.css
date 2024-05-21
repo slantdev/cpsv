@@ -1,3 +1,6 @@
+.alignwide {
+  @apply mx-auto;
+}
 /* Breadcrumbs */
 .breadcrumbs {
   color: var(--breadcrumbs-text-color, #020044);

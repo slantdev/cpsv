@@ -15,6 +15,7 @@ $heading_text = $custom_cards_2['heading']['heading_text'] ?? '';
 $text_area = $custom_cards_2['text_area']['text_area'] ?? '';
 $button_url = $custom_cards_2['button']['button_link']['url'] ?? '';
 $cards_settings = $custom_cards_2['cards_settings'] ?? []; // Group
+$card_style = $cards_settings['card_style'] ?? 'style-1';
 $cards = $cards_settings['cards'] ?? []; // Repeater
 // $select_post_type = $posts_settings['select_post_type'] ?? '';
 // $select_category = $posts_settings['select_category'] ?? '';
@@ -70,22 +71,41 @@ $section_class = 'section-custom_cards_2-' . $uniqid;
                 $link = $card['link']['url'] ?? '';
                 $link_target = $card['link']['target'] ?? '_self';
               ?>
-                <div class="relative block">
-                  <a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="block group">
-                    <div class="aspect-w-16 aspect-h-10 overflow-hidden rounded-lg lg:rounded-xl">
-                      <?php if ($image) : ?>
-                        <img class="object-cover transition duration-300 group-hover:scale-110" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
-                      <?php else : ?>
-                        <div class="w-full h-full bg-slate-50"></div>
-                      <?php endif; ?>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0">
-                      <div class="mb-4 ml-4 mr-4">
-                        <div class="inline-block bg-white rounded lg:rounded-md py-2 px-3 lg:py-3 lg:px-4 text-sm lg:text-base font-bold"><?php echo $title ?></div>
+                <?php if ($card_style == 'style-1') : ?>
+                  <div class="relative block">
+                    <a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="block group">
+                      <div class="aspect-w-16 aspect-h-10 overflow-hidden rounded-lg lg:rounded-xl">
+                        <?php if ($image) : ?>
+                          <img class="object-cover transition duration-300 group-hover:scale-110" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                        <?php else : ?>
+                          <div class="w-full h-full bg-slate-50"></div>
+                        <?php endif; ?>
                       </div>
-                    </div>
-                  </a>
-                </div>
+                      <div class="absolute bottom-0 left-0 right-0">
+                        <div class="mb-4 ml-4 mr-4">
+                          <div class="inline-block bg-white rounded lg:rounded-md py-2 px-3 lg:py-3 lg:px-4 text-sm lg:text-base font-bold"><?php echo $title ?></div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php else : ?>
+                  <div class="relative block">
+                    <a href="<?php echo $link ?>" target="<?php echo $link_target ?>" class="block group shadow-lg overflow-hidden rounded-lg lg:rounded-xl">
+                      <div class="aspect-w-1 aspect-h-1">
+                        <?php if ($image) : ?>
+                          <img class="object-cover transition duration-300 group-hover:scale-110" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                        <?php else : ?>
+                          <div class="w-full h-full bg-slate-50"></div>
+                        <?php endif; ?>
+                      </div>
+                      <div class="absolute bottom-0 left-0 right-0">
+                        <div class="mb-4 ml-4 mr-4">
+                          <div class="inline-block py-2 px-3 lg:py-3 lg:px-4 text-sm lg:text-4xl text-white font-semibold"><?php echo $title ?></div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php endif ?>
               <?php endforeach ?>
             </div>
           </div>

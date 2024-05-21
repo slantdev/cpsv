@@ -6543,6 +6543,10 @@ details.collapse summary::-webkit-details-marker {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
+.alignwide {
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Breadcrumbs */
 .breadcrumbs {
   color: var(--breadcrumbs-text-color, #020044);
@@ -7635,6 +7639,11 @@ details.collapse summary::-webkit-details-marker {
     font-size: 1.25rem;
   }
 
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .lg\:leading-tight {
     line-height: 1.25;
   }
@@ -7991,20 +8000,12 @@ details.collapse summary::-webkit-details-marker {
     display: none;
   }
 
-  .print\:w-full {
-    width: 100%;
-  }
-
-  .print\:w-\[500px\] {
-    width: 500px;
-  }
-
-  .print\:w-\[800px\] {
-    width: 800px;
-  }
-
   .print\:w-\[780px\] {
     width: 780px;
+  }
+
+  .print\:w-full {
+    width: 100%;
   }
 
   .print\:bg-brand-light-gray {

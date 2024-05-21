@@ -185,6 +185,37 @@
                     "acfe_group_modal_size": "large",
                     "sub_fields": [
                         {
+                            "key": "field_664c50907c37a",
+                            "label": "Card Style",
+                            "name": "card_style",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "acfe_permissions": "",
+                            "choices": {
+                                "style-1": "Style 1",
+                                "style-2": "Style 2"
+                            },
+                            "default_value": "style-1",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "acfe_settings": "",
+                            "acfe_validate": "",
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "allow_custom": 0,
+                            "search_placeholder": ""
+                        },
+                        {
                             "key": "field_66255967b389d",
                             "label": "Cards",
                             "name": "cards",
@@ -367,7 +398,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1713750364,
+    "modified": 1716277420,
     "acfe_categories": {
         "layout": "Layout"
     }
