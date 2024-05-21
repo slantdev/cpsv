@@ -11,13 +11,18 @@ $enable_page_header = false;
 if (is_singular('post')) :
   $enable_page_header = true;
   $title = get_the_title();
-  $background_image_url = get_the_post_thumbnail_url($the_id, 'full');
-  $background_position = 'center';
+  // $background_image_url = get_the_post_thumbnail_url($the_id, 'full');
+  // $background_position = 'center';
   $background_overlay = 'rgba(243,241,239,0.6)';
+  $background_image_url = false;
+  //$background_overlay = false;
   $bg_image_class = ' object-center';
   $show_breadcrumbs = true;
   $breadcrumbs_style = '--breadcrumbs-text-color:#020044;--breadcrumbs-separator-color:#FF6347;';
   $title_style = 'color:#020044;';
+  $show_title = true;
+  $show_description = false;
+  $use_salesforce = false;
   $description = false;
 
 elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header']) && $page_header['enable_page_header']) :
@@ -133,6 +138,8 @@ endif;
         </div>
       </div>
     </div>
-    <div class="h-[60px]"></div>
+    <?php if ($background_image_url) : ?>
+      <div class="h-[60px]"></div>
+    <?php endif; ?>
   </section>
 <?php endif;
