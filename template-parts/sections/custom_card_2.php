@@ -98,9 +98,11 @@ $section_class = 'section-custom_cards_2-' . $uniqid;
                           <div class="w-full h-full bg-slate-50"></div>
                         <?php endif; ?>
                       </div>
-                      <div class="absolute bottom-0 left-0 right-0">
-                        <div class="mb-4 ml-4 mr-4">
-                          <div class="inline-block py-2 px-3 lg:py-3 lg:px-4 text-sm lg:text-4xl text-white font-semibold"><?php echo $title ?></div>
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 from-0% to-transparent to-100% via-transparent bg-blend-multiply rounded-lg lg:rounded-xl">
+                        <div class="w-full h-full flex flex-col justify-end">
+                          <div class="px-6 pb-6 pr-12">
+                            <h4 class="text-4xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
+                          </div>
                         </div>
                       </div>
                     </a>
