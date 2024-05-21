@@ -4,7 +4,7 @@ $top_links = $top_navigation['top_links'] ?? '';
 $social_links = $top_navigation['social_links'] ?? '';
 $sign_in_register = $top_navigation['sign_in_register'] ?? '';
 ?>
-<div class="top-header relative z-50 bg-brand-dark-blue py-3">
+<div class="top-header relative z-50 bg-brand-dark-blue py-3 print:hidden">
   <div class="container max-w-screen-5xl">
     <div class="flex items-center justify-end">
       <?php if ($top_links) : ?>
@@ -56,7 +56,7 @@ $header_logo = get_field('header_logo', 'option');
 $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg';
 //preint_r($header_logo);
 ?>
-<header class="z-50">
+<header class="z-50 print:hidden">
   <div class="main-header">
     <div class="container max-w-screen-5xl">
       <div class="relative xl:flex xl:justify-between">

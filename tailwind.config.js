@@ -55,6 +55,9 @@ module.exports = {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
         poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
+      screens: {
+        print: { raw: "print" },
+      },
     },
     screens: {
       xs: "480px",

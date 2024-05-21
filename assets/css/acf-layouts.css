@@ -4540,6 +4540,10 @@
   height: 60px;
 }
 
+#poststuff .acf-layout .h-\[621px\] {
+  height: 621px;
+}
+
 #poststuff .acf-layout .h-\[80vh\] {
   height: 80vh;
 }
@@ -4550,22 +4554,6 @@
 
 #poststuff .acf-layout .h-full {
   height: 100%;
-}
-
-#poststuff .acf-layout .h-\[620px\] {
-  height: 620px;
-}
-
-#poststuff .acf-layout .h-\[560px\] {
-  height: 560px;
-}
-
-#poststuff .acf-layout .h-\[500px\] {
-  height: 500px;
-}
-
-#poststuff .acf-layout .h-\[621px\] {
-  height: 621px;
 }
 
 #poststuff .acf-layout .max-h-\[50vh\] {
@@ -4720,6 +4708,10 @@
   width: 180px;
 }
 
+#poststuff .acf-layout .w-\[460px\] {
+  width: 460px;
+}
+
 #poststuff .acf-layout .w-\[5\.5rem\] {
   width: 5.5rem;
 }
@@ -4734,14 +4726,6 @@
 
 #poststuff .acf-layout .w-px {
   width: 1px;
-}
-
-#poststuff .acf-layout .w-\[420px\] {
-  width: 420px;
-}
-
-#poststuff .acf-layout .w-\[460px\] {
-  width: 460px;
 }
 
 #poststuff .acf-layout .min-w-56 {
@@ -4834,10 +4818,6 @@
 
 #poststuff .acf-layout .max-w-xs {
   max-width: 20rem;
-}
-
-#poststuff .acf-layout .max-w-\[420px\] {
-  max-width: 420px;
 }
 
 #poststuff .acf-layout .flex-none {
@@ -7981,6 +7961,47 @@
   #poststuff .acf-layout .\35xl\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+}
+
+@media print {
+
+  #poststuff .acf-layout .print\:hidden {
+    display: none;
+  }
+
+  #poststuff .acf-layout .print\:w-full {
+    width: 100%;
+  }
+
+  #poststuff .acf-layout .print\:w-\[500px\] {
+    width: 500px;
+  }
+
+  #poststuff .acf-layout .print\:w-\[800px\] {
+    width: 800px;
+  }
+
+  #poststuff .acf-layout .print\:w-\[780px\] {
+    width: 780px;
+  }
+
+  #poststuff .acf-layout .print\:bg-brand-light-gray {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 241 239 / var(--tw-bg-opacity));
+  }
+
+  #poststuff .acf-layout .print\:bg-brand-yellow {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 165 0 / var(--tw-bg-opacity));
+  }
+
+  #poststuff .acf-layout .print\:pb-0 {
+    padding-bottom: 0px;
+  }
+
+  #poststuff .acf-layout .print\:pt-0 {
+    padding-top: 0px;
   }
 }
 

@@ -39,7 +39,7 @@ if ($background_position) {
 }
 ?>
 
-<section class="section-page-header relative -mt-[136px]">
+<section class="section-page-header relative -mt-[136px] print:hidden">
   <?php if ($background_image) : ?>
     <div class="absolute inset-0 z-0">
       <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
@@ -161,7 +161,7 @@ $components = $cat_description['components'] ?? '';
         <?php endif; ?>
       </div>
       <div class="relative z-10 flex flex-col xl:flex-row xl:gap-x-12">
-        <div class="xl:w-3/5 order-1">
+        <div class="xl:w-3/5 order-1 print:w-[780px]">
           <div class="catPhoto mb-8">
             <style>
               .catThumbSwiper .swiper-slide-thumb-active {
@@ -228,7 +228,7 @@ $components = $cat_description['components'] ?? '';
             <?php get_template_part('template-parts/components/components', '', array('field' => $components)); ?>
           </div>
         </div>
-        <div class="xl:w-2/5 order-2">
+        <div class="xl:w-2/5 order-2 print:hidden">
           <?php
           $foster_care_settings = get_field('foster_care_settings', 'option');
           $button_1 = $foster_care_settings['button_1'] ?? '';

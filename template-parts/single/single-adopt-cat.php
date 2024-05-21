@@ -39,7 +39,7 @@ if ($background_position) {
 }
 ?>
 
-<section class="section-page-header relative -mt-[136px]">
+<section class="section-page-header relative -mt-[136px] print:hidden">
   <?php if ($background_image) : ?>
     <div class="absolute inset-0 z-0">
       <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
@@ -52,12 +52,12 @@ if ($background_position) {
       </div>
     <?php endif; ?>
     <div class="container max-w-screen-2xl relative z-auto">
-      <div class="flex pt-28 pb-20 items-end">
-        <div class="w-full xl:w-1/2">
+      <div class="flex pt-28 pb-20 items-end print:pt-0 print:pb-0">
+        <div class="w-full xl:w-1/2 print:w-full">
           <?php if ($show_breadcrumbs) : ?>
             <?php
             if (function_exists('yoast_breadcrumb')) {
-              yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>');
+              yoast_breadcrumb('<div class="breadcrumbs mb-6 print:hidden" style="' . $breadcrumbs_style . '">', '</div>');
             }
             ?>
           <?php endif; ?>
@@ -178,7 +178,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
         <?php endif; ?>
       </div>
       <div class="relative z-10 flex flex-col xl:flex-row xl:gap-x-12">
-        <div class="xl:w-3/5 order-1">
+        <div class="xl:w-3/5 order-1 print:w-[780px]">
           <div class="catPhoto mb-8">
             <style>
               .catThumbSwiper .swiper-slide-thumb-active {
@@ -257,7 +257,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
                 ]
               );
               foreach ($cat_categories as $cat) :
-                $active_class = $cat_filters_data[$cat['id']] ? 'bg-brand-yellow' : 'bg-brand-light-gray';
+                $active_class = $cat_filters_data[$cat['id']] ? 'bg-brand-yellow print:bg-brand-yellow' : 'bg-brand-light-gray print:bg-brand-light-gray';
               ?>
                 <div>
                   <div class="flex flex-col justify-center items-center w-36 h-36 p-6 rounded-full shadow-inner <?php echo $active_class ?>">
@@ -284,7 +284,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
             <?php get_template_part('template-parts/components/components', '', array('field' => $components)); ?>
           </div>
         </div>
-        <div class="xl:w-2/5 order-2">
+        <div class="xl:w-2/5 order-2 print:hidden">
           <?php
           $adopt_cats_settings = get_field('adopt_cats_settings', 'option');
           $quick_links = $adopt_cats_settings['quick_links'] ?? '';
