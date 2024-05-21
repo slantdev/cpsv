@@ -38,7 +38,7 @@ $sign_in_register = $top_navigation['sign_in_register'] ?? '';
       $sign_in_register_target = $sign_in_register['target'] ?? '_self';
       if ($sign_in_register_url) :
       ?>
-        <div class="pl-6 border-l border-white border-solid">
+        <div class="pl-6 border-l border-white border-solid hidden">
           <a href="<?php echo $sign_in_register_url ?>" target="<?php echo $sign_in_register_target ?>" class="flex items-center gap-x-2 text-sm 4xl:text-base leading-tight text-white font-medium hover:opacity-75">
             <div>
               <?php echo cpsv_icon(array('icon' => 'account', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?>
@@ -81,7 +81,7 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
             <button type="button" class="bg-brand-blue text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
-            <button type="button" class="bg-brand-yellow text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
+            <button type="button" class="bg-brand-yellow text-white hidden items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
           </div>
