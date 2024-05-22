@@ -113,7 +113,7 @@ endif;
                   width: 100%;
                 }
               </style>
-              <div class="donations-form w-[460px] h-[621px] bg-white rounded-lg overflow-y-auto overflow-x-hidden">
+              <div id="donation-form" class="donations-form w-[460px] h-[621px] bg-white rounded-lg overflow-y-auto overflow-x-hidden">
                 <div id="salesforce_form-<?php echo $salesforce_form_id; ?>" class="salesforce-form relative w-full h-full"></div>
               </div>
               <?php
