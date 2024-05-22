@@ -5086,6 +5086,10 @@
   overflow-x: hidden;
 }
 
+#poststuff .acf-layout .scroll-smooth {
+  scroll-behavior: smooth;
+}
+
 #poststuff .acf-layout .whitespace-nowrap {
   white-space: nowrap;
 }
