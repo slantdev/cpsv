@@ -35,7 +35,7 @@ $section_class = 'section-location_map-' . $uniqid;
             <?php
             if ($heading_text) {
               echo '<div>';
-              get_template_part('template-parts/components/heading', '', array('field' => $location_map, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+              get_template_part('template-parts/components/heading', '', array('field' => $location_map, 'align' => 'text-left', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
               echo '</div>';
             }
             ?>

@@ -36,7 +36,7 @@ $section_class = 'section-info_cards_grid-' . $uniqid;
             <?php
             if ($heading_text) {
               echo '<div class="mb-4">';
-              get_template_part('template-parts/components/heading', '', array('field' => $info_cards_grid, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+              get_template_part('template-parts/components/heading', '', array('field' => $info_cards_grid, 'align' => 'text-left', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
               echo '</div>';
             }
             ?>

@@ -88,10 +88,10 @@ function pagination_load_posttypes()
         // $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 30, $more = null);
         $link = get_the_permalink();
         if ($postCount == 1) { ?>
-          <div class="col-span-3">
+          <div class="md:col-span-3">
             <div class="card-wrapper">
               <a href="<?php echo $link ?>" class="group block relative rounded-xl overflow-clip">
-                <div class="aspect-w-16 aspect-h-6">
+                <div class="aspect-1 md:aspect-w-16 md:aspect-h-6">
                   <?php if ($image) : ?>
                     <img class="featured-image object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
                   <?php else : ?>
@@ -100,9 +100,9 @@ function pagination_load_posttypes()
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-l from-black/80 via-transparent bg-blend-multiply"></div>
                 <div class="absolute right-4 bottom-4 text-white">
-                  <?php echo cpsv_icon(array('icon' => 'plus-circle', 'group' => 'utilities', 'size' => '64', 'class' => 'w-16 h-16')); ?>
+                  <?php echo cpsv_icon(array('icon' => 'plus-circle', 'group' => 'utilities', 'size' => '64', 'class' => 'w-8 h-8 md:w-16 md:h-16')); ?>
                 </div>
-                <div class="absolute inset-0">
+                <div class="hidden md:block absolute inset-0">
                   <div class="w-full h-full flex justify-end items-end">
                     <div class="w-2/5 px-12 py-8">
                       <h4 class="text-3xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
@@ -111,6 +111,9 @@ function pagination_load_posttypes()
                   </div>
                 </div>
               </a>
+              <div class="md:hidden py-4">
+                <h4><a href="<?php echo $link ?>" class="text-xl md:text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline"><?php echo $title ?></a></h4>
+              </div>
             </div>
           </div>
         <?php } else { ?>
@@ -125,11 +128,11 @@ function pagination_load_posttypes()
               </div>
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent bg-blend-multiply"></div>
               <div class="absolute right-4 bottom-4 text-white">
-                <?php echo cpsv_icon(array('icon' => 'plus-circle', 'group' => 'utilities', 'size' => '64', 'class' => 'w-16 h-16')); ?>
+                <?php echo cpsv_icon(array('icon' => 'plus-circle', 'group' => 'utilities', 'size' => '64', 'class' => 'w-8 h-8 md:w-16 md:h-16')); ?>
               </div>
             </a>
             <div class="py-4">
-              <h4><a href="<?php echo $link ?>" class="text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline"><?php echo $title ?></a></h4>
+              <h4><a href="<?php echo $link ?>" class="text-xl md:text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline"><?php echo $title ?></a></h4>
             </div>
           </div>
       <?php }
@@ -732,8 +735,8 @@ function pagination_load_fostergrid()
             <?php endif; ?>
           </div>
           <div class="px-4 py-2 xl:px-8 xl:py-4">
-            <h4 class="text-3xl text-center font-semibold text-brand-tomato" style="color: var(--section-link-color)"><?php echo $title ?></h4>
-            <div class="text-base text-center leading-snug text-slate-500 mt-2"><?php echo $age ?>, <?php echo $gender ?> <?php echo $breed ?></div>
+            <h4 class="text-2xl xl:text-3xl text-center font-semibold text-brand-tomato" style="color: var(--section-link-color)"><?php echo $title ?></h4>
+            <div class="text-sm xl:text-base text-center leading-snug text-slate-500 mt-2"><?php echo $age ?>, <?php echo $gender ?> <?php echo $breed ?></div>
           </div>
         </a>
       <?php }
@@ -1020,9 +1023,9 @@ function pagination_load_wherethey()
               <?php endif; ?>
             </div>
             <div class="p-4 xl:p-6 bg-white grow flex flex-col text-left">
-              <h4 class="text-left text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline mb-4" style="color: var(--section-link-color)"><?php echo $title ?></h4>
+              <h4 class="text-left text-xl xl:text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline mb-4" style="color: var(--section-link-color)"><?php echo $title ?></h4>
               <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
-              <div class="mt-auto font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</div>
+              <div class="mt-auto text-sm xl:text-base font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</div>
             </div>
           </button>
         </div>
@@ -1037,6 +1040,14 @@ function pagination_load_wherethey()
           width: 40px;
           border-radius: 999px;
           background: rgba(0,0,0,.5);
+        }
+        .fancybox__nav {
+          display: none;
+        }
+        @media (min-width: 1024px) {
+          .fancybox__nav {
+            display: block;
+          }
         }
         </style>
       ';
@@ -1059,18 +1070,20 @@ function pagination_load_wherethey()
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
       ?>
         <div id="cat-<?php echo $the_id ?>" class="max-w-screen-lg bg-white rounded-xl overflow-clip !p-0" style="display:none;">
-          <div class="flex">
-            <div class="w-1/2">
-              <?php if ($image) : ?>
-                <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
-              <?php else : ?>
-                <div class="w-full h-full bg-slate-50"></div>
-              <?php endif; ?>
+          <div class="flex flex-col xl:flex-row">
+            <div class="w-full xl:w-1/2">
+              <div class="aspect-w-16 aspect-h-9 xl:aspect-none xl:w-full xl:h-full">
+                <?php if ($image) : ?>
+                  <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+                <?php else : ?>
+                  <div class="w-full h-full bg-slate-50"></div>
+                <?php endif; ?>
+              </div>
             </div>
-            <div class="w-1/2">
-              <div class="pl-6 pt-6 pr-4 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
-                <h3 class="text-left text-3xl leading-tight font-semibold text-brand-blue" style="<?php echo $title_style ?>"><?php echo $title ?></h3>
-                <div class="mt-6 prose max-h-[50vh] overflow-y-auto">
+            <div class="w-full xl:w-1/2">
+              <div class="pl-6 pt-6 pr-2 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
+                <h3 class="text-left text-2xl xl:text-3xl leading-tight font-semibold text-brand-blue" style="<?php echo $title_style ?>"><?php echo $title ?></h3>
+                <div class="mt-6 prose max-h-[50vh] pr-2 overflow-y-auto">
                   <?php the_content() ?>
                 </div>
               </div>

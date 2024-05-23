@@ -25,7 +25,7 @@ $section_card_class = 'section-cards-' . uniqid();
       <?php
       if ($heading_text) {
         echo '<div class="mb-4">';
-        get_template_part('template-parts/components/heading', '', array('field' => $card_slider, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+        get_template_part('template-parts/components/heading', '', array('field' => $card_slider, 'align' => 'text-left', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
         echo '</div>';
       }
       ?>

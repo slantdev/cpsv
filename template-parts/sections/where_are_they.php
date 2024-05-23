@@ -30,12 +30,12 @@ $section_class = 'section-where_are_they-' . $uniqid;
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
     <div class="section-content">
       <div class="intro-container relative container mx-auto max-w-screen-2xl">
-        <div class="flex gap-x-20 items-end">
+        <div class="flex flex-col xl:flex-row xl:gap-x-20 xl:items-end">
           <div class="w-full xl:w-2/3">
             <?php
             if ($heading_text) {
               echo '<div class="mb-4">';
-              get_template_part('template-parts/components/heading', '', array('field' => $where_are_they, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+              get_template_part('template-parts/components/heading', '', array('field' => $where_are_they, 'align' => 'text-left', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
               echo '</div>';
             }
             ?>

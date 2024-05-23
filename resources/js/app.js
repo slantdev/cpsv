@@ -112,6 +112,41 @@ jQuery(function ($) {
     }
   );
 
+  // Mobile Menu
+  $(".menu-open-btn").click(function (e) {
+    e.preventDefault();
+    $(".main-nav--div").addClass("open");
+    $(".menu-overlay").addClass("active");
+    $("body").addClass("overflow-hidden");
+  });
+  $(".menu-close-btn, .menu-overlay").click(function (e) {
+    e.preventDefault();
+    $(".main-nav--div").removeClass("open");
+    $(".menu-overlay").removeClass("active");
+    $("body").removeClass("overflow-hidden");
+  });
+  $(".menu-right-btn").click(function (e) {
+    e.preventDefault();
+    $(this).siblings(".mega-menu").addClass("active");
+    $(this).siblings(".dropdown-menu").addClass("active");
+  });
+  $(".menu-back-btn").click(function (e) {
+    e.preventDefault();
+    $(this).parents(".mega-menu").removeClass("active");
+    $(this).parents(".dropdown-menu").removeClass("active");
+  });
+
+  // Search Form
+  $(".menu-search-btn").click(function (e) {
+    e.preventDefault();
+    $("#header-searchform-input").focus();
+    $("#search-form-container").addClass("show");
+  });
+  $("#close-searchform").click(function (e) {
+    e.preventDefault();
+    $("#search-form-container").removeClass("show");
+  });
+
   // FANCYBOX
   Fancybox.bind("[data-fancybox]", {
     // Custom options for all galleries

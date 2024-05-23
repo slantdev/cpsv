@@ -10,7 +10,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class('bg-white text-gray-700 antialiased'); ?>>
+<body <?php body_class('bg-white text-gray-700 antialiased pt-[72px] xl:pt-0'); ?>>
 
 	<?php do_action('cpsv_site_before'); ?>
 

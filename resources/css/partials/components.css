@@ -31,7 +31,7 @@
 .posts-pagination,
 .ajax-pagination {
   > ul {
-    @apply flex items-center justify-end gap-x-1;
+    @apply flex items-center justify-center xl:justify-end gap-x-1;
     > li {
       @apply p-2 flex w-10 h-10 justify-center items-center rounded-full cursor-pointer hover:text-brand-dark-blue;
       &:hover {

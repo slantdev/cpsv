@@ -74,22 +74,22 @@ if ($subscribe && !$disable_subscribe) :
         <div class="relative container mx-auto max-w-screen-xl">
           <div class="text-center text-white max-w-prose mx-auto">
             <?php if ($subscribe_heading) : ?>
-              <h3 class="mb-4 font-semibold text-4xl -tracking-[0.0125em] leading-tight"><?php echo $subscribe_heading ?></h3>
+              <h3 class="mb-4 font-semibold text-3xl xl:text-4xl -tracking-[0.0125em] leading-tight"><?php echo $subscribe_heading ?></h3>
             <?php endif ?>
             <?php if ($subscribe_desciption) : ?>
-              <div class="mt-4 text-xl"><?php echo $subscribe_desciption ?></div>
+              <div class="mt-4 text-lg xl:text-xl"><?php echo $subscribe_desciption ?></div>
             <?php endif ?>
           </div>
         </div>
       <?php endif; ?>
       <?php if ($subscribe_form_shortcode) : ?>
-        <div class="relative container mx-auto max-w-screen-xl mt-16">
+        <div class="relative container mx-auto max-w-screen-xl mt-8 xl:mt-16">
           <?php echo do_shortcode($subscribe_form_shortcode) ?>
         </div>
       <?php else : ?>
-        <div class="relative container mx-auto max-w-screen-xl mt-16">
-          <div class="flex gap-x-6">
-            <div class="grow">
+        <div class="relative container mx-auto max-w-screen-xl mt-8 xl:mt-16">
+          <div class="flex flex-col gap-y-2 xl:flex-row xl:gap-x-6">
+            <div class="xl:grow">
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text text-white">First Name</span>
@@ -97,7 +97,7 @@ if ($subscribe && !$disable_subscribe) :
                 <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
               </label>
             </div>
-            <div class="grow">
+            <div class="xl:grow">
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text text-white">Last Name</span>
@@ -105,7 +105,7 @@ if ($subscribe && !$disable_subscribe) :
                 <input type="text" placeholder="" class="input bg-white w-full rounded-full" />
               </label>
             </div>
-            <div class="grow">
+            <div class="xl:grow">
               <label class="form-control w-full">
                 <div class="label">
                   <span class="label-text text-white">Email Address</span>
@@ -130,32 +130,30 @@ if ($subscribe && !$disable_subscribe) :
 <?php endif; ?>
 
 <footer class="print:hidden">
-  <div class="bg-white py-24">
+  <div class="bg-white py-12 xl:py-24">
     <div class="container max-w-screen-2xl">
-      <div class="flex gap-x-20 items-center pb-12 border-b border-slate-300">
-        <div class="w-1/2">
+      <div class="flex flex-col gap-y-8 xl:flex-col xl:gap-x-20 items-center xl:pb-12 xl:border-b xl:border-slate-300">
+        <div class="w-full xl:w-1/2">
           <?php if ($logo) : ?>
             <div class="site-logo">
-              <a href="<?php echo site_url() ?>"><img src="<?php echo $logo['url'] ?>" alt="<?php echo get_bloginfo('name'); ?>" class="h-20 xl:h-[128px] w-auto"></a>
+              <a href="<?php echo site_url() ?>"><img src="<?php echo $logo['url'] ?>" alt="<?php echo get_bloginfo('name'); ?>" class="h-14 xl:h-[128px] w-auto"></a>
             </div>
           <?php endif ?>
         </div>
-        <div class="w-1/2">
+        <div class="w-full xl:w-1/2">
           <?php if ($slogan) : ?>
-            <div class="text-2xl">
+            <div class="text-xl xl:text-2xl">
               <?php echo $slogan ?>
             </div>
           <?php endif ?>
         </div>
       </div>
     </div>
-    <div class="container max-w-screen-2xl pt-12">
-      <div class="flex gap-x-20">
-        <div class="w-1/2 flex flex-col">
-          <?php if ($copyright_site_name) : ?>
-          <?php endif; ?>
+    <div class="container max-w-screen-2xl pt-6 xl:pt-12">
+      <div class="flex flex-col gap-y-6 xl:flex-row xl:gap-x-20">
+        <div class="w-full xl:w-1/2 flex flex-col">
           <?php if ($address || $phone || $email) : ?>
-            <div class="flex flex-col gap-y-0.5">
+            <div class="flex flex-col gap-y-0.5 text-sm xl:text-base">
               <?php if ($address) {
                 echo '<div>Visit: ' . $address . '</div>';
               } ?>
@@ -170,7 +168,7 @@ if ($subscribe && !$disable_subscribe) :
             </div>
           <?php endif; ?>
           <?php if ($acknowledgement_text || $acknowledgement_flags) : ?>
-            <div class="mt-auto">
+            <div class="xl:mt-auto">
               <?php
               if ($acknowledgement_text) {
                 echo '<div class="max-w-[42ch] text-sm leading-normal mt-8">';
@@ -191,10 +189,10 @@ if ($subscribe && !$disable_subscribe) :
             </div>
           <?php endif ?>
         </div>
-        <div class="w-1/2">
-          <div class="flex gap-x-10">
+        <div class="w-full xl:w-1/2">
+          <div class="flex flex-col gap-y-8 pt-8 xl:pt-0 xl:flex-row xl:gap-x-10">
             <?php if ($quick_links_links) : ?>
-              <div class="w-1/3">
+              <div class="w-full xl:w-1/3">
                 <?php if ($quick_links_heading) {
                   echo '<h4 class="text-lg font-semibold mb-4">' . $quick_links_heading . '</h4>';
                 } ?>
@@ -209,7 +207,7 @@ if ($subscribe && !$disable_subscribe) :
               </div>
             <?php endif; ?>
             <?php if ($about_us_links) : ?>
-              <div class="w-1/3">
+              <div class="w-full xl:w-1/3">
                 <?php if ($about_us_heading) {
                   echo '<h4 class="text-lg font-semibold mb-4">' . $about_us_heading . '</h4>';
                 } ?>
@@ -224,7 +222,7 @@ if ($subscribe && !$disable_subscribe) :
               </div>
             <?php endif; ?>
             <?php if ($get_in_touch_links) : ?>
-              <div class="w-1/3">
+              <div class="w-full xl:w-1/3">
                 <?php if ($get_in_touch_heading) {
                   echo '<h4 class="text-lg font-semibold mb-4">' . $get_in_touch_heading . '</h4>';
                 } ?>
@@ -243,18 +241,18 @@ if ($subscribe && !$disable_subscribe) :
       </div>
     </div>
   </div>
-  <div class="bg-brand-light-gray py-4">
+  <div class="bg-brand-light-gray py-6 xl:py-4">
     <div class="container max-w-screen-2xl">
-      <div class="flex gap-x-20">
-        <div class="w-1/2">
+      <div class="flex flex-col gap-y-1 xl:flex-row xl:gap-x-20">
+        <div class="w-full xl:w-1/2">
           <?php if ($copyright_site_name) : ?>
             <span class="text-sm"><?php echo $copyright_site_name ?></span>
           <?php endif; ?>
         </div>
-        <div class="w-1/2">
-          <div class="flex justify-between">
+        <div class="w-full xl:w-1/2">
+          <div class="flex flex-col gap-y-4 xl:flex-row xl:justify-between">
             <?php if ($copyright_links) : ?>
-              <div class="flex gap-x-8 text-sm">
+              <div class="flex flex-col gap-y-1 xl:flex-row xl:gap-x-8 text-sm">
                 <?php
                 foreach ($copyright_links as $link) :
                 ?>
@@ -264,7 +262,7 @@ if ($subscribe && !$disable_subscribe) :
             <?php endif; ?>
 
             <?php if ($social_links) : ?>
-              <ul class="social-link flex gap-x-1 px-6">
+              <ul class="social-link flex gap-x-1 xl:px-6">
                 <?php
                 foreach ($social_links as $link) :
                   $social_media_link = $link['social_media_link'] ?? '';

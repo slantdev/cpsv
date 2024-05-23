@@ -2,10 +2,23 @@
 $current_post_id = get_queried_object_id();
 $post_ancestors = get_post_ancestors($current_post_id);
 $menu_items = get_field('menu_items', 'option');
+$top_navigation = get_field('top_navigation', 'option')['top_navigation'];
+$social_links = $top_navigation['social_links'] ?? '';
 ?>
 
-<?php if ($menu_items) : ?>
-  <div class="main-nav--div grow">
+<div class="main-nav--div grow">
+  <div class="toolbar-wrapper">
+    <form id="header-searchform" class="relative" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+      <input id="searchform-input" type="text" class="w-48 xl:w-56 3xl:w-64 border-gray-300 shadow-inner text-sm !rounded-full bg-white !px-4 !py-2 2xl:!py-3 focus:border-brand-blue focus:ring-brand-blue" name="s" placeholder="Search" value="">
+      <button type="submit" class="absolute right-4 top-2">
+        <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '24', 'class' => 'text-brand-blue w-5 h-5 2xl:w-6 2xl:h-6')); ?>
+      </button>
+    </form>
+    <button class="menu-close-btn flex-none">
+      <?php echo cpsv_icon(array('icon' => 'close', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6')); ?>
+    </button>
+  </div>
+  <?php if ($menu_items) : ?>
     <ul class="main-nav--ul">
       <?php
       foreach ($menu_items as $menu_id => $menu) :
@@ -42,6 +55,10 @@ $menu_items = get_field('menu_items', 'option');
           echo '<li class="' . $li_class . '">';
           echo '<a href="' . esc_url($menu_item_url) . '" target="' . esc_attr($menu_item_target) . '" data-id="' . esc_attr($link_post_id) . '" class="' . esc_attr($link_class) . '">' . esc_html($menu_item_title) . '</a>';
 
+          echo '<button class="menu-right-btn">';
+          echo cpsv_icon(array('icon' => 'chevron-down', 'group' => 'utilities', 'size' => '12', 'class' => 'w-3 h-3 -rotate-90'));
+          echo '</button>';
+
           // Output submenu if exists
           if ($submenu_type == 'megamenu' && $megamenu_items) {
             output_megamenu($menu_id, $megamenu_items);
@@ -55,13 +72,25 @@ $menu_items = get_field('menu_items', 'option');
       endforeach;
       ?>
     </ul>
+  <?php endif ?>
+  <div class="mt-auto xl:hidden">
+    <?php if ($social_links) : ?>
+      <ul class="social-link flex justify-center text-center gap-x-1 px-4 py-4 mx-auto">
+        <?php
+        foreach ($social_links as $link) :
+          $social_media_link = $link['social_media_link'] ?? '';
+          $social_media_icon = $link['social_media_icon'] ?? '';
+        ?>
+          <li><a href="<?php echo $social_media_link ?>" target="_blank" class="text-brand-blue font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => $social_media_icon, 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-brand-blue')); ?></a></li>
+        <?php endforeach ?>
+      </ul>
+    <?php endif; ?>
+    <div class="p-4 border-t border-solid border-slate-200">
+      <a href="<?php echo site_url() ?>/make-a-donation" class="block bg-brand-tomato text-white w-full px-4 py-4 text-lg text-center font-bold uppercase leading-tight whitespace-nowrap rounded-md hover:brightness-110">Donate Now</a>
+    </div>
   </div>
-<?php endif ?>
 
-<?php
-//preint_r($menu_items);
-?>
-
+</div>
 
 <?php
 function get_menu_link_class($args)
@@ -159,7 +188,7 @@ function output_megamenu($menu_id, $megamenu_items)
         <?php if ($submenu_items) : ?>
           <div class="flex xl:gap-x-12">
             <div class="xl:w-1/4">
-              <ul class="flex flex-col text-lg">
+              <ul class="flex flex-col xl:text-lg">
                 <?php
                 foreach ($submenu_items as $submenu_id => $item) {
                   $submenu_link = $item['submenu_item'] ?? [];

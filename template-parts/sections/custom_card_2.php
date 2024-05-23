@@ -38,7 +38,7 @@ $section_class = 'section-custom_cards_2-' . $uniqid;
             <?php
             if ($heading_text) {
               echo '<div class="mb-4">';
-              get_template_part('template-parts/components/heading', '', array('field' => $custom_cards_2, 'align' => 'text-left', 'size' => 'text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
+              get_template_part('template-parts/components/heading', '', array('field' => $custom_cards_2, 'align' => 'text-left', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
               echo '</div>';
             }
             ?>
