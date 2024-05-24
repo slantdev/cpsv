@@ -132,7 +132,7 @@ if ($subscribe && !$disable_subscribe) :
 <footer class="print:hidden">
   <div class="bg-white py-12 xl:py-24">
     <div class="container max-w-screen-2xl">
-      <div class="flex flex-col gap-y-8 xl:flex-col xl:gap-x-20 items-center xl:pb-12 xl:border-b xl:border-slate-300">
+      <div class="flex flex-col gap-y-8 xl:flex-row xl:gap-x-20 items-center xl:pb-12 xl:border-b xl:border-slate-300">
         <div class="w-full xl:w-1/2">
           <?php if ($logo) : ?>
             <div class="site-logo">
