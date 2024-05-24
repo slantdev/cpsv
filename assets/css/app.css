@@ -4350,6 +4350,9 @@ details.collapse summary::-webkit-details-marker {
 .-bottom-10 {
   bottom: -2.5rem;
 }
+.-bottom-12 {
+  bottom: -3rem;
+}
 .-bottom-20 {
   bottom: -5rem;
 }
@@ -4371,8 +4374,17 @@ details.collapse summary::-webkit-details-marker {
 .left-12 {
   left: 3rem;
 }
+.left-auto {
+  left: auto;
+}
 .right-0 {
   right: 0px;
+}
+.right-14 {
+  right: 3.5rem;
+}
+.right-24 {
+  right: 6rem;
 }
 .right-4 {
   right: 1rem;
@@ -4403,36 +4415,6 @@ details.collapse summary::-webkit-details-marker {
 }
 .top-auto {
   top: auto;
-}
-.-bottom-16 {
-  bottom: -4rem;
-}
-.-bottom-8 {
-  bottom: -2rem;
-}
-.right-24 {
-  right: 6rem;
-}
-.-bottom-14 {
-  bottom: -3.5rem;
-}
-.-bottom-12 {
-  bottom: -3rem;
-}
-.right-10 {
-  right: 2.5rem;
-}
-.left-auto {
-  left: auto;
-}
-.right-16 {
-  right: 4rem;
-}
-.right-12 {
-  right: 3rem;
-}
-.right-14 {
-  right: 3.5rem;
 }
 .\!z-20 {
   z-index: 20 !important;
@@ -5938,6 +5920,10 @@ details.collapse summary::-webkit-details-marker {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
 }
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
 .text-slate-500 {
   --tw-text-opacity: 1;
   color: rgb(100 116 139 / var(--tw-text-opacity));
@@ -5957,10 +5943,6 @@ details.collapse summary::-webkit-details-marker {
 .text-zinc-400 {
   --tw-text-opacity: 1;
   color: rgb(161 161 170 / var(--tw-text-opacity));
-}
-.text-slate-400 {
-  --tw-text-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -6739,8 +6721,8 @@ details.collapse summary::-webkit-details-marker {
   visibility: hidden;
   top: 0px;
   right: 0px;
-  left: 0px;
   bottom: 0px;
+  width: 20rem;
   --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   opacity: 0;
@@ -7736,16 +7718,16 @@ details.collapse summary::-webkit-details-marker {
 }
 @media (min-width: 1024px) {
 
-  .lg\:top-1\/2 {
-    top: 50%;
+  .lg\:-bottom-10 {
+    bottom: -2.5rem;
+  }
+
+  .lg\:-left-20 {
+    left: -5rem;
   }
 
   .lg\:bottom-auto {
     bottom: auto;
-  }
-
-  .lg\:-bottom-10 {
-    bottom: -2.5rem;
   }
 
   .lg\:right-0 {
@@ -7756,8 +7738,8 @@ details.collapse summary::-webkit-details-marker {
     right: auto;
   }
 
-  .lg\:-left-20 {
-    left: -5rem;
+  .lg\:top-1\/2 {
+    top: 50%;
   }
 
   .lg\:mb-8 {
@@ -7928,6 +7910,10 @@ details.collapse summary::-webkit-details-marker {
     padding-bottom: 2rem;
   }
 
+  .lg\:pr-0 {
+    padding-right: 0px;
+  }
+
   .lg\:pt-0 {
     padding-top: 0px;
   }
@@ -7958,10 +7944,6 @@ details.collapse summary::-webkit-details-marker {
 
   .lg\:pt-8 {
     padding-top: 2rem;
-  }
-
-  .lg\:pr-0 {
-    padding-right: 0px;
   }
 
   .lg\:text-2xl {
@@ -8178,10 +8160,6 @@ details.collapse summary::-webkit-details-marker {
 
   .xl\:flex-row {
     flex-direction: row;
-  }
-
-  .xl\:flex-col {
-    flex-direction: column;
   }
 
   .xl\:items-end {

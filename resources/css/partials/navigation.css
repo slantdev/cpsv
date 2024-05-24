@@ -165,7 +165,7 @@
 }
 
 #search-form-container {
-  @apply top-0 right-0 left-0 bottom-0 translate-x-full invisible opacity-0 transition-all duration-500;
+  @apply top-0 right-0 bottom-0 w-80 translate-x-full invisible opacity-0 transition-all duration-500;
   &.show {
     @apply translate-x-0 visible opacity-100;
   }
