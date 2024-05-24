@@ -10,7 +10,7 @@ if ($field) {
     // Outputting component template if layout is set
     if ($acf_fc_layout) {
       $template = 'template-parts/components/' . $acf_fc_layout;
-      echo '<div class="my-8">';
+      echo '<div class="mb-8">';
       get_template_part($template, '', array('field' => $layout));
       echo '</div>';
     }

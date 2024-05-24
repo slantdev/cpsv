@@ -91,7 +91,7 @@ function pagination_load_posttypes()
           <div class="md:col-span-3">
             <div class="card-wrapper">
               <a href="<?php echo $link ?>" class="group block relative rounded-xl overflow-clip">
-                <div class="aspect-1 md:aspect-w-16 md:aspect-h-6">
+                <div class="aspect-w-1 aspect-h-1 md:aspect-w-16 md:aspect-h-6">
                   <?php if ($image) : ?>
                     <img class="featured-image object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
                   <?php else : ?>
@@ -119,7 +119,7 @@ function pagination_load_posttypes()
         <?php } else { ?>
           <div class="card-wrapper">
             <a href="<?php echo $link ?>" class="group block relative rounded-xl overflow-clip">
-              <div class="aspect-1">
+              <div class="aspect-w-1 aspect-h-1">
                 <?php if ($image) : ?>
                   <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
                 <?php else : ?>
@@ -727,7 +727,7 @@ function pagination_load_fostergrid()
         }
       ?>
         <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
-          <div class="aspect-1">
+          <div class="aspect-w-1 aspect-h-1">
             <?php if ($image) : ?>
               <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
             <?php else : ?>
@@ -879,7 +879,7 @@ function pagination_load_foundcats()
         }
       ?>
         <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
-          <div class="aspect-1">
+          <div class="aspect-w-1 aspect-h-1">
             <?php if ($image) : ?>
               <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
             <?php else : ?>

@@ -29,7 +29,7 @@ $margin_bottom = $settings['margins']['margin_bottom'] ?? 'default';
 $text_style = $heading_color ? 'color:' . $heading_color . ';' : '';
 
 // Assigning default classes
-$text_size_class = $size ? $size : 'text-5xl';
+$text_size_class = $size ? $size : 'text-4xl xl:text-5xl';
 $text_align_class = $align ? $align : '';
 $text_leading_class = $leading ? $leading : 'leading-tight';
 $text_weight_class = $weight ? $weight : 'font-semibold';
@@ -40,16 +40,16 @@ $margin_bottom_class = 'mb-0';
 if ($advanced_settings) {
   if ($text_size) {
     $text_size_classes = [
-      "default" => 'text-5xl',
+      "default" => 'text-4xl xl:text-5xl',
       "xs" => 'text-xs',
       "sm" => 'text-sm',
-      "md" => 'text-md',
-      "lg" => 'text-lg',
-      "xl" => 'text-xl',
-      "2xl" => 'text-2xl',
-      "3xl" => 'text-3xl',
-      "4xl" => 'text-4xl',
-      "5xl" => 'text-5xl'
+      "md" => 'text-base',
+      "lg" => 'text-base xl:text-lg',
+      "xl" => 'text-lg xl:text-xl',
+      "2xl" => 'text-xl xl:text-2xl',
+      "3xl" => 'text-2xl xl:text-3xl',
+      "4xl" => 'text-3xl xl:text-4xl',
+      "5xl" => 'text-4xl xl:text-5xl'
     ];
     $text_size_class = isset($text_size_classes[$text_size]) ? $text_size_classes[$text_size] : $text_size_class;
   }

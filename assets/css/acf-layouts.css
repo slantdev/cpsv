@@ -4162,16 +4162,44 @@
   top: auto;
 }
 
-#poststuff .acf-layout .top-2\.5 {
-  top: 0.625rem;
+#poststuff .acf-layout .-bottom-16 {
+  bottom: -4rem;
 }
 
-#poststuff .acf-layout .top-\[92px\] {
-  top: 92px;
+#poststuff .acf-layout .-bottom-8 {
+  bottom: -2rem;
 }
 
-#poststuff .acf-layout .right-auto {
-  right: auto;
+#poststuff .acf-layout .right-24 {
+  right: 6rem;
+}
+
+#poststuff .acf-layout .-bottom-14 {
+  bottom: -3.5rem;
+}
+
+#poststuff .acf-layout .-bottom-12 {
+  bottom: -3rem;
+}
+
+#poststuff .acf-layout .right-10 {
+  right: 2.5rem;
+}
+
+#poststuff .acf-layout .left-auto {
+  left: auto;
+}
+
+#poststuff .acf-layout .right-16 {
+  right: 4rem;
+}
+
+#poststuff .acf-layout .right-12 {
+  right: 3rem;
+}
+
+#poststuff .acf-layout .right-14 {
+  right: 3.5rem;
 }
 
 #poststuff .acf-layout .\!z-20 {
@@ -4488,6 +4516,10 @@
   height: 3rem;
 }
 
+#poststuff .acf-layout .h-14 {
+  height: 3.5rem;
+}
+
 #poststuff .acf-layout .h-16 {
   height: 4rem;
 }
@@ -4566,26 +4598,6 @@
 
 #poststuff .acf-layout .h-full {
   height: 100%;
-}
-
-#poststuff .acf-layout .h-14 {
-  height: 3.5rem;
-}
-
-#poststuff .acf-layout .h-\[120vh\] {
-  height: 120vh;
-}
-
-#poststuff .acf-layout .h-\[100vh\] {
-  height: 100vh;
-}
-
-#poststuff .acf-layout .h-\[90vh\] {
-  height: 90vh;
-}
-
-#poststuff .acf-layout .h-\[95vh\] {
-  height: 95vh;
 }
 
 #poststuff .acf-layout .max-h-\[50vh\] {
@@ -4700,6 +4712,10 @@
   width: 80%;
 }
 
+#poststuff .acf-layout .w-48 {
+  width: 12rem;
+}
+
 #poststuff .acf-layout .w-5 {
   width: 1.25rem;
 }
@@ -4760,10 +4776,6 @@
   width: 1px;
 }
 
-#poststuff .acf-layout .w-48 {
-  width: 12rem;
-}
-
 #poststuff .acf-layout .min-w-56 {
   min-width: 14rem;
 }
@@ -4774,6 +4786,10 @@
 
 #poststuff .acf-layout .max-w-2xl {
   max-width: 42rem;
+}
+
+#poststuff .acf-layout .max-w-4xl {
+  max-width: 56rem;
 }
 
 #poststuff .acf-layout .max-w-\[180px\] {
@@ -4856,10 +4872,6 @@
   max-width: 20rem;
 }
 
-#poststuff .acf-layout .max-w-4xl {
-  max-width: 56rem;
-}
-
 #poststuff .acf-layout .flex-none {
   flex: none;
 }
@@ -4902,13 +4914,13 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-#poststuff .acf-layout .rotate-90 {
-  --tw-rotate: 90deg;
+#poststuff .acf-layout .-rotate-90 {
+  --tw-rotate: -90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-#poststuff .acf-layout .-rotate-90 {
-  --tw-rotate: -90deg;
+#poststuff .acf-layout .rotate-90 {
+  --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4973,10 +4985,6 @@
 
 #poststuff .acf-layout .grid-cols-9 {
   grid-template-columns: repeat(9, minmax(0, 1fr));
-}
-
-#poststuff .acf-layout .flex-row {
-  flex-direction: row;
 }
 
 #poststuff .acf-layout .flex-col {
@@ -5101,6 +5109,14 @@
   row-gap: 0.125rem;
 }
 
+#poststuff .acf-layout .gap-y-1 {
+  row-gap: 0.25rem;
+}
+
+#poststuff .acf-layout .gap-y-2 {
+  row-gap: 0.5rem;
+}
+
 #poststuff .acf-layout .gap-y-3 {
   row-gap: 0.75rem;
 }
@@ -5115,14 +5131,6 @@
 
 #poststuff .acf-layout .gap-y-8 {
   row-gap: 2rem;
-}
-
-#poststuff .acf-layout .gap-y-1 {
-  row-gap: 0.25rem;
-}
-
-#poststuff .acf-layout .gap-y-2 {
-  row-gap: 0.5rem;
 }
 
 #poststuff .acf-layout .divide-x > :not([hidden]) ~ :not([hidden]) {
@@ -5218,16 +5226,16 @@
   border-top-right-radius: 1.25rem;
 }
 
+#poststuff .acf-layout .\!border {
+  border-width: 1px !important;
+}
+
 #poststuff .acf-layout .border {
   border-width: 1px;
 }
 
 #poststuff .acf-layout .border-2 {
   border-width: 2px;
-}
-
-#poststuff .acf-layout .\!border {
-  border-width: 1px !important;
 }
 
 #poststuff .acf-layout .border-x-0 {
@@ -5247,6 +5255,10 @@
   border-left-width: 1px;
 }
 
+#poststuff .acf-layout .border-l-0 {
+  border-left-width: 0px;
+}
+
 #poststuff .acf-layout .border-r {
   border-right-width: 1px;
 }
@@ -5263,16 +5275,12 @@
   border-top-width: 0px;
 }
 
-#poststuff .acf-layout .border-l-0 {
-  border-left-width: 0px;
+#poststuff .acf-layout .\!border-solid {
+  border-style: solid !important;
 }
 
 #poststuff .acf-layout .border-solid {
   border-style: solid;
-}
-
-#poststuff .acf-layout .\!border-solid {
-  border-style: solid !important;
 }
 
 #poststuff .acf-layout .border-none {
@@ -5282,6 +5290,11 @@
 #poststuff .acf-layout .\!border-secondary {
   --tw-border-opacity: 1 !important;
   border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity))) !important;
+}
+
+#poststuff .acf-layout .\!border-slate-200 {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(226 232 240 / var(--tw-border-opacity)) !important;
 }
 
 #poststuff .acf-layout .border-brand-blue {
@@ -5348,22 +5361,13 @@
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-#poststuff .acf-layout .border-white\/70 {
-  border-color: rgb(255 255 255 / 0.7);
+#poststuff .acf-layout .border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
 }
 
 #poststuff .acf-layout .border-zinc-300 {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
-}
-
-#poststuff .acf-layout .border-white\/20 {
-  border-color: rgb(255 255 255 / 0.2);
-}
-
-#poststuff .acf-layout .\!border-slate-200 {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(226 232 240 / var(--tw-border-opacity)) !important;
 }
 
 #poststuff .acf-layout .bg-base-100 {
@@ -5630,9 +5634,39 @@
   padding: 2rem;
 }
 
+#poststuff .acf-layout .\!px-4 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+#poststuff .acf-layout .\!px-6 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
 #poststuff .acf-layout .\!px-8 {
   padding-left: 2rem !important;
   padding-right: 2rem !important;
+}
+
+#poststuff .acf-layout .\!py-2 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+#poststuff .acf-layout .\!py-2\.5 {
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important;
+}
+
+#poststuff .acf-layout .\!py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+#poststuff .acf-layout .px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #poststuff .acf-layout .px-10 {
@@ -5680,6 +5714,11 @@
   padding-right: 2rem;
 }
 
+#poststuff .acf-layout .py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 #poststuff .acf-layout .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -5693,6 +5732,11 @@
 #poststuff .acf-layout .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+
+#poststuff .acf-layout .py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 #poststuff .acf-layout .py-16 {
@@ -5743,46 +5787,6 @@
 #poststuff .acf-layout .py-\[26px\] {
   padding-top: 26px;
   padding-bottom: 26px;
-}
-
-#poststuff .acf-layout .py-12 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-#poststuff .acf-layout .px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-#poststuff .acf-layout .py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-#poststuff .acf-layout .\!px-6 {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
-
-#poststuff .acf-layout .\!py-2 {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
-}
-
-#poststuff .acf-layout .\!py-2\.5 {
-  padding-top: 0.625rem !important;
-  padding-bottom: 0.625rem !important;
-}
-
-#poststuff .acf-layout .\!px-4 {
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
-}
-
-#poststuff .acf-layout .\!py-3 {
-  padding-top: 0.75rem !important;
-  padding-bottom: 0.75rem !important;
 }
 
 #poststuff .acf-layout .\!pb-2 {
@@ -5865,6 +5869,10 @@
   padding-right: 3rem;
 }
 
+#poststuff .acf-layout .pr-2 {
+  padding-right: 0.5rem;
+}
+
 #poststuff .acf-layout .pr-4 {
   padding-right: 1rem;
 }
@@ -5901,6 +5909,10 @@
   padding-top: 0.625rem;
 }
 
+#poststuff .acf-layout .pt-24 {
+  padding-top: 6rem;
+}
+
 #poststuff .acf-layout .pt-28 {
   padding-top: 7rem;
 }
@@ -5917,10 +5929,6 @@
   padding-top: 11rem;
 }
 
-#poststuff .acf-layout .pt-56 {
-  padding-top: 14rem;
-}
-
 #poststuff .acf-layout .pt-6 {
   padding-top: 1.5rem;
 }
@@ -5931,18 +5939,6 @@
 
 #poststuff .acf-layout .pt-\[72px\] {
   padding-top: 72px;
-}
-
-#poststuff .acf-layout .pl-20 {
-  padding-left: 5rem;
-}
-
-#poststuff .acf-layout .pt-24 {
-  padding-top: 6rem;
-}
-
-#poststuff .acf-layout .pr-2 {
-  padding-right: 0.5rem;
 }
 
 #poststuff .acf-layout .text-left {
@@ -6008,10 +6004,6 @@
 
 #poststuff .acf-layout .text-\[34px\] {
   font-size: 34px;
-}
-
-#poststuff .acf-layout .text-\[42px\] {
-  font-size: 42px;
 }
 
 #poststuff .acf-layout .text-\[44px\] {
@@ -6082,6 +6074,10 @@
   font-style: italic;
 }
 
+#poststuff .acf-layout .\!leading-tight {
+  line-height: 1.25 !important;
+}
+
 #poststuff .acf-layout .leading-\[1\.1em\] {
   line-height: 1.1em;
 }
@@ -6104,10 +6100,6 @@
 
 #poststuff .acf-layout .leading-tight {
   line-height: 1.25;
-}
-
-#poststuff .acf-layout .\!leading-tight {
-  line-height: 1.25 !important;
 }
 
 #poststuff .acf-layout .-tracking-\[0\.0125em\] {
@@ -6176,6 +6168,11 @@
   color: rgb(100 116 139 / var(--tw-text-opacity));
 }
 
+#poststuff .acf-layout .text-slate-600 {
+  --tw-text-opacity: 1;
+  color: rgb(71 85 105 / var(--tw-text-opacity));
+}
+
 #poststuff .acf-layout .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -6191,9 +6188,9 @@
   color: rgb(161 161 170 / var(--tw-text-opacity));
 }
 
-#poststuff .acf-layout .text-slate-600 {
+#poststuff .acf-layout .text-slate-400 {
   --tw-text-opacity: 1;
-  color: rgb(71 85 105 / var(--tw-text-opacity));
+  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
 #poststuff .acf-layout .underline {
@@ -6230,6 +6227,12 @@
   background-blend-mode: multiply;
 }
 
+#poststuff .acf-layout .\!shadow-inner {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05) !important;
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
 #poststuff .acf-layout .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -6264,12 +6267,6 @@
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-#poststuff .acf-layout .\!shadow-inner {
-  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05) !important;
-  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color) !important;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
 #poststuff .acf-layout .blur {
@@ -7647,14 +7644,14 @@
     gap: 1.5rem;
   }
 
-  #poststuff .acf-layout .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-  }
-
   #poststuff .acf-layout .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  #poststuff .acf-layout .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
@@ -7662,6 +7659,26 @@
 
   #poststuff .acf-layout .lg\:top-1\/2 {
     top: 50%;
+  }
+
+  #poststuff .acf-layout .lg\:bottom-auto {
+    bottom: auto;
+  }
+
+  #poststuff .acf-layout .lg\:-bottom-10 {
+    bottom: -2.5rem;
+  }
+
+  #poststuff .acf-layout .lg\:right-0 {
+    right: 0px;
+  }
+
+  #poststuff .acf-layout .lg\:right-auto {
+    right: auto;
+  }
+
+  #poststuff .acf-layout .lg\:-left-20 {
+    left: -5rem;
   }
 
   #poststuff .acf-layout .lg\:mb-8 {
@@ -7702,6 +7719,11 @@
 
   #poststuff .acf-layout .lg\:w-3\/5 {
     width: 60%;
+  }
+
+  #poststuff .acf-layout .lg\:-translate-y-1\/2 {
+    --tw-translate-y: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   #poststuff .acf-layout .lg\:grid-cols-1 {
@@ -7859,6 +7881,10 @@
     padding-top: 2rem;
   }
 
+  #poststuff .acf-layout .lg\:pr-0 {
+    padding-right: 0px;
+  }
+
   #poststuff .acf-layout .lg\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -7883,13 +7909,13 @@
     font-size: 1.25rem;
   }
 
-  #poststuff .acf-layout .lg\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
   #poststuff .acf-layout .lg\:leading-tight {
     line-height: 1.25;
+  }
+
+  #poststuff .acf-layout .lg\:text-slate-300 {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
   }
 
   #poststuff .acf-layout .after\:lg\:text-5xl::after {
@@ -7921,14 +7947,6 @@
     right: 4rem;
   }
 
-  #poststuff .acf-layout .xl\:order-1 {
-    order: 1;
-  }
-
-  #poststuff .acf-layout .xl\:order-2 {
-    order: 2;
-  }
-
   #poststuff .acf-layout .xl\:-mx-6 {
     margin-left: -1.5rem;
     margin-right: -1.5rem;
@@ -7944,6 +7962,10 @@
     margin-bottom: 4rem;
   }
 
+  #poststuff .acf-layout .xl\:-mt-\[136px\] {
+    margin-top: -136px;
+  }
+
   #poststuff .acf-layout .xl\:mb-0 {
     margin-bottom: 0px;
   }
@@ -7952,20 +7974,16 @@
     margin-bottom: 3rem;
   }
 
+  #poststuff .acf-layout .xl\:mb-4 {
+    margin-bottom: 1rem;
+  }
+
   #poststuff .acf-layout .xl\:mt-12 {
     margin-top: 3rem;
   }
 
   #poststuff .acf-layout .xl\:mt-16 {
     margin-top: 4rem;
-  }
-
-  #poststuff .acf-layout .xl\:-mt-\[136px\] {
-    margin-top: -136px;
-  }
-
-  #poststuff .acf-layout .xl\:mb-4 {
-    margin-bottom: 1rem;
   }
 
   #poststuff .acf-layout .xl\:mt-auto {
@@ -8048,6 +8066,10 @@
     width: 60%;
   }
 
+  #poststuff .acf-layout .xl\:w-56 {
+    width: 14rem;
+  }
+
   #poststuff .acf-layout .xl\:w-6 {
     width: 1.5rem;
   }
@@ -8066,10 +8088,6 @@
 
   #poststuff .acf-layout .xl\:w-full {
     width: 100%;
-  }
-
-  #poststuff .acf-layout .xl\:w-56 {
-    width: 14rem;
   }
 
   #poststuff .acf-layout .xl\:grow {
@@ -8104,6 +8122,11 @@
     justify-content: space-between;
   }
 
+  #poststuff .acf-layout .xl\:gap-x-10 {
+    -moz-column-gap: 2.5rem;
+         column-gap: 2.5rem;
+  }
+
   #poststuff .acf-layout .xl\:gap-x-12 {
     -moz-column-gap: 3rem;
          column-gap: 3rem;
@@ -8119,18 +8142,13 @@
          column-gap: 1.5rem;
   }
 
-  #poststuff .acf-layout .xl\:gap-x-10 {
-    -moz-column-gap: 2.5rem;
-         column-gap: 2.5rem;
-  }
-
   #poststuff .acf-layout .xl\:gap-x-8 {
     -moz-column-gap: 2rem;
          column-gap: 2rem;
   }
 
-  #poststuff .acf-layout .xl\:border-b-0 {
-    border-bottom-width: 0px;
+  #poststuff .acf-layout .xl\:border-b {
+    border-bottom-width: 1px;
   }
 
   #poststuff .acf-layout .xl\:border-l {
@@ -8141,21 +8159,13 @@
     border-top-width: 0px;
   }
 
-  #poststuff .acf-layout .xl\:border-b {
-    border-bottom-width: 1px;
-  }
-
-  #poststuff .acf-layout .xl\:border-white\/70 {
-    border-color: rgb(255 255 255 / 0.7);
+  #poststuff .acf-layout .xl\:border-slate-300 {
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
   }
 
   #poststuff .acf-layout .xl\:border-white\/50 {
     border-color: rgb(255 255 255 / 0.5);
-  }
-
-  #poststuff .acf-layout .xl\:border-slate-300 {
-    --tw-border-opacity: 1;
-    border-color: rgb(203 213 225 / var(--tw-border-opacity));
   }
 
   #poststuff .acf-layout .xl\:bg-transparent {
@@ -8188,9 +8198,29 @@
     padding-right: 1rem;
   }
 
+  #poststuff .acf-layout .xl\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   #poststuff .acf-layout .xl\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  #poststuff .acf-layout .xl\:py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  #poststuff .acf-layout .xl\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  #poststuff .acf-layout .xl\:py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #poststuff .acf-layout .xl\:py-36 {
@@ -8206,26 +8236,6 @@
   #poststuff .acf-layout .xl\:py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-  }
-
-  #poststuff .acf-layout .xl\:py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  #poststuff .acf-layout .xl\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-  #poststuff .acf-layout .xl\:py-24 {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  #poststuff .acf-layout .xl\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 
   #poststuff .acf-layout .xl\:pb-12 {
@@ -8268,6 +8278,10 @@
     padding-top: 0px;
   }
 
+  #poststuff .acf-layout .xl\:pt-12 {
+    padding-top: 3rem;
+  }
+
   #poststuff .acf-layout .xl\:pt-14 {
     padding-top: 3.5rem;
   }
@@ -8288,24 +8302,40 @@
     padding-top: 10rem;
   }
 
-  #poststuff .acf-layout .xl\:pt-8 {
-    padding-top: 2rem;
-  }
-
   #poststuff .acf-layout .xl\:pt-56 {
     padding-top: 14rem;
   }
 
-  #poststuff .acf-layout .xl\:pb-0 {
-    padding-bottom: 0px;
+  #poststuff .acf-layout .xl\:pt-8 {
+    padding-top: 2rem;
   }
 
-  #poststuff .acf-layout .xl\:pl-0 {
-    padding-left: 0px;
+  #poststuff .acf-layout .xl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
-  #poststuff .acf-layout .xl\:pt-12 {
-    padding-top: 3rem;
+  #poststuff .acf-layout .xl\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  #poststuff .acf-layout .xl\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  #poststuff .acf-layout .xl\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  #poststuff .acf-layout .xl\:text-\[42px\] {
+    font-size: 42px;
+  }
+
+  #poststuff .acf-layout .xl\:text-\[44px\] {
+    font-size: 44px;
   }
 
   #poststuff .acf-layout .xl\:text-\[56px\] {
@@ -8316,26 +8346,14 @@
     font-size: 64px;
   }
 
+  #poststuff .acf-layout .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
   #poststuff .acf-layout .xl\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  #poststuff .acf-layout .xl\:text-xl {
-    font-size: 1.25rem;
-  }
-
-  #poststuff .acf-layout .xl\:text-\[42px\] {
-    font-size: 42px;
-  }
-
-  #poststuff .acf-layout .xl\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  #poststuff .acf-layout .xl\:text-\[44px\] {
-    font-size: 44px;
   }
 
   #poststuff .acf-layout .xl\:text-sm {
@@ -8343,24 +8361,8 @@
     line-height: 1.25rem;
   }
 
-  #poststuff .acf-layout .xl\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  #poststuff .acf-layout .xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  #poststuff .acf-layout .xl\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  #poststuff .acf-layout .xl\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
+  #poststuff .acf-layout .xl\:text-xl {
+    font-size: 1.25rem;
   }
 
   #poststuff .acf-layout .xl\:leading-snug {
@@ -8402,10 +8404,6 @@
 
   #poststuff .acf-layout .\33xl\:w-64 {
     width: 16rem;
-  }
-
-  #poststuff .acf-layout .\33xl\:w-56 {
-    width: 14rem;
   }
 
   #poststuff .acf-layout .\33xl\:text-\[15px\] {
@@ -8457,20 +8455,12 @@
     display: none;
   }
 
-  #poststuff .acf-layout .print\:w-full {
-    width: 100%;
-  }
-
-  #poststuff .acf-layout .print\:w-\[500px\] {
-    width: 500px;
-  }
-
-  #poststuff .acf-layout .print\:w-\[800px\] {
-    width: 800px;
-  }
-
   #poststuff .acf-layout .print\:w-\[780px\] {
     width: 780px;
+  }
+
+  #poststuff .acf-layout .print\:w-full {
+    width: 100%;
   }
 
   #poststuff .acf-layout .print\:bg-brand-light-gray {
