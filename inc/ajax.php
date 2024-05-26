@@ -548,7 +548,7 @@ function load_adopt_cat()
           });
         </script>
       <?php } else { ?>
-        <div class="grid grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-5 mt-12">
+        <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-5 mt-12">
           <?php while ($all_posts->have_posts()) {
             $all_posts->the_post();
             $id = get_the_ID();
@@ -596,7 +596,7 @@ function load_adopt_cat()
             }
           ?>
             <div class="">
-              <a href="<?php echo $link ?>" class="relative block h-full bg-white rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <a href="<?php echo $link ?>" class="relative block h-full bg-white rounded-md xl:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                 <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                   <?php if ($image) : ?>
                     <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -606,17 +606,17 @@ function load_adopt_cat()
                 </div>
                 <?php
                 if ($status == 'available') {
-                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-blue rounded-l-full">Available</div>';
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg:text-sm bg-brand-blue rounded-l-full">Available</div>';
                 } else if ($status == 'adopted') {
-                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-teal rounded-l-full">Adopted</div>';
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-teal rounded-l-full">Adopted</div>';
                 } else if ($status == 'foster') {
-                  echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-yellow rounded-l-full">In Foster Care</div>';
                 }
                 ?>
-                <div class="px-4 py-2 xl:px-8 xl:py-4">
-                  <div class="flex justify-between items-center gap-x-4">
-                    <div class="text-xl"><?php echo $title ?></div>
-                    <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                <div class="px-3 py-2 lg:px-4 lg:py-2 xl:px-8 xl:py-4">
+                  <div class="flex flex-col gap-y-0.5 lg:flex-row justify-between items-center lg:gap-x-4">
+                    <div class="text-base lg:text-xl"><?php echo $title ?></div>
+                    <div class="text-xs lg:text-sm text-slate-500 text-right"><?php echo $age ?></div>
                   </div>
                 </div>
               </a>
