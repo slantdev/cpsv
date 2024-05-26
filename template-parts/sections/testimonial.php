@@ -84,15 +84,15 @@ if ($dynamic_custom) {
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
 
     <div class="section-content">
-      <div class="intro-container relative container mx-auto max-w-screen-lg mb-20">
+      <div class="intro-container relative container mx-auto max-w-screen-lg mb-10 lg:mb-20">
         <?php
         if ($heading_component) {
-          get_template_part('template-parts/components/heading', '', array('field' => $heading_component, 'align' => 'text-center'));
+          get_template_part('template-parts/components/heading', '', array('field' => $heading_component, 'align' => 'text-center', 'size' => 'text-4xl xl:text-5xl',  'leading' => 'leading-tight', 'weight' => 'font-semibold'));
         }
         ?>
         <?php
         if ($description_component) {
-          get_template_part('template-parts/components/textarea', '', array('field' => $description_component, 'align' => 'text-center'));
+          get_template_part('template-parts/components/textarea', '', array('field' => $description_component, 'align' => 'text-center', 'weight' => 'font-medium'));
         }
         ?>
       </div>
@@ -110,15 +110,15 @@ if ($dynamic_custom) {
                         $testimonial_style = 'color: ' . $section_text_color . ';';
                       }
                     ?>
-                      <div class="testimonial-text text-4xl leading-tight font-light text-center text-slate-500" style="<?php echo $testimonial_style ?>">
+                      <div class="testimonial-text text-xl lg:text-3xl xl:text-4xl leading-tight font-light text-center text-slate-500" style="<?php echo $testimonial_style ?>">
                         <?php echo $testimonial['content'] ?>
                       </div>
                     <?php endif; ?>
                     <?php if ($testimonial['name']) : ?>
-                      <div class="testimonial-name max-w-screen-md mx-auto text-center pt-16 mt-16 border-t border-slate-300">
-                        <div class="text-3xl font-bold"><?php echo $testimonial['name'] ?></div>
+                      <div class="testimonial-name max-w-screen-md mx-auto text-center pt-8 lg:pt-16 mt-8 lg:mt-16 border-t border-slate-300">
+                        <div class="text-xl lg:text-3xl font-bold"><?php echo $testimonial['name'] ?></div>
                         <?php if ($testimonial['source']) : ?>
-                          <div class="text-lg font-medium"><?php echo $testimonial['source'] ?></div>
+                          <div class="text-base lg:text-lg font-medium"><?php echo $testimonial['source'] ?></div>
                         <?php endif; ?>
                       </div>
                     <?php endif; ?>
@@ -129,11 +129,11 @@ if ($dynamic_custom) {
           </div>
           <div class="absolute bottom-0 left-0 right-0">
             <div class="container max-w-screen-sm relative h-full">
-              <button type="button" class="swiper-btn-prev absolute z-10 left-0 xl:left-16 bottom-6 w-9 h-9 xl:w-6 xl:h-6 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
-                <?php echo cpsv_icon(array('icon' => 'chevron-left', 'group' => 'utilities', 'size' => '96', 'class' => 'w-6 h-6')); ?>
+              <button type="button" class="swiper-btn-prev absolute z-10 left-4 xl:left-16 bottom-4 lg:bottom-6 w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+                <?php echo cpsv_icon(array('icon' => 'chevron-left', 'group' => 'utilities', 'size' => '96', 'class' => 'w-5 h-5 lg:w-6 lg:h-6')); ?>
               </button>
-              <button type="button" class="swiper-btn-next absolute z-10 right-0 xl:right-16 bottom-6 w-9 h-9 xl:w-6 xl:h-6 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
-                <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '96', 'class' => 'w-6 h-6')); ?>
+              <button type="button" class="swiper-btn-next absolute z-10 right-4 xl:right-16 bottom-4 lg:bottom-6 w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+                <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '96', 'class' => 'w-5 h-5 lg:w-6 lg:h-6')); ?>
               </button>
             </div>
           </div>

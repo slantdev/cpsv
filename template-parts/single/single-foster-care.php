@@ -45,19 +45,19 @@ if ($background_position) {
       <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
     </div>
   <?php endif; ?>
-  <div class="relative z-auto pt-44">
+  <div class="relative z-auto pt-0 lg:pt-44">
     <?php if ($background_overlay) : ?>
       <div class="absolute inset-0 z-0">
         <div class="h-full w-full" style="background-color: <?php echo $background_overlay ?>;"></div>
       </div>
     <?php endif; ?>
     <div class="container max-w-screen-2xl relative z-auto">
-      <div class="flex pt-28 pb-20 items-end">
-        <div class="w-full xl:w-1/2">
+      <div class="flex flex-col lg:flex-row pt-20 pb-12 lg:pt-28 lg:pb-20 items-end print:pt-0 print:pb-0">
+        <div class="w-full xl:w-1/2 print:w-full">
           <?php if ($show_breadcrumbs) : ?>
             <?php
             if (function_exists('yoast_breadcrumb')) {
-              yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>');
+              yoast_breadcrumb('<div class="breadcrumbs text-sm lg:text-base mb-4 lg:mb-6 print:hidden" style="' . $breadcrumbs_style . '">', '</div>');
             }
             ?>
           <?php endif; ?>
@@ -73,7 +73,7 @@ if ($background_position) {
       </div>
     </div>
   </div>
-  <div class="h-[60px]"></div>
+  <div class="h-0 lg:h-[60px]"></div>
 </section>
 
 <?php
@@ -157,7 +157,7 @@ $components = $cat_description['components'] ?? '';
     <div class="container mx-auto max-w-screen-2xl">
       <div class="relative">
         <?php if ($cat_name) : ?>
-          <h3 class="text-brand-tomato font-semibold text-5xl leading-tight mb-6"><?php echo $cat_name ?>'s Profile</h3>
+          <h3 class="text-brand-tomato font-semibold text-4xl lg:text-5xl leading-tight mb-6"><?php echo $cat_name ?>'s Profile</h3>
         <?php endif; ?>
       </div>
       <div class="relative z-10 flex flex-col xl:flex-row xl:gap-x-12">
@@ -168,10 +168,10 @@ $components = $cat_description['components'] ?? '';
                 opacity: 1;
               }
             </style>
-            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-navigation-size: 24px" class="swiper catPhotoSwiper rounded-lg overflow-clip">
+            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-navigation-size: 24px" class="swiper catPhotoSwiper rounded-md lg:rounded-lg overflow-clip">
               <div class="swiper-wrapper">
                 <?php foreach ($cat_gallery as $gallery) : ?>
-                  <div class="swiper-slide rounded-lg overflow-clip">
+                  <div class="swiper-slide rounded-md lg:rounded-lg overflow-clip">
                     <div class="aspect-w-16 aspect-h-9">
                       <img class="object-cover w-full h-full" src="<?php echo $gallery['url'] ?>" alt="">
                     </div>
@@ -185,7 +185,7 @@ $components = $cat_description['components'] ?? '';
               <div class="swiper-wrapper">
                 <?php foreach ($cat_gallery as $gallery) : ?>
                   <div class="swiper-slide w-1/5 opacity-40 hover:cursor-pointer">
-                    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-clip">
+                    <div class="aspect-w-16 aspect-h-9 rounded-sm lg:rounded-md overflow-clip">
                       <img class="object-cover w-full h-full" src="<?php echo $gallery['url'] ?>" alt="">
                     </div>
                   </div>
@@ -215,8 +215,8 @@ $components = $cat_description['components'] ?? '';
             </script>
           </div>
           <div class="py-6 mb-10 border-t border-b border-slate-300">
-            <h2 class="font-bold mb-2 text-2xl">Details:</h2>
-            <ul class="text-lg">
+            <h2 class="font-bold mb-2 text-xl lg:text-2xl">Details:</h2>
+            <ul class="lg:text-lg">
               <?php foreach ($cat_data as $data) : ?>
                 <?php if ($data['value']) : ?>
                   <li><strong><?php echo $data['name'] ?>:</strong> <?php echo $data['value'] ?></li>
@@ -238,7 +238,7 @@ $components = $cat_description['components'] ?? '';
           $whatsapp_text = urlencode('Check out this cat profile! ' . $page_url);
           $page_url_encode = urlencode($page_url);
           ?>
-          <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
+          <div class="bg-brand-light-gray rounded-md lg:rounded-xl p-6 lg:p-8 mb-8">
             <div class="social-link flex mb-4">
               <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
               <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('Check out this cat! ' . $page_url) ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
@@ -247,8 +247,8 @@ $components = $cat_description['components'] ?? '';
               <a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
             </div>
             <ul class="flex flex-col gap-y-3">
-              <li class="pt-3 border-t border-slate-300"><button class="print-button text-xl flex justify-between hover:underline">Print profile</button></li>
-              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-xl flex justify-between hover:underline">Email profile link</a></li>
+              <li class="pt-3 border-t border-slate-300"><button class="print-button text-base lg:text-xl flex justify-between hover:underline">Print profile</button></li>
+              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-base lg:text-xl flex justify-between hover:underline">Email profile link</a></li>
             </ul>
             <script>
               jQuery(document).ready(function($) {

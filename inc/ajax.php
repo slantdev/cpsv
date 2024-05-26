@@ -90,7 +90,7 @@ function pagination_load_posttypes()
         if ($postCount == 1) { ?>
           <div class="md:col-span-3">
             <div class="card-wrapper">
-              <a href="<?php echo $link ?>" class="group block relative rounded-xl overflow-clip">
+              <a href="<?php echo $link ?>" class="group block relative rounded-lg xl:rounded-xl overflow-clip">
                 <div class="aspect-w-1 aspect-h-1 md:aspect-w-16 md:aspect-h-6">
                   <?php if ($image) : ?>
                     <img class="featured-image object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
@@ -118,7 +118,7 @@ function pagination_load_posttypes()
           </div>
         <?php } else { ?>
           <div class="card-wrapper">
-            <a href="<?php echo $link ?>" class="group block relative rounded-xl overflow-clip">
+            <a href="<?php echo $link ?>" class="group block relative rounded-lg xl:rounded-xl overflow-clip">
               <div class="aspect-w-1 aspect-h-1">
                 <?php if ($image) : ?>
                   <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
@@ -288,7 +288,7 @@ function pagination_load_postgrid()
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
         $link = get_the_permalink();
       ?>
-        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+        <div class="card-wrapper rounded-lg xl:rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
           <a href="<?php echo $link ?>" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-16 aspect-h-9">
               <?php if ($image) : ?>
@@ -299,9 +299,9 @@ function pagination_load_postgrid()
             </div>
           </a>
           <div class="p-4 xl:p-6 bg-white grow flex flex-col">
-            <h4 class="mb-4"><a href="<?php echo $link ?>" class="text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
+            <h4 class="mb-4"><a href="<?php echo $link ?>" class="text-xl lg:text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
             <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
-            <div class="mt-auto"><a href="<?php echo $link ?>" class="font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</a></div>
+            <div class="mt-auto"><a href="<?php echo $link ?>" class="text-sm xl:text-base font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</a></div>
           </div>
         </div>
       <?php }
@@ -417,7 +417,7 @@ function load_adopt_cat()
     if ($all_posts->have_posts()) {
       if ($style == 'slider') {
       ?>
-        <div class="swiper -mx-4 xl:-mx-6">
+        <div class="swiper -mx-2 xl:-mx-6">
           <div class="swiper-wrapper">
             <?php while ($all_posts->have_posts()) {
               $all_posts->the_post();
@@ -465,8 +465,8 @@ function load_adopt_cat()
                 $image = get_the_post_thumbnail_url($id, 'large');
               }
             ?>
-              <div class="swiper-slide p-4">
-                <a href="<?php echo $link ?>" class="relative block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <div class="swiper-slide p-1 lg:p-4">
+                <a href="<?php echo $link ?>" class="relative block bg-white h-full rounded-md lg:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                   <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                     <?php if ($image) : ?>
                       <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -476,17 +476,17 @@ function load_adopt_cat()
                   </div>
                   <?php
                   if ($status == 'available') {
-                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-blue rounded-l-full">Available</div>';
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg:text-sm bg-brand-blue rounded-l-full">Available</div>';
                   } else if ($status == 'adopted') {
-                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-teal rounded-l-full">Adopted</div>';
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-teal rounded-l-full">Adopted</div>';
                   } else if ($status == 'foster') {
-                    echo '<div class="absolute top-5 right-0 py-2 px-4 text-white text-sm bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-yellow rounded-l-full">In Foster Care</div>';
                   }
                   ?>
-                  <div class="px-4 py-2 xl:px-8 xl:py-4">
-                    <div class="flex justify-between items-center gap-x-4">
-                      <div class="text-xl"><?php echo $title ?></div>
-                      <div class="text-sm text-slate-500 text-right"><?php echo $age ?></div>
+                  <div class="px-3 py-2 lg:px-4 lg:py-2 xl:px-8 xl:py-4">
+                    <div class="flex flex-col gap-y-0.5 lg:flex-row justify-between items-center lg:gap-x-4">
+                      <div class="text-base lg:text-xl"><?php echo $title ?></div>
+                      <div class="text-xs lg:text-sm text-slate-500 text-right"><?php echo $age ?></div>
                     </div>
                   </div>
                 </a>
@@ -496,25 +496,25 @@ function load_adopt_cat()
         </div>
         <div class="absolute inset-0">
           <div class="container max-w-screen-2xl relative h-full">
-            <button type="button" class="swiper-btn-prev absolute z-10 left-0 xl:-left-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+            <button type="button" class="swiper-btn-prev absolute z-10 left-3 xl:-left-32 top-auto lg:top-1/2 -bottom-14 lg:bottom-auto -translate-y-1/2 w-6 h-6 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
               <?php echo cpsv_icon(array('icon' => 'chevron-left', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
             </button>
-            <button type="button" class="swiper-btn-next absolute z-10 right-0 xl:-right-32 top-2 lg:top-1/2 -translate-y-1/2 w-9 h-9 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
+            <button type="button" class="swiper-btn-next absolute z-10 right-3 xl:-right-32 top-auto lg:top-1/2 -bottom-14 lg:bottom-auto -translate-y-1/2 w-6 h-6 xl:w-10 xl:h-10 flex items-center justify-center text-slate-300 hover:text-brand-blue transition-all duration-200">
               <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '96', 'class' => 'w-10 h-10')); ?>
             </button>
           </div>
         </div>
-        <div class="absolute -bottom-20 left-0 right-0">
+        <div class="absolute -bottom-14 lg:-bottom-20 left-4 right-4 lg:left-0 lg:right-0">
           <div class="container max-w-screen-2xl px-4 xl:px-8">
             <div class="relative">
-              <div class="swiper-pagination [&>.swiper-pagination-bullet]:rounded-lg" style="--swiper-pagination-bullet-width: 80px;--swiper-pagination-color:#1068F0;"></div>
+              <div class="swiper-pagination -translate-y-[3px] [&>.swiper-pagination-bullet]:rounded-lg [&>.swiper-pagination-bullet]:w-14 [&>.swiper-pagination-bullet]:lg:w-20 [&>.swiper-pagination-bullet]:h-1.5 [&>.swiper-pagination-bullet]:lg:h-2" style="--swiper-pagination-color:#1068F0;"></div>
             </div>
           </div>
         </div>
         <script type="text/javascript">
           jQuery(function($) {
             new Swiper('.<?php echo $section_class ?> .swiper', {
-              slidesPerView: 4,
+              slidesPerView: 2,
               spaceBetween: 0,
               loop: false,
               speed: 500,
@@ -536,7 +536,7 @@ function load_adopt_cat()
               },
               breakpoints: {
                 768: {
-                  slidesPerView: 'auto',
+                  slidesPerView: 3,
                   spaceBetween: 24
                 },
                 1280: {
@@ -596,7 +596,7 @@ function load_adopt_cat()
             }
           ?>
             <div class="">
-              <a href="<?php echo $link ?>" class="relative block h-full bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <a href="<?php echo $link ?>" class="relative block h-full bg-white rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                 <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                   <?php if ($image) : ?>
                     <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -726,7 +726,7 @@ function pagination_load_fostergrid()
           $image = get_the_post_thumbnail_url($id, 'large');
         }
       ?>
-        <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
+        <a href="<?php echo $link ?>" class="block bg-white rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
           <div class="aspect-w-1 aspect-h-1">
             <?php if ($image) : ?>
               <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
@@ -878,7 +878,7 @@ function pagination_load_foundcats()
           $image = get_the_post_thumbnail_url($id, 'large');
         }
       ?>
-        <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
+        <a href="<?php echo $link ?>" class="block bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-[1.02]">
           <div class="aspect-w-1 aspect-h-1">
             <?php if ($image) : ?>
               <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
@@ -1013,7 +1013,7 @@ function pagination_load_wherethey()
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
         $link = get_the_permalink();
       ?>
-        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+        <div class="card-wrapper rounded-md lg:rounded-lg xl:rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
           <button type="button" data-fancybox="where" data-src="#cat-<?php echo $the_id ?>" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-16 aspect-h-9 overflow-clip">
               <?php if ($image) : ?>
@@ -1069,7 +1069,7 @@ function pagination_load_wherethey()
         $title =  get_the_title();
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
       ?>
-        <div id="cat-<?php echo $the_id ?>" class="max-w-screen-lg bg-white rounded-xl overflow-clip !p-0" style="display:none;">
+        <div id="cat-<?php echo $the_id ?>" class="max-w-screen-lg bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip !p-0" style="display:none;">
           <div class="flex flex-col xl:flex-row">
             <div class="w-full xl:w-1/2">
               <div class="aspect-w-16 aspect-h-9 xl:aspect-none xl:w-full xl:h-full">
@@ -1242,13 +1242,13 @@ function pagination_load_faqs()
     if ($all_faqs->have_posts()) {
       while ($all_faqs->have_posts()) {
         $all_faqs->the_post();
-        echo '<div class="collapse collapse-plus bg-brand-light-gray rounded-lg border border-solid border-slate-300 shadow-md mb-6">';
+        echo '<div class="collapse collapse-plus bg-brand-light-gray rounded-md lg:rounded-lg border border-solid border-slate-300 shadow-md mb-6">';
         echo '<input type="checkbox" class="faq-radio-btn w-full h-full block" name="faq-' . $faq_id . '" />';
-        echo '<div class="collapse-title bg-white text-xl lg:text-2xl border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-5 pl-8 pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">';
+        echo '<div class="collapse-title bg-white text-lg lg:text-2xl border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-4 pl-4 pr-8 lg:py-5 lg:pl-8 lg:pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">';
         echo get_the_title();
         echo '</div>';
         echo '<div class="collapse-content p-0">';
-        echo '<div class="p-8">';
+        echo '<div class="p-4 lg:p-8">';
         echo '<div class="prose lg:prose-lg max-w-none">';
         echo get_field('faq_post')['faq_content'];
         echo '</div>';
@@ -1378,7 +1378,7 @@ function pagination_load_reportsgrid()
         $file_pdf = $annual_report['file_pdf'] ?? '';
         $cover_image = $annual_report['cover_image'] ?? '';
       ?>
-        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+        <div class="card-wrapper rounded-md lg:rounded-lg xl:rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
           <a href="<?php echo $file_pdf ?>" target="_blank" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-[128] aspect-h-[181]">
               <?php if ($cover_image) : ?>
@@ -1389,7 +1389,7 @@ function pagination_load_reportsgrid()
             </div>
           </a>
           <div class="p-4 xl:p-6 bg-white grow flex flex-col">
-            <h4 class="mb-4 text-[20px] leading-tight font-semibold text-brand-dark-blue"><?php echo $title ?></h4>
+            <h4 class="mb-4 text-lg lg:text-[20px] leading-tight font-semibold text-brand-dark-blue"><?php echo $title ?></h4>
             <div class="mt-auto"><a href="<?php echo $file_pdf ?>" target="_blank" class="font-semibold text-sm text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)"><?php echo $link_text ?></a></div>
           </div>
         </div>
@@ -1519,7 +1519,7 @@ function pagination_load_mediareleasesgrid()
         $file_pdf = $media_release['file_pdf'] ?? '';
         $cover_image = $media_release['cover_image'] ?? '';
       ?>
-        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+        <div class="card-wrapper rounded-md lg:rounded-lg xl:rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
           <a href="<?php echo $file_pdf ?>" target="_blank" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-[128] aspect-h-[181]">
               <?php if ($cover_image) : ?>
@@ -1642,13 +1642,13 @@ function filter_faqs()
       // $content = str_replace(']]>', ']]&gt;', $content);
       $content = get_field('faq_post', $id)['faq_content'];
 
-      $response .= '<div class="collapse collapse-plus bg-brand-light-gray rounded-lg border border-solid border-slate-300 shadow-md mb-6">';
+      $response .= '<div class="collapse collapse-plus bg-brand-light-gray rounded-md lg:rounded-lg border border-solid border-slate-300 shadow-md mb-6">';
       $response .=  '<input type="radio" class="faq-radio-btn w-full h-full block" name="faq-' . $faq_id . '" />';
-      $response .=  '<div class="collapse-title bg-white text-xl lg:text-2xl border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-5 pl-8 pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">';
+      $response .=  '<div class="collapse-title bg-white text-xl lg:text-2xl border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-4 pl-4 pr-8 lg:py-5 lg:pl-8 lg:pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">';
       $response .=  get_the_title();
       $response .=  '</div>';
       $response .=  '<div class="collapse-content p-0">';
-      $response .=  '<div class="p-8">';
+      $response .=  '<div class="p-4 lg:p-8">';
       $response .=  '<div class="prose lg:prose-lg max-w-none">';
       $response .= $content;
       $response .=  '</div>';
@@ -1897,7 +1897,7 @@ function filter_adopt_cat()
               }
             ?>
               <div class="swiper-slide p-4">
-                <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+                <a href="<?php echo $link ?>" class="block bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                   <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                     <?php if ($image) : ?>
                       <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -2017,7 +2017,7 @@ function filter_adopt_cat()
             }
           ?>
             <div class="">
-              <a href="<?php echo $link ?>" class="block bg-white rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+              <a href="<?php echo $link ?>" class="block bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
                 <div class="aspect-w-1 aspect-h-1 overflow-hidden">
                   <?php if ($image) : ?>
                     <img src="<?php echo $image ?>" class="object-cover h-full w-full" />
@@ -2132,7 +2132,7 @@ function filter_postgrid()
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
         $link = get_the_permalink();
       ?>
-        <div class="card-wrapper rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
+        <div class="card-wrapper rounded-md lg:rounded-lg xl:rounded-xl overflow-clip shadow-lg bg-white flex flex-col">
           <a href="<?php echo $link ?>" class="group block relative rounded-t-xl overflow-clip">
             <div class="aspect-w-16 aspect-h-9">
               <?php if ($image) : ?>
@@ -2143,9 +2143,9 @@ function filter_postgrid()
             </div>
           </a>
           <div class="p-4 xl:p-6 bg-white grow flex flex-col">
-            <h4 class="mb-4"><a href="<?php echo $link ?>" class="text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
+            <h4 class="mb-4"><a href="<?php echo $link ?>" class="text-xl lg:text-2xl leading-tight font-semibold text-brand-dark-blue hover:underline" style="color: var(--section-link-color)"><?php echo $title ?></a></h4>
             <div class="mb-6 text-sm"><?php echo $excerpt ?></div>
-            <div class="mt-auto"><a href="<?php echo $link ?>" class="font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</a></div>
+            <div class="mt-auto"><a href="<?php echo $link ?>" class="text-sm xl:text-base font-semibold text-brand-dark-blue uppercase underline hover:no-underline" style="color: var(--section-link-color)">Learn More</a></div>
           </div>
         </div>
       <?php }

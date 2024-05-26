@@ -39,25 +39,25 @@ if ($background_position) {
 }
 ?>
 
-<section class="section-page-header relative -mt-[136px] print:hidden">
+<section class="section-page-header relative lg:-mt-[136px] print:hidden">
   <?php if ($background_image) : ?>
     <div class="absolute inset-0 z-0">
       <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image['url'] ?>" alt="">
     </div>
   <?php endif; ?>
-  <div class="relative z-auto pt-44">
+  <div class="relative z-auto pt-0 lg:pt-44">
     <?php if ($background_overlay) : ?>
       <div class="absolute inset-0 z-0">
         <div class="h-full w-full" style="background-color: <?php echo $background_overlay ?>;"></div>
       </div>
     <?php endif; ?>
     <div class="container max-w-screen-2xl relative z-auto">
-      <div class="flex pt-28 pb-20 items-end print:pt-0 print:pb-0">
+      <div class="flex flex-col lg:flex-row pt-20 pb-12 lg:pt-28 lg:pb-20 items-end print:pt-0 print:pb-0">
         <div class="w-full xl:w-1/2 print:w-full">
           <?php if ($show_breadcrumbs) : ?>
             <?php
             if (function_exists('yoast_breadcrumb')) {
-              yoast_breadcrumb('<div class="breadcrumbs mb-6 print:hidden" style="' . $breadcrumbs_style . '">', '</div>');
+              yoast_breadcrumb('<div class="breadcrumbs text-sm lg:text-base mb-4 lg:mb-6 print:hidden" style="' . $breadcrumbs_style . '">', '</div>');
             }
             ?>
           <?php endif; ?>
@@ -73,7 +73,7 @@ if ($background_position) {
       </div>
     </div>
   </div>
-  <div class="h-[60px]"></div>
+  <div class="h-0 lg:h-[60px]"></div>
 </section>
 
 <?php
@@ -174,7 +174,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
     <div class="container mx-auto max-w-screen-2xl">
       <div class="relative">
         <?php if ($cat_name) : ?>
-          <h3 class="text-brand-blue font-semibold text-5xl leading-tight mb-6"><?php echo $cat_name ?>'s Profile</h3>
+          <h3 class="text-brand-blue font-semibold text-4xl lg:text-5xl leading-tight mb-6"><?php echo $cat_name ?>'s Profile</h3>
         <?php endif; ?>
       </div>
       <div class="relative z-10 flex flex-col xl:flex-row xl:gap-x-12">
@@ -185,10 +185,10 @@ $components = isset($cat_description['components']) ? $cat_description['componen
                 opacity: 1;
               }
             </style>
-            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-navigation-size: 24px" class="swiper catPhotoSwiper rounded-lg overflow-clip">
+            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; --swiper-navigation-size: 24px" class="swiper catPhotoSwiper rounded-md lg:rounded-lg overflow-clip">
               <div class="swiper-wrapper">
                 <?php foreach ($cat_gallery as $gallery) : ?>
-                  <div class="swiper-slide rounded-lg overflow-clip">
+                  <div class="swiper-slide rounded-md lg:rounded-lg overflow-clip">
                     <div class="aspect-w-16 aspect-h-9">
                       <img class="object-cover w-full h-full" src="<?php echo $gallery['url'] ?>" alt="">
                     </div>
@@ -202,7 +202,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
               <div class="swiper-wrapper">
                 <?php foreach ($cat_gallery as $gallery) : ?>
                   <div class="swiper-slide w-1/5 opacity-40 hover:cursor-pointer">
-                    <div class="aspect-w-16 aspect-h-9 rounded-md overflow-clip">
+                    <div class="aspect-w-16 aspect-h-9 rounded-sm lg:rounded-md overflow-clip">
                       <img class="object-cover w-full h-full" src="<?php echo $gallery['url'] ?>" alt="">
                     </div>
                   </div>
@@ -232,7 +232,7 @@ $components = isset($cat_description['components']) ? $cat_description['componen
             </script>
           </div>
           <div class="catCategory mb-8">
-            <div class="flex justify-between gap-x-8">
+            <div class="flex justify-between gap-x-2 lg:gap-x-8">
               <?php
               $cat_categories = array(
                 [
@@ -260,19 +260,19 @@ $components = isset($cat_description['components']) ? $cat_description['componen
                 $active_class = $cat_filters_data[$cat['id']] ? 'bg-brand-yellow print:bg-brand-yellow' : 'bg-brand-light-gray print:bg-brand-light-gray';
               ?>
                 <div>
-                  <div class="flex flex-col justify-center items-center w-36 h-36 p-6 rounded-full shadow-inner <?php echo $active_class ?>">
+                  <div class="flex flex-col justify-center items-center w-[72px] h-[72px] xl:w-36 xl:h-36 p-3 lg:p-6 rounded-full shadow-inner <?php echo $active_class ?>">
                     <div class="flex-none">
-                      <?php echo cpsv_icon(array('icon' => $cat['icon'], 'group' => 'content', 'size' => '48', 'class' => 'w-12 h-12')); ?>
+                      <?php echo cpsv_icon(array('icon' => $cat['icon'], 'group' => 'content', 'size' => '48', 'class' => 'w-6 h-6 lg:w-12 lg:h-12')); ?>
                     </div>
-                    <div class="text-sm text-center leading-tight mt-1"><?php echo $cat['text'] ?></div>
+                    <div class="text-[8px] lg:text-sm text-center leading-tight mt-1"><?php echo $cat['text'] ?></div>
                   </div>
                 </div>
               <?php endforeach ?>
             </div>
           </div>
           <div class="py-6 mb-10 border-t border-b border-slate-300">
-            <h2 class="font-bold mb-2 text-2xl">Details:</h2>
-            <ul class="text-lg">
+            <h2 class="font-bold mb-2 text-xl lg:text-2xl">Details:</h2>
+            <ul class="lg:text-lg">
               <?php foreach ($cat_data as $data) : ?>
                 <?php if ($data['value']) : ?>
                   <li><strong><?php echo $data['name'] ?>:</strong> <?php echo $data['value'] ?></li>
@@ -296,9 +296,9 @@ $components = isset($cat_description['components']) ? $cat_description['componen
           $page_url_encode = urlencode($page_url);
           ?>
           <?php if ($quick_links) : ?>
-            <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
+            <div class="bg-brand-light-gray rounded-md lg:rounded-xl p-6 lg:p-8 mb-8">
               <?php if ($quick_links_label) : ?>
-                <h4 class="text-[28px] leading-tight font-bold mb-3"><?php echo $quick_links_label ?></h4>
+                <h4 class="text-xl lg:text-[28px] leading-tight font-bold mb-3"><?php echo $quick_links_label ?></h4>
               <?php endif; ?>
 
               <ul class="flex flex-col gap-y-3">
@@ -308,12 +308,12 @@ $components = isset($cat_description['components']) ? $cat_description['componen
                   $link_title = $link['link']['title'] ?? '';
                   $link_target = $link['link']['target'] ?? '_self';
                 ?>
-                  <li class="pt-3 border-t border-slate-300"><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-xl flex justify-between hover:underline"><?php echo $link_title ?> <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
+                  <li class="pt-3 border-t border-slate-300"><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-base lg:text-xl flex justify-between hover:underline"><?php echo $link_title ?> <?php echo cpsv_icon(array('icon' => 'chevron-right', 'group' => 'utilities', 'size' => '16', 'class' => 'w-4 h-4 text-brand-tomato mt-[7px]')); ?></a></li>
                 <?php endforeach ?>
               </ul>
             </div>
           <?php endif; ?>
-          <div class="bg-brand-light-gray rounded-xl p-8 mb-8">
+          <div class="bg-brand-light-gray rounded-md lg:rounded-xl p-6 lg:p-8 mb-8">
             <div class="social-link flex mb-4">
               <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $page_url_encode ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
               <a href="https://twitter.com/intent/tweet?text=<?php echo urlencode('Check out this cat! ' . $page_url) ?>" target="_blank" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
@@ -322,8 +322,8 @@ $components = isset($cat_description['components']) ? $cat_description['componen
               <a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-slate-500 hover:text-black"><?php echo cpsv_icon(array('icon' => 'email', 'group' => 'social', 'size' => '24', 'class' => 'w-12 h-12')); ?></a>
             </div>
             <ul class="flex flex-col gap-y-3">
-              <li class="pt-3 border-t border-slate-300"><button class="print-button text-xl flex justify-between hover:underline">Print profile</button></li>
-              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-xl flex justify-between hover:underline">Email profile link</a></li>
+              <li class="pt-3 border-t border-slate-300"><button class="print-button text-base lg:text-xl flex justify-between hover:underline">Print profile</button></li>
+              <li class="pt-3 border-t border-slate-300"><a href="mailto:?subject=I wanted you to see this cat profile&amp;body=Check out this page <?php echo $page_url ?>" target="_blank" title="Share by Email" class="text-base lg:text-xl flex justify-between hover:underline">Email profile link</a></li>
             </ul>
             <script>
               jQuery(document).ready(function($) {

@@ -44,7 +44,7 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
         }
         ?>
       </div>
-      <div class="search-filter-container container mx-auto max-w-screen-2xl my-8 xl:my-16">
+      <div class="search-filter-container hidden lg:block container mx-auto max-w-screen-2xl my-8 xl:my-16">
         <?php if ($show_search_bar) : ?>
           <div class="adopt-search-<?php echo $uniqid ?>">
             <div class="flex gap-x-8 items-center">
@@ -210,7 +210,6 @@ $section_adoptcats_class = 'section-adopt-cats-' . $uniqid;
 
           // Function to update the UI based on active filters
           function updateUI_<?php echo $uniqid ?>(page) {
-            console.log();
             if (activeFilters_<?php echo $uniqid ?>.length > 0 || selectFilters_<?php echo $uniqid ?>['shelter'] || selectFilters_<?php echo $uniqid ?>['age'] || selectFilters_<?php echo $uniqid ?>['gender']) {
               $('.adopt-filter-<?php echo $uniqid ?>').addClass('has_active');
             } else {

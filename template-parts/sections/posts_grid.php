@@ -34,7 +34,7 @@ $section_class = 'section-posts_grid-' . $uniqid;
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
     <div class="section-content">
       <div class="intro-container relative container mx-auto max-w-screen-2xl">
-        <div class="flex gap-x-20 items-end">
+        <div class="flex flex-col gap-4 lg:flex-row xl:gap-x-20 items-end">
           <div class="w-full xl:w-2/3">
             <?php
             if ($heading_text) {
@@ -58,8 +58,8 @@ $section_class = 'section-posts_grid-' . $uniqid;
               $taxonomy = 'campaign-category';
             }
           ?>
-            <div class="w-full xl:w-1/3 flex justify-end">
-              <div class="filter-dropdown-<?php echo $uniqid ?> dropdown dropdown-end block gap-x-8 min-w-56 relative z-20">
+            <div class="w-full xl:w-1/3 flex md:justify-end">
+              <div class="filter-dropdown-<?php echo $uniqid ?> dropdown dropdown-end block mt-4 xl:mt-0 gap-x-8 w-full md:w-auto min-w-56 relative z-20">
                 <div tabindex="0" role="button" class="dropdown-button flex justify-between items-center font-bold border-b border-solid border-slate-300 pb-1 mb-1">
                   <span class="dropdown-title">Filter</span>
                   <?php echo cpsv_icon(array('icon' => 'chevron-down', 'group' => 'utilities', 'size' => '16', 'class' => 'w-3 h-3')); ?>

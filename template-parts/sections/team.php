@@ -49,7 +49,7 @@ $section_class = 'section-team-' . $uniqid;
 
         <div class="team-container relative container max-w-screen-2xl my-8 xl:my-12">
           <?php if ($layout_style == 'boxed') : ?>
-            <div class="grid grid-cols-1 lg:grid-cols-3">
+            <div class="grid grid-cols-2 lg:grid-cols-3">
               <?php
               foreach ($team_members as $team) :
                 $id = $team ?? '';
@@ -61,7 +61,7 @@ $section_class = 'section-team-' . $uniqid;
                 $bio = $team_post['bio'] ?? '';
               ?>
                 <div class="bg-white flex flex-col border border-solid border-slate-300">
-                  <button type="button" data-fancybox="team-<?php echo $uniqid ?>" data-src="#team-<?php echo $id ?>" class="group block relative p-8 xl:p-16 border-r border-b border-solid border-slate-300 text-left">
+                  <button type="button" data-fancybox="team-<?php echo $uniqid ?>" data-src="#team-<?php echo $id ?>" class="group block relative p-4 lg:p-8 xl:p-16 border-r border-b border-solid border-slate-300 text-left">
                     <div class="aspect-w-1 aspect-h-1 rounded-full overflow-clip">
                       <?php if ($image) : ?>
                         <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
@@ -69,7 +69,7 @@ $section_class = 'section-team-' . $uniqid;
                         <div class="w-full h-full bg-slate-50"></div>
                       <?php endif; ?>
                     </div>
-                    <div class="mt-4 relative pr-6 after:content-['+'] after:text-5xl after:font-light after:absolute after:-top-2 after:right-0 after:block after:h-2 after:w-2 after:text-brand-teal">
+                    <div class="mt-4 relative pr-4 xl:pr-6 after:content-['+'] after:text-xl after:lg:text-5xl after:font-light after:absolute after:-top-1 after:lg:-top-2 after:right-0 after:block after:h-2 after:w-2 after:text-brand-teal">
                       <h4 class="mb-3 font-light text-lg leading-tight lg:text-2xl lg:leading-tight"><?php echo $name ?></h4>
                       <div class="text-sm font-bold"><?php echo $designation ?></div>
                     </div>
@@ -89,21 +89,23 @@ $section_class = 'section-team-' . $uniqid;
                 $bio = $team_post['bio'] ?? '';
               ?>
                 <div id="team-<?php echo $id ?>" class="max-w-screen-lg bg-white rounded-xl overflow-clip !p-0" style="display:none;">
-                  <div class="flex">
-                    <div class="w-1/2">
+                  <div class="flex flex-col lg:flex-row">
+                    <div class="w-full lg:w-1/2">
                       <?php if ($image) : ?>
-                        <img class="object-cover w-full h-full" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                        <div class="aspect-w-1 aspect-h-1 lg:aspect-none lg:h-full lg:w-full">
+                          <img class="object-cover !w-full !h-full" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                        </div>
                       <?php else : ?>
                         <div class="w-full h-full bg-slate-50"></div>
                       <?php endif; ?>
                     </div>
-                    <div class="w-1/2">
+                    <div class="w-full lg:w-1/2">
                       <div class="pl-6 pt-6 pr-4 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
                         <?php if ($name) : ?>
-                          <h3 class="text-left text-3xl leading-tight font-light"><?php echo $name ?></h3>
+                          <h3 class="text-left text-2xl lg:text-3xl leading-tight font-light"><?php echo $name ?></h3>
                         <?php endif; ?>
                         <?php if ($designation) : ?>
-                          <h3 class="text-left text-xl leading-tight font-semibold"><?php echo $designation ?></h3>
+                          <h3 class="text-left text-lg lg:text-xl leading-tight font-semibold"><?php echo $designation ?></h3>
                         <?php endif; ?>
                         <?php if ($bio) : ?>
                           <div class="mt-6 prose max-h-[50vh] overflow-y-auto">
@@ -117,7 +119,7 @@ $section_class = 'section-team-' . $uniqid;
               <?php endforeach ?>
             </div>
           <?php else : ?>
-            <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-8">
+            <div class="grid grid-cols-2 gap-6 lg:grid-cols-4 lg:gap-8">
               <?php
               foreach ($team_members as $team) :
                 $id = $team ?? '';
@@ -129,7 +131,7 @@ $section_class = 'section-team-' . $uniqid;
                 $bio = $team_post['bio'] ?? '';
               ?>
                 <div class="bg-white flex flex-col">
-                  <button type="button" data-fancybox="team-<?php echo $uniqid ?>" data-src="#team-<?php echo $id ?>" class="group block relative p-8 xl:p-12 text-left">
+                  <button type="button" data-fancybox="team-<?php echo $uniqid ?>" data-src="#team-<?php echo $id ?>" class="group block relative p-0 lg:p-4 xl:p-12 text-left">
                     <div class="aspect-w-1 aspect-h-1 rounded-full overflow-clip">
                       <?php if ($image) : ?>
                         <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
@@ -137,9 +139,9 @@ $section_class = 'section-team-' . $uniqid;
                         <div class="w-full h-full bg-slate-50"></div>
                       <?php endif; ?>
                     </div>
-                    <div class="mt-4 relative pr-6 after:content-['+'] after:text-5xl after:font-light after:absolute after:-top-2 after:right-0 after:block after:h-2 after:w-2 after:text-brand-teal">
-                      <h4 class="mb-3 font-light text-lg leading-tight lg:text-xl lg:leading-tight"><?php echo $name ?></h4>
-                      <div class="text-sm font-bold"><?php echo $designation ?></div>
+                    <div class="mt-4 relative pr-2 xl:pr-6 after:content-['+'] after:text-lg after:xl:text-5xl after:font-light after:absolute after:-top-1 after:xl:-top-2 after:right-0 after:block after:h-2 after:w-2 after:text-brand-teal">
+                      <h4 class="mb-3 font-light text-base leading-tight lg:text-xl lg:leading-tight"><?php echo $name ?></h4>
+                      <div class="text-sm font-semibold lg:font-bold"><?php echo $designation ?></div>
                     </div>
                   </button>
                 </div>
@@ -156,21 +158,23 @@ $section_class = 'section-team-' . $uniqid;
                   $bio = $team_post['bio'] ?? '';
                 ?>
                   <div id="team-<?php echo $id ?>" class="max-w-screen-lg bg-white rounded-xl overflow-clip !p-0" style="display:none;">
-                    <div class="flex">
-                      <div class="w-1/2">
+                    <div class="flex flex-col lg:flex-row">
+                      <div class="w-full lg:w-1/2">
                         <?php if ($image) : ?>
-                          <img class="object-cover w-full h-full" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                          <div class="aspect-w-1 aspect-h-1 lg:aspect-none lg:h-full lg:w-full">
+                            <img class="object-cover !w-full !h-full" src="<?php echo $image ?>" alt="<?php echo $image_alt ?>">
+                          </div>
                         <?php else : ?>
                           <div class="w-full h-full bg-slate-50"></div>
                         <?php endif; ?>
                       </div>
-                      <div class="w-1/2">
+                      <div class="w-full lg:w-1/2">
                         <div class="pl-6 pt-6 pr-4 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
                           <?php if ($name) : ?>
-                            <h3 class="text-left text-3xl leading-tight font-light"><?php echo $name ?></h3>
+                            <h3 class="text-left text-2xl lg:text-3xl leading-tight font-light"><?php echo $name ?></h3>
                           <?php endif; ?>
                           <?php if ($designation) : ?>
-                            <h3 class="text-left text-xl leading-tight font-semibold"><?php echo $designation ?></h3>
+                            <h3 class="text-left text-lg lg:text-xl leading-tight font-semibold"><?php echo $designation ?></h3>
                           <?php endif; ?>
                           <?php if ($bio) : ?>
                             <div class="mt-6 prose max-h-[50vh] overflow-y-auto">

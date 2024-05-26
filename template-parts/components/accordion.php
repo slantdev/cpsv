@@ -55,13 +55,13 @@ if ($accordion_repeater) { ?>
       $title = $accordion['title'] ?? '';
       $content = $accordion['content'] ?? '';
     ?>
-      <div class="collapse collapse-plus bg-brand-light-gray rounded-lg border border-solid border-slate-300 shadow-md mb-6">
+      <div class="collapse collapse-plus bg-brand-light-gray rounded-md lg:rounded-lg border border-solid border-slate-300 shadow-md mb-6">
         <input type="checkbox" class="accordion-btn w-full h-full block" name="<?php echo $accordion_id ?>" />
-        <div class="collapse-title bg-white text-xl lg:text-2xl text-left border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-5 pl-8 pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">
+        <div class="collapse-title bg-white text-lg lg:text-2xl text-left border-t-0 border-x-0 border-b border-solid border-slate-300 font-medium py-3 pl-4 pr-8 lg:py-5 lg:pl-8 lg:pr-12 after:font-thin after:!end-8 after:text-brand-tomato after:!top-2 after:text-3xl after:lg:text-5xl">
           <?php echo $title ?>
         </div>
         <div class="collapse-content p-0">
-          <div class="p-8">
+          <div class="p-4 lg:p-8">
             <div class="prose lg:prose-lg max-w-none text-left">
               <?php echo $content ?>
             </div>

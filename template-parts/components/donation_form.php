@@ -9,11 +9,11 @@ $donation_form_shortcode = $donation_form['donation_form_shortcode'] ?? '';
 
 if ($donation_form_shortcode) :
 ?>
-  <div class="donation-box rounded-2xl overflow-clip pb-6 bg-brand-blue -mt-[300px]">
-    <div class="bg-brand-blue py-10 px-10">
-      <h3 class="text-5xl leading-tight text-white font-semibold">Donation Details</h3>
+  <div class="donation-box rounded-lg xl:rounded-2xl overflow-clip pb-6 bg-brand-blue xl:-mt-[300px]">
+    <div class="bg-brand-blue p-6 lg:p-8 xl:py-10 xl:px-10">
+      <h3 class="text-3xl xl:text-5xl leading-tight text-white font-semibold">Donation Details</h3>
     </div>
-    <div class="bg-brand-light-gray rounded-b-2xl">
+    <div class="bg-brand-light-gray rounded-b-lg xl:rounded-b-2xl">
       <?php echo do_shortcode($donation_form_shortcode) ?>
     </div>
   </div>

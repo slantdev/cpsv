@@ -17,7 +17,7 @@ $icon_color = $more_settings['icon_color'] ?? '';
 $text_color = $more_settings['text_color'] ?? '';
 
 // Initializing default styles and classes
-$icon_class = 'w-24 h-24 mx-auto';
+$icon_class = 'w-16 h-16 xl:w-24 xl:h-24 mx-auto';
 $text_class = '';
 $icon_style = '';
 $text_style = '';
@@ -25,10 +25,10 @@ $text_style = '';
 // Updating styles and classes based on settings
 switch ($icon_size) {
   case "small":
-    $icon_class = 'w-20 h-20 mx-auto';
+    $icon_class = 'w-12 h-12 xl:w-20 xl:h-20 mx-auto';
     break;
   case "large":
-    $icon_class = 'w-28 h-28 mx-auto';
+    $icon_class = 'w-20 h-20 xl:w-28 xl:h-28 mx-auto';
     break;
 }
 
@@ -45,7 +45,7 @@ if ($icons_list_repeater) {
   $count = count($icons_list_repeater);
 ?>
   <div class="component-icons-list relative">
-    <div class="grid grid-cols-2 lg:grid-cols-<?php echo $count ?> gap-x-6">
+    <div class="grid grid-cols-2 lg:grid-cols-<?php echo $count ?> gap-x-6 gap-y-6">
       <?php
       foreach ($icons_list_repeater as $list) :
         $icon = $list['icon'] ?? '';
@@ -55,9 +55,9 @@ if ($icons_list_repeater) {
         $link_title = $list['link']['title'] ?? '';
         $link_target = $list['link']['target'] ?? '_self';
       ?>
-        <div class="flex flex-col gap-4 text-center">
+        <div class="flex flex-col gap-2 xl:gap-4 text-center">
           <?php if ($link_url) {
-            echo '<a href="' . $link_url . '" target="' . $link_target . '">';
+            echo '<a href="' . $link_url . '" target="' . $link_target . '" class="flex flex-col gap-2 xl:gap-4">';
           } ?>
           <?php if ($icon) {
             echo '<div style="' . $text_style . '">';
@@ -65,7 +65,7 @@ if ($icons_list_repeater) {
             echo '</div>';
           } ?>
           <?php if ($text) : ?>
-            <div class="text-lg leading-tight font-bold" style="<?php echo $text_style ?>"><?php echo $text ?></div>
+            <div class="text-base lg:text-lg leading-tight font-bold" style="<?php echo $text_style ?>"><?php echo $text ?></div>
           <?php endif ?>
           <?php if ($link_url) {
             echo '</a>';

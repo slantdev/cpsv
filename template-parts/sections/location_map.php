@@ -30,8 +30,8 @@ $section_class = 'section-location_map-' . $uniqid;
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
     <div class="section-content">
       <div class="intro-container relative container mx-auto max-w-screen-2xl">
-        <div class="flex gap-x-20 items-end">
-          <div class="w-full xl:w-1/2">
+        <div class="flex flex-col gap-4 lg:flex-row xl:gap-x-20 items-end">
+          <div class="w-full xl:w-2/3">
             <?php
             if ($heading_text) {
               echo '<div>';
@@ -40,7 +40,7 @@ $section_class = 'section-location_map-' . $uniqid;
             }
             ?>
           </div>
-          <div class="w-full xl:w-1/2">
+          <div class="w-full xl:w-2/3">
             <?php
             if ($text_area) {
               echo '<div class="w-full">';
@@ -193,7 +193,7 @@ $section_class = 'section-location_map-' . $uniqid;
 
             })(jQuery);
           </script>
-          <div class="aspect-w-16 aspect-h-7 rounded-lg bg-slate-100 overflow-clip">
+          <div class="aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-7 rounded-md lg:rounded-lg bg-slate-100 overflow-clip">
             <div class="acf-map" data-zoom="16">
               <div class="marker" data-lat="<?php echo esc_attr($google_map['lat']); ?>" data-lng="<?php echo esc_attr($google_map['lng']); ?>"></div>
             </div>
@@ -202,7 +202,7 @@ $section_class = 'section-location_map-' . $uniqid;
       <?php endif; ?>
       <?php if ($contact_info) : ?>
         <div class="relative container max-w-screen-2xl mt-8 xl:mt-12">
-          <div class="grid grid-cols-1 lg:grid-cols-3">
+          <div class="grid grid-cols-1 gap-y-8 lg:gap-0 lg:grid-cols-3">
             <?php
             foreach ($contact_info as $info) :
               $title = $info['title'] ?? '';
@@ -210,7 +210,7 @@ $section_class = 'section-location_map-' . $uniqid;
             ?>
               <div>
                 <div class="border-slate-300 border-solid border-b border-x-0 border-t-0 pb-4">
-                  <h4 class="text-[28px] leading-tight font-bold" style="color: var(--section-link-color)"><?php echo $title ?></h4>
+                  <h4 class="text-xl lg:text-[28px] leading-tight font-bold" style="color: var(--section-link-color)"><?php echo $title ?></h4>
                 </div>
                 <div class="pt-4">
                   <?php echo $text_content ?>
@@ -222,13 +222,13 @@ $section_class = 'section-location_map-' . $uniqid;
       <?php endif; ?>
 
       <div class="relative container max-w-screen-2xl mt-12 xl:mt-16">
-        <div class="flex gap-x-16">
-          <div class="w-1/2">
+        <div class="flex flex-col gap-y-6 lg:flex-row lg:gap-x-10 xl:gap-x-16">
+          <div class="w-full lg:w-1/2">
             <?php if ($footer_text) {
               echo get_template_part('template-parts/components/textarea', '', array('field' => $footer_text, 'size' => 'lg:text-lg xl:text-xl', 'leading' => 'leading-snug', 'weight' => 'font-normal'));
             } ?>
           </div>
-          <div class="w-1/2">
+          <div class="w-full lg:w-1/2">
             <?php if ($footer_buttons) {
               echo get_template_part('template-parts/components/buttons', '', array('field' => $footer_buttons));
             } ?>

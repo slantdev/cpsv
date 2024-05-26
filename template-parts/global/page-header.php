@@ -84,12 +84,12 @@ endif;
         </div>
       <?php endif; ?>
       <div class="container max-w-screen-2xl relative z-auto">
-        <div class="flex items-end justify-end xl:gap-x-12">
-          <div class="w-full xl:w-2/3">
+        <div class="flex flex-col lg:flex-row items-end justify-end lg:gap-x-8 xl:gap-x-12">
+          <div class="w-full lg:w-2/3">
             <?php if ($show_breadcrumbs || $show_title || $show_description) : ?>
-              <div class="flex flex-col pt-28 pb-20">
+              <div class="flex flex-col pt-20 pb-12 lg:pt-28 lg:pb-20">
                 <?php if ($show_breadcrumbs && function_exists('yoast_breadcrumb')) : ?>
-                  <?php yoast_breadcrumb('<div class="breadcrumbs mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
+                  <?php yoast_breadcrumb('<div class="breadcrumbs text-sm lg:text-base mb-4 lg:mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
                 <?php endif; ?>
                 <?php if ($show_title && $title) : ?>
                   <h1 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h1>
@@ -102,7 +102,7 @@ endif;
               </div>
             <?php endif; ?>
           </div>
-          <div class="w-full xl:w-1/3">
+          <div class="w-full lg:w-1/3">
             <?php if ($use_salesforce && $salesforce_form_id) : ?>
               <style>
                 .npspPlusDonateDropIn {
@@ -113,7 +113,7 @@ endif;
                   width: 100%;
                 }
               </style>
-              <div id="donation-form" class="donations-form w-[460px] h-[621px] bg-white rounded-lg overflow-y-auto overflow-x-hidden">
+              <div id="donation-form" class="donations-form w-full max-w-[460px] h-[621px] bg-white rounded-lg overflow-y-auto overflow-x-hidden mb-8">
                 <div id="salesforce_form-<?php echo $salesforce_form_id; ?>" class="salesforce-form relative w-full h-full"></div>
               </div>
               <?php
@@ -139,7 +139,7 @@ endif;
       </div>
     </div>
     <?php if ($background_image_url) : ?>
-      <div class="h-[60px]"></div>
+      <div class="h-[40px] lg:h-[60px]"></div>
     <?php endif; ?>
   </section>
 <?php endif;

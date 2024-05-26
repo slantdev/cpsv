@@ -54,7 +54,7 @@ if ($numbered_list_repeater) { ?>
         $number = ($key + 1 < 10) ? '0' . ($key + 1) : ($key + 1);
         $text = $list['text'] ?? '';
       ?>
-        <div class="flex gap-x-10">
+        <div class="flex gap-x-6 lg:gap-x-10">
           <div class="flex-none relative">
             <div class="<?php echo $circle_class ?> relative z-10 font-bold text-white rounded-full bg-brand-blue flex items-center justify-center" style="<?php echo $circle_style ?>"><?php echo $number ?></div>
             <?php if ($key != $last_key) : ?>

@@ -28,16 +28,16 @@ $section_class = 'section-cta-' . uniqid();
   ?>
   <?php
   if ($content_bg) {
-    echo '<div class="absolute top-0 left-1/2 right-0 bottom-0 w-1/2 h-full" style="background-color:' . $content_bg . '"></div>';
+    echo '<div class="absolute top-0 left-0 lg:left-1/2 right-0 bottom-0 lg:w-1/2 h-full" style="background-color:' . $content_bg . '"></div>';
   } else {
-    echo '<div class="absolute top-0 left-1/2 right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-brand-yellow to-brand-yellow/80"></div>';
+    echo '<div class="absolute top-0 left-0 lg:left-1/2 right-0 bottom-0 lg:w-1/2 h-full bg-gradient-to-l from-brand-yellow to-brand-yellow/80"></div>';
   }
   ?>
   <div class="relative z-10 container max-w-screen-2xl py-8 xl:py-36">
-    <div class="flex">
-      <div class="w-1/2"></div>
+    <div class="flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2"></div>
       <div class="w-full lg:w-1/2">
-        <div class="relative pl-24 pt-6">
+        <div class="relative pl-0 lg:pl-24 pt-6">
           <div class="absolute top-0 right-0 text-white -translate-y-1/2 hidden">
             <?php echo cpsv_svg(array('svg' => 'cpsv', 'group' => 'shapes', 'size' => false, 'class' => 'w-[128px] xl:w-[128px] h-auto text-white')); ?>
           </div>

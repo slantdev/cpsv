@@ -33,7 +33,7 @@ $faqs_id = $uniqid;
 
     <div class="section-content animation-wrapper">
       <div class="relative mx-auto z-[1] <?php echo $entrance_animation_class ?>">
-        <div class="intro-container relative container mx-auto max-w-screen-lg mb-20">
+        <div class="intro-container relative container mx-auto max-w-screen-lg mb-8 lg:mb-12 xl:mb-20">
           <?php
           if ($heading_component) {
             echo '<div class="mb-4">';
@@ -50,9 +50,9 @@ $faqs_id = $uniqid;
           ?>
         </div>
         <?php if ($show_filter) : ?>
-          <div class="faqs-filter-<?php echo $faqs_id ?> relative max-w-prose mx-auto z-10 mb-8 xl:mb-12">
+          <div class="faqs-filter-<?php echo $faqs_id ?> relative max-w-prose mx-auto z-10 mb-8 xl:mb-12 px-4">
             <div class="dropdown dropdown-end w-full">
-              <label tabindex="0" class="my-1 relative flex justify-between items-center w-full text-lg bg-white border border-solid border-zinc-300 rounded-full py-4 px-8">
+              <label tabindex="0" class="my-1 relative flex justify-between items-center w-full text-base lg:text-lg bg-white border border-solid border-zinc-300 rounded-full py-2.5 lg:py-4 px-6 lg:px-8">
                 <span class="faq-filter-selected-text">Select Category</span>
                 <div>
                   <?php echo cpsv_icon(array('icon' => 'chevron-down', 'group' => 'utilities', 'size' => '20', 'class' => 'text-zinc-400')); ?>

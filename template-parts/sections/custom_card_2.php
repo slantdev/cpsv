@@ -33,7 +33,7 @@ $section_class = 'section-custom_cards_2-' . $uniqid;
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
     <div class="section-content">
       <div class="intro-container relative container mx-auto max-w-screen-2xl">
-        <div class="flex gap-x-20 items-end">
+        <div class="flex flex-col gap-4 lg:flex-row xl:gap-x-20 items-end">
           <div class="w-full xl:w-2/3">
             <?php
             if ($heading_text) {
@@ -101,7 +101,7 @@ $section_class = 'section-custom_cards_2-' . $uniqid;
                       <div class="absolute inset-0 bg-gradient-to-t from-black/80 from-0% to-transparent to-100% via-transparent bg-blend-multiply rounded-lg lg:rounded-xl">
                         <div class="w-full h-full flex flex-col justify-end">
                           <div class="px-6 pb-6 pr-12">
-                            <h4 class="text-4xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
+                            <h4 class="text-2xl lg:text-4xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
                           </div>
                         </div>
                       </div>
