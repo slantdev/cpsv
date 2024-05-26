@@ -47,7 +47,7 @@ $section_class = 'section-foster_care-' . $uniqid;
             ?>
           </div>
           <div class="w-full xl:w-1/3">
-            <div class="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4 lg:justify-end">
+            <!-- <div class="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4 lg:justify-end">
               <select name="filter-age" id="filter-age" class="select select-bordered rounded-full">
                 <option value="" disabled selected>Filter by age</option>
                 <option value="">Option 1</option>
@@ -60,7 +60,7 @@ $section_class = 'section-foster_care-' . $uniqid;
                 <option value="">Option 2</option>
                 <option value="">Option 3</option>
               </select>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
