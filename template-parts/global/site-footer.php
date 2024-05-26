@@ -68,7 +68,7 @@ $section_id = 'section-subscribe-' . uniqid();
 if ($subscribe && !$disable_subscribe) :
   $section_id = 'section-subscribe-' . uniqid();
 ?>
-  <section class="<?php echo $section_id ?> relative bg-brand-blue print:hidden" style="<?php echo $subscribe_style ?>">
+  <section id="subscribe" class="<?php echo $section_id ?> relative bg-brand-blue print:hidden" style="<?php echo $subscribe_style ?>">
     <div class="relative pt-12 lg:pt-20 xl:pt-36 pb-12 lg:pb-20 xl:pb-36">
       <?php if ($subscribe_heading || $subscribe_desciption) : ?>
         <div class="relative container mx-auto max-w-screen-xl">
