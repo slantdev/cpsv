@@ -507,7 +507,7 @@ function load_adopt_cat()
         <div class="absolute -bottom-14 lg:-bottom-20 left-4 right-4 lg:left-0 lg:right-0">
           <div class="container max-w-screen-2xl px-4 xl:px-8">
             <div class="relative">
-              <div class="swiper-pagination -translate-y-[3px] [&>.swiper-pagination-bullet]:rounded-lg [&>.swiper-pagination-bullet]:w-14 [&>.swiper-pagination-bullet]:lg:w-20 [&>.swiper-pagination-bullet]:h-1.5 [&>.swiper-pagination-bullet]:lg:h-2" style="--swiper-pagination-color:#1068F0;"></div>
+              <div class="swiper-pagination -translate-y-[10px] px-4 flex justify-center [&>.swiper-pagination-bullet]:grow [&>.swiper-pagination-bullet]:rounded-lg [&>.swiper-pagination-bullet]:max-w-[80px] [&>.swiper-pagination-bullet]:lg:w-20 [&>.swiper-pagination-bullet]:h-1.5 [&>.swiper-pagination-bullet]:lg:h-2" style="--swiper-pagination-color:#1068F0;"></div>
             </div>
           </div>
         </div>
