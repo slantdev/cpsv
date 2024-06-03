@@ -9,7 +9,9 @@
 
 			<?php
 			$post_type = get_post_type(get_the_ID());
-			get_template_part('template-parts/single/single', $post_type);
+			if ($post_type !== 'product') {
+				get_template_part('template-parts/single/single', $post_type);
+			}
 			?>
 
 		<?php endwhile; ?>
