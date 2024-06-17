@@ -3,6 +3,7 @@ $top_navigation = get_field('top_navigation', 'option')['top_navigation'];
 $top_links = $top_navigation['top_links'] ?? '';
 $social_links = $top_navigation['social_links'] ?? '';
 $sign_in_register = $top_navigation['sign_in_register'] ?? '';
+$donate_button = $top_navigation['donate_button'] ?? '';
 ?>
 <div class="top-header hidden lg:block relative z-50 bg-brand-dark-blue py-3 print:hidden">
   <div class="container max-w-screen-5xl">
@@ -77,7 +78,14 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
         <div class="flex items-start xl:w-3/4 xl:justify-end">
           <?php get_template_part('template-parts/components/megamenu'); ?>
           <div class="header-buttons relative hidden lg:flex">
-            <a href="<?php echo site_url() ?>/support-us/make-a-donation" class="bg-brand-tomato text-white flex items-center px-4 py-[26px] 5xl:px-7 5xl:py-8 text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-bold uppercase leading-tight whitespace-nowrap hover:brightness-110">Donate Now</a>
+            <?php
+            if ($donate_button) :
+              $donate_url = $donate_button['url'] ?? '#';
+              $donate_title = $donate_button['title'] ?? 'Donate Now';
+              $donate_target = $donate_button['target'] ?? '_self';
+            ?>
+              <a href="<?php echo $donate_url; ?>" target="<?php echo $donate_target; ?>" class="bg-brand-tomato text-white flex items-center px-4 py-[26px] 5xl:px-7 5xl:py-8 text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-bold uppercase leading-tight whitespace-nowrap hover:brightness-110"><?php echo $donate_title; ?></a>
+            <?php endif; ?>
             <button type="button" class="menu-search-btn bg-brand-blue text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>

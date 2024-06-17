@@ -155,6 +155,22 @@
                         "id": ""
                     },
                     "return_format": "array"
+                },
+                {
+                    "key": "field_666fe1350d536",
+                    "label": "Donate Button",
+                    "name": "donate_button",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
                 }
             ]
         }
@@ -184,7 +200,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1712596077,
+    "modified": 1718608203,
     "acfe_categories": {
         "site-settings": "Site Settings"
     }
