@@ -62,7 +62,7 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
       <div class="relative xl:flex xl:justify-between">
         <div class="flex justify-between items-center xl:justify-normal xl:w-1/4">
           <div class="site-logo py-3 xl:py-6">
-            <a href="<?php echo site_url() ?>"><img src="<?php echo $site_logo ?>" alt="<?php echo get_bloginfo('name'); ?>" class="h-12 xl:h-16 3xl:h-20 5xl:h-[88px] w-auto"></a>
+            <a href="<?php echo site_url() ?>"><img src="<?php echo $site_logo ?>" alt="<?php echo get_bloginfo('name'); ?>" class="!h-12 xl:!h-16 3xl:!h-20 5xl:!h-[88px] !w-auto"></a>
           </div>
           <button type="button" aria-label="Toggle navigation" id="primary-menu-toggle" class="menu-open-btn xl:hidden">
             <svg viewBox="0 0 20 20" class="inline-block w-5 h-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -77,7 +77,7 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
         <div class="flex items-start xl:w-3/4 xl:justify-end">
           <?php get_template_part('template-parts/components/megamenu'); ?>
           <div class="header-buttons relative hidden lg:flex">
-            <a href="make-a-donation" class="bg-brand-tomato text-white flex items-center px-4 py-[26px] 5xl:px-7 5xl:py-8 text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-bold uppercase leading-tight whitespace-nowrap hover:brightness-110">Donate Now</a>
+            <a href="<?php echo site_url() ?>/support-us/make-a-donation" class="bg-brand-tomato text-white flex items-center px-4 py-[26px] 5xl:px-7 5xl:py-8 text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-bold uppercase leading-tight whitespace-nowrap hover:brightness-110">Donate Now</a>
             <button type="button" class="menu-search-btn bg-brand-blue text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
