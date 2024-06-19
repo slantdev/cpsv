@@ -47,7 +47,8 @@ if ($subscribe_text_color) {
 }
 
 $term_id = '';
-if (is_archive()) {
+if (is_tax()) {
+  //preint_r(get_queried_object());
   $term_id = get_queried_object()->term_id;
 }
 if ($term_id) {

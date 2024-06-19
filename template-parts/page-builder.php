@@ -1,5 +1,8 @@
 <?php
-$term_id = get_queried_object()->term_id ?? null;
+$term_id = '';
+if (is_tax()) {
+  $term_id = ($queried_object = get_queried_object()) ? $queried_object->term_id : null;
+}
 $the_id = $term_id ? 'term_' . $term_id : get_the_ID();
 
 if (have_rows('section', $the_id)) :

@@ -155,4 +155,9 @@ jQuery(function ($) {
         '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
     },
   });
+
+  // Woocommerce
+  $(document).on("change", ".cart-content .quantity .qty", function (e) {
+    $(".btn-update-cart").trigger("click");
+  });
 });

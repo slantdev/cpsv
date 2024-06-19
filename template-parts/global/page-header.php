@@ -2,7 +2,10 @@
 /*
  * Page Settings
  */
-$term_id = ($queried_object = get_queried_object()) ? $queried_object->term_id : null;
+$term_id = '';
+if (is_tax()) {
+  $term_id = ($queried_object = get_queried_object()) ? $queried_object->term_id : null;
+}
 $the_id = $term_id ? 'term_' . $term_id : get_the_ID();
 
 $breadcrumbs = $args['breadcrumbs'] ?? false;
@@ -11,6 +14,51 @@ $enable_page_header = false;
 if (is_singular('post')) :
   $enable_page_header = true;
   $title = get_the_title();
+  // $background_image_url = get_the_post_thumbnail_url($the_id, 'full');
+  // $background_position = 'center';
+  $background_overlay = 'rgba(243,241,239,0.6)';
+  $background_image_url = false;
+  //$background_overlay = false;
+  $bg_image_class = ' object-center';
+  $show_breadcrumbs = true;
+  $breadcrumbs_style = '--breadcrumbs-text-color:#020044;--breadcrumbs-separator-color:#FF6347;';
+  $title_style = 'color:#020044;';
+  $show_title = true;
+  $show_description = false;
+  $use_salesforce = false;
+  $description = false;
+
+elseif (is_tax('product_cat')) :
+
+  $enable_page_header = true;
+  //$title = get_the_title();
+
+  //$terms = get_the_terms(get_the_ID(), 'product_cat');
+  $term = get_queried_object();
+  //preint_r($term);
+  $title = $term->name;
+  $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
+  //preint_r($thumbnail_id);
+  $background_image_url = wp_get_attachment_url($thumbnail_id);
+  $background_position = 'center';
+  $background_overlay = 'rgba(243,241,239,0.6)';
+  $bg_image_class = ' object-center';
+  $show_breadcrumbs = true;
+  $breadcrumbs_style = '--breadcrumbs-text-color:#020044;--breadcrumbs-separator-color:#FF6347;';
+  $title_style = 'color:#020044;';
+  $show_title = true;
+  $show_description = false;
+  $use_salesforce = false;
+  $description = false;
+
+elseif (is_singular('product')) :
+
+  $enable_page_header = true;
+  //$title = get_the_title();
+
+  $terms = get_the_terms(get_the_ID(), 'product_cat');
+  //preint_r($terms);
+  $title = $terms[0]->name;
   // $background_image_url = get_the_post_thumbnail_url($the_id, 'full');
   // $background_position = 'center';
   $background_overlay = 'rgba(243,241,239,0.6)';
@@ -74,7 +122,7 @@ endif;
   <section class="section-page-header relative -mt-[136px]">
     <?php if ($background_image_url) : ?>
       <div class="absolute inset-0 z-0">
-        <img class="object-cover w-full h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image_url ?>" alt="">
+        <img class="object-cover w-full !h-full <?php echo $bg_image_class ?>" src="<?php echo $background_image_url ?>" alt="">
       </div>
     <?php endif; ?>
     <div class="relative z-auto pt-44">
@@ -92,7 +140,11 @@ endif;
                   <?php yoast_breadcrumb('<div class="breadcrumbs text-sm lg:text-base mb-4 lg:mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
                 <?php endif; ?>
                 <?php if ($show_title && $title) : ?>
-                  <h1 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h1>
+                  <?php if (is_singular('product')) : ?>
+                    <h2 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h2>
+                  <?php else : ?>
+                    <h1 class="text-3xl xl:text-[64px] leading-[1.1em] font-semibold" style="<?php echo $title_style ?>"><?php echo $title ?></h1>
+                  <?php endif ?>
                 <?php endif; ?>
                 <?php if ($show_description && $description) : ?>
                   <div class="text-sm xl:text-xl xl:leading-snug font-medium mt-4" style="<?php echo $description_style ?>">

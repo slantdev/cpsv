@@ -22,41 +22,50 @@ if (!defined('ABSPATH')) {
 
 get_header(); ?>
 
-	<?php
-  /**
-   * woocommerce_before_main_content hook.
-   *
-   * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-   * @hooked woocommerce_breadcrumb - 20
-   */
-  do_action('woocommerce_before_main_content');
-  ?>
+<?php get_template_part('template-parts/global/page-header', '', array('breadcrumbs' => true)); ?>
 
-		<?php while (have_posts()) : ?>
-			<?php the_post(); ?>
+<?php
+/**
+ * woocommerce_before_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ */
+//do_action('woocommerce_before_main_content');
+?>
+<div class="section-wrapper section-two_columns relative">
+  <div class="section-spacing relative pt-12 lg:pt-20 xl:pt-20 pb-12 lg:pb-20 xl:pb-20">
+    <div class="section-content container mx-auto max-w-screen-2xl animation-wrapper">
 
-			<?php wc_get_template_part('content', 'single-product'); ?>
+      <?php while (have_posts()) : ?>
+        <?php the_post(); ?>
 
-		<?php endwhile; // end of the loop. 
-    ?>
+        <?php wc_get_template_part('content', 'single-product'); ?>
 
-	<?php
-  /**
-   * woocommerce_after_main_content hook.
-   *
-   * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-   */
-  do_action('woocommerce_after_main_content');
-  ?>
+      <?php endwhile; // end of the loop. 
+      ?>
 
-	<?php
-  /**
-   * woocommerce_sidebar hook.
-   *
-   * @hooked woocommerce_get_sidebar - 10
-   */
-  do_action('woocommerce_sidebar');
-  ?>
+    </div>
+  </div>
+</div>
+
+<?php
+/**
+ * woocommerce_after_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+//do_action('woocommerce_after_main_content');
+?>
+
+<?php
+/**
+ * woocommerce_sidebar hook.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+//do_action('woocommerce_sidebar');
+?>
 
 <?php
 get_footer();
