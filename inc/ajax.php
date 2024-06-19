@@ -1069,22 +1069,24 @@ function pagination_load_wherethey()
         $title =  get_the_title();
         $excerpt = wp_trim_words(get_the_excerpt(), $num_words = 20, $more = null);
       ?>
-        <div id="cat-<?php echo $the_id ?>" class="max-w-screen-lg bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip !p-0" style="display:none;">
+        <div id="cat-<?php echo $the_id ?>" class="max-w-screen-xs lg:max-w-screen-lg bg-white rounded-md lg:rounded-lg xl:rounded-xl overflow-clip !p-0" style="display:none;">
           <div class="flex flex-col xl:flex-row">
             <div class="w-full xl:w-1/2">
               <div class="aspect-w-16 aspect-h-9 xl:aspect-none xl:w-full xl:h-full">
                 <?php if ($image) : ?>
-                  <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+                  <img class="object-cover !w-full !h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
                 <?php else : ?>
                   <div class="w-full h-full bg-slate-50"></div>
                 <?php endif; ?>
               </div>
             </div>
             <div class="w-full xl:w-1/2">
-              <div class="pl-6 pt-6 pr-2 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12">
-                <h3 class="text-left text-2xl xl:text-3xl leading-tight font-semibold text-brand-blue" style="<?php echo $title_style ?>"><?php echo $title ?></h3>
-                <div class="mt-6 prose max-h-[50vh] pr-2 overflow-y-auto">
-                  <?php the_content() ?>
+              <div class="pl-6 pt-6 pr-2 pb-6 xl:pt-20 xl:pl-12 xl:pr-8 xl:pb-12 flex flex-col max-h-full lg:max-h-[700px]">
+                <h3 class="text-left text-2xl xl:text-3xl leading-tight font-semibold text-brand-blue flex-none" style="<?php echo $title_style ?>"><?php echo $title ?></h3>
+                <div class="mt-6 overflow-y-auto">
+                  <div class="prose pr-2">
+                    <?php the_content() ?>
+                  </div>
                 </div>
               </div>
             </div>

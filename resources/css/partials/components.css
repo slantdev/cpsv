@@ -108,3 +108,13 @@
 .givewp-donation-form {
   @apply p-0;
 }
+
+/* Fancybox */
+.fancybox__carousel {
+  &.has-thumbs {
+    @apply pb-[68px] md:pb-0;
+  }
+}
+.fancybox__slide::after {
+  @apply block m-0 md:m-auto;
+}

@@ -4716,6 +4716,18 @@
   max-height: 50vh;
 }
 
+#poststuff .acf-layout .max-h-\[500px\] {
+  max-height: 500px;
+}
+
+#poststuff .acf-layout .max-h-\[700px\] {
+  max-height: 700px;
+}
+
+#poststuff .acf-layout .max-h-full {
+  max-height: 100%;
+}
+
 #poststuff .acf-layout .\!min-h-\[42px\] {
   min-height: 42px !important;
 }
@@ -8015,6 +8027,10 @@
     height: 100%;
   }
 
+  #poststuff .acf-layout .lg\:max-h-\[700px\] {
+    max-height: 700px;
+  }
+
   #poststuff .acf-layout .lg\:w-1\/2 {
     width: 50%;
   }
@@ -8069,6 +8085,10 @@
 
   #poststuff .acf-layout .lg\:w-36 {
     width: 9rem;
+  }
+
+  #poststuff .acf-layout .lg\:max-w-screen-lg {
+    max-width: 1024px;
   }
 
   #poststuff .acf-layout .lg\:-translate-y-1\/2 {

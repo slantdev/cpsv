@@ -3922,6 +3922,15 @@ details.collapse summary::-webkit-details-marker {
 .max-h-\[50vh\] {
     max-height: 50vh;
 }
+.max-h-\[500px\] {
+    max-height: 500px;
+}
+.max-h-\[700px\] {
+    max-height: 700px;
+}
+.max-h-full {
+    max-height: 100%;
+}
 .\!min-h-\[42px\] {
     min-height: 42px !important;
 }
@@ -6211,6 +6220,9 @@ body {
     .lg\:h-full {
         height: 100%;
     }
+    .lg\:max-h-\[700px\] {
+        max-height: 700px;
+    }
     .lg\:w-1\/2 {
         width: 50%;
     }
@@ -6252,6 +6264,9 @@ body {
     }
     .lg\:w-36 {
         width: 9rem;
+    }
+    .lg\:max-w-screen-lg {
+        max-width: 1024px;
     }
     .lg\:-translate-y-1\/2 {
         --tw-translate-y: -50%;
