@@ -113,28 +113,28 @@ function card_shop($args)
               'title' => 'For your cat',
               'description' => 'Product type: Carrier / Health & Protection / Litter Trays & Accessories / Scratchers / Beds / Feeding / Cat Toys / Collars & Harnesses / Food & Treats',
               'image' => cpsv_asset('/images/products/shop-cat.jpg'),
-              'link' => '#',
+              'link' => home_url('product-category/for-your-cat/'),
               'type' => 'featured'
             ],
             [
               'title' => 'For your home',
               'description' => '',
               'image' => cpsv_asset('/images/products/shop-home.jpg'),
-              'link' => '#',
+              'link' => home_url('product-category/for-your-home/'),
               'type' => 'card'
             ],
             [
               'title' => 'Greeting cards',
               'description' => '',
               'image' => cpsv_asset('/images/products/shop-greeting.jpg'),
-              'link' => '#',
+              'link' => home_url('product-category/greeting-cards/'),
               'type' => 'card'
             ],
             [
               'title' => 'Gift Certificates',
               'description' => '',
               'image' => cpsv_asset('/images/products/shop-gift.jpg'),
-              'link' => '#',
+              'link' => home_url('product-category/gift-certificates/'),
               'type' => 'card'
             ],
             [
