@@ -147,10 +147,15 @@
   }
 }
 .woocommerce div.product.product-type-simple form.cart {
-  @apply flex gap-x-4;
+  @apply flex gap-x-4 mt-8;
   &:before,
   &:after {
     @apply content-none;
+  }
+}
+.woocommerce div.product {
+  #wc-stripe-payment-request-wrapper {
+    @apply hidden;
   }
 }
 

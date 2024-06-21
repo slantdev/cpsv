@@ -7385,6 +7385,7 @@ details.collapse summary::-webkit-details-marker {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .woocommerce div.product.product-type-simple form.cart {
+  margin-top: 2rem;
   display: flex;
   -moz-column-gap: 1rem;
        column-gap: 1rem;
@@ -7393,6 +7394,9 @@ details.collapse summary::-webkit-details-marker {
   .woocommerce div.product.product-type-simple form.cart:after {
   --tw-content: none;
   content: var(--tw-content);
+}
+.woocommerce div.product #wc-stripe-payment-request-wrapper {
+  display: none;
 }
 /* Review */
 .woocommerce-page div.product div.summary .star-rating,
