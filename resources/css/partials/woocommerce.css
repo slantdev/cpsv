@@ -146,6 +146,13 @@
     @apply border border-solid border-slate-300 rounded shadow;
   }
 }
+.woocommerce div.product.product-type-simple form.cart {
+  @apply flex gap-x-4;
+  &:before,
+  &:after {
+    @apply content-none;
+  }
+}
 
 /* Review */
 .woocommerce-page div.product div.summary .star-rating,
