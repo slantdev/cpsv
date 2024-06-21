@@ -296,6 +296,68 @@ ul.products
   @apply !pl-7 !my-0;
 }
 
+/* Checkout */
+div.woocommerce form .form-row {
+  .select2-selection,
+  input[type="date"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="url"],
+  select,
+  textarea {
+    @apply border border-solid border-slate-300 rounded;
+    &:focus {
+      @apply !outline-none;
+    }
+  }
+  &.woocommerce-validated:not([class*="woocommerce-invalid"]) {
+    .select2-selection,
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    select,
+    textarea {
+      @apply !border-green-500;
+    }
+  }
+}
+div.woocommerce
+  form
+  .form-row
+  .select2-selection--single
+  .select2-selection__rendered {
+  @apply rounded;
+}
+.fc-progress-bar__bar.is-current,
+.fc-progress-bar__bar.is-complete {
+  @apply !bg-brand-blue;
+}
+.has-checkout-layout--multi-step .fc-step__actions .fc-step__next-step {
+  @apply font-semibold rounded py-3 px-5;
+}
+body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button {
+  @apply bg-brand-blue;
+  &:hover {
+    @apply bg-brand-blue;
+  }
+}
+.fc-wrapper .fc-step__substep-edit,
+.fc-checkout-order-review__head .fc-checkout-order-review__header-link {
+  @apply text-sm text-brand-blue;
+}
+.woocommerce-privacy-policy-text {
+  @apply text-xs;
+}
+
 /* Filters */
 .bapf_sfilter {
   .bapf_hascolarr,

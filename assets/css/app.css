@@ -7586,6 +7586,81 @@ ul.products
   margin-bottom: 0px !important;
   padding-left: 1.75rem !important;
 }
+/* Checkout */
+div.woocommerce form .form-row .select2-selection,
+  div.woocommerce form .form-row input[type="date"],
+  div.woocommerce form .form-row input[type="email"],
+  div.woocommerce form .form-row input[type="number"],
+  div.woocommerce form .form-row input[type="password"],
+  div.woocommerce form .form-row input[type="search"],
+  div.woocommerce form .form-row input[type="tel"],
+  div.woocommerce form .form-row input[type="text"],
+  div.woocommerce form .form-row input[type="url"],
+  div.woocommerce form .form-row select,
+  div.woocommerce form .form-row textarea {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity));
+}
+div.woocommerce form .form-row .select2-selection:focus, div.woocommerce form .form-row input[type="date"]:focus, div.woocommerce form .form-row input[type="email"]:focus, div.woocommerce form .form-row input[type="number"]:focus, div.woocommerce form .form-row input[type="password"]:focus, div.woocommerce form .form-row input[type="search"]:focus, div.woocommerce form .form-row input[type="tel"]:focus, div.woocommerce form .form-row input[type="text"]:focus, div.woocommerce form .form-row input[type="url"]:focus, div.woocommerce form .form-row select:focus, div.woocommerce form .form-row textarea:focus {
+  outline: 2px solid transparent !important;
+  outline-offset: 2px !important;
+}
+div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) .select2-selection,
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="date"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="email"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="number"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="password"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="search"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="tel"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="text"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) input[type="url"],
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) select,
+    div.woocommerce form .form-row.woocommerce-validated:not([class*="woocommerce-invalid"]) textarea {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity)) !important;
+}
+div.woocommerce
+  form
+  .form-row
+  .select2-selection--single
+  .select2-selection__rendered {
+  border-radius: 0.5rem;
+}
+.fc-progress-bar__bar.is-current,
+.fc-progress-bar__bar.is-complete {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(16 104 240 / var(--tw-bg-opacity)) !important;
+}
+.has-checkout-layout--multi-step .fc-step__actions .fc-step__next-step {
+  border-radius: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-weight: 600;
+}
+body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 104 240 / var(--tw-bg-opacity));
+}
+body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(16 104 240 / var(--tw-bg-opacity));
+}
+.fc-wrapper .fc-step__substep-edit,
+.fc-checkout-order-review__head .fc-checkout-order-review__header-link {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(16 104 240 / var(--tw-text-opacity));
+}
+.woocommerce-privacy-policy-text {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 /* Filters */
 .bapf_sfilter .bapf_hascolarr,
   .bapf_sfilter .bapf_hasdesc {
