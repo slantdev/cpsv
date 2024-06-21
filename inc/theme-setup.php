@@ -42,7 +42,9 @@ function cpsv_setup()
 add_action('after_setup_theme', 'cpsv_setup');
 
 // Disable Comments
-add_action('admin_init', function () {
+//add_action('admin_init', 'disable_comments');
+function disable_comments()
+{
 	// Redirect any user trying to access comments page
 	global $pagenow;
 
@@ -61,19 +63,19 @@ add_action('admin_init', function () {
 			remove_post_type_support($post_type, 'trackbacks');
 		}
 	}
-});
+}
 
 // Close comments on the front-end
-add_filter('comments_open', '__return_false', 20, 2);
-add_filter('pings_open', '__return_false', 20, 2);
+// add_filter('comments_open', '__return_false', 20, 2);
+// add_filter('pings_open', '__return_false', 20, 2);
 
 // Hide existing comments
-add_filter('comments_array', '__return_empty_array', 10, 2);
+// add_filter('comments_array', '__return_empty_array', 10, 2);
 
 // Remove comments page in menu
-add_action('admin_menu', function () {
-	remove_menu_page('edit-comments.php');
-});
+// add_action('admin_menu', function () {
+// 	remove_menu_page('edit-comments.php');
+// });
 
 // Remove comments links from admin bar
 add_action('init', function () {

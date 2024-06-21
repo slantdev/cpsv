@@ -22,7 +22,7 @@ function cpsv_enqueue_scripts()
   wp_enqueue_script('cpsv', cpsv_asset('js/app.js'), array('jquery'), $theme->get('Version'));
 }
 
-add_action('wp_enqueue_scripts', 'cpsv_enqueue_scripts', 999);
+add_action('wp_enqueue_scripts', 'cpsv_enqueue_scripts', 9999);
 
 //add_filter("script_loader_tag", "add_module_to_my_script", 10, 3);
 function add_module_to_my_script($tag, $handle, $src)

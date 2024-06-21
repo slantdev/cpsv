@@ -110,7 +110,7 @@
 }
 .woocommerce ul.products li.product,
 .woocommerce-page ul.products li.product {
-  @apply float-none m-0 w-full p-4 rounded-md shadow border border-solid border-slate-300;
+  @apply float-none m-0 mb-4 lg:mb-5 w-full p-4 rounded-md shadow border border-solid border-slate-300;
 }
 .woocommerce ul.products {
   @apply grid grid-cols-2 lg:grid-cols-4 lg:gap-x-5;
@@ -140,6 +140,62 @@
   li.product
   .price {
   @apply text-black;
+}
+.woocommerce .woocommerce-ordering {
+  select {
+    @apply border border-solid border-slate-300 rounded shadow;
+  }
+}
+.woocommerce div.product form.cart {
+  @apply flex gap-x-4;
+  &:before,
+  &:after {
+    @apply content-none;
+  }
+}
+
+/* Review */
+.woocommerce-page div.product div.summary .star-rating,
+.woocommerce-page div.product div.summary .star-rating span:before,
+ul.products li.product .woocommerce-loop-product__link .star-rating,
+ul.products
+  li.product
+  .woocommerce-loop-product__link
+  .star-rating
+  span:before {
+  @apply text-amber-500;
+}
+.woocommerce-Reviews-title {
+  @apply text-xl font-semibold mb-4;
+}
+.rx_recommended_wrapper,
+.rx_rating_graph_wrapper {
+  @apply !shadow-none;
+}
+.rx_recommended_wrapper {
+  &.rx-flex-grid-50 {
+    @apply lg:w-1/4;
+  }
+}
+.rx_rating_graph_wrapper {
+  &.rx-flex-grid-50 {
+    @apply lg:w-3/4;
+  }
+}
+.rx_recommended_box {
+  @apply hidden;
+}
+.rx-temp-rating {
+  @apply pb-4 flex flex-col text-center gap-y-2;
+  + hr {
+    @apply hidden;
+  }
+  .rx_average_rating {
+    @apply m-0;
+    .rx-temp-rating-star {
+      @apply justify-center items-center;
+    }
+  }
 }
 
 /* Cart */
@@ -233,4 +289,59 @@
 
 .woocommerce-error li {
   @apply !pl-7 !my-0;
+}
+
+/* Filters */
+.bapf_sfilter {
+  .bapf_hascolarr,
+  .bapf_hasdesc {
+    @apply text-xl font-normal mb-4;
+  }
+  .bapf_body {
+    .mCSB_container > ul,
+    > ul {
+    }
+  }
+}
+
+.bapf_ckbox_sqchck input[type="checkbox"] {
+  @apply border border-solid border-gray-300 rounded-sm mr-2;
+  &:checked {
+    @apply border-brand-blue bg-brand-blue;
+    &:after {
+      @apply border-white;
+    }
+  }
+}
+.bapf_sfilter {
+  @apply mb-8;
+  .bapf_head {
+    @apply border-t border-solid border-slate-300 pt-3;
+  }
+  .bapf_colaps_smb {
+    @apply text-xs;
+  }
+  &.bapf_ckbox {
+    label {
+      @apply uppercase text-gray-600;
+    }
+    input[type="checkbox"] {
+      @apply mr-2;
+    }
+  }
+  .bapf_body {
+    ul {
+      li {
+        @apply !py-1;
+        ul {
+          @apply !ml-8;
+        }
+      }
+    }
+  }
+}
+
+.bapf_slidr_main.ui-widget-content .ui-slider-range,
+.berocket_filter_price_slider.ui-widget-content .ui-slider-range {
+  @apply bg-brand-blue;
 }

@@ -60,9 +60,14 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
       </header>
 
       <div class="relative max-w-screen-2xl my-8 xl:my-12">
-        <div class="flex flex-col lg:flex-row lg:gap-x-6">
+        <div class="flex flex-col lg:flex-row lg:gap-x-6 xl:gap-x-12">
           <div class="w-full lg:w-1/4">
-            <?php echo do_shortcode('[fe_widget]') ?>
+            <?php
+            if (shortcode_exists('br_filters_group')) {
+              echo '<h4 class="text-2xl font-bold mb-6">Filters</h4>';
+              echo do_shortcode('[br_filters_group group_id=1537]');
+            }
+            ?>
           </div>
           <div class="w-full lg:w-3/4">
             <?php
@@ -126,5 +131,40 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
   </div>
 </div>
 
-<?php
-get_footer('shop');
+<div class="bg-brand-dark-blue">
+
+  <div class="section-spacing relative pt-12 lg:pt-20 xl:pt-20 pb-12 lg:pb-20 xl:pb-20">
+    <div class="section-content container mx-auto max-w-screen-lg animation-wrapper text-white text-center">
+      <h2 class="font-bold text-4xl mb-16">Quick Links</h2>
+      <div class="flex justify-center gap-x-20">
+        <div class="w-1/3">
+          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
+            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
+              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
+            </div>
+            <div class="text-xl font-semibold">Why shop with CPSV</div>
+          </a>
+        </div>
+        <div class="w-1/3">
+          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
+            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
+              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
+            </div>
+            <div class="text-xl font-semibold">Delivery & Returns</div>
+          </a>
+        </div>
+        <div class="w-1/3">
+          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
+            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
+              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
+            </div>
+            <div class="text-xl font-semibold">Contact Us</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <?php
+  get_footer('shop');
