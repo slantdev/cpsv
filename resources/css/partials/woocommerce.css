@@ -180,6 +180,9 @@
 }
 
 /* Review */
+fieldset {
+  @apply !bg-transparent;
+}
 .woocommerce-page div.product div.summary .star-rating,
 .woocommerce-page div.product div.summary .star-rating span:before,
 ul.products li.product .woocommerce-loop-product__link .star-rating,

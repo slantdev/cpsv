@@ -7495,6 +7495,9 @@ details.collapse summary::-webkit-details-marker {
   }
 }
 /* Review */
+fieldset {
+  background-color: transparent !important;
+}
 .woocommerce-page div.product div.summary .star-rating,
 .woocommerce-page div.product div.summary .star-rating span:before,
 ul.products li.product .woocommerce-loop-product__link .star-rating,
