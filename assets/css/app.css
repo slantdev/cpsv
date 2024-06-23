@@ -8007,6 +8007,15 @@ div.woocommerce
     line-height: 2rem;
   }
 }
+#add_payment_method #payment div.payment_box p, .woocommerce-cart #payment div.payment_box p, .woocommerce-checkout #payment div.payment_box p {
+  margin-bottom: 1rem;
+}
+#add_payment_method #payment ul.payment_methods li input[type="checkbox"],
+.woocommerce-cart #payment ul.payment_methods li input[type="checkbox"],
+.woocommerce-checkout #payment ul.payment_methods li input[type="checkbox"] {
+  width: 1rem !important;
+  border-radius: 3px;
+}
 /* My Account */
 .woocommerce-account .woocommerce-MyAccount-navigation {
   border-radius: 0.5rem;
