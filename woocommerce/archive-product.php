@@ -25,7 +25,7 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
 ?>
 
 <div class="section-wrapper relative">
-  <div class="section-spacing relative pt-12 lg:pt-20 xl:pt-20 pb-12 lg:pb-20 xl:pb-20">
+  <div class="section-spacing relative pt-6 lg:pt-12 xl:pt-20 pb-12 lg:pb-20 xl:pb-20">
     <div class="section-content container mx-auto max-w-screen-2xl animation-wrapper">
 
       <?php
@@ -40,12 +40,8 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
       do_action('woocommerce_before_main_content');
       ?>
       <header class="woocommerce-products-header">
-        <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
-          <h2 class="woocommerce-products-header__title page-title text-brand-dark-blue text-4xl xl:text-5xl text-left leading-tight font-semibold mt-0 mb-0"><?php woocommerce_page_title(); ?></h2>
-        <?php endif; ?>
-
         <div class="w-full">
-          <div class="prose max-w-none xl:prose-lg text-left  font-medium" style="color:#4b5563;">
+          <div class="prose max-w-none xl:prose-lg text-left font-medium" style="color:#4b5563;">
             <?php
             /**
              * Hook: woocommerce_archive_description.
@@ -61,16 +57,18 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
 
       <div class="relative max-w-screen-2xl my-8 xl:my-12">
         <div class="flex flex-col lg:flex-row lg:gap-x-6 xl:gap-x-12">
-          <div class="w-full lg:w-1/4">
-            <?php
-            if (shortcode_exists('br_filters_group')) {
-              echo '<h4 class="text-2xl font-bold mb-6">Filters</h4>';
-              //echo do_shortcode('[br_filters_group group_id=1537]');
-              echo do_shortcode('[br_filters_group group_id=4183]');
-            }
-            ?>
+          <div class="w-full lg:w-1/4 order-2 lg:order-1">
+            <div class="mt-12 lg:mt-0">
+              <?php
+              if (shortcode_exists('br_filters_group')) {
+                echo '<h4 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Filters</h4>';
+                echo do_shortcode('[br_filters_group group_id=1537]');
+                //echo do_shortcode('[br_filters_group group_id=4183]');
+              }
+              ?>
+            </div>
           </div>
-          <div class="w-full lg:w-3/4">
+          <div class="w-full lg:w-3/4 order-1 lg:order-2">
             <?php
             if (woocommerce_product_loop()) {
 
@@ -132,40 +130,5 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
   </div>
 </div>
 
-<div class="bg-brand-dark-blue">
-
-  <div class="section-spacing relative pt-12 lg:pt-20 xl:pt-20 pb-12 lg:pb-20 xl:pb-20">
-    <div class="section-content container mx-auto max-w-screen-lg animation-wrapper text-white text-center">
-      <h2 class="font-bold text-4xl mb-16">Quick Links</h2>
-      <div class="flex justify-center gap-x-20">
-        <div class="w-1/3">
-          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
-            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
-              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
-            </div>
-            <div class="text-xl font-semibold">Why shop with CPSV</div>
-          </a>
-        </div>
-        <div class="w-1/3">
-          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
-            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
-              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
-            </div>
-            <div class="text-xl font-semibold">Delivery & Returns</div>
-          </a>
-        </div>
-        <div class="w-1/3">
-          <a href="#" class="flex flex-col gap-y-2 justify-center items-center">
-            <div class="w-28 h-28 bg-brand-blue rounded-full flex items-center justify-center">
-              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '96', 'class' => 'w-16 h-16')); ?>
-            </div>
-            <div class="text-xl font-semibold">Contact Us</div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <?php
-  get_footer('shop');
+<?php
+get_footer('shop');

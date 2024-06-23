@@ -5,7 +5,7 @@ $social_links = $top_navigation['social_links'] ?? '';
 $sign_in_register = $top_navigation['sign_in_register'] ?? '';
 $donate_button = $top_navigation['donate_button'] ?? '';
 ?>
-<div class="top-header hidden lg:block relative z-50 bg-brand-dark-blue py-3 print:hidden">
+<div class="top-header hidden xl:block relative z-50 bg-brand-dark-blue py-3 print:hidden">
   <div class="container max-w-screen-5xl">
     <div class="flex items-center justify-end">
       <?php if ($top_links) : ?>
@@ -77,7 +77,7 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
         </div>
         <div class="flex items-start xl:w-3/4 xl:justify-end">
           <?php get_template_part('template-parts/components/megamenu'); ?>
-          <div class="header-buttons relative hidden lg:flex">
+          <div class="header-buttons relative hidden xl:flex">
             <?php
             if ($donate_button) :
               $donate_url = $donate_button['url'] ?? '#';

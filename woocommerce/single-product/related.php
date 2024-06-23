@@ -29,7 +29,7 @@ if ($related_products) : ?>
 
 		if ($heading) :
 		?>
-			<h2 class="text-4xl font-semibold mb-6"><?php echo esc_html($heading); ?></h2>
+			<h2 class="text-2xl md:text-4xl font-semibold mb-6"><?php echo esc_html($heading); ?></h2>
 		<?php endif; ?>
 
 		<?php woocommerce_product_loop_start(); ?>

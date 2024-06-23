@@ -28,7 +28,7 @@ add_action('woocommerce_after_single_product', 'your_theme_review_replacing_revi
 function your_theme_review_replacing_reviews_position()
 {
   echo '<section class="section-review pt-12 border-t border-solid border-slate-300 mt-12">';
-  echo '<h2 class="text-4xl font-semibold mb-6">Product Review</h2>';
+  echo '<h2 class="text-2xl md:text-4xl font-semibold mb-6">Product Review</h2>';
   comments_template();
   echo '</section>';
 }

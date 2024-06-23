@@ -162,11 +162,11 @@
                     "acfe_permissions": ""
                 },
                 {
-                    "key": "field_66099bb59f6b6",
-                    "label": "Under Development",
-                    "name": "",
+                    "key": "field_667860c0dc460",
+                    "label": "Shop Card",
+                    "name": "shop_card",
                     "aria-label": "",
-                    "type": "message",
+                    "type": "repeater",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -175,10 +175,153 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "Shop Settings Coming Soon",
-                    "new_lines": "wpautop",
-                    "esc_html": 0,
+                    "acfe_repeater_stylised_button": 1,
+                    "layout": "block",
+                    "pagination": 0,
                     "acfe_settings": "",
+                    "min": 0,
+                    "max": 0,
+                    "acfe_permissions": "",
+                    "collapsed": "field_66786159dc465",
+                    "button_label": "Add Card",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_667860dddc461",
+                            "label": "Card Image",
+                            "name": "card_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "uploader": "",
+                            "return_format": "array",
+                            "acfe_thumbnail": 0,
+                            "acfe_settings": "",
+                            "acfe_validate": "",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "parent_repeater": "field_667860c0dc460"
+                        },
+                        {
+                            "key": "field_66786159dc465",
+                            "label": "Card Content",
+                            "name": "card_content",
+                            "aria-label": "",
+                            "type": "group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "70",
+                                "class": "label-hidden",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "acfe_seamless_style": 1,
+                            "acfe_settings": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_667864e373c5b",
+                                    "label": "Select Product Category",
+                                    "name": "select_product_category",
+                                    "aria-label": "",
+                                    "type": "acfe_taxonomy_terms",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "acfe_permissions": "",
+                                    "taxonomy": [
+                                        "product_cat"
+                                    ],
+                                    "allow_terms": "",
+                                    "allow_level": "",
+                                    "field_type": "select",
+                                    "default_value": [],
+                                    "return_format": "object",
+                                    "ui": 1,
+                                    "allow_null": 0,
+                                    "search_placeholder": "",
+                                    "multiple": 0,
+                                    "ajax": 0,
+                                    "save_terms": 0,
+                                    "load_terms": 0,
+                                    "acfe_settings": "",
+                                    "acfe_validate": "",
+                                    "choices": [],
+                                    "placeholder": "",
+                                    "layout": "",
+                                    "toggle": 0,
+                                    "allow_custom": 0,
+                                    "other_choice": 0
+                                },
+                                {
+                                    "key": "field_6678613ddc464",
+                                    "label": "Show Sub Categories",
+                                    "name": "show_sub_categories",
+                                    "aria-label": "",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "acfe_permissions": "",
+                                    "message": "",
+                                    "default_value": 0,
+                                    "acfe_settings": "",
+                                    "acfe_validate": "",
+                                    "ui_on_text": "",
+                                    "ui_off_text": "",
+                                    "ui": 1
+                                }
+                            ],
+                            "acfe_group_modal": 0,
+                            "acfe_group_modal_close": 0,
+                            "acfe_group_modal_button": "",
+                            "acfe_group_modal_size": "large",
+                            "parent_repeater": "field_667860c0dc460"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_66786aad50fff",
+                    "label": "Shop Button",
+                    "name": "shop_button",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "acfe_settings": "",
+                    "acfe_validate": "",
                     "acfe_permissions": ""
                 }
             ],
@@ -260,7 +403,7 @@
     "acfe_form": 1,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711905882,
+    "modified": 1719167833,
     "acfe_categories": {
         "layout": "Layout"
     }
