@@ -58,18 +58,6 @@ module.exports = {
       screens: {
         print: { raw: "print" },
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            a: {
-              color: "#1068F0",
-              "&:hover": {
-                color: "#020044",
-              },
-            },
-          },
-        },
-      },
     },
     screens: {
       xs: "480px",

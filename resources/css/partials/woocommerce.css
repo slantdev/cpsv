@@ -546,6 +546,9 @@ div.woocommerce
   }
 }
 .woocommerce-MyAccount-content {
+  a {
+    @apply text-brand-blue hover:text-brand-dark-blue underline;
+  }
 }
 
 /* Filters */

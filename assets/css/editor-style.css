@@ -2525,12 +2525,9 @@ details.collapse summary::-webkit-details-marker {
     margin-bottom: 1.2em;
 }
 .prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-    color: #1068F0;
+    color: var(--tw-prose-links);
     text-decoration: underline;
     font-weight: 500;
-}
-.prose :where(a):not(:where([class~="not-prose"],[class~="not-prose"] *)):hover {
-    color: #020044;
 }
 .prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     color: var(--tw-prose-bold);
