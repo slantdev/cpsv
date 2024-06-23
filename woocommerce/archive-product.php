@@ -62,8 +62,8 @@ get_template_part('template-parts/global/page-header', '', array('breadcrumbs' =
               <?php
               if (shortcode_exists('br_filters_group')) {
                 echo '<h4 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Filters</h4>';
-                echo do_shortcode('[br_filters_group group_id=1537]');
-                //echo do_shortcode('[br_filters_group group_id=4183]');
+                //echo do_shortcode('[br_filters_group group_id=1537]');
+                echo do_shortcode('[br_filters_group group_id=4183]');
               }
               ?>
             </div>
