@@ -6067,6 +6067,9 @@ body {
     .md\:mb-6 {
         margin-bottom: 1.5rem;
     }
+    .md\:mt-8 {
+        margin-top: 2rem;
+    }
     .md\:block {
         display: block;
     }

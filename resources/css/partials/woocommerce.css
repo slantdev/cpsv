@@ -15,6 +15,11 @@
   .flex-viewport {
     @apply border border-solid rounded-lg;
   }
+  .woocommerce-product-gallery__image {
+    &:only-child {
+      @apply border border-solid rounded-lg;
+    }
+  }
 }
 .woocommerce div.product div.images .flex-control-thumbs {
   @apply mt-4 lg:mt-4 flex gap-x-1 lg:gap-x-2;
@@ -48,7 +53,7 @@
   @apply !text-black text-2xl font-semibold;
 }
 .woocommerce-variation-add-to-cart {
-  @apply flex gap-x-4;
+  @apply flex gap-x-4 mt-4 md:mt-8;
 }
 .woocommerce div.product form.cart div.quantity {
   @apply float-none m-0;
@@ -60,13 +65,16 @@
   @apply rounded border border-solid border-slate-300 h-full min-w-[60px] pr-0;
 }
 .woocommerce-variation.single_variation {
-  @apply mb-4;
+  @apply my-4;
 }
 .woocommerce div.product form.cart .reset_variations {
   @apply text-brand-blue hover:underline;
 }
 .product_meta {
   @apply hidden;
+}
+.woocommerce-product-details__short-description {
+  @apply mb-6 md:mb-8;
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs {
   @apply list-none p-0 m-0 mb-6 flex border-b border-solid border-slate-300;
@@ -147,7 +155,7 @@
   }
 }
 .woocommerce div.product.product-type-simple form.cart {
-  @apply flex gap-x-4 mt-8;
+  @apply mt-8;
   &:before,
   &:after {
     @apply content-none;
@@ -157,6 +165,11 @@
   #wc-stripe-payment-request-wrapper {
     @apply hidden;
   }
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+  @apply rounded border border-solid border-slate-300 py-3 px-4;
 }
 
 @media (max-width: 768px) {
@@ -169,7 +182,6 @@
     @apply float-none;
   }
 }
-
 .woocommerce .woocommerce-result-count,
 .woocommerce-page .woocommerce-result-count {
   @apply w-full float-none md:w-auto md:float-left;
@@ -177,6 +189,25 @@
 .woocommerce .woocommerce-ordering,
 .woocommerce-page .woocommerce-ordering {
   @apply w-full float-none md:w-auto md:float-right;
+}
+
+/* Gift Cards */
+.woocommerce div.product.wc_gc_giftcard_product {
+  form.cart div.quantity {
+    @apply hidden;
+  }
+}
+.wc_gc_send_as_gift_wrapper {
+  @apply mb-0 !pb-0;
+}
+.wc_gc_send_as_gift_wrapper #wc_gc_send_as_gift_checkbox {
+  @apply rounded-sm w-5 h-5 mr-2 -mt-0.5;
+}
+.woocommerce_gc_giftcard_form_wrapper {
+  @apply bg-brand-light-gray rounded p-4 mt-4;
+}
+.woocommerce_gc_giftcard_form {
+  @apply mb-0;
 }
 
 /* Review */

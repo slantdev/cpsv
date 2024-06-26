@@ -7060,6 +7060,11 @@ details.collapse summary::-webkit-details-marker {
   border-width: 1px;
   border-style: solid;
 }
+.woocommerce-product-gallery .woocommerce-product-gallery__image:only-child {
+  border-radius: 1rem;
+  border-width: 1px;
+  border-style: solid;
+}
 .woocommerce div.product div.images .flex-control-thumbs {
   margin-top: 1rem;
   display: flex;
@@ -7166,9 +7171,16 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
 }
 .woocommerce-variation-add-to-cart {
+  margin-top: 1rem;
   display: flex;
   -moz-column-gap: 1rem;
        column-gap: 1rem;
+}
+@media (min-width: 768px) {
+
+  .woocommerce-variation-add-to-cart {
+    margin-top: 2rem;
+  }
 }
 .woocommerce div.product form.cart div.quantity {
   float: none;
@@ -7203,6 +7215,7 @@ details.collapse summary::-webkit-details-marker {
   padding-right: 0px;
 }
 .woocommerce-variation.single_variation {
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .woocommerce div.product form.cart .reset_variations {
@@ -7215,6 +7228,15 @@ details.collapse summary::-webkit-details-marker {
 }
 .product_meta {
   display: none;
+}
+.woocommerce-product-details__short-description {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+
+  .woocommerce-product-details__short-description {
+    margin-bottom: 2rem;
+  }
 }
 .woocommerce div.product .woocommerce-tabs ul.tabs {
   margin: 0px;
@@ -7444,9 +7466,6 @@ details.collapse summary::-webkit-details-marker {
 }
 .woocommerce div.product.product-type-simple form.cart {
   margin-top: 2rem;
-  display: flex;
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
 }
 .woocommerce div.product.product-type-simple form.cart:before,
   .woocommerce div.product.product-type-simple form.cart:after {
@@ -7455,6 +7474,18 @@ details.collapse summary::-webkit-details-marker {
 }
 .woocommerce div.product #wc-stripe-payment-request-wrapper {
   display: none;
+}
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea {
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  --tw-border-opacity: 1;
+  border-color: rgb(203 213 225 / var(--tw-border-opacity));
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 @media (max-width: 768px) {
   .woocommerce ul.products[class*="columns-"] li.product,
@@ -7493,6 +7524,31 @@ details.collapse summary::-webkit-details-marker {
     float: right;
     width: auto;
   }
+}
+/* Gift Cards */
+.woocommerce div.product.wc_gc_giftcard_product form.cart div.quantity {
+  display: none;
+}
+.wc_gc_send_as_gift_wrapper {
+  margin-bottom: 0px;
+  padding-bottom: 0px !important;
+}
+.wc_gc_send_as_gift_wrapper #wc_gc_send_as_gift_checkbox {
+  margin-right: 0.5rem;
+  margin-top: -0.125rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 0.25rem;
+}
+.woocommerce_gc_giftcard_form_wrapper {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 241 239 / var(--tw-bg-opacity));
+  padding: 1rem;
+}
+.woocommerce_gc_giftcard_form {
+  margin-bottom: 0px;
 }
 /* Review */
 fieldset {
@@ -8963,6 +9019,10 @@ div.woocommerce
 
   .md\:mb-6 {
     margin-bottom: 1.5rem;
+  }
+
+  .md\:mt-8 {
+    margin-top: 2rem;
   }
 
   .md\:block {

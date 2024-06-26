@@ -20,7 +20,52 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if ($related_products) : ?>
+global $product, $woocommerce_loop;
+
+if (empty($product) || !$product->exists()) {
+	return;
+}
+
+if (!$related = $product->get_related($posts_per_page)) {
+	return;
+}
+
+// Get ID of current product, to exclude it from the related products query
+$current_product_id = $product->get_id();
+
+$cats_array = array(0);
+
+// get categories
+$terms = wp_get_post_terms($product->get_id(), 'product_cat');
+
+// select only the category which doesn't have any children
+foreach ($terms as $term) {
+	$children = get_term_children($term->term_id, 'product_cat');
+	if (!sizeof($children))
+		$cats_array[] = $term->term_id;
+}
+
+$args = apply_filters('woocommerce_related_products_args', array(
+	'post_type' => 'product',
+	'post__not_in' => array($current_product_id),   // exclude current product
+	'ignore_sticky_posts' => 1,
+	'no_found_rows' => 1,
+	'posts_per_page' => $posts_per_page,
+	'orderby' => $orderby,
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'product_cat',
+			'field' => 'id',
+			'terms' => $cats_array
+		),
+	)
+));
+
+$products                    = new WP_Query($args);
+$woocommerce_loop['name']    = 'related';
+$woocommerce_loop['columns'] = apply_filters('woocommerce_related_products_columns', $columns);
+
+if ($products->have_posts()) : ?>
 
 	<section class="related products pt-12 border-t border-solid border-slate-300 mt-12">
 
@@ -34,17 +79,12 @@ if ($related_products) : ?>
 
 		<?php woocommerce_product_loop_start(); ?>
 
-		<?php foreach ($related_products as $related_product) : ?>
+		<?php while ($products->have_posts()) : $products->the_post(); ?>
 
-			<?php
-			$post_object = get_post($related_product->get_id());
+			<?php wc_get_template_part('content', 'product'); ?>
 
-			setup_postdata($GLOBALS['post'] = &$post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-
-			wc_get_template_part('content', 'product');
-			?>
-
-		<?php endforeach; ?>
+		<?php endwhile; // end of the loop. 
+		?>
 
 		<?php woocommerce_product_loop_end(); ?>
 
