@@ -346,6 +346,21 @@ ul.products
   }
 }
 
+.woocommerce-cart
+  .add_gift_card_form
+  #wc_gc_cart_redeem_form
+  input[type="text"] {
+  @apply w-full max-w-none pr-24 py-4 pl-4 border border-solid border-slate-300 rounded;
+}
+.woocommerce-cart .add_gift_card_form #wc_gc_cart_redeem_form button {
+  @apply !py-3 !px-4 bg-brand-gray !rounded !text-base !font-semibold absolute !top-[5px] !right-[5px];
+}
+.woocommerce-cart .add_gift_card_form #wc_gc_cart_redeem_form h4 {
+  @apply mt-0 mb-1;
+}
+.woocommerce-cart .add_gift_card_form #wc_gc_cart_redeem_form {
+  @apply relative mb-5;
+}
 .woocommerce-error li {
   @apply !pl-7 !my-0;
 }
@@ -588,7 +603,18 @@ div.woocommerce
 .woocommerce-checkout #payment ul.payment_methods li input[type="radio"] {
   @apply !w-4 rounded-full;
 }
-
+.woocommerce-checkout .add_gift_card_form h4 {
+  @apply mb-1;
+}
+.woocommerce-checkout
+  .add_gift_card_form
+  #wc_gc_cart_redeem_form
+  input[type="text"] {
+  @apply rounded border border-solid border-slate-300 mb-0;
+}
+.woocommerce-checkout .add_gift_card_form #wc_gc_cart_redeem_form button {
+  @apply mt-4;
+}
 /* My Account */
 .woocommerce-account .woocommerce-MyAccount-navigation {
   @apply rounded lg:rounded-lg bg-brand-light-gray p-4 lg:p-8;
