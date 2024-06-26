@@ -583,6 +583,11 @@ div.woocommerce
 .woocommerce-checkout #payment ul.payment_methods li input[type="checkbox"] {
   @apply !w-4 rounded-[3px];
 }
+#add_payment_method #payment ul.payment_methods li input[type="radio"],
+.woocommerce-cart #payment ul.payment_methods li input[type="radio"],
+.woocommerce-checkout #payment ul.payment_methods li input[type="radio"] {
+  @apply !w-4 rounded-full;
+}
 
 /* My Account */
 .woocommerce-account .woocommerce-MyAccount-navigation {
