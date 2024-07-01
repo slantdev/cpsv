@@ -615,6 +615,26 @@
                     "acfe_group_modal_close": 0,
                     "acfe_group_modal_button": "",
                     "acfe_group_modal_size": "large"
+                },
+                {
+                    "key": "field_6682176219b2a",
+                    "label": "Show Language Switcher",
+                    "name": "show_language_switcher",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
                 }
             ],
             "acfe_group_modal": 0,
@@ -648,7 +668,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1716229192,
+    "modified": 1719801719,
     "acfe_categories": {
         "layout": "Layout"
     }

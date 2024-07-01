@@ -27,6 +27,7 @@ if (is_singular('post')) :
   $show_description = false;
   $use_salesforce = false;
   $description = false;
+  $show_language_switcher = false;
 
 elseif (is_tax('product_cat')) :
 
@@ -50,6 +51,7 @@ elseif (is_tax('product_cat')) :
   $show_description = false;
   $use_salesforce = false;
   $description = false;
+  $show_language_switcher = false;
 
 elseif (is_singular('product')) :
 
@@ -72,6 +74,7 @@ elseif (is_singular('product')) :
   $show_description = false;
   $use_salesforce = false;
   $description = false;
+  $show_language_switcher = false;
 
 elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header['enable_page_header']) && $page_header['enable_page_header']) :
   $enable_page_header = true;
@@ -115,6 +118,8 @@ elseif (($page_header = get_field('page_header', $the_id)) && isset($page_header
   $use_salesforce = $salesforce_settings['use_salesforce_form'] ?? false;
   $salesforce_form_id = $salesforce_settings['form_id'] ?? '';
 
+  $show_language_switcher = $page_header_settings['show_language_switcher'] ?? [];
+
 endif;
 ?>
 
@@ -135,7 +140,7 @@ endif;
         <div class="flex flex-col lg:flex-row items-end justify-end lg:gap-x-8 xl:gap-x-12">
           <div class="w-full lg:w-2/3">
             <?php if ($show_breadcrumbs || $show_title || $show_description) : ?>
-              <div class="flex flex-col pt-20 pb-12 lg:pt-28 lg:pb-20">
+              <div class="flex flex-col pt-20 pb-6 lg:pt-28 lg:pb-20">
                 <?php if ($show_breadcrumbs && function_exists('yoast_breadcrumb')) : ?>
                   <?php yoast_breadcrumb('<div class="breadcrumbs text-sm lg:text-base mb-4 lg:mb-6" style="' . $breadcrumbs_style . '">', '</div>'); ?>
                 <?php endif; ?>
@@ -155,6 +160,16 @@ endif;
             <?php endif; ?>
           </div>
           <div class="w-full lg:w-1/3">
+            <div class="flex pb-12 lg:pb-20 lg:justify-end">
+              <?php if ($show_language_switcher) : ?>
+                <?php
+                if (class_exists('TRP_Translate_Press')) {
+                  echo '';
+                  echo do_shortcode('[language-switcher]');
+                  echo '</div>';
+                } ?>
+              <?php endif; ?>
+            </div>
             <?php if ($use_salesforce && $salesforce_form_id) : ?>
               <style>
                 .npspPlusDonateDropIn {
