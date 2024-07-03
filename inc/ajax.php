@@ -1860,6 +1860,7 @@ function filter_adopt_cat()
               $link = get_the_permalink();
               $adopt_cat_data = get_field('adopt_cat_data', $id);
               $birth = $adopt_cat_data['birth'] ?? '';
+              $status = $adopt_cat_data['status'] ?? '';
               $age = '';
               if ($birth) {
                 $dateString = $birth;
@@ -1907,6 +1908,15 @@ function filter_adopt_cat()
                       <div class="w-full h-full bg-slate-50"></div>
                     <?php endif; ?>
                   </div>
+                  <?php
+                  if ($status == 'available') {
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg:text-sm bg-brand-blue rounded-l-full">Available</div>';
+                  } else if ($status == 'adopted') {
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-teal rounded-l-full">Adopted</div>';
+                  } else if ($status == 'foster') {
+                    echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                  }
+                  ?>
                   <div class="px-4 py-2 xl:px-8 xl:py-4">
                     <div class="flex justify-between items-center gap-x-4">
                       <div class="text-xl"><?php echo $title ?></div>
@@ -1980,6 +1990,7 @@ function filter_adopt_cat()
             $link = get_the_permalink();
             $adopt_cat_data = get_field('adopt_cat_data', $id);
             $birth = $adopt_cat_data['birth'] ?? '';
+            $status = $adopt_cat_data['status'] ?? '';
             $age = '';
             if ($birth) {
               $dateString = $birth;
@@ -2027,6 +2038,15 @@ function filter_adopt_cat()
                     <div class="w-full h-full bg-slate-50"></div>
                   <?php endif; ?>
                 </div>
+                <?php
+                if ($status == 'available') {
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg:text-sm bg-brand-blue rounded-l-full">Available</div>';
+                } else if ($status == 'adopted') {
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-teal rounded-l-full">Adopted</div>';
+                } else if ($status == 'foster') {
+                  echo '<div class="absolute top-3 lg:top-5 right-0 py-1 px-3 lg:py-2 lg:px-4 text-white text-xs lg: bg-brand-yellow rounded-l-full">In Foster Care</div>';
+                }
+                ?>
                 <div class="px-4 py-2 xl:px-8 xl:py-4">
                   <div class="flex justify-between items-center gap-x-4">
                     <div class="text-xl"><?php echo $title ?></div>
