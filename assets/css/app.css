@@ -7720,16 +7720,28 @@ ul.products
   border-style: none;
 }
 .woocommerce-cart .cart-collaterals .cart_totals table th {
-  width: 50%;
+  width: 100%;
   border-style: dotted;
   padding-left: 0px;
   font-weight: 400;
 }
+@media (min-width: 1024px) {
+
+  .woocommerce-cart .cart-collaterals .cart_totals table th {
+    width: 50%;
+  }
+}
 .woocommerce-cart .cart-collaterals .cart_totals table td {
-  width: 50%;
+  width: 100%;
   border-style: dotted;
   padding-right: 0px;
   text-align: right;
+}
+@media (min-width: 1024px) {
+
+  .woocommerce-cart .cart-collaterals .cart_totals table td {
+    width: 50%;
+  }
 }
 .woocommerce-cart .cart-collaterals .cart_totals table tr.order-total th,
     .woocommerce-cart .cart-collaterals .cart_totals table tr.order-total td {
@@ -7758,7 +7770,7 @@ ul.products
   right: 5px !important;
   border-radius: 0.5rem !important;
   --tw-bg-opacity: 1;
-  background-color: rgb(112 128 144 / var(--tw-bg-opacity));
+  background-color: rgb(220 215 227 / var(--tw-bg-opacity));
   padding-top: 0.75rem !important;
   padding-bottom: 0.75rem !important;
   padding-left: 1rem !important;
@@ -7843,6 +7855,12 @@ body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button {
 body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(16 104 240 / var(--tw-bg-opacity)) !important;
+}
+.fc-checkout-header {
+  z-index: 9000000011;
+}
+.fc-wrapper .fc-checkout-order-review[data-flyout].is-activated.is-open {
+  z-index: 9000000010;
 }
 .fc-wrapper .fc-checkout-step {
   overflow: hidden;

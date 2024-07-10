@@ -25,7 +25,7 @@ do_action('woocommerce_before_cart'); ?>
 		<form class="woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
 			<?php do_action('woocommerce_before_cart_table'); ?>
 
-			<div class="cart-content rounded-md border border-solid border-slate-300 shadow-md p-4 lg:p-8 bg-white">
+			<div class="cart-content rounded-md border border-solid border-slate-300 shadow-md mb-4 p-4 lg:p-8 bg-white">
 
 				<?php do_action('woocommerce_before_cart_contents'); ?>
 

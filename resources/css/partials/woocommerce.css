@@ -333,10 +333,10 @@ ul.products
 .woocommerce-cart .cart-collaterals .cart_totals table {
   @apply m-0 border-none rounded-none;
   th {
-    @apply w-1/2 font-normal border-dotted pl-0;
+    @apply w-full lg:w-1/2 font-normal border-dotted pl-0;
   }
   td {
-    @apply w-1/2 text-right border-dotted pr-0;
+    @apply w-full lg:w-1/2 text-right border-dotted pr-0;
   }
   tr.order-total {
     th,
@@ -353,7 +353,7 @@ ul.products
   @apply w-full max-w-none pr-24 py-4 pl-4 border border-solid border-slate-300 rounded;
 }
 .woocommerce-cart .add_gift_card_form #wc_gc_cart_redeem_form button {
-  @apply !py-3 !px-4 bg-brand-gray !rounded !text-base !font-semibold absolute !top-[5px] !right-[5px];
+  @apply !py-3 !px-4 bg-[#dcd7e3] !rounded !text-base !font-semibold absolute !top-[5px] !right-[5px];
 }
 .woocommerce-cart .add_gift_card_form #wc_gc_cart_redeem_form h4 {
   @apply mt-0 mb-1;
@@ -418,6 +418,12 @@ body.woocommerce-checkout .fc-wrapper .fc-place-order .fc-place-order-button {
   &:hover {
     @apply !bg-brand-blue;
   }
+}
+.fc-checkout-header {
+  @apply z-[9000000011];
+}
+.fc-wrapper .fc-checkout-order-review[data-flyout].is-activated.is-open {
+  @apply z-[9000000010];
 }
 .fc-wrapper .fc-checkout-step {
   @apply rounded-md border border-solid border-slate-300 shadow-md bg-white overflow-hidden;
