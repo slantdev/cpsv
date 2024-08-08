@@ -14,7 +14,7 @@
 .main-nav--ul {
   @apply flex flex-col py-2 static xl:py-4;
   @apply xl:py-0 xl:flex-row xl:justify-between xl:grow xl:items-center;
-  @apply xl:gap-x-6 4xl:gap-x-8 5xl:gap-x-10;
+  @apply xl:gap-x-5 4xl:gap-x-5 5xl:gap-x-10;
   > li {
     @apply static inline-flex justify-between;
     @apply xl:py-6 5xl:py-8;
@@ -169,4 +169,8 @@
   &.show {
     @apply translate-x-0 visible opacity-100;
   }
+}
+
+.cart-items-count {
+  @apply absolute top-0 -right-1 4xl:-top-1 4xl:-right-2 bg-brand-tomato text-[8px] 5xl:text-[10px] rounded-full w-2.5 h-2.5 4xl:w-4 4xl:h-4 5xl:w-5 5xl:h-5 flex items-center justify-center;
 }

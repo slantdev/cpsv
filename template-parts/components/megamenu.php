@@ -14,7 +14,7 @@ $social_links = $top_navigation['social_links'] ?? '';
         <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '24', 'class' => 'text-brand-blue w-5 h-5 2xl:w-6 2xl:h-6')); ?>
       </button>
     </form>
-    <button class="menu-close-btn flex-none">
+    <button class="menu-close-btn">
       <?php echo cpsv_icon(array('icon' => 'close', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6')); ?>
     </button>
   </div>

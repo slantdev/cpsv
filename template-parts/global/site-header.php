@@ -56,6 +56,10 @@ $donate_button = $top_navigation['donate_button'] ?? '';
 $header_logo = get_field('header_logo', 'option');
 $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() . '/assets/images/logo/logo-cpsv.svg';
 //preint_r($header_logo);
+
+global $woocommerce;
+$cart_page_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
+
 ?>
 <header class="fixed z-50 w-full top-0 left-0 bg-white xl:bg-transparent xl:static print:hidden">
   <div class="main-header">
@@ -65,15 +69,26 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
           <div class="site-logo py-3 xl:py-6">
             <a href="<?php echo site_url() ?>"><img src="<?php echo $site_logo ?>" alt="<?php echo get_bloginfo('name'); ?>" class="!h-12 xl:!h-16 3xl:!h-20 5xl:!h-[88px] !w-auto"></a>
           </div>
-          <button type="button" aria-label="Toggle navigation" id="primary-menu-toggle" class="menu-open-btn xl:hidden">
-            <svg viewBox="0 0 20 20" class="inline-block w-5 h-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
-                <g id="icon-shape">
-                  <path d="M0,3 L20,3 L20,5 L0,5 L0,3 Z M0,9 L20,9 L20,11 L0,11 L0,9 Z M0,15 L20,15 L20,17 L0,17 L0,15 Z" id="Combined-Shape"></path>
+          <div class="flex gap-x-3 lg:gap-x-4 items-center">
+            <a href="<?php echo $cart_page_url ?>" class="relative flex justify-center items-center px-2 py-2 xl:hidden">
+              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6')); ?>
+              <div class="basket-item-count absolute right-[3px] top-1.5 bg-brand-yellow text-[10px] rounded-full w-2.5 h-2.5 flex items-center justify-center">
+                <span class="cart-items-count count hidden">
+                  <?php echo WC()->cart->get_cart_contents_count(); ?>
+                </span>
+              </div>
+            </a>
+            <button type="button" aria-label="Toggle navigation" id="primary-menu-toggle" class="menu-open-btn flex items-center justify-center xl:hidden">
+              <svg viewBox="0 0 20 20" class="inline-block w-5 h-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+                  <g id="icon-shape">
+                    <path d="M0,3 L20,3 L20,5 L0,5 L0,3 Z M0,9 L20,9 L20,11 L0,11 L0,9 Z M0,15 L20,15 L20,17 L0,17 L0,15 Z" id="Combined-Shape"></path>
+                  </g>
                 </g>
-              </g>
-            </svg>
-          </button>
+              </svg>
+            </button>
+          </div>
+
         </div>
         <div class="flex items-start xl:w-3/4 xl:justify-end">
           <?php get_template_part('template-parts/components/megamenu'); ?>
@@ -89,9 +104,16 @@ $site_logo = $header_logo['site_logo']['url'] ?? get_stylesheet_directory_uri() 
             <button type="button" class="menu-search-btn bg-brand-blue text-white flex items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <?php echo cpsv_icon(array('icon' => 'search', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
             </button>
-            <button type="button" class="bg-brand-yellow text-white items-center px-4 5xl:px-7 py-4 hover:brightness-110 hidden">
-              <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
-            </button>
+            <a id="minicart" href="<?php echo $cart_page_url ?>" class="bg-brand-yellow text-white flex justify-center items-center px-4 5xl:px-7 py-4 hover:brightness-110">
+              <div class="relative">
+                <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
+                <div class="cart-items-count hidden 4xl:flex">
+                  <span class="count">
+                    <?php echo WC()->cart->get_cart_contents_count(); ?>
+                  </span>
+                </div>
+              </div>
+            </a>
             <div id="search-form-container" class="absolute bg-brand-light-gray">
               <div class="px-4 py-4 flex items-center w-full h-full">
                 <div class="flex w-full gap-x-4 items-center">
