@@ -22,3 +22,10 @@ function prefix_disable_gutenberg($current_status, $post_type)
   if ($post_type === 'post' || $post_type === 'page' || $post_type === 'where-are-they' || $post_type === 'faq') return false;
   return $current_status;
 }
+
+function get_give_email_images()
+{
+  $images = get_stylesheet_directory_uri() . '/give/emails/img/';
+
+  return $images;
+}
