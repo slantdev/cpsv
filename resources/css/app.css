@@ -5,6 +5,7 @@
 @import "partials/navigation.css";
 @import "partials/components.css";
 @import "partials/woocommerce.css";
+@import "partials/christmas.css";
 
 @media print {
   body {

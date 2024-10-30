@@ -1,6 +1,10 @@
 <?php
 define('GOOGLE_MAPS_API', 'AIzaSyALa7CVVKAaAPSw9-zopXMh2C7wcn6Zo10');
 
+// Define Formidable API Credentials
+define('FORMIDABLE_API_USERNAME', 'QDTD-C70F-JARK-4YHI');
+define('FORMIDABLE_API_PASSWORD', 'x');
+
 /**
  * REQUIRED FILES
  * Include required files.
@@ -28,4 +32,38 @@ function get_give_email_images()
   $images = get_stylesheet_directory_uri() . '/give/emails/img/';
 
   return $images;
+}
+
+
+add_action('wp_ajax_load_messages', 'load_messages');
+add_action('wp_ajax_nopriv_load_messages', 'load_messages'); // Allow unauthenticated access if needed
+
+function load_messages()
+{
+  // Add your API fetching logic here, securely using the stored credentials.
+  $username = 'QDTD-C70F-JARK-4YHI';
+  $password = 'x';
+
+  // Set the API endpoint
+  $api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
+
+  // Prepare an authorization header
+  $response = wp_remote_get($api_url, [
+    'headers' => [
+      'Authorization' => 'Basic ' . base64_encode("$username:$password"),
+    ],
+  ]);
+
+  // Check if the request was successful
+  if (is_wp_error($response)) {
+    wp_send_json_error('API request failed: ' . $response->get_error_message());
+    wp_die(); // Terminate the script
+  }
+
+  // Decode the JSON response
+  $data = json_decode(wp_remote_retrieve_body($response), true);
+
+  // Return the data as a JSON response
+  wp_send_json_success($data);
+  wp_die(); // Properly terminate the AJAX request
 }

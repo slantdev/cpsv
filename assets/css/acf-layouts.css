@@ -87,6 +87,37 @@
   }
 }
 
+#poststuff .acf-layout .alert {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  align-content: flex-start;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  border-radius: var(--rounded-box, 1rem);
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  padding: 1rem;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-b2,oklch(var(--b2)/1));
+  --alert-bg-mix: var(--fallback-b1,oklch(var(--b1)/1));
+  background-color: var(--alert-bg);
+}
+
+@media (min-width: 640px) {
+
+  #poststuff .acf-layout .alert {
+    grid-auto-flow: column;
+    grid-template-columns: auto minmax(auto,1fr);
+    justify-items: start;
+    text-align: start;
+  }
+}
+
 #poststuff .acf-layout .avatar.placeholder > div {
   display: flex;
   align-items: center;
@@ -1037,6 +1068,15 @@
           text-decoration-line: underline;
 }
 
+#poststuff .acf-layout .mask {
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+}
+
 #poststuff .acf-layout .menu {
   display: flex;
   flex-direction: column;
@@ -1088,6 +1128,73 @@
 
 #poststuff .acf-layout :where(.menu li) .badge {
   justify-self: end;
+}
+
+#poststuff .acf-layout .modal {
+  pointer-events: none;
+  position: fixed;
+  inset: 0px;
+  margin: 0px;
+  display: grid;
+  height: 100%;
+  max-height: none;
+  width: 100%;
+  max-width: none;
+  justify-items: center;
+  padding: 0px;
+  opacity: 0;
+  overscroll-behavior: contain;
+  z-index: 999;
+  background-color: transparent;
+  color: inherit;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-property: transform, opacity, visibility;
+  overflow-y: hidden;
+}
+
+#poststuff .acf-layout :where(.modal) {
+  align-items: center;
+}
+
+#poststuff .acf-layout .modal-box {
+  max-height: calc(100vh - 5em);
+  grid-column-start: 1;
+  grid-row-start: 1;
+  width: 91.666667%;
+  max-width: 32rem;
+  --tw-scale-x: .9;
+  --tw-scale-y: .9;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-bottom-right-radius: var(--rounded-box, 1rem);
+  border-bottom-left-radius: var(--rounded-box, 1rem);
+  border-top-left-radius: var(--rounded-box, 1rem);
+  border-top-right-radius: var(--rounded-box, 1rem);
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+  padding: 1.5rem;
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 200ms;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#poststuff .acf-layout .modal-open,
+#poststuff .acf-layout .modal:target,
+#poststuff .acf-layout .modal-toggle:checked + .modal,
+#poststuff .acf-layout .modal[open] {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+#poststuff .acf-layout :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+  overflow: hidden;
 }
 
 #poststuff .acf-layout .radio {
@@ -1364,6 +1471,14 @@
   border-color: transparent;
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
+#poststuff .acf-layout .alert-success {
+  border-color: var(--fallback-su,oklch(var(--su)/0.2));
+  --tw-text-opacity: 1;
+  color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-su,oklch(var(--su)/1));
+  --alert-bg-mix: var(--fallback-b1,oklch(var(--b1)/1));
 }
 
 #poststuff .acf-layout .btm-nav > *:where(.active) {
@@ -2250,6 +2365,32 @@
   opacity: 0.6;
 }
 
+#poststuff .acf-layout .modal:not(dialog:not(.modal-open)),
+  #poststuff .acf-layout .modal::backdrop {
+  background-color: #0006;
+  animation: modal-pop 0.2s ease-out;
+}
+
+#poststuff .acf-layout .modal-backdrop {
+  z-index: -1;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: grid;
+  align-self: stretch;
+  justify-self: stretch;
+  color: transparent;
+}
+
+#poststuff .acf-layout .modal-open .modal-box,
+#poststuff .acf-layout .modal-toggle:checked + .modal .modal-box,
+#poststuff .acf-layout .modal:target .modal-box,
+#poststuff .acf-layout .modal[open] .modal-box {
+  --tw-translate-y: 0px;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 @keyframes modal-pop {
 
   0% {
@@ -2943,6 +3084,45 @@
   margin-top: 0px;
   margin-bottom: 0px;
   margin-inline-start: -1px;
+}
+
+#poststuff .acf-layout .modal-top :where(.modal-box) {
+  width: 100%;
+  max-width: none;
+  --tw-translate-y: -2.5rem;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-bottom-right-radius: var(--rounded-box, 1rem);
+  border-bottom-left-radius: var(--rounded-box, 1rem);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+#poststuff .acf-layout .modal-middle :where(.modal-box) {
+  width: 91.666667%;
+  max-width: 32rem;
+  --tw-translate-y: 0px;
+  --tw-scale-x: .9;
+  --tw-scale-y: .9;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-top-left-radius: var(--rounded-box, 1rem);
+  border-top-right-radius: var(--rounded-box, 1rem);
+  border-bottom-right-radius: var(--rounded-box, 1rem);
+  border-bottom-left-radius: var(--rounded-box, 1rem);
+}
+
+#poststuff .acf-layout .modal-bottom :where(.modal-box) {
+  width: 100%;
+  max-width: none;
+  --tw-translate-y: 2.5rem;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-top-left-radius: var(--rounded-box, 1rem);
+  border-top-right-radius: var(--rounded-box, 1rem);
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 #poststuff .acf-layout .prose {
@@ -4113,6 +4293,10 @@
   left: 0;
 }
 
+#poststuff .acf-layout .aspect-h-16 {
+  --tw-aspect-h: 16;
+}
+
 #poststuff .acf-layout .visible {
   visibility: visible;
 }
@@ -4241,6 +4425,14 @@
   top: 0px;
 }
 
+#poststuff .acf-layout .top-1 {
+  top: 0.25rem;
+}
+
+#poststuff .acf-layout .top-1\.5 {
+  top: 0.375rem;
+}
+
 #poststuff .acf-layout .top-2 {
   top: 0.5rem;
 }
@@ -4263,26 +4455,6 @@
 
 #poststuff .acf-layout .top-auto {
   top: auto;
-}
-
-#poststuff .acf-layout .right-1 {
-  right: 0.25rem;
-}
-
-#poststuff .acf-layout .top-1 {
-  top: 0.25rem;
-}
-
-#poststuff .acf-layout .right-\[2px\] {
-  right: 2px;
-}
-
-#poststuff .acf-layout .top-1\.5 {
-  top: 0.375rem;
-}
-
-#poststuff .acf-layout .-right-1 {
-  right: -0.25rem;
 }
 
 #poststuff .acf-layout .\!z-20 {
@@ -4552,6 +4724,10 @@
   display: inline-block;
 }
 
+#poststuff .acf-layout .inline {
+  display: inline;
+}
+
 #poststuff .acf-layout .flex {
   display: flex;
 }
@@ -4562,6 +4738,18 @@
 
 #poststuff .acf-layout .table {
   display: table;
+}
+
+#poststuff .acf-layout .inline-table {
+  display: inline-table;
+}
+
+#poststuff .acf-layout .table-cell {
+  display: table-cell;
+}
+
+#poststuff .acf-layout .table-row {
+  display: table-row;
 }
 
 #poststuff .acf-layout .grid {
@@ -4626,6 +4814,14 @@
 
 #poststuff .acf-layout .h-16 {
   height: 4rem;
+}
+
+#poststuff .acf-layout .h-2 {
+  height: 0.5rem;
+}
+
+#poststuff .acf-layout .h-2\.5 {
+  height: 0.625rem;
 }
 
 #poststuff .acf-layout .h-20 {
@@ -4712,14 +4908,6 @@
   height: 100%;
 }
 
-#poststuff .acf-layout .h-2 {
-  height: 0.5rem;
-}
-
-#poststuff .acf-layout .h-2\.5 {
-  height: 0.625rem;
-}
-
 #poststuff .acf-layout .max-h-\[50vh\] {
   max-height: 50vh;
 }
@@ -4794,6 +4982,14 @@
 
 #poststuff .acf-layout .w-16 {
   width: 4rem;
+}
+
+#poststuff .acf-layout .w-2 {
+  width: 0.5rem;
+}
+
+#poststuff .acf-layout .w-2\.5 {
+  width: 0.625rem;
 }
 
 #poststuff .acf-layout .w-2\/3 {
@@ -4908,14 +5104,6 @@
   width: 1px;
 }
 
-#poststuff .acf-layout .w-2 {
-  width: 0.5rem;
-}
-
-#poststuff .acf-layout .w-2\.5 {
-  width: 0.625rem;
-}
-
 #poststuff .acf-layout .min-w-56 {
   min-width: 14rem;
 }
@@ -5018,6 +5206,10 @@
 
 #poststuff .acf-layout .flex-none {
   flex: none;
+}
+
+#poststuff .acf-layout .shrink-0 {
+  flex-shrink: 0;
 }
 
 #poststuff .acf-layout .flex-grow {
@@ -5309,6 +5501,10 @@
 
 #poststuff .acf-layout .overflow-x-hidden {
   overflow-x: hidden;
+}
+
+#poststuff .acf-layout .overflow-y-hidden {
+  overflow-y: hidden;
 }
 
 #poststuff .acf-layout .scroll-smooth {
@@ -5613,6 +5809,16 @@
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
 }
 
+#poststuff .acf-layout .bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+#poststuff .acf-layout .bg-green-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
 #poststuff .acf-layout .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
@@ -5712,6 +5918,10 @@
 
 #poststuff .acf-layout .bg-repeat-x {
   background-repeat: repeat-x;
+}
+
+#poststuff .acf-layout .stroke-current {
+  stroke: currentColor;
 }
 
 #poststuff .acf-layout .object-cover {
@@ -6168,6 +6378,10 @@
   line-height: 1;
 }
 
+#poststuff .acf-layout .text-\[10px\] {
+  font-size: 10px;
+}
+
 #poststuff .acf-layout .text-\[13px\] {
   font-size: 13px;
 }
@@ -6230,10 +6444,6 @@
 #poststuff .acf-layout .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-#poststuff .acf-layout .text-\[10px\] {
-  font-size: 10px;
 }
 
 #poststuff .acf-layout .\!font-semibold {
@@ -9011,36 +9221,8 @@
 
 @media (min-width: 1536px) {
 
-  #poststuff .acf-layout .\34xl\:-right-2 {
-    right: -0.5rem;
-  }
-
-  #poststuff .acf-layout .\34xl\:-top-1 {
-    top: -0.25rem;
-  }
-
-  #poststuff .acf-layout .\34xl\:block {
-    display: block;
-  }
-
   #poststuff .acf-layout .\34xl\:flex {
     display: flex;
-  }
-
-  #poststuff .acf-layout .\34xl\:h-5 {
-    height: 1.25rem;
-  }
-
-  #poststuff .acf-layout .\34xl\:h-4 {
-    height: 1rem;
-  }
-
-  #poststuff .acf-layout .\34xl\:w-5 {
-    width: 1.25rem;
-  }
-
-  #poststuff .acf-layout .\34xl\:w-4 {
-    width: 1rem;
   }
 
   #poststuff .acf-layout .\34xl\:text-base {
@@ -9051,18 +9233,6 @@
 
 @media (min-width: 1792px) {
 
-  #poststuff .acf-layout .\35xl\:-right-2 {
-    right: -0.5rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:-top-1 {
-    top: -0.25rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:block {
-    display: block;
-  }
-
   #poststuff .acf-layout .\35xl\:\!h-\[88px\] {
     height: 88px !important;
   }
@@ -9071,32 +9241,8 @@
     height: 2.25rem;
   }
 
-  #poststuff .acf-layout .\35xl\:h-3 {
-    height: 0.75rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:h-4 {
-    height: 1rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:h-5 {
-    height: 1.25rem;
-  }
-
   #poststuff .acf-layout .\35xl\:w-9 {
     width: 2.25rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:w-3 {
-    width: 0.75rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:w-4 {
-    width: 1rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:w-5 {
-    width: 1.25rem;
   }
 
   #poststuff .acf-layout .\35xl\:px-7 {
@@ -9112,10 +9258,6 @@
   #poststuff .acf-layout .\35xl\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  #poststuff .acf-layout .\35xl\:text-\[10px\] {
-    font-size: 10px;
   }
 }
 
