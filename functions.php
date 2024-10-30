@@ -41,11 +41,13 @@ add_action('wp_ajax_nopriv_load_messages', 'load_messages'); // Allow unauthenti
 function load_messages()
 {
   // Add your API fetching logic here, securely using the stored credentials.
-  $username = 'QDTD-C70F-JARK-4YHI';
+  // $username = 'QDTD-C70F-JARK-4YHI';
+  $username = '1CT1-9K1M-KGG1-N6AB';
   $password = 'x';
 
   // Set the API endpoint
-  $api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
+  //$api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
+  $api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/32/entries?order=DESC';
 
   // Prepare an authorization header
   $response = wp_remote_get($api_url, [

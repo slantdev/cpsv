@@ -30,7 +30,7 @@ get_header();
           <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
           <dialog id="wishes_form_modal" class="modal">
             <div class="modal-box">
-              <?php echo FrmFormsController::get_form_shortcode(array('id' => 3)); ?>
+              <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
             </div>
             <form method="dialog" class="modal-backdrop">
               <button>close</button>
