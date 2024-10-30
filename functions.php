@@ -48,8 +48,8 @@ function load_messages()
   // Set the API endpoint
   //$api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
   //$api_url = 'https://catprotection.com.au/wp-json/frm/v2/forms/32/entries?order=DESC';
-  $api_url = 'http://cpsvdev.local/wp-json/wp/v2/christmas-wish?status=publish';
-  //$api_url = 'https://catprotection.com.au/wp-json/wp/v2/christmas-wish?status=publish';
+  //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/christmas-wish?status=publish';
+  $api_url = 'https://catprotection.com.au/wp-json/wp/v2/christmas-wish?status=publish';
 
 
   // Prepare an authorization header
