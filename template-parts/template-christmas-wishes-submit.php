@@ -14,7 +14,7 @@ get_header();
     <div class="tree-side">
       <div class="w-full h-full">
         <div class="aspect-w-9 aspect-h-16">
-          <video autoplay loop>
+          <video loop muted playsinline autoplay>
             <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/xmas-tree.mp4" type="video/mp4" />
           </video>
         </div>
