@@ -47,7 +47,7 @@ function load_messages()
 
   // Set the API endpoint
   //$api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
-  $api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/32/entries?order=DESC';
+  $api_url = 'https://catprotection.com.au/wp-json/frm/v2/forms/32/entries?order=DESC';
 
   // Prepare an authorization header
   $response = wp_remote_get($api_url, [
