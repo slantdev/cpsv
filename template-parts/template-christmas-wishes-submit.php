@@ -139,6 +139,12 @@ get_header();
     const successMessageElement = document.querySelector('.success-message');
     if (successMessageElement) {
       successMessageElement.style.display = 'block';
+
+      // Automatically hide the message after 10 seconds
+      setTimeout(() => {
+        successMessageElement.style.display = 'none';
+        removeSuccessParams();
+      }, 10000); // 10000 milliseconds = 10 seconds
     }
   }
 
@@ -150,11 +156,16 @@ get_header();
       if (successMessageElement) {
         successMessageElement.style.display = 'none';
       }
-      // Remove the ?success=true parameter from the URL
-      const url = new URL(window.location.href);
-      url.searchParams.delete('success'); // Remove the 'success' parameter
-      window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
+      // Remove the success parameter from the URL
+      removeSuccessParams();
     });
+  }
+
+  // Function to remove the 'success' parameter from the URL
+  function removeSuccessParams() {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('success'); // Remove the 'success' parameter
+    window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
   }
 </script>
 
