@@ -20,7 +20,7 @@
   }
 
   .cards-container {
-    @apply p-5 grid gap-5 mt-5 overflow-y-auto;
+    @apply p-6 grid gap-5 mt-5 overflow-y-auto;
     //grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     @apply grid-cols-3;
   }

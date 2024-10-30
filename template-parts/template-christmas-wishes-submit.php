@@ -30,7 +30,7 @@ get_header();
           <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
           <dialog id="wishes_form_modal" class="modal">
             <div class="modal-box">
-              <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
+              <?php echo FrmFormsController::get_form_shortcode(array('id' => 3)); ?>
             </div>
             <form method="dialog" class="modal-backdrop">
               <button>close</button>
@@ -51,13 +51,14 @@ get_header();
               stroke-width="2"
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span>Your wish has been submitted!</span>
+          <span>Thank you! Your request has been submitted and is now pending review.<br />It will be displayed once approved.</span>
           <button class="close-alert">
             <?php echo cpsv_icon(array('icon' => 'close', 'group' => 'utilities', 'size' => '20', 'class' => 'w-5 h-5')); ?>
           </button>
         </div>
       </div>
       <div class="wish-cards-container">
+        <div id="loading-indicator" class="text-center p-6 mt-5" style="display:none;"><span class="loading loading-spinner text-info w-8"></span></div>
         <div id="wish-cards" class="cards-container"></div>
       </div>
     </div>
@@ -70,19 +71,23 @@ get_header();
   });
 
   async function loadMessages() {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    loadingIndicator.style.display = 'block'; // Show loading indicator
+
     try {
       // Make an AJAX call to the WordPress AJAX endpoint
       let response = await fetch('/wp-admin/admin-ajax.php?action=load_messages');
       let data = await response.json();
-
       const wishContainer = document.getElementById('wish-cards');
       wishContainer.innerHTML = ''; // Clear any existing content
 
       if (data.success) {
         // Iterate through entries and display messages
         for (const entry of Object.values(data.data)) {
-          const wish = entry.meta.wish; // Access the wish message
-          const name = entry.meta.name; // Access the wish name
+          // const wish = entry.meta.wish; // Access the wish message
+          // const name = entry.meta.name; // Access the wish name
+          const wish = entry.content.rendered; // Access the wish message
+          const name = entry.title.rendered; // Access the wish name          
 
           const card = document.createElement('div');
           card.className = 'card';
@@ -99,7 +104,7 @@ get_header();
           // Click event for the card to open Fancybox
           card.addEventListener('click', function() {
             Fancybox.show([{
-              src: `<div class="prose"><div>${wish}</div><h4 class="text-md">${name}</h4></div>`,
+              src: `<div class="prose"><div class="prose">${wish}</div><h4 class="text-md">${name}</h4></div>`,
               type: 'html',
             }]);
           });
@@ -111,16 +116,10 @@ get_header();
       }
     } catch (error) {
       console.error('Error fetching wish data:', error); // Log any fetch errors
+    } finally {
+      loadingIndicator.style.display = 'none'; // Hide loading indicator
     }
   }
-</script>
-
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $(document).on('frmFormComplete', function(object, response) {
-      $(".frm_message").delay(5000).fadeOut(1000); // change 5000 to number of seconds in milliseconds
-    });
-  });
 </script>
 
 <script>
@@ -151,6 +150,10 @@ get_header();
       if (successMessageElement) {
         successMessageElement.style.display = 'none';
       }
+      // Remove the ?success=true parameter from the URL
+      const url = new URL(window.location.href);
+      url.searchParams.delete('success'); // Remove the 'success' parameter
+      window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
     });
   }
 </script>

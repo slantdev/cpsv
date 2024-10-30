@@ -23,7 +23,7 @@ add_filter('use_block_editor_for_post_type', 'prefix_disable_gutenberg', 10, 2);
 function prefix_disable_gutenberg($current_status, $post_type)
 {
   // Use your post type key instead of 'product'
-  if ($post_type === 'post' || $post_type === 'page' || $post_type === 'where-are-they' || $post_type === 'faq') return false;
+  if ($post_type === 'post' || $post_type === 'page' || $post_type === 'where-are-they' || $post_type === 'faq' || $post_type === 'christmas-wish') return false;
   return $current_status;
 }
 
@@ -41,19 +41,22 @@ add_action('wp_ajax_nopriv_load_messages', 'load_messages'); // Allow unauthenti
 function load_messages()
 {
   // Add your API fetching logic here, securely using the stored credentials.
-  // $username = 'QDTD-C70F-JARK-4YHI';
-  $username = '1CT1-9K1M-KGG1-N6AB';
+  $username = 'QDTD-C70F-JARK-4YHI';
+  //$username = '1CT1-9K1M-KGG1-N6AB';
   $password = 'x';
 
   // Set the API endpoint
   //$api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
-  $api_url = 'https://catprotection.com.au/wp-json/frm/v2/forms/32/entries?order=DESC';
+  //$api_url = 'https://catprotection.com.au/wp-json/frm/v2/forms/32/entries?order=DESC';
+  $api_url = 'http://cpsvdev.local/wp-json/wp/v2/christmas-wish?status=publish';
+  //$api_url = 'https://catprotection.com.au/wp-json/wp/v2/christmas-wish?status=publish';
+
 
   // Prepare an authorization header
   $response = wp_remote_get($api_url, [
-    'headers' => [
-      'Authorization' => 'Basic ' . base64_encode("$username:$password"),
-    ],
+    // 'headers' => [
+    //   'Authorization' => 'Basic ' . base64_encode("$username:$password"),
+    // ],
   ]);
 
   // Check if the request was successful
