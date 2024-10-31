@@ -1207,6 +1207,12 @@
   opacity: 1;
 }
 
+#poststuff .acf-layout .modal-action {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+
 #poststuff .acf-layout :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
   overflow: hidden;
 }
@@ -2408,6 +2414,12 @@
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+#poststuff .acf-layout .modal-action > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 @keyframes modal-pop {
@@ -5003,6 +5015,58 @@
   height: 100%;
 }
 
+#poststuff .acf-layout .h-\[calc\(100vh-175px\)\] {
+  height: calc(100vh - 175px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-172px\)\] {
+  height: calc(100vh - 172px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-178px\)\] {
+  height: calc(100vh - 178px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-180px\)\] {
+  height: calc(100vh - 180px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-182px\)\] {
+  height: calc(100vh - 182px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-200px\)\] {
+  height: calc(100vh - 200px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-190px\)\] {
+  height: calc(100vh - 190px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-1188px\)\] {
+  height: calc(100vh - 1188px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-188px\)\] {
+  height: calc(100vh - 188px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-186px\)\] {
+  height: calc(100vh - 186px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-187px\)\] {
+  height: calc(100vh - 187px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-184px\)\] {
+  height: calc(100vh - 184px);
+}
+
+#poststuff .acf-layout .h-\[calc\(100vh-185px\)\] {
+  height: calc(100vh - 185px);
+}
+
 #poststuff .acf-layout .max-h-\[50vh\] {
   max-height: 50vh;
 }
@@ -5590,6 +5654,10 @@
   overflow: clip;
 }
 
+#poststuff .acf-layout .overflow-x-auto {
+  overflow-x: auto;
+}
+
 #poststuff .acf-layout .overflow-y-auto {
   overflow-y: auto;
 }
@@ -5912,6 +5980,11 @@
 #poststuff .acf-layout .bg-green-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
+#poststuff .acf-layout .bg-\[\#fffaf3\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 250 243 / var(--tw-bg-opacity));
 }
 
 #poststuff .acf-layout .bg-opacity-60 {
@@ -8144,6 +8217,10 @@
 #poststuff .acf-layout .group:hover .group-hover\:brightness-125 {
   --tw-brightness: brightness(1.25);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+#poststuff .acf-layout .prose-p\:text-\[15px\] :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 15px;
 }
 
 #poststuff .acf-layout .prose-p\:text-black :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {

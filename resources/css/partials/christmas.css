@@ -1,14 +1,11 @@
 #christmas-wishes {
   .wishes-container {
-    @apply grid grid-cols-5 h-screen;
   }
 
   .tree-side {
-    @apply flex justify-center items-center bg-[#fffaf3] col-span-2;
   }
 
   .form-side {
-    @apply bg-white flex flex-col col-span-3;
   }
 
   #wish-form {

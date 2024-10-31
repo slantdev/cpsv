@@ -1889,6 +1889,11 @@ select {
   visibility: visible;
   opacity: 1;
 }
+.modal-action {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
 :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
   overflow: hidden;
 }
@@ -2950,6 +2955,11 @@ details.collapse summary::-webkit-details-marker {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.modal-action > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 @keyframes modal-pop {
 
@@ -4908,6 +4918,9 @@ details.collapse summary::-webkit-details-marker {
 .mt-4 {
   margin-top: 1rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -4922,9 +4935,6 @@ details.collapse summary::-webkit-details-marker {
 }
 .mt-auto {
   margin-top: auto;
-}
-.mt-5 {
-  margin-top: 1.25rem;
 }
 .line-clamp-2 {
   overflow: hidden;
@@ -5070,11 +5080,50 @@ details.collapse summary::-webkit-details-marker {
 .h-\[80vh\] {
   height: 80vh;
 }
+.h-\[calc\(100vh-175px\)\] {
+  height: calc(100vh - 175px);
+}
 .h-auto {
   height: auto;
 }
 .h-full {
   height: 100%;
+}
+.h-\[calc\(100vh-172px\)\] {
+  height: calc(100vh - 172px);
+}
+.h-\[calc\(100vh-178px\)\] {
+  height: calc(100vh - 178px);
+}
+.h-\[calc\(100vh-180px\)\] {
+  height: calc(100vh - 180px);
+}
+.h-\[calc\(100vh-182px\)\] {
+  height: calc(100vh - 182px);
+}
+.h-\[calc\(100vh-200px\)\] {
+  height: calc(100vh - 200px);
+}
+.h-\[calc\(100vh-190px\)\] {
+  height: calc(100vh - 190px);
+}
+.h-\[calc\(100vh-1188px\)\] {
+  height: calc(100vh - 1188px);
+}
+.h-\[calc\(100vh-188px\)\] {
+  height: calc(100vh - 188px);
+}
+.h-\[calc\(100vh-186px\)\] {
+  height: calc(100vh - 186px);
+}
+.h-\[calc\(100vh-187px\)\] {
+  height: calc(100vh - 187px);
+}
+.h-\[calc\(100vh-184px\)\] {
+  height: calc(100vh - 184px);
+}
+.h-\[calc\(100vh-185px\)\] {
+  height: calc(100vh - 185px);
 }
 .max-h-\[50vh\] {
   max-height: 50vh;
@@ -5522,6 +5571,9 @@ details.collapse summary::-webkit-details-marker {
 .overflow-clip {
   overflow: clip;
 }
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -5697,6 +5749,10 @@ details.collapse summary::-webkit-details-marker {
 .border-zinc-300 {
   --tw-border-opacity: 1;
   border-color: rgb(212 212 216 / var(--tw-border-opacity));
+}
+.bg-\[\#fffaf3\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 250 243 / var(--tw-bg-opacity));
 }
 .bg-base-100 {
   --tw-bg-opacity: 1;
@@ -8613,25 +8669,11 @@ div.woocommerce
   } */
 }
 #christmas-wishes .wishes-container {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
+  }
 #christmas-wishes .tree-side {
-  grid-column: span 2 / span 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 250 243 / var(--tw-bg-opacity));
-}
+  }
 #christmas-wishes .form-side {
-  grid-column: span 3 / span 3;
-  display: flex;
-  flex-direction: column;
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
+  }
 #christmas-wishes #wish-form {
   padding: 1.5rem;
 }
@@ -9495,6 +9537,9 @@ div.woocommerce
 .group:hover .group-hover\:brightness-125 {
   --tw-brightness: brightness(1.25);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.prose-p\:text-\[15px\] :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  font-size: 15px;
 }
 .prose-p\:text-black :is(:where(p):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   --tw-text-opacity: 1;

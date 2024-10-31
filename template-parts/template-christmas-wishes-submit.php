@@ -10,54 +10,51 @@ get_header();
 
 ?>
 <div id="christmas-wishes" class="border-t">
-  <div class="wishes-container">
-    <div class="tree-side">
-      <div class="w-full h-full">
-        <div class="aspect-w-9 aspect-h-16">
-          <video loop muted playsinline autoplay>
-            <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/xmas-tree.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
+  <div class="wishes-container flex h-[calc(100vh-185px)]">
+    <div class="tree-side bg-[#fffaf3] w-2/5">
+      <video class="w-full h-full object-cover" loop muted playsinline autoplay>
+        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/xmas-tree.mp4" type="video/mp4" />
+      </video>
     </div>
-    <div class="form-side border-l">
-      <div id="wish-form" class="border-b flex justify-between items-center">
-        <div>
+    <div class="form-side border-l bg-white flex flex-col w-3/5 h-full overflow-x-auto">
+      <div id="wish-form" class="border-b">
+        <div class="prose prose-p:text-[15px] max-w-none">
           <h1 class="text-4xl font-bold">Christmas Wishes</h1>
+          <p>Thank you for donating to our Santa Paws appeal and helping bring comfort, care, and joy to the cats and kittens who will be spending this Christmas at our adoption shelter. Your kindness means the world to us and to the animals in our care.</p>
+          <p>This Christmas, will you share a message of love and hope with cats like Bennett, Jeremy, Carrot, and Atticus? We invite you to add your name and Christmas wish below. Your heartfelt message will be displayed on our CPSV Wishing Tree, where fellow Victorian cat lovers can share in the joy of your support.</p>
+          <p>From all of us at CPSV, thank you for your generosity. We wish you a Merry Christmas filled with warmth and a New Year filled with happiness</p>
+          <div>
+            <!-- Open the modal using ID.showModal() method -->
+            <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
+            <dialog id="wishes_form_modal" class="modal">
+              <div class="modal-box">
+                <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
+              </div>
+              <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
         </div>
-        <div>
-          <!-- Open the modal using ID.showModal() method -->
-          <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
-          <dialog id="wishes_form_modal" class="modal">
-            <div class="modal-box">
-              <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
-            </div>
-            <form method="dialog" class="modal-backdrop">
-              <button>close</button>
+      </div>
+      <dialog id="success_message_modal" class="modal">
+        <div class="modal-box">
+          <div class="prose max-w-none">
+            <p>Thank you for leaving a message of love and hope for the cats and kittens who will find themselves at our adoption shelter this Christmas. Your message has been sent to our CPSV team for review and approval, and it will be posted to our CPSV Wishing Tree page within 24 hours.</p>
+            <p>Thank you again for being a PAW-some supporter for Victorian cats in need this Christmas.</p>
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn close-success">Close</button>
             </form>
-          </dialog>
+          </div>
         </div>
-      </div>
-      <div class="success-message mt-6 px-6" style="display: none;">
-        <div role=" alert" class="alert alert-success rounded-md bg-green-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 shrink-0 stroke-current"
-            fill="none"
-            viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span>Thank you! Your request has been submitted and is now pending review.<br />It will be displayed once approved.</span>
-          <button class="close-alert">
-            <?php echo cpsv_icon(array('icon' => 'close', 'group' => 'utilities', 'size' => '20', 'class' => 'w-5 h-5')); ?>
-          </button>
-        </div>
-      </div>
-      <div class="wish-cards-container">
+        <form method="dialog" class="modal-backdrop">
+          <button class="close-success">close</button>
+        </form>
+      </dialog>
+      <div class="wish-cards-container bg-[#fffaf3]">
         <div id="loading-indicator" class="text-center p-6 mt-5" style="display:none;"><span class="loading loading-spinner text-info w-8"></span></div>
         <div id="wish-cards" class="cards-container"></div>
       </div>
@@ -137,24 +134,16 @@ get_header();
 
   if (success === 'true') {
     const successMessageElement = document.querySelector('.success-message');
-    if (successMessageElement) {
-      successMessageElement.style.display = 'block';
-
-      // Automatically hide the message after 10 seconds
-      setTimeout(() => {
-        successMessageElement.style.display = 'none';
-        removeSuccessParams();
-      }, 10000); // 10000 milliseconds = 10 seconds
-    }
+    success_message_modal.showModal();
   }
 
   // Add event listener to the close button
-  const closeButton = document.querySelector('.close-alert');
+  const closeButton = document.querySelector('.close-success');
   if (closeButton) {
     closeButton.addEventListener('click', function() {
-      const successMessageElement = document.querySelector('.success-message');
+      const successMessageElement = document.getElementById('success_message_modal');
       if (successMessageElement) {
-        successMessageElement.style.display = 'none';
+        success_message_modal.close();
       }
       // Remove the success parameter from the URL
       removeSuccessParams();
