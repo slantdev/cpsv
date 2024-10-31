@@ -27,7 +27,7 @@ get_header();
             <!-- Open the modal using ID.showModal() method -->
             <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
             <dialog id="wishes_form_modal" class="modal">
-              <div class="modal-box">
+              <div class="modal-box overflow-x-hidden">
                 <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
               </div>
               <form method="dialog" class="modal-backdrop">
