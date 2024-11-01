@@ -13,7 +13,7 @@ get_header();
   <div class="wishes-container flex h-[calc(100vh-185px)]">
     <div class="tree-side bg-[#fffaf3] w-2/5">
       <video class="w-full h-full object-cover" loop muted playsinline autoplay>
-        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/xmas-tree.mp4" type="video/mp4" />
+        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="form-side border-l bg-white flex flex-col w-3/5 h-full overflow-x-auto">
