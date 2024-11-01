@@ -15,7 +15,7 @@ $content_editor_style = '';
 
 // Assigning text color to content editor style if available
 if ($text_color) {
-  $content_editor_style = 'color:' . $text_color . ';';
+  $content_editor_style = 'color:' . $text_color . ';--tw-prose-counters:' . $text_color . ';';
 }
 
 // Outputting content editor if available
