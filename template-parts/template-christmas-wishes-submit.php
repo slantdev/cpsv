@@ -11,7 +11,7 @@ get_header();
 ?>
 <div id="christmas-wishes" class="border-t">
   <div class="wishes-container flex h-[calc(100vh-185px)]">
-    <div class="tree-side bg-[#fffaf3] w-1/3">
+    <div class="tree-side bg-[#c70117] w-1/3">
       <video class="w-full h-full object-cover" loop muted playsinline autoplay>
         <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
       </video>

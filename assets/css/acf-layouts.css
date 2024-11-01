@@ -5991,6 +5991,11 @@
   background-color: rgb(255 250 243 / var(--tw-bg-opacity));
 }
 
+#poststuff .acf-layout .bg-\[\#c70117\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(199 1 23 / var(--tw-bg-opacity));
+}
+
 #poststuff .acf-layout .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
 }
