@@ -11,29 +11,32 @@ get_header();
 ?>
 <div id="christmas-wishes" class="border-t">
   <div class="wishes-container flex h-[calc(100vh-185px)]">
-    <div class="tree-side bg-[#fffaf3] w-2/5">
+    <div class="tree-side bg-[#fffaf3] w-1/3">
       <video class="w-full h-full object-cover" loop muted playsinline autoplay>
-        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
+        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
       </video>
     </div>
-    <div class="form-side border-l bg-white flex flex-col w-3/5 h-full overflow-x-auto">
+    <div class="form-side bg-white flex flex-col w-2/3 h-full overflow-x-auto">
       <div id="wish-form" class="border-b">
-        <div class="prose prose-p:text-[15px] max-w-none">
-          <h1 class="text-4xl font-bold">Christmas Wishes</h1>
-          <p>This Christmas, we are encouraging Victorian cat lovers to share a message of love and hope with the hundreds of cats and kittens who will sadly find themselves at our adoption shelter. Instead of waking up on Christmas morning to cuddles, pats, and toys, many of these precious animals will be feeling lonely, afraid, and unsure of what the future holds.</p>
-          <p>But you can help.</p>
-          <p>When you make a tax-deductible donation to our Santa Paws appeal, you'll have the opportunity to write your own heartfelt message to a cat or kitten spending Christmas at our shelter.</p>
-          <p>Simply click on the 'Donate Now' button, and once your donation is processed, you'll be directed to a page where you can share your wish.</p>
-          <p>From all of us at CPSV, thank you for being a paw-some friend to Victorian cats in need this Christmas. Your kindness will bring comfort and hope during this special time.</p>
-          <p>Wishing you a Merry Christmas and a happy, healthy New Year!</p>
-          <div>
-            <a href="#" class="btn btn-primary text-white no-underline">Donate Now</a>
+        <div><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/SDG-Cat-Protection-Web-Banner-2024.jpg" alt="CPSV Banner"></div>
+        <div class="p-6 2xl:p-8">
+          <div class="prose prose-p:text-[15px] max-w-none">
+            <h1 class="text-4xl font-bold">Christmas Wishes</h1>
+            <p>This Christmas, we are encouraging Victorian cat lovers to share a message of love and hope with the hundreds of cats and kittens who will sadly find themselves at our adoption shelter. Instead of waking up on Christmas morning to cuddles, pats, and toys, many of these precious animals will be feeling lonely, afraid, and unsure of what the future holds.</p>
+            <p>But you can help.</p>
+            <p>When you make a tax-deductible donation to our Santa Paws appeal, you'll have the opportunity to write your own heartfelt message to a cat or kitten spending Christmas at our shelter.</p>
+            <p>Simply click on the 'Donate Now' button, and once your donation is processed, you'll be directed to a page where you can share your wish.</p>
+            <p>From all of us at CPSV, thank you for being a paw-some friend to Victorian cats in need this Christmas. Your kindness will bring comfort and hope during this special time.</p>
+            <p>Wishing you a Merry Christmas and a happy, healthy New Year!</p>
+            <div>
+              <a href="https://catprotection.com.au/donations/santa-paws-christmas-appeal/" class="btn btn-primary text-white no-underline">Donate Now</a>
+            </div>
           </div>
         </div>
       </div>
       <div class="wish-cards-container bg-[#fffaf3]">
         <div id="loading-indicator" class="text-center p-6 mt-5" style="display:none;"><span class="loading loading-spinner text-info w-8"></span></div>
-        <div id="wish-cards" class="cards-container"></div>
+        <div id="wish-cards" class="cards-container p-6 grid gap-5 overflow-y-auto grid-cols-3 2xl:p-8"></div>
       </div>
     </div>
   </div>

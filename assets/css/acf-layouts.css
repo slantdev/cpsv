@@ -5555,6 +5555,10 @@
   gap: 2rem;
 }
 
+#poststuff .acf-layout .gap-5 {
+  gap: 1.25rem;
+}
+
 #poststuff .acf-layout .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -9375,6 +9379,10 @@
          column-gap: 6rem;
   }
 
+  #poststuff .acf-layout .\32xl\:p-8 {
+    padding: 2rem;
+  }
+
   #poststuff .acf-layout .\32xl\:\!py-3 {
     padding-top: 0.75rem !important;
     padding-bottom: 0.75rem !important;
@@ -9400,6 +9408,22 @@
 
   #poststuff .acf-layout .\34xl\:flex {
     display: flex;
+  }
+
+  #poststuff .acf-layout .\34xl\:w-\[30\%\] {
+    width: 30%;
+  }
+
+  #poststuff .acf-layout .\34xl\:w-\[70\%\] {
+    width: 70%;
+  }
+
+  #poststuff .acf-layout .\34xl\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  #poststuff .acf-layout .\34xl\:w-2\/3 {
+    width: 66.666667%;
   }
 
   #poststuff .acf-layout .\34xl\:text-base {

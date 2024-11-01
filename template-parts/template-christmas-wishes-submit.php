@@ -11,29 +11,32 @@ get_header();
 ?>
 <div id="christmas-wishes" class="border-t">
   <div class="wishes-container flex h-[calc(100vh-185px)]">
-    <div class="tree-side bg-[#fffaf3] w-2/5">
+    <div class="tree-side bg-[#fffaf3] w-1/3">
       <video class="w-full h-full object-cover" loop muted playsinline autoplay>
-        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
+        <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
       </video>
     </div>
-    <div class="form-side border-l bg-white flex flex-col w-3/5 h-full overflow-x-auto">
+    <div class="form-side bg-white flex flex-col w-2/3 h-full overflow-x-auto">
       <div id="wish-form" class="border-b">
-        <div class="prose prose-p:text-[15px] max-w-none">
-          <h1 class="text-4xl font-bold">Christmas Wishes</h1>
-          <p>Thank you for donating to our Santa Paws appeal and helping bring comfort, care, and joy to the cats and kittens who will be spending this Christmas at our adoption shelter. Your kindness means the world to us and to the animals in our care.</p>
-          <p>This Christmas, will you share a message of love and hope with cats like Bennett, Jeremy, Carrot, and Atticus? We invite you to add your name and Christmas wish below. Your heartfelt message will be displayed on our CPSV Wishing Tree, where fellow Victorian cat lovers can share in the joy of your support.</p>
-          <p>From all of us at CPSV, thank you for your generosity. We wish you a Merry Christmas filled with warmth and a New Year filled with happiness</p>
-          <div>
-            <!-- Open the modal using ID.showModal() method -->
-            <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
-            <dialog id="wishes_form_modal" class="modal">
-              <div class="modal-box overflow-x-hidden">
-                <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
-              </div>
-              <form method="dialog" class="modal-backdrop">
-                <button>close</button>
-              </form>
-            </dialog>
+        <div><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/SDG-Cat-Protection-Web-Banner-2024.jpg" alt="CPSV Banner"></div>
+        <div class="p-6 2xl:p-8">
+          <div class="prose prose-p:text-[15px] max-w-none">
+            <h1 class="text-4xl font-bold">Share your Christmas wishes</h1>
+            <p>Thank you for donating to our Santa Paws appeal and helping bring comfort, care, and joy to the cats and kittens who will be spending this Christmas at our adoption shelter. Your kindness means the world to us and to the animals in our care.</p>
+            <p>This Christmas, will you share a message of love and hope with cats like Bennett, Jeremy, Carrot, and Atticus? We invite you to add your name and Christmas wish below. Your heartfelt message will be displayed on our CPSV Wishing Tree, where fellow Victorian cat lovers can share in the joy of your support.</p>
+            <p>From all of us at CPSV, thank you for your generosity. We wish you a Merry Christmas filled with warmth and a New Year filled with happiness</p>
+            <div>
+              <!-- Open the modal using ID.showModal() method -->
+              <button class="btn btn-primary" onclick="wishes_form_modal.showModal()">Submit your wishes</button>
+              <dialog id="wishes_form_modal" class="modal">
+                <div class="modal-box overflow-x-hidden">
+                  <?php echo FrmFormsController::get_form_shortcode(array('id' => 32)); ?>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
+            </div>
           </div>
         </div>
       </div>
@@ -56,7 +59,7 @@ get_header();
       </dialog>
       <div class="wish-cards-container bg-[#fffaf3]">
         <div id="loading-indicator" class="text-center p-6 mt-5" style="display:none;"><span class="loading loading-spinner text-info w-8"></span></div>
-        <div id="wish-cards" class="cards-container"></div>
+        <div id="wish-cards" class="cards-container p-6 grid gap-5 overflow-y-auto grid-cols-3 2xl:p-8"></div>
       </div>
     </div>
   </div>

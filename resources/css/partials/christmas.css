@@ -1,41 +1,18 @@
 #christmas-wishes {
-  .wishes-container {
-  }
-
-  .tree-side {
-  }
-
-  .form-side {
-  }
-
-  #wish-form {
-    @apply p-6;
-  }
-
-  .wish-cards-container {
-    height: 100%;
-  }
-
-  .cards-container {
-    @apply p-6 grid gap-5 mt-5 overflow-y-auto;
-    //grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    @apply grid-cols-3;
-  }
-
   .card {
     @apply bg-white rounded-md p-4 relative flex flex-col shadow-[0_3px_6px_rgba(0,0,0,0.1)];
     @apply shadow-md border border-slate-200;
     @apply cursor-pointer;
   }
 
-  .like-button {
+  /* .like-button {
     margin-top: 10px;
     background: none;
     border: none;
     cursor: pointer;
     color: red;
     font-size: 16px;
-  }
+  } */
 
   /* .modal {
     display: none;
