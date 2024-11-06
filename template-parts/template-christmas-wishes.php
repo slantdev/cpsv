@@ -10,13 +10,13 @@ get_header();
 
 ?>
 <div id="christmas-wishes" class="border-t">
-  <div class="wishes-container flex h-[calc(100vh-185px)]">
-    <div class="tree-side bg-[#c70117] w-1/3">
+  <div class="wishes-container lg:flex lg:h-[calc(100vh-85px)] xl:h-[calc(100vh-177px)]">
+    <div class="tree-side bg-[#c70117] lg:w-1/3">
       <video class="w-full h-full object-cover" loop muted playsinline autoplay>
         <source src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/CPSV-Christmas-Campaign.mp4" type="video/mp4" />
       </video>
     </div>
-    <div class="form-side bg-white flex flex-col w-2/3 h-full overflow-x-auto">
+    <div class="form-side bg-white flex flex-col lg:w-2/3 h-full overflow-x-auto">
       <div id="wish-form" class="border-b">
         <div><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/campaign/SDG-Cat-Protection-Web-Banner-2024.jpg" alt="CPSV Banner"></div>
         <div class="p-6 2xl:p-8">
@@ -36,7 +36,7 @@ get_header();
       </div>
       <div class="wish-cards-container bg-[#fffaf3]">
         <div id="loading-indicator" class="text-center p-6 mt-5" style="display:none;"><span class="loading loading-spinner text-info w-8"></span></div>
-        <div id="wish-cards" class="cards-container p-6 grid gap-5 overflow-y-auto grid-cols-3 2xl:p-8"></div>
+        <div id="wish-cards" class="cards-container p-6 grid grid-cols-1 md:grid-cols-2 gap-5 overflow-y-auto xl:grid-cols-3 2xl:p-8"></div>
       </div>
     </div>
   </div>
