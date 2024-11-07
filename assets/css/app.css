@@ -9630,6 +9630,10 @@ div.woocommerce
     display: block;
   }
 
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:h-12 {
     height: 3rem;
   }
@@ -9648,6 +9652,34 @@ div.woocommerce
 
   .lg\:h-full {
     height: 100%;
+  }
+
+  .lg\:h-\[calc\(100vh-185px\)\] {
+    height: calc(100vh - 185px);
+  }
+
+  .lg\:h-\[calc\(100vh-73px\)\] {
+    height: calc(100vh - 73px);
+  }
+
+  .lg\:h-\[calc\(100vh-85px\)\] {
+    height: calc(100vh - 85px);
+  }
+
+  .lg\:h-\[calc\(100vh-80px\)\] {
+    height: calc(100vh - 80px);
+  }
+
+  .lg\:h-\[calc\(100vh-82px\)\] {
+    height: calc(100vh - 82px);
+  }
+
+  .lg\:h-\[calc\(100vh-76px\)\] {
+    height: calc(100vh - 76px);
+  }
+
+  .lg\:h-\[calc\(100vh-70px\)\] {
+    height: calc(100vh - 70px);
   }
 
   .lg\:max-h-\[700px\] {
@@ -10171,6 +10203,14 @@ div.woocommerce
     height: 100%;
   }
 
+  .xl\:h-\[calc\(100vh-185px\)\] {
+    height: calc(100vh - 185px);
+  }
+
+  .xl\:h-\[calc\(100vh-177px\)\] {
+    height: calc(100vh - 177px);
+  }
+
   .xl\:w-1\/2 {
     width: 50%;
   }
@@ -10253,6 +10293,10 @@ div.woocommerce
 
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .xl\:flex-row {
