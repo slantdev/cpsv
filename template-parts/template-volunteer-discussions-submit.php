@@ -118,7 +118,6 @@ get_header();
                   <form id="comment-form-${entry.id}" class="comment-form" method="POST" action="/wp-comments-post.php">
                     <div class="flex gap-4">
                       <input type="text" class="w-full border border-slate-300 rounded" name="author" placeholder="Your Name" required>
-                      <input type="email" class="w-full border border-slate-300 rounded" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="mt-4 mb-4">
                       <textarea name="comment" class="w-full border-slate-300 rounded" placeholder="Add a comment..." required></textarea>
@@ -241,7 +240,6 @@ get_header();
       const replyForm = `
             <form id="reply-form-${commentId}" class="comment-form" method="POST" action="/wp-comments-post.php">
                 <input type="text" name="author" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
                 <textarea name="comment" placeholder="Add a reply..." required></textarea>
                 <input type="hidden" name="comment_post_ID" value="${entryId}">
                 <input type="hidden" name="comment_parent" value="${commentId}">
