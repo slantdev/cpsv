@@ -74,7 +74,7 @@ get_header();
     loadingIndicator.style.display = 'block';
 
     try {
-      let response = await fetch('/wp-admin/admin-ajax.php?action=load_volunteer_messages');
+      let response = await fetch('/staging/wp-admin/admin-ajax.php?action=load_volunteer_messages');
       let data = await response.json();
       const discussionContainer = document.getElementById('discussion-cards');
       discussionContainer.innerHTML = '';
@@ -171,7 +171,7 @@ get_header();
                   formData.append('action', 'comment_post'); // Specify the action for WordPress AJAX
 
                   try {
-                    const response = await fetch('/wp-admin/admin-ajax.php', {
+                    const response = await fetch('/staging/wp-admin/admin-ajax.php', {
                       method: 'POST',
                       body: formData,
                     });
