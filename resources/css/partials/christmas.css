@@ -51,3 +51,28 @@
     cursor: pointer;
   } */
 }
+
+.page-template-template-volunteer-discussions-submit {
+  #volunteer-discussions {
+    .card {
+      @apply bg-white rounded-md p-6 relative flex flex-col shadow-[0_3px_6px_rgba(0,0,0,0.1)];
+      @apply shadow-md border border-slate-200;
+      @apply cursor-pointer;
+    }
+  }
+  .fancybox__container:not(.is-compact) .fancybox__slide.has-close-btn {
+    @apply p-0;
+  }
+  .fancybox__slide .fancybox__content {
+    @apply max-w-screen-md rounded-lg max-h-screen overflow-auto my-4;
+  }
+  .fancybox__content {
+    @apply p-8 pt-14;
+  }
+  .f-button:focus-visible {
+    box-shadow: none;
+  }
+  .fancybox__content > .f-button.is-close-btn {
+    @apply top-2 right-2 text-black;
+  }
+}
