@@ -8087,14 +8087,14 @@
   color: rgb(255 99 71 / var(--tw-text-opacity));
 }
 
-#poststuff .acf-layout .hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 #poststuff .acf-layout .hover\:text-slate-700:hover {
   --tw-text-opacity: 1;
   color: rgb(51 65 85 / var(--tw-text-opacity));
+}
+
+#poststuff .acf-layout .hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 #poststuff .acf-layout .hover\:underline:hover {

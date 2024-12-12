@@ -107,7 +107,8 @@ add_action('wp_ajax_nopriv_load_volunteer_messages', 'load_volunteer_messages');
 function load_volunteer_messages()
 {
   // Set the API endpoint
-  $api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
+  //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
+  $api_url = 'https://catprotection.com.au/wp-json/wp/v2/volunteer-discussion?status=publish';
 
   $response = wp_remote_get($api_url);
 

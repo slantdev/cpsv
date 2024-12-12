@@ -16,7 +16,8 @@ get_header();
         <button class="btn btn-primary" onclick="discussion_form_modal.showModal()">Create a Discussion</button>
         <dialog id="discussion_form_modal" class="modal">
           <div class="modal-box overflow-x-hidden">
-            <?php echo FrmFormsController::get_form_shortcode(array('id' => 4)); ?>
+            <?php /* echo FrmFormsController::get_form_shortcode(array('id' => 4)); */ ?>
+            <?php echo FrmFormsController::get_form_shortcode(array('id' => 37)); ?>
           </div>
           <form method="dialog" class="modal-backdrop">
             <button>close</button>
