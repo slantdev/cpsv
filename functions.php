@@ -4,6 +4,12 @@ define('GOOGLE_MAPS_API', 'AIzaSyALa7CVVKAaAPSw9-zopXMh2C7wcn6Zo10');
 // Define Formidable API Credentials
 define('FORMIDABLE_API_USERNAME', 'QDTD-C70F-JARK-4YHI');
 define('FORMIDABLE_API_PASSWORD', 'x');
+//$api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
+//$api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
+define('VOLUNTEER_DISCUSSION_API', 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish');
+//define('VOLUNTEER_DISCUSSION_API', 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish');
+define('ADMIN_AJAX_PATH', '/wp-admin/admin-ajax.php');
+//define('ADMIN_AJAX_PATH', '/staging/wp-admin/admin-ajax.php');
 
 /**
  * REQUIRED FILES
@@ -109,7 +115,8 @@ function load_volunteer_messages()
 {
   // Set the API endpoint
   //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
-  $api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
+  //$api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
+  $api_url = VOLUNTEER_DISCUSSION_API;
 
   $response = wp_remote_get($api_url);
 
