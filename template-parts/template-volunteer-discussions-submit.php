@@ -64,6 +64,8 @@ get_header();
   </dialog>
 </div>
 
+<?php echo wp_nonce_field('comment_form', 'comment_form_nonce'); ?>
+
 <script type="module">
   document.addEventListener('DOMContentLoaded', () => {
     loadMessages(); // Load messages on page load
@@ -74,7 +76,8 @@ get_header();
     loadingIndicator.style.display = 'block';
 
     try {
-      let response = await fetch('/staging/wp-admin/admin-ajax.php?action=load_volunteer_messages');
+      let response = await fetch('/wp-admin/admin-ajax.php?action=load_volunteer_messages');
+      //let response = await fetch('/staging/wp-admin/admin-ajax.php?action=load_volunteer_messages');
       let data = await response.json();
       const discussionContainer = document.getElementById('discussion-cards');
       discussionContainer.innerHTML = '';
@@ -84,18 +87,10 @@ get_header();
           const question = entry.content.rendered;
           const name = entry.title.rendered;
           const comments = entry.comments || [];
-          // Assuming `entry.date` holds the post date in a format that can be parsed as a Date object.
-          const postDate = new Date(entry.date); // Parse the post date
-          const relativeTime = formatRelativeTime(postDate); // Use the existing function
-          const commentCount = comments.length; // Number of comments for the post
+          const postDate = new Date(entry.date);
+          const relativeTime = formatRelativeTime(postDate);
+          const commentCount = comments.length;
           const card = document.createElement('div');
-          // card.innerHTML = `
-          //           <div class="card" data-entry-id="${entry.id}">
-          //               <div class="text-sm">${question}</div>
-          //               <div class="text-sm font-semibold mt-4">${name}</div>
-          //               <div id="comments-${entry.id}" class="comments"></div>
-          //           </div>
-          //       `;          
           card.innerHTML = `
                     <div class="card" data-entry-id="${entry.id}">
                         <div class="text-sm mb-4"><span class="font-semibold">${name}</span>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<span class="text-xs text-slate-500">${relativeTime}</span></div>                    
@@ -141,18 +136,17 @@ get_header();
                         <div class="comment border border-slate-300 rounded p-4 relative" data-id="${comment.id}">
                           <div class="mb-2"><strong>${comment.author}</strong>&nbsp;&nbsp;<small class="text-slate-500">${formatRelativeTime(comment.date)}</small></div>
                           <div class="text-sm text-slate-600">${comment.content}</div>
-                          <div class="absolute right-4 top-4 hidden">
-                            <button class="reply-btn text-xs text-slate-400 hover:text-slate-700" data-comment-id="${comment.id}">Reply</button>
+                          <div class="absolute right-4 top-4">
+                            <button class="reply-btn text-xs text-slate-400 hover:text-slate-700" data-entry-id="${entry.id}" data-comment-id="${comment.id}">Reply</button>
                           </div>
-                          <div class="nested-comments"></div> <!-- Placeholder for replies -->
+                          <div class="nested-comments" id="nested-comments-${comment.id}"></div> <!-- Placeholder for replies -->
                         </div>
                       `).join('')}
                     </div>
                   </div>
-                ` : ''} <!-- If no comments, render nothing -->
-              </div>
+                ` : ''}
+              </div>              
             `;
-
 
             Fancybox.show([{
               src: modalContent,
@@ -170,7 +164,8 @@ get_header();
                   formData.append('action', 'comment_post'); // Specify the action for WordPress AJAX
 
                   try {
-                    const response = await fetch('/staging/wp-admin/admin-ajax.php', {
+                    const response = await fetch('/wp-admin/admin-ajax.php', {
+                      //const response = await fetch('/staging/wp-admin/admin-ajax.php', {
                       method: 'POST',
                       body: formData,
                     });
@@ -209,6 +204,7 @@ get_header();
           });
 
           discussionContainer.appendChild(card);
+
         }
       } else {
         console.error('Error fetching discussion data:', data.data);
@@ -223,72 +219,75 @@ get_header();
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('reply-btn')) {
       const replyButton = e.target;
-
-      // Get the comment ID from the Reply button's data attribute
       const commentId = replyButton.dataset.commentId;
+      const entryId = replyButton.dataset.entryId;
 
-      // Get the post ID from the parent card
-      const cardElement = replyButton.closest('.card');
-      const entryId = cardElement ? cardElement.dataset.entryId : null;
-
-      if (!entryId) {
-        console.error('Post ID (entryId) not found for the reply.');
-        return;
-      }
-
-      // Build the reply form dynamically
+      // Build and insert the reply form
       const replyForm = `
-            <form id="reply-form-${commentId}" class="comment-form" method="POST" action="/wp-comments-post.php">
-                <input type="text" name="author" placeholder="Your Name" required>
-                <textarea name="comment" placeholder="Add a reply..." required></textarea>
-                <input type="hidden" name="comment_post_ID" value="${entryId}">
-                <input type="hidden" name="comment_parent" value="${commentId}">
-                <button type="submit">Reply</button>
-            </form>
-        `;
+        <form id="reply-form-${commentId}" class="reply-form mt-4" method="POST">
+          <input type="text" class="border border-slate-300 rounded w-full mb-2" name="author" placeholder="Your Name" required>
+          <input type="email" class="border border-slate-300 rounded w-full mb-2" name="email" placeholder="Your Email" required>
+          <textarea name="comment" class="border border-slate-300 rounded w-full" placeholder="Add a reply..." required></textarea>
+          <input type="hidden" name="comment_post_ID" value="${entryId}">
+          <input type="hidden" name="comment_parent" value="${commentId}">
+          ${document.getElementById('comment_form_nonce').outerHTML} <!-- Include nonce here -->
+          <button type="submit" class="btn btn-primary mt-2">Post Reply</button>
+        </form>
+      `;
 
-      const commentElement = replyButton.closest(`.comment[data-id="${commentId}"]`);
-      if (!commentElement) {
-        console.error('Comment element not found for the reply.');
-        return;
-      }
+      // Append the reply form to the nested comments container
+      const nestedCommentsContainer = document.getElementById(`nested-comments-${commentId}`);
+      nestedCommentsContainer.innerHTML = replyForm; // Clear existing nested forms
+      replyButton.setAttribute('disabled', 'true'); // Optional: Disable the reply button to prevent multiple clicks
+    }
+  });
 
-      // Append the reply form below the comment, if not already added
-      if (!commentElement.querySelector(`#reply-form-${commentId}`)) {
-        commentElement.insertAdjacentHTML('beforeend', replyForm);
+  document.addEventListener('submit', async (e) => {
+    if (e.target.matches('.reply-form')) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      formData.append('action', 'comment_post'); // Specify the action for WordPress AJAX
 
-        // Add an event listener for the reply form submission
-        const form = document.getElementById(`reply-form-${commentId}`);
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const formData = new FormData(form);
-
-          try {
-            const response = await fetch('/wp-comments-post.php', {
-              method: 'POST',
-              body: formData,
-            });
-
-            if (response.ok) {
-              const newCommentId = await response.text(); // Expecting comment ID from server
-              const newCommentHTML = `
-                            <div class="comment" data-id="${newCommentId}">
-                                <p><strong>${formData.get('author')}</strong>: ${formData.get('comment')}</p>
-                                <small>Just now</small>
-                            </div>
-                        `;
-              const nestedComments = commentElement.querySelector('.nested-comments');
-              nestedComments.innerHTML += newCommentHTML; // Append the new reply under the parent comment
-              form.remove(); // Remove the reply form after submission
-              alert('Reply submitted successfully!');
-            } else {
-              alert('Error submitting reply.');
-            }
-          } catch (error) {
-            console.error('An error occurred:', error);
-            alert('Network error. Please try again.');
-          }
+      try {
+        const response = await fetch('/wp-admin/admin-ajax.php', {
+          method: 'POST',
+          body: formData,
         });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            // Handle inserting the new reply into the nested comments section
+            const newCommentHTML = `
+            <div class="comment border border-slate-300 rounded p-4 relative" data-id="${result.data.comment_ID}">
+              <div class="mb-2">
+                <strong>${formData.get('author')}</strong>&nbsp;&nbsp;<small class="text-slate-500">Just now</small>
+              </div>
+              <div class="text-sm text-slate-600">${formData.get('comment')}</div>
+            </div>
+          `;
+            // Append the new reply to the nested comments section
+            const nestedCommentsContainer = document.getElementById(`nested-comments-${formData.get('comment_parent')}`);
+            nestedCommentsContainer.innerHTML += newCommentHTML; // Append the new reply
+
+            // Optionally, reset the reply form
+            form.reset();
+            // Optionally, re-enable the original reply button
+            const replyButton = document.querySelector(`.reply-btn[data-comment-id="${formData.get('comment_parent')}"]`);
+            if (replyButton) {
+              replyButton.removeAttribute('disabled');
+            }
+          } else {
+            alert('Failed to submit the reply. ' + result.data);
+          }
+        } else {
+          console.error('Failed to submit the reply:', response.statusText);
+          alert('Error submitting reply. Please try again.');
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+        alert('Error submitting reply. Please check your network connection.');
       }
     }
   });
@@ -311,6 +310,60 @@ get_header();
       return "Today";
     }
   }
+
+  function organizeComments(comments) {
+    const commentMap = {};
+
+    // Initialize map with comment IDs
+    comments.forEach(comment => {
+      commentMap[comment.id] = {
+        ...comment,
+        children: []
+      };
+    });
+
+    // Organize comments, populating children for each parent
+    const rootComments = [];
+    comments.forEach(comment => {
+      if (comment.parent !== 0) {
+        // Add as a child to the parent comment
+        if (commentMap[comment.parent]) {
+          commentMap[comment.parent].children.push(commentMap[comment.id]);
+        }
+      } else {
+        // This is a top-level comment
+        rootComments.push(commentMap[comment.id]);
+      }
+    });
+
+    return rootComments;
+  }
+
+  function renderComments(comments, container) {
+    comments.forEach(comment => {
+      const commentElement = document.createElement('div');
+      commentElement.classList.add('comment', 'border', 'border-slate-300', 'rounded', 'p-4', 'mb-4');
+      commentElement.dataset.id = comment.id;
+      commentElement.innerHTML = `
+      <div class="mb-2">
+        <strong>${comment.author}</strong>&nbsp;&nbsp;<small class="text-slate-500">${formatRelativeTime(comment.date)}</small>
+      </div>
+      <div class="text-sm text-slate-600">${comment.content}</div>
+      <button class="reply-btn text-xs text-slate-400 hover:text-slate-700 hidden" data-comment-id="${comment.id}" data-entry-id="${comment.post_id}">Reply</button>
+    `;
+
+      container.appendChild(commentElement);
+
+      // Render nested replies
+      if (comment.children.length > 0) {
+        const nestedContainer = document.createElement('div');
+        nestedContainer.classList.add('nested-comments', 'pl-4');
+        renderComments(comment.children, nestedContainer); // Recursive rendering for replies
+        commentElement.appendChild(nestedContainer);
+      }
+    });
+  }
+
 
   // Function to close success message modal
   function commentCloseSuccessModal() {

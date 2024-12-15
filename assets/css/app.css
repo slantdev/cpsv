@@ -8690,7 +8690,7 @@ div.woocommerce
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   cursor: pointer;
 }
-.page-template-template-volunteer-discussions-submit #volunteer-discussions .card {
+.page-template-template-volunteer-discussions-submit #volunteer-discussions .card, .volunteer_discussions_page #volunteer-discussions .card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8708,10 +8708,10 @@ div.woocommerce
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   cursor: pointer;
 }
-.page-template-template-volunteer-discussions-submit .fancybox__container:not(.is-compact) .fancybox__slide.has-close-btn {
+.page-template-template-volunteer-discussions-submit .fancybox__container:not(.is-compact) .fancybox__slide.has-close-btn, .volunteer_discussions_page .fancybox__container:not(.is-compact) .fancybox__slide.has-close-btn {
   padding: 0px;
 }
-.page-template-template-volunteer-discussions-submit .fancybox__slide .fancybox__content {
+.page-template-template-volunteer-discussions-submit .fancybox__slide .fancybox__content, .volunteer_discussions_page .fancybox__slide .fancybox__content {
   margin-top: 1rem;
   margin-bottom: 1rem;
   max-height: 100vh;
@@ -8719,14 +8719,14 @@ div.woocommerce
   overflow: auto;
   border-radius: 1rem;
 }
-.page-template-template-volunteer-discussions-submit .fancybox__content {
+.page-template-template-volunteer-discussions-submit .fancybox__content, .volunteer_discussions_page .fancybox__content {
   padding: 2rem;
   padding-top: 3.5rem;
 }
-.page-template-template-volunteer-discussions-submit .f-button:focus-visible {
+.page-template-template-volunteer-discussions-submit .f-button:focus-visible, .volunteer_discussions_page .f-button:focus-visible {
     box-shadow: none;
   }
-.page-template-template-volunteer-discussions-submit .fancybox__content > .f-button.is-close-btn {
+.page-template-template-volunteer-discussions-submit .fancybox__content > .f-button.is-close-btn, .volunteer_discussions_page .fancybox__content > .f-button.is-close-btn {
   top: 0.5rem;
   right: 0.5rem;
   --tw-text-opacity: 1;

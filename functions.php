@@ -15,6 +15,7 @@ require get_template_directory() . '/inc/acf.php';
 require get_template_directory() . '/inc/enqueue.php';
 require get_template_directory() . '/inc/ajax.php';
 require get_template_directory() . '/inc/woocommerce.php';
+require get_template_directory() . '/inc/volunteer-discussions.php';
 
 /**
  * Disable Gutenberg
@@ -107,8 +108,8 @@ add_action('wp_ajax_nopriv_load_volunteer_messages', 'load_volunteer_messages');
 function load_volunteer_messages()
 {
   // Set the API endpoint
-  //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
-  $api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
+  $api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
+  //$api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
 
   $response = wp_remote_get($api_url);
 
@@ -155,6 +156,10 @@ function custom_ajax_comment_post()
   if (!check_ajax_referer('comment_form', '_wpnonce', false)) {
     wp_send_json_error('Invalid nonce. Please refresh the page and try again.');
   }
+  // if (!isset($_POST['comment_form_nonce']) || !wp_verify_nonce($_POST['comment_form_nonce'], 'comment_form')) {
+  //   wp_send_json_error('Invalid nonce. Please refresh the page and try again.');
+  //   wp_die();
+  // }
 
   // Extract form data
   $comment_data = [
@@ -175,3 +180,20 @@ function custom_ajax_comment_post()
     wp_send_json_error('Failed to insert comment. Please try again.');
   }
 }
+
+function add_shortcode_body_class($classes)
+{
+  // Check if we're on a single post or page
+  if (is_singular()) {
+    global $post; // Access current post
+
+    // Check if the post content contains the shortcode
+    if (has_shortcode($post->post_content, 'volunteer_discussions')) {
+      $classes[] = 'has-volunteer-discussions'; // Add your custom class
+    }
+  }
+  return $classes;
+}
+
+// Hook into body_class filter
+add_filter('body_class', 'add_shortcode_body_class');

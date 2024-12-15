@@ -52,7 +52,8 @@
   } */
 }
 
-.page-template-template-volunteer-discussions-submit {
+.page-template-template-volunteer-discussions-submit,
+.volunteer_discussions_page {
   #volunteer-discussions {
     .card {
       @apply bg-white rounded-md p-6 relative flex flex-col shadow-[0_3px_6px_rgba(0,0,0,0.1)];
