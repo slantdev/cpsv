@@ -70,7 +70,8 @@ function volunteer_discussions_shortcode()
       loadingIndicator.style.display = 'block';
 
       try {
-        let response = await fetch('/wp-admin/admin-ajax.php?action=load_volunteer_messages');
+        //let response = await fetch('/wp-admin/admin-ajax.php?action=load_volunteer_messages');
+        let response = await fetch('/staging/wp-admin/admin-ajax.php?action=load_volunteer_messages');
         let data = await response.json();
         const discussionContainer = document.getElementById('discussion-cards');
         discussionContainer.innerHTML = '';
@@ -146,12 +147,6 @@ function volunteer_discussions_shortcode()
               Fancybox.show([{
                 src: modalContent,
                 type: 'html',
-                // opts: {
-                //   modal: true,
-                //   afterClose: () => {
-                //     console.log('Fancybox closed!');
-                //   }
-                // }
               }]);
 
               // Wait for Fancybox to render modal content before adding the event listener
@@ -165,7 +160,8 @@ function volunteer_discussions_shortcode()
                     formData.append('action', 'comment_post'); // Specify the action for WordPress AJAX
 
                     try {
-                      const response = await fetch('/wp-admin/admin-ajax.php', {
+                      //const response = await fetch('/wp-admin/admin-ajax.php', {
+                      const response = await fetch('/staging/wp-admin/admin-ajax.php', {
                         method: 'POST',
                         body: formData,
                       });
@@ -249,7 +245,8 @@ function volunteer_discussions_shortcode()
         formData.append('action', 'comment_post'); // Specify the action for WordPress AJAX
 
         try {
-          const response = await fetch('/wp-admin/admin-ajax.php', {
+          //const response = await fetch('/wp-admin/admin-ajax.php', {
+          const response = await fetch('/staging/wp-admin/admin-ajax.php', {
             method: 'POST',
             body: formData,
           });
