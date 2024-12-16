@@ -321,27 +321,29 @@ function volunteer_discussions_shortcode()
     const success = getParameterByName('success');
 
     if (success === 'true') {
-      const successMessageElement = document.querySelector('.success-message');
-      success_message_modal.showModal();
+      const successMessageElement = document.getElementById('success_message_modal');
+
+      if (successMessageElement) {
+        successMessageElement.showModal(); // Show the modal
+      }
     }
 
-    // Add event listener to the close button
-    const closeButton = document.querySelector('.close-success');
-    if (closeButton) {
-      closeButton.addEventListener('click', function() {
-        console.log('clicked');
-        const successMessageElement = document.getElementById('success_message_modal');
-        if (successMessageElement) {
-          success_message_modal.close();
+    // Add event listener to the dialog for the close button
+    const successMessageModal = document.getElementById('success_message_modal');
+    if (successMessageModal) {
+      successMessageModal.addEventListener('click', function(event) {
+        // Check if the click was on the close button
+        if (event.target.classList.contains('close-success')) {
+          console.log('Close button clicked');
+          successMessageModal.close(); // Close modal
+          removeSuccessParams(); // Remove the success parameter from the URL
         }
-        // Remove the success parameter from the URL
-        removeSuccessParams();
       });
     }
 
     // Function to remove the 'success' parameter from the URL
     function removeSuccessParams() {
-      console.log('try remove success');
+      console.log('Removing success parameter');
       const url = new URL(window.location.href);
       url.searchParams.delete('success'); // Remove the 'success' parameter
       window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
