@@ -66,6 +66,7 @@ function volunteer_discussions_shortcode()
         var formID = $(form).find('input[name="form_id"]').val();
         console.log(formID);
         if (formID == '37') {
+          $('#discussion-cards').empty();
           loadMessages();
         }
       });
