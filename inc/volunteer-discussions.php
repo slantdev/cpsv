@@ -329,6 +329,7 @@ function volunteer_discussions_shortcode()
     const closeButton = document.querySelector('.close-success');
     if (closeButton) {
       closeButton.addEventListener('click', function() {
+        console.log('clicked');
         const successMessageElement = document.getElementById('success_message_modal');
         if (successMessageElement) {
           success_message_modal.close();
@@ -340,6 +341,7 @@ function volunteer_discussions_shortcode()
 
     // Function to remove the 'success' parameter from the URL
     function removeSuccessParams() {
+      console.log('try remove success');
       const url = new URL(window.location.href);
       url.searchParams.delete('success'); // Remove the 'success' parameter
       window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
