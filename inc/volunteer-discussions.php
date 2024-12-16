@@ -64,7 +64,8 @@ function volunteer_discussions_shortcode()
     jQuery(document).ready(function($) {
       $(document).on('frmFormComplete', function(event, form, response) {
         var formID = $(form).find('input[name="form_id"]').val();
-        if (formID === '37') {
+        console.log(formID);
+        if (formID == '37') {
           loadMessages();
         }
       });
