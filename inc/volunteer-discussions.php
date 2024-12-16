@@ -61,6 +61,15 @@ function volunteer_discussions_shortcode()
   </div>
 
   <script type="module">
+    jQuery(document).ready(function($) {
+      $(document).on('frmFormComplete', function(event, form, response) {
+        var formID = $(form).find('input[name="form_id"]').val();
+        if (formID === '37') {
+          loadMessages();
+        }
+      });
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
       loadMessages(); // Load messages on page load
     });
