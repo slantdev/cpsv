@@ -321,6 +321,10 @@ function volunteer_discussions_shortcode()
     const success = getParameterByName('success');
 
     if (success === 'true') {
+
+      const discussionFormModal = document.getElementById('discussion_form_modal');
+      discussionFormModal.close();
+
       const successMessageElement = document.getElementById('success_message_modal');
 
       if (successMessageElement) {
