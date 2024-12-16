@@ -307,6 +307,45 @@ function volunteer_discussions_shortcode()
     }
   </script>
 
+  <script>
+    function getParameterByName(name, url = window.location.href) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Check if the "success" parameter is true
+    const success = getParameterByName('success');
+
+    if (success === 'true') {
+      const successMessageElement = document.querySelector('.success-message');
+      success_message_modal.showModal();
+    }
+
+    // Add event listener to the close button
+    const closeButton = document.querySelector('.close-success');
+    if (closeButton) {
+      closeButton.addEventListener('click', function() {
+        const successMessageElement = document.getElementById('success_message_modal');
+        if (successMessageElement) {
+          success_message_modal.close();
+        }
+        // Remove the success parameter from the URL
+        removeSuccessParams();
+      });
+    }
+
+    // Function to remove the 'success' parameter from the URL
+    function removeSuccessParams() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('success'); // Remove the 'success' parameter
+      window.history.replaceState({}, document.title, url.toString()); // Update the URL without reloading
+    }
+  </script>
+
 <?php
   return ob_get_clean(); // Return the buffered content
 }
