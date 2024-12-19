@@ -63,6 +63,7 @@
     "plural_capability_name": "posts",
     "supports": [
         "title",
+        "comments",
         "editor",
         "thumbnail"
     ],
@@ -81,5 +82,5 @@
     "delete_with_user": false,
     "register_meta_box_cb": "",
     "enter_title_here": "",
-    "modified": 1730290456
+    "modified": 1732726044
 }
