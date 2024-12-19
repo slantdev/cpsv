@@ -7,7 +7,8 @@ define('FORMIDABLE_API_PASSWORD', 'x');
 //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish';
 //$api_url = 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish';
 //define('VOLUNTEER_DISCUSSION_API', 'http://cpsvdev.local/wp-json/wp/v2/volunteer-discussion?status=publish');
-define('VOLUNTEER_DISCUSSION_API', 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish');
+//define('VOLUNTEER_DISCUSSION_API', 'https://catprotection.com.au/staging/wp-json/wp/v2/volunteer-discussion?status=publish');
+define('VOLUNTEER_DISCUSSION_API', 'https://catprotection.com.au/wp-json/wp/v2/volunteer-discussion?status=publish');
 define('ADMIN_AJAX_PATH', '/wp-admin/admin-ajax.php');
 //define('ADMIN_AJAX_PATH', '/staging/wp-admin/admin-ajax.php');
 
@@ -69,8 +70,8 @@ function load_messages()
   // Set the API endpoint
   //$api_url = 'http://cpsvdev.local/wp-json/frm/v2/forms/3/entries?order=DESC';
   //$api_url = 'https://catprotection.com.au/wp-json/frm/v2/forms/32/entries?order=DESC';
-  $api_url = 'http://cpsvdev.local/wp-json/wp/v2/christmas-wish?status=publish';
-  //$api_url = 'https://catprotection.com.au/wp-json/wp/v2/christmas-wish?status=publish';
+  //$api_url = 'http://cpsvdev.local/wp-json/wp/v2/christmas-wish?status=publish';
+  $api_url = 'https://catprotection.com.au/wp-json/wp/v2/christmas-wish?status=publish';
 
   $response = wp_remote_get($api_url);
 
