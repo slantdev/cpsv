@@ -5043,9 +5043,6 @@ details.collapse summary::-webkit-details-marker {
 .p-4 {
     padding: 1rem;
 }
-.p-5 {
-    padding: 1.25rem;
-}
 .p-6 {
     padding: 1.5rem;
 }
@@ -6784,6 +6781,9 @@ body {
     }
     .lg\:pt-8 {
         padding-top: 2rem;
+    }
+    .lg\:pt-10 {
+        padding-top: 2.5rem;
     }
     .lg\:text-2xl {
         font-size: 1.5rem;

@@ -6138,10 +6138,6 @@
   padding: 1rem;
 }
 
-#poststuff .acf-layout .p-5 {
-  padding: 1.25rem;
-}
-
 #poststuff .acf-layout .p-6 {
   padding: 1.5rem;
 }
@@ -8726,6 +8722,10 @@
 
   #poststuff .acf-layout .lg\:pt-8 {
     padding-top: 2rem;
+  }
+
+  #poststuff .acf-layout .lg\:pt-10 {
+    padding-top: 2.5rem;
   }
 
   #poststuff .acf-layout .lg\:text-2xl {

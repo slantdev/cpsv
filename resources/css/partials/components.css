@@ -118,3 +118,16 @@
 .fancybox__slide::after {
   @apply block m-0 md:m-auto;
 }
+
+.post-password-form {
+  @apply max-w-fit bg-slate-100 rounded-lg p-4 md:p-6;
+  p {
+    @apply mb-4;
+  }
+  [type="password"] {
+    @apply input input-bordered;
+  }
+  [type="submit"] {
+    @apply btn btn-primary;
+  }
+}
