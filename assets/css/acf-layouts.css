@@ -8640,6 +8640,11 @@
     padding-bottom: 1.25rem;
   }
 
+  #poststuff .acf-layout .lg\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
   #poststuff .acf-layout .lg\:pb-12 {
     padding-bottom: 3rem;
   }

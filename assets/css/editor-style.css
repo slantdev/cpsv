@@ -6719,6 +6719,10 @@ body {
         padding-top: 1.25rem;
         padding-bottom: 1.25rem;
     }
+    .lg\:py-16 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
     .lg\:pb-12 {
         padding-bottom: 3rem;
     }

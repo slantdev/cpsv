@@ -85,7 +85,7 @@ if (! post_password_required()) {
   endif;
 } else {
   if (post_password_required()) {
-    echo '<div class="pt-8 lg:pt-16">';
+    echo '<div class="py-8 lg:py-16">';
     echo '<div class="container max-w-screen-2xl">';
     echo get_the_password_form();
     echo '</div>';
