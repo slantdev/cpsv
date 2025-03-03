@@ -63,21 +63,53 @@ $section_class = 'section-shop-' . uniqid();
               <?php
               foreach ($shop_cards as $key => $card) :
                 $product_category = $card['card_content']['select_product_category'] ?? '';
-                $title = $product_category->name ?? '';
+                $title = '';
                 $image = $card['card_image']['url'] ?? '';
-                $link = get_term_link($product_category) ?? '';
+                $link = '#';
                 $type = ($key == '0') ? 'featured' : 'card';
-
-                $termchildren = get_term_children($product_category->term_id, 'product_cat');
+                $termchildren = [];
                 $subcategories = '';
-                foreach ($termchildren as $child) {
-                  $term = get_term_by('id', $child, 'product_cat');
-                  $subcategories .= $term->name . ' / ';
+
+                // Check if product_category exists and is an object
+                if (!empty($product_category) && is_object($product_category)) {
+                  $title = $product_category->name ?? '';
+
+                  // Only try to get term_id if product_category is an object
+                  if (isset($product_category->term_id)) {
+                    $termchildren = get_term_children($product_category->term_id, 'product_cat');
+
+                    // Get the link and check if it's not a WP_Error
+                    $term_link = get_term_link($product_category);
+                    if (!is_wp_error($term_link)) {
+                      $link = $term_link;
+                    }
+                  }
+                } elseif (is_numeric($product_category)) {
+                  // If product_category is just an ID, get the term object
+                  $term_obj = get_term($product_category, 'product_cat');
+                  if (!is_wp_error($term_obj)) {
+                    $title = $term_obj->name;
+                    $termchildren = get_term_children($term_obj->term_id, 'product_cat');
+                    $term_link = get_term_link($term_obj);
+                    if (!is_wp_error($term_link)) {
+                      $link = $term_link;
+                    }
+                  }
                 }
-                $subcategories = rtrim($subcategories, ' / ');
+
+                // Process subcategories only if we have valid termchildren
+                if (!empty($termchildren) && is_array($termchildren)) {
+                  foreach ($termchildren as $child) {
+                    $term = get_term_by('id', $child, 'product_cat');
+                    if ($term && !is_wp_error($term)) {
+                      $subcategories .= $term->name . ' / ';
+                    }
+                  }
+                  $subcategories = rtrim($subcategories, ' / ');
+                }
 
                 $description = '';
-                $show_sub_categories = $card['card_content']['show_sub_categories'];
+                $show_sub_categories = $card['card_content']['show_sub_categories'] ?? false;
                 if ($show_sub_categories) {
                   $description = $subcategories;
                 }
@@ -107,27 +139,29 @@ $section_class = 'section-shop-' . uniqid();
                     </div>
                   </div>
                 <?php else : ?>
-                  <div class="card-wrapper">
-                    <a href="<?php echo $link ?>" class="group block relative rounded-md lg:rounded-xl overflow-clip">
-                      <div class="aspect-1">
-                        <?php if ($image) : ?>
-                          <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
-                        <?php else : ?>
-                          <div class="w-full h-full bg-slate-50"></div>
-                        <?php endif; ?>
-                      </div>
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 from-0% to-transparent to-100% bg-blend-multiply">
-                        <div class="w-full h-full flex flex-col justify-end">
-                          <div class="px-4 py-4 lg:px-6 lg:pt-6 lg:pb-8">
-                            <h4 class="text-xl lg:text-3xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
-                          </div>
-                          <?php if ($description) : ?>
-                            <div class="text-sm lg:text-base text-white mt-2 lg:mt-4"><?php echo $description ?></div>
+                  <?php if (!empty($product_category) && is_object($product_category)) : ?>
+                    <div class="card-wrapper">
+                      <a href="<?php echo $link ?>" class="group block relative rounded-md lg:rounded-xl overflow-clip">
+                        <div class="aspect-1">
+                          <?php if ($image) : ?>
+                            <img class="object-cover w-full h-full transition-all duration-300 group-hover:scale-105" src="<?php echo $image ?>" alt="">
+                          <?php else : ?>
+                            <div class="w-full h-full bg-slate-50"></div>
                           <?php endif; ?>
                         </div>
-                      </div>
-                    </a>
-                  </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 from-0% to-transparent to-100% bg-blend-multiply">
+                          <div class="w-full h-full flex flex-col justify-end">
+                            <div class="px-4 py-4 lg:px-6 lg:pt-6 lg:pb-8">
+                              <h4 class="text-xl lg:text-3xl leading-tight font-semibold text-white"><?php echo $title ?></h4>
+                            </div>
+                            <?php if ($description) : ?>
+                              <div class="text-sm lg:text-base text-white mt-2 lg:mt-4"><?php echo $description ?></div>
+                            <?php endif; ?>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  <?php endif; ?>
                 <?php endif; ?>
               <?php endforeach; ?>
             </div>
