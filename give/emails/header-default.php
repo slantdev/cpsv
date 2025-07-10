@@ -101,10 +101,6 @@ $header_content_h1  = "
 			font-size: 0px;
 		}
 
-		u+.body img~div div {
-			display: none;
-		}
-
 		#outlook a {
 			padding: 0;
 		}
