@@ -3,7 +3,10 @@
 add_filter('frm_load_dropzone', 'stop_dropzone');
 function stop_dropzone($load_it)
 {
-  if (is_page(1650)) { // set the page or other conditions here
+  // if (is_page(1650)) {
+  //   $load_it = false;
+  // }
+  if (is_page(13933)) {
     $load_it = false;
   }
   return $load_it;
@@ -48,19 +51,20 @@ function handle_vote()
 add_action('wp_ajax_sort_famous_felines', 'sort_famous_felines');
 add_action('wp_ajax_nopriv_sort_famous_felines', 'sort_famous_felines');
 
-function sort_famous_felines() {
-    $sort_by = sanitize_text_field($_POST['sort_by']);
-    $search_term = sanitize_text_field($_POST['search_term']);
+function sort_famous_felines()
+{
+  $sort_by = sanitize_text_field($_POST['sort_by']);
+  $search_term = sanitize_text_field($_POST['search_term']);
 
-    $args = array(
-        'post_type' => 'famous-feline',
-        'post_status' => 'publish',
-        'posts_per_page' => -1,
-    );
+  $args = array(
+    'post_type' => 'famous-feline',
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+  );
 
-    if (!empty($search_term)) {
-        $args['s'] = $search_term;
-    }
+  if (!empty($search_term)) {
+    $args['s'] = $search_term;
+  }
 
   switch ($sort_by) {
     case 'oldest':
