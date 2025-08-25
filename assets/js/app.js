@@ -202,51 +202,29 @@ jQuery(function ($) {
     e.preventDefault();
     var button = $(this);
     var postId = button.data("post-id");
-    var votedFelines = JSON.parse(sessionStorage.getItem("voted_felines")) || [];
-    var action_type = "vote";
-    console.log(button);
-    if (votedFelines.includes(postId)) {
-      action_type = "unvote";
-    }
     $.post(my_theme_ajax.ajaxurl, {
       action: "handle_vote",
-      post_id: postId,
-      action_type: action_type
+      post_id: postId
     }).done(function (response) {
       if (response.success) {
         var newCount = response.data.new_count;
+        var action = response.data.action;
+
         // Update vote count on the button that was clicked
         button.find(".vote-count").text("".concat(newCount));
 
-        // Update vote count on the card on the main page
+        // Update vote count on the card on the main page (for fancybox)
         $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).find(".vote-count").text("".concat(newCount));
-        if (action_type === "vote") {
-          // Add to session storage
-          votedFelines.push(postId);
-          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
+        if (action === "voted") {
           button.addClass("voted");
           $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).addClass("voted");
         } else {
-          // Remove from session storage
-          votedFelines = votedFelines.filter(function (id) {
-            return id !== postId;
-          });
-          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
           button.removeClass("voted");
           $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).removeClass("voted");
         }
       }
     });
   });
-
-  // Check voted status on page load
-  function checkVotedStatus() {
-    var votedFelines = JSON.parse(sessionStorage.getItem("voted_felines")) || [];
-    votedFelines.forEach(function (postId) {
-      $(".vote-btn[data-post-id='".concat(postId, "']")).addClass("voted");
-    });
-  }
-  checkVotedStatus();
 
   // Sort Felines
   $(".ff-sort-buttons .sort-btn").on("click", function (e) {
@@ -275,35 +253,32 @@ jQuery(function ($) {
 
     loader.show(); // Show loader
 
-    setTimeout(function () {
-      $.post(my_theme_ajax.ajaxurl, {
-        action: "sort_famous_felines",
-        sort_by: sortBy,
-        search_term: searchTerm
-      }).done(function (response) {
-        if (response.success) {
-          container.html(response.data); // Replace content
-          // Re-initialize masonry
-          var _grid = document.querySelector(".ff-masonry");
-          if (_grid) {
-            imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(_grid, function () {
-              var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(_grid, {
-                itemSelector: ".ff-grid-item",
-                columnWidth: ".ff-grid-item",
-                gutter: ".gutter-sizer",
-                percentPosition: true
-              });
-              // Restore scroll position
-              $(window).scrollTop(scrollPos);
+    $.post(my_theme_ajax.ajaxurl, {
+      action: "sort_famous_felines",
+      sort_by: sortBy,
+      search_term: searchTerm
+    }).done(function (response) {
+      if (response.success) {
+        container.html(response.data); // Replace content
+        // Re-initialize masonry
+        var _grid = document.querySelector(".ff-masonry");
+        if (_grid) {
+          imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(_grid, function () {
+            var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(_grid, {
+              itemSelector: ".ff-grid-item",
+              columnWidth: ".ff-grid-item",
+              gutter: ".gutter-sizer",
+              percentPosition: true
             });
-          }
-          // Check voted status
-          checkVotedStatus();
+            // Restore scroll position
+            $(window).scrollTop(scrollPos);
+          });
         }
-      }).always(function () {
-        loader.hide(); // Hide loader
-      });
-    }, 2000);
+        // Check voted status
+      }
+    }).always(function () {
+      loader.hide(); // Hide loader
+    });
   }
 });
 

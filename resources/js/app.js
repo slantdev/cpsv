@@ -200,41 +200,27 @@ jQuery(function ($) {
     e.preventDefault();
     const button = $(this);
     const postId = button.data("post-id");
-    let votedFelines =
-      JSON.parse(sessionStorage.getItem("voted_felines")) || [];
-    let action_type = "vote";
-
-    console.log(button);
-
-    if (votedFelines.includes(postId)) {
-      action_type = "unvote";
-    }
 
     $.post(my_theme_ajax.ajaxurl, {
       action: "handle_vote",
       post_id: postId,
-      action_type: action_type,
     }).done(function (response) {
       if (response.success) {
         const newCount = response.data.new_count;
+        const action = response.data.action;
+
         // Update vote count on the button that was clicked
         button.find(".vote-count").text(`${newCount}`);
 
-        // Update vote count on the card on the main page
+        // Update vote count on the card on the main page (for fancybox)
         $(`.ff-card .vote-btn[data-post-id='${postId}']`)
           .find(".vote-count")
           .text(`${newCount}`);
 
-        if (action_type === "vote") {
-          // Add to session storage
-          votedFelines.push(postId);
-          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
+        if (action === "voted") {
           button.addClass("voted");
           $(`.ff-card .vote-btn[data-post-id='${postId}']`).addClass("voted");
         } else {
-          // Remove from session storage
-          votedFelines = votedFelines.filter((id) => id !== postId);
-          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
           button.removeClass("voted");
           $(`.ff-card .vote-btn[data-post-id='${postId}']`).removeClass(
             "voted"
@@ -243,16 +229,6 @@ jQuery(function ($) {
       }
     });
   });
-
-  // Check voted status on page load
-  function checkVotedStatus() {
-    let votedFelines =
-      JSON.parse(sessionStorage.getItem("voted_felines")) || [];
-    votedFelines.forEach((postId) => {
-      $(`.vote-btn[data-post-id='${postId}']`).addClass("voted");
-    });
-  }
-  checkVotedStatus();
 
   // Sort Felines
   $(".ff-sort-buttons .sort-btn").on("click", function (e) {
@@ -283,36 +259,33 @@ jQuery(function ($) {
 
     loader.show(); // Show loader
 
-    setTimeout(() => {
-      $.post(my_theme_ajax.ajaxurl, {
-        action: "sort_famous_felines",
-        sort_by: sortBy,
-        search_term: searchTerm,
-      })
-        .done(function (response) {
-          if (response.success) {
-            container.html(response.data); // Replace content
-            // Re-initialize masonry
-            const grid = document.querySelector(".ff-masonry");
-            if (grid) {
-              imagesLoaded(grid, function () {
-                const msnry = new Masonry(grid, {
-                  itemSelector: ".ff-grid-item",
-                  columnWidth: ".ff-grid-item",
-                  gutter: ".gutter-sizer",
-                  percentPosition: true,
-                });
-                // Restore scroll position
-                $(window).scrollTop(scrollPos);
+    $.post(my_theme_ajax.ajaxurl, {
+      action: "sort_famous_felines",
+      sort_by: sortBy,
+      search_term: searchTerm,
+    })
+      .done(function (response) {
+        if (response.success) {
+          container.html(response.data); // Replace content
+          // Re-initialize masonry
+          const grid = document.querySelector(".ff-masonry");
+          if (grid) {
+            imagesLoaded(grid, function () {
+              const msnry = new Masonry(grid, {
+                itemSelector: ".ff-grid-item",
+                columnWidth: ".ff-grid-item",
+                gutter: ".gutter-sizer",
+                percentPosition: true,
               });
-            }
-            // Check voted status
-            checkVotedStatus();
+              // Restore scroll position
+              $(window).scrollTop(scrollPos);
+            });
           }
-        })
-        .always(function () {
-          loader.hide(); // Hide loader
-        });
-    }, 2000);
+          // Check voted status
+        }
+      })
+      .always(function () {
+        loader.hide(); // Hide loader
+      });
   }
 });
