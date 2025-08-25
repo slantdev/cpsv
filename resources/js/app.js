@@ -164,16 +164,12 @@ jQuery(function ($) {
     // Custom options for this gallery
     Carousel: {
       Thumbs: false,
-    },
-    // tpl: {
-    //   closeButton:
-    //     '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
-    // },
-    Toolbar: {
-      display: {
-        left: [],
-        middle: [],
-        right: ["close"],
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["close"],
+        },
       },
     },
     theme: "light",
@@ -196,42 +192,42 @@ jQuery(function ($) {
   });
 
   // VOTE
-  $('body').on('click', '.vote-btn', function (e) {
+  $("body").on("click", ".vote-btn", function (e) {
     e.preventDefault();
     const button = $(this);
-    const postId = button.data('post-id');
-    const voteCountEl = button.find('.vote-count');
-    const voteLoaderEl = button.find('.vote-loader');
+    const postId = button.data("post-id");
 
-    voteCountEl.hide();
-    voteLoaderEl.show();
+    // Target all buttons for this post, including the one in the caption
+    const allButtons = $(`.vote-btn[data-post-id='${postId}']`);
+    const allVoteCountEls = allButtons.find(".vote-count");
+    const allVoteLoaderEls = allButtons.find(".vote-loader");
+
+    allVoteCountEls.hide();
+    allVoteLoaderEls.show();
 
     $.post(my_theme_ajax.ajaxurl, {
-      action: 'handle_vote',
+      action: "handle_vote",
       post_id: postId,
-    }).done(function (response) {
-      if (response.success) {
-        const newCount = response.data.new_count;
-        const action = response.data.action;
+    })
+      .done(function (response) {
+        if (response.success) {
+          const newCount = response.data.new_count;
+          const action = response.data.action;
 
-        // Update vote count on the button that was clicked
-        voteCountEl.text(`${newCount}`);
+          // Update vote count on all matching buttons
+          allVoteCountEls.text(`${newCount}`);
 
-        // Update vote count on the card on the main page (for fancybox)
-        $(`.ff-card .vote-btn[data-post-id='${postId}']`).find('.vote-count').text(`${newCount}`);
-
-        if (action === 'voted') {
-          button.addClass('voted');
-          $(`.ff-card .vote-btn[data-post-id='${postId}']`).addClass('voted');
-        } else {
-          button.removeClass('voted');
-          $(`.ff-card .vote-btn[data-post-id='${postId}']`).removeClass('voted');
+          if (action === "voted") {
+            allButtons.addClass("voted");
+          } else {
+            allButtons.removeClass("voted");
+          }
         }
-      }
-    }).always(function() {
-      voteLoaderEl.hide();
-      voteCountEl.show();
-    });
+      })
+      .always(function () {
+        allVoteLoaderEls.hide();
+        allVoteCountEls.show();
+      });
   });
 
   // Sort Felines

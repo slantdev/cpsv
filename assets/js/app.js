@@ -163,17 +163,13 @@ jQuery(function ($) {
   Fancybox.bind("[data-fancybox='feline-gallery']", {
     // Custom options for this gallery
     Carousel: {
-      Thumbs: false
-    },
-    // tpl: {
-    //   closeButton:
-    //     '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
-    // },
-    Toolbar: {
-      display: {
-        left: [],
-        middle: [],
-        right: ["close"]
+      Thumbs: false,
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["close"]
+        }
       }
     },
     theme: "light",
@@ -198,38 +194,36 @@ jQuery(function ($) {
   });
 
   // VOTE
-  $('body').on('click', '.vote-btn', function (e) {
+  $("body").on("click", ".vote-btn", function (e) {
     e.preventDefault();
     var button = $(this);
-    var postId = button.data('post-id');
-    var voteCountEl = button.find('.vote-count');
-    var voteLoaderEl = button.find('.vote-loader');
-    voteCountEl.hide();
-    voteLoaderEl.show();
+    var postId = button.data("post-id");
+
+    // Target all buttons for this post, including the one in the caption
+    var allButtons = $(".vote-btn[data-post-id='".concat(postId, "']"));
+    var allVoteCountEls = allButtons.find(".vote-count");
+    var allVoteLoaderEls = allButtons.find(".vote-loader");
+    allVoteCountEls.hide();
+    allVoteLoaderEls.show();
     $.post(my_theme_ajax.ajaxurl, {
-      action: 'handle_vote',
+      action: "handle_vote",
       post_id: postId
     }).done(function (response) {
       if (response.success) {
         var newCount = response.data.new_count;
         var action = response.data.action;
 
-        // Update vote count on the button that was clicked
-        voteCountEl.text("".concat(newCount));
-
-        // Update vote count on the card on the main page (for fancybox)
-        $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).find('.vote-count').text("".concat(newCount));
-        if (action === 'voted') {
-          button.addClass('voted');
-          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).addClass('voted');
+        // Update vote count on all matching buttons
+        allVoteCountEls.text("".concat(newCount));
+        if (action === "voted") {
+          allButtons.addClass("voted");
         } else {
-          button.removeClass('voted');
-          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).removeClass('voted');
+          allButtons.removeClass("voted");
         }
       }
     }).always(function () {
-      voteLoaderEl.hide();
-      voteCountEl.show();
+      allVoteLoaderEls.hide();
+      allVoteCountEls.show();
     });
   });
 
