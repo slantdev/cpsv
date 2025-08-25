@@ -1,4 +1,16 @@
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+
 jQuery(function ($) {
+  const grid = document.querySelector(".ff-masonry");
+  if (grid) {
+    const msnry = new Masonry(grid, {
+      itemSelector: ".ff-grid-item",
+      columnWidth: ".ff-grid-item",
+      gutter: ".gutter-sizer",
+      percentPosition: true,
+    });
+  }
   if ($(".counterNumber").length) {
     counterNumber();
   }
@@ -148,16 +160,149 @@ jQuery(function ($) {
   });
 
   // FANCYBOX
-  Fancybox.bind("[data-fancybox]", {
-    // Custom options for all galleries
-    tpl: {
-      closeButton:
-        '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
+  Fancybox.bind("[data-fancybox='feline-gallery']", {
+    // Custom options for this gallery
+    Carousel: {
+      Thumbs: false,
     },
+    // tpl: {
+    //   closeButton:
+    //     '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
+    // },
+    Toolbar: {
+      display: {
+        left: [],
+        middle: [],
+        right: ["close"],
+      },
+    },
+    theme: "light",
+    groupAll: true,
+    slug: (fancybox, slide) => slide.triggerEl.dataset.slug,
+  });
+
+  // Also keep the generic one for other parts of the site.
+  Fancybox.bind("[data-fancybox]:not([data-fancybox='feline-gallery'])", {
+    // Custom options for all other galleries
+    // tpl: {
+    //   closeButton:
+    //     '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
+    // },
   });
 
   // Woocommerce
   $(document).on("change", ".cart-content .quantity .qty", function (e) {
     $(".btn-update-cart").trigger("click");
   });
+
+  // VOTE
+  $("body").on("click", ".vote-btn", function (e) {
+    e.preventDefault();
+    const button = $(this);
+    const postId = button.data("post-id");
+    let votedFelines =
+      JSON.parse(sessionStorage.getItem("voted_felines")) || [];
+    let action_type = "vote";
+
+    console.log(button);
+
+    if (votedFelines.includes(postId)) {
+      action_type = "unvote";
+    }
+
+    $.post(my_theme_ajax.ajaxurl, {
+      action: "handle_vote",
+      post_id: postId,
+      action_type: action_type,
+    }).done(function (response) {
+      if (response.success) {
+        const newCount = response.data.new_count;
+        // Update vote count on the button that was clicked
+        button.find(".vote-count").text(`${newCount}`);
+
+        // Update vote count on the card on the main page
+        $(`.ff-card .vote-btn[data-post-id='${postId}']`)
+          .find(".vote-count")
+          .text(`${newCount}`);
+
+        if (action_type === "vote") {
+          // Add to session storage
+          votedFelines.push(postId);
+          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
+          button.addClass("voted");
+          $(`.ff-card .vote-btn[data-post-id='${postId}']`).addClass("voted");
+        } else {
+          // Remove from session storage
+          votedFelines = votedFelines.filter((id) => id !== postId);
+          sessionStorage.setItem("voted_felines", JSON.stringify(votedFelines));
+          button.removeClass("voted");
+          $(`.ff-card .vote-btn[data-post-id='${postId}']`).removeClass(
+            "voted"
+          );
+        }
+      }
+    });
+  });
+
+  // Check voted status on page load
+  function checkVotedStatus() {
+    let votedFelines =
+      JSON.parse(sessionStorage.getItem("voted_felines")) || [];
+    votedFelines.forEach((postId) => {
+      $(`.vote-btn[data-post-id='${postId}']`).addClass("voted");
+    });
+  }
+  checkVotedStatus();
+
+  // Sort Felines
+  $('.ff-sort-buttons .sort-btn').on('click', function(e) {
+    e.preventDefault();
+    const button = $(this);
+    const sortBy = button.data('sort');
+    const searchTerm = $('.ff-search-form .ff-search-input').val();
+
+    // Set active class
+    $('.ff-sort-buttons .sort-btn').removeClass('active');
+    button.addClass('active');
+
+    trigger_feline_ajax(sortBy, searchTerm);
+  });
+
+  // Search Felines
+  $('.ff-search-form').on('submit', function(e) {
+    e.preventDefault();
+    const searchTerm = $(this).find('.ff-search-input').val();
+    const sortBy = $('.ff-sort-buttons .sort-btn.active').data('sort');
+    trigger_feline_ajax(sortBy, searchTerm);
+  });
+
+  function trigger_feline_ajax(sortBy, searchTerm) {
+    const scrollPos = $(window).scrollTop(); // Store scroll position
+    $.post(my_theme_ajax.ajaxurl, {
+      action: 'sort_famous_felines',
+      sort_by: sortBy,
+      search_term: searchTerm
+    })
+    .done(function(response) {
+      if (response.success) {
+        $('#ff-grid-container').html(response.data);
+        // Re-initialize masonry
+        const grid = document.querySelector('.ff-masonry');
+        if (grid) {
+            imagesLoaded( grid, function() {
+                const msnry = new Masonry(grid, {
+                    itemSelector: '.ff-grid-item',
+                    columnWidth: '.ff-grid-item',
+                    gutter: '.gutter-sizer',
+                    percentPosition: true
+                });
+                // Restore scroll position
+                $(window).scrollTop(scrollPos);
+            });
+        }
+        // Check voted status
+        checkVotedStatus();
+      }
+    });
+  }
 });

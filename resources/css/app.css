@@ -6,6 +6,7 @@
 @import "partials/components.css";
 @import "partials/woocommerce.css";
 @import "partials/christmas.css";
+@import "partials/famous-felines.css";
 
 @media print {
   body {
