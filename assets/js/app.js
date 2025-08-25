@@ -198,12 +198,16 @@ jQuery(function ($) {
   });
 
   // VOTE
-  $("body").on("click", ".vote-btn", function (e) {
+  $('body').on('click', '.vote-btn', function (e) {
     e.preventDefault();
     var button = $(this);
-    var postId = button.data("post-id");
+    var postId = button.data('post-id');
+    var voteCountEl = button.find('.vote-count');
+    var voteLoaderEl = button.find('.vote-loader');
+    voteCountEl.hide();
+    voteLoaderEl.show();
     $.post(my_theme_ajax.ajaxurl, {
-      action: "handle_vote",
+      action: 'handle_vote',
       post_id: postId
     }).done(function (response) {
       if (response.success) {
@@ -211,18 +215,21 @@ jQuery(function ($) {
         var action = response.data.action;
 
         // Update vote count on the button that was clicked
-        button.find(".vote-count").text("".concat(newCount));
+        voteCountEl.text("".concat(newCount));
 
         // Update vote count on the card on the main page (for fancybox)
-        $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).find(".vote-count").text("".concat(newCount));
-        if (action === "voted") {
-          button.addClass("voted");
-          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).addClass("voted");
+        $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).find('.vote-count').text("".concat(newCount));
+        if (action === 'voted') {
+          button.addClass('voted');
+          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).addClass('voted');
         } else {
-          button.removeClass("voted");
-          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).removeClass("voted");
+          button.removeClass('voted');
+          $(".ff-card .vote-btn[data-post-id='".concat(postId, "']")).removeClass('voted');
         }
       }
+    }).always(function () {
+      voteLoaderEl.hide();
+      voteCountEl.show();
     });
   });
 

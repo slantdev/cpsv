@@ -4693,11 +4693,6 @@
   margin-bottom: 2rem;
 }
 
-#poststuff .acf-layout .my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 #poststuff .acf-layout .\!ml-0 {
   margin-left: 0px !important;
 }
@@ -5258,10 +5253,6 @@
   min-width: 200px;
 }
 
-#poststuff .acf-layout .min-w-40 {
-  min-width: 10rem;
-}
-
 #poststuff .acf-layout .max-w-2xl {
   max-width: 42rem;
 }
@@ -5411,6 +5402,10 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+#poststuff .acf-layout .transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 @keyframes spin {
 
   to {
@@ -5518,6 +5513,10 @@
   gap: 0.125rem;
 }
 
+#poststuff .acf-layout .gap-1 {
+  gap: 0.25rem;
+}
+
 #poststuff .acf-layout .gap-12 {
   gap: 3rem;
 }
@@ -5544,10 +5543,6 @@
 
 #poststuff .acf-layout .gap-8 {
   gap: 2rem;
-}
-
-#poststuff .acf-layout .gap-1 {
-  gap: 0.25rem;
 }
 
 #poststuff .acf-layout .gap-x-1 {
@@ -6203,6 +6198,11 @@
   padding-right: 0px;
 }
 
+#poststuff .acf-layout .px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 #poststuff .acf-layout .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -6321,11 +6321,6 @@
 #poststuff .acf-layout .py-\[26px\] {
   padding-top: 26px;
   padding-bottom: 26px;
-}
-
-#poststuff .acf-layout .px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 #poststuff .acf-layout .\!pb-2 {
@@ -6633,10 +6628,6 @@
   font-weight: 600;
 }
 
-#poststuff .acf-layout .font-thin {
-  font-weight: 100;
-}
-
 #poststuff .acf-layout .uppercase {
   text-transform: uppercase;
 }
@@ -6767,21 +6758,6 @@
 #poststuff .acf-layout .text-zinc-400 {
   --tw-text-opacity: 1;
   color: rgb(161 161 170 / var(--tw-text-opacity));
-}
-
-#poststuff .acf-layout .text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-#poststuff .acf-layout .text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-#poststuff .acf-layout .text-red-300 {
-  --tw-text-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-text-opacity));
 }
 
 #poststuff .acf-layout .underline {
@@ -8423,10 +8399,6 @@
 
   #poststuff .acf-layout .lg\:mt-6 {
     margin-top: 1.5rem;
-  }
-
-  #poststuff .acf-layout .lg\:mt-8 {
-    margin-top: 2rem;
   }
 
   #poststuff .acf-layout .lg\:block {
