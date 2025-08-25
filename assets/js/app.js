@@ -249,52 +249,61 @@ jQuery(function ($) {
   checkVotedStatus();
 
   // Sort Felines
-  $('.ff-sort-buttons .sort-btn').on('click', function (e) {
+  $(".ff-sort-buttons .sort-btn").on("click", function (e) {
     e.preventDefault();
     var button = $(this);
-    var sortBy = button.data('sort');
-    var searchTerm = $('.ff-search-form .ff-search-input').val();
+    var sortBy = button.data("sort");
+    var searchTerm = $(".ff-search-form .ff-search-input").val();
 
     // Set active class
-    $('.ff-sort-buttons .sort-btn').removeClass('active');
-    button.addClass('active');
+    $(".ff-sort-buttons .sort-btn").removeClass("active");
+    button.addClass("active");
     trigger_feline_ajax(sortBy, searchTerm);
   });
 
   // Search Felines
-  $('.ff-search-form').on('submit', function (e) {
+  $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
-    var searchTerm = $(this).find('.ff-search-input').val();
-    var sortBy = $('.ff-sort-buttons .sort-btn.active').data('sort');
+    var searchTerm = $(this).find(".ff-search-input").val();
+    var sortBy = $(".ff-sort-buttons .sort-btn.active").data("sort");
     trigger_feline_ajax(sortBy, searchTerm);
   });
   function trigger_feline_ajax(sortBy, searchTerm) {
     var scrollPos = $(window).scrollTop(); // Store scroll position
-    $.post(my_theme_ajax.ajaxurl, {
-      action: 'sort_famous_felines',
-      sort_by: sortBy,
-      search_term: searchTerm
-    }).done(function (response) {
-      if (response.success) {
-        $('#ff-grid-container').html(response.data);
-        // Re-initialize masonry
-        var _grid = document.querySelector('.ff-masonry');
-        if (_grid) {
-          imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(_grid, function () {
-            var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(_grid, {
-              itemSelector: '.ff-grid-item',
-              columnWidth: '.ff-grid-item',
-              gutter: '.gutter-sizer',
-              percentPosition: true
+    var container = $("#ff-grid-container");
+    var loader = container.siblings(".ff-loader-container"); // Updated selector
+
+    loader.show(); // Show loader
+
+    setTimeout(function () {
+      $.post(my_theme_ajax.ajaxurl, {
+        action: "sort_famous_felines",
+        sort_by: sortBy,
+        search_term: searchTerm
+      }).done(function (response) {
+        if (response.success) {
+          container.html(response.data); // Replace content
+          // Re-initialize masonry
+          var _grid = document.querySelector(".ff-masonry");
+          if (_grid) {
+            imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(_grid, function () {
+              var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(_grid, {
+                itemSelector: ".ff-grid-item",
+                columnWidth: ".ff-grid-item",
+                gutter: ".gutter-sizer",
+                percentPosition: true
+              });
+              // Restore scroll position
+              $(window).scrollTop(scrollPos);
             });
-            // Restore scroll position
-            $(window).scrollTop(scrollPos);
-          });
+          }
+          // Check voted status
+          checkVotedStatus();
         }
-        // Check voted status
-        checkVotedStatus();
-      }
-    });
+      }).always(function () {
+        loader.hide(); // Hide loader
+      });
+    }, 2000);
   }
 });
 

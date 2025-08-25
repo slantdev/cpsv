@@ -255,54 +255,64 @@ jQuery(function ($) {
   checkVotedStatus();
 
   // Sort Felines
-  $('.ff-sort-buttons .sort-btn').on('click', function(e) {
+  $(".ff-sort-buttons .sort-btn").on("click", function (e) {
     e.preventDefault();
     const button = $(this);
-    const sortBy = button.data('sort');
-    const searchTerm = $('.ff-search-form .ff-search-input').val();
+    const sortBy = button.data("sort");
+    const searchTerm = $(".ff-search-form .ff-search-input").val();
 
     // Set active class
-    $('.ff-sort-buttons .sort-btn').removeClass('active');
-    button.addClass('active');
+    $(".ff-sort-buttons .sort-btn").removeClass("active");
+    button.addClass("active");
 
     trigger_feline_ajax(sortBy, searchTerm);
   });
 
   // Search Felines
-  $('.ff-search-form').on('submit', function(e) {
+  $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
-    const searchTerm = $(this).find('.ff-search-input').val();
-    const sortBy = $('.ff-sort-buttons .sort-btn.active').data('sort');
+    const searchTerm = $(this).find(".ff-search-input").val();
+    const sortBy = $(".ff-sort-buttons .sort-btn.active").data("sort");
     trigger_feline_ajax(sortBy, searchTerm);
   });
 
   function trigger_feline_ajax(sortBy, searchTerm) {
     const scrollPos = $(window).scrollTop(); // Store scroll position
-    $.post(my_theme_ajax.ajaxurl, {
-      action: 'sort_famous_felines',
-      sort_by: sortBy,
-      search_term: searchTerm
-    })
-    .done(function(response) {
-      if (response.success) {
-        $('#ff-grid-container').html(response.data);
-        // Re-initialize masonry
-        const grid = document.querySelector('.ff-masonry');
-        if (grid) {
-            imagesLoaded( grid, function() {
+    const container = $("#ff-grid-container");
+    const loader = container.siblings(".ff-loader-container"); // Updated selector
+
+    loader.show(); // Show loader
+
+    setTimeout(() => {
+      $.post(my_theme_ajax.ajaxurl, {
+        action: "sort_famous_felines",
+        sort_by: sortBy,
+        search_term: searchTerm,
+      })
+        .done(function (response) {
+          if (response.success) {
+            container.html(response.data); // Replace content
+            // Re-initialize masonry
+            const grid = document.querySelector(".ff-masonry");
+            if (grid) {
+              imagesLoaded(grid, function () {
                 const msnry = new Masonry(grid, {
-                    itemSelector: '.ff-grid-item',
-                    columnWidth: '.ff-grid-item',
-                    gutter: '.gutter-sizer',
-                    percentPosition: true
+                  itemSelector: ".ff-grid-item",
+                  columnWidth: ".ff-grid-item",
+                  gutter: ".gutter-sizer",
+                  percentPosition: true,
                 });
                 // Restore scroll position
                 $(window).scrollTop(scrollPos);
-            });
-        }
-        // Check voted status
-        checkVotedStatus();
-      }
-    });
+              });
+            }
+            // Check voted status
+            checkVotedStatus();
+          }
+        })
+        .always(function () {
+          loader.hide(); // Hide loader
+        });
+    }, 2000);
   }
 });
