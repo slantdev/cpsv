@@ -1,6 +1,6 @@
 <?php
 
-add_filter('frm_load_dropzone', 'stop_dropzone');
+//add_filter('frm_load_dropzone', 'stop_dropzone');
 function stop_dropzone($load_it)
 {
   // if (is_page(1650)) {
