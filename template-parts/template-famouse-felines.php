@@ -14,8 +14,9 @@ get_header();
     --f-carousel-slide-width: 640px;
     --f-carousel-slide-padding: 20px;
   }
+
   .vote-loader {
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-top: 2px solid #fff;
     border-radius: 50%;
     width: 16px;
@@ -24,8 +25,17 @@ get_header();
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .frm_form_field:not(.frm_compact) .frm_dropzone {
+    max-width: none;
   }
 </style>
 <div id="famous-felines-page">
