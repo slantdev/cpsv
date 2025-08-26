@@ -133,7 +133,7 @@ function get_feline_card_html($post_id)
 
   ob_start();
   ?>
-  <div class="ff-card ff-grid-item p-4 rounded-lg bg-white shadow flex flex-col">
+  <div class="ff-card ff-grid-item p-4 rounded-lg bg-[#f4efea] shadow-md flex flex-col">
     <div class="ff-card--image">
       <a href="<?php echo esc_url($cat_photo_url); ?>"
         data-fancybox="feline-gallery"

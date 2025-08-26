@@ -71,7 +71,7 @@ get_header();
       </div>
     </div>
   </div>
-  <div class="ff-cats-grid py-8 lg:py-16 bg-brand-light-gray">
+  <div class="ff-cats-grid py-8 lg:py-16 bg-[#f8f7f6]">
     <div class="container max-w-screen-2xl">
       <h2 class="text-3xl lg:text-5xl tracking-tight font-semibold mb-4 lg:mb-8">Meet our contestants</h2>
       <div class="ff-toolbox flex justify-between mb-4 lg:mb-8">
@@ -84,8 +84,8 @@ get_header();
         </div>
         <div class="ff-search">
           <form class="ff-search-form">
-            <div class="bg-white rounded-full px-1 py-1 shadow-inner flex gap-1">
-              <input type="search" name="feline_search" class="ff-search-input border-none min-w-56 bg-transparent rounded-full" placeholder="Cat's name...">
+            <div class="bg-white rounded-full px-1 py-1 shadow-[inset_0_2px_4px_0px_rgba(0,0,0,0.3)] flex gap-1">
+              <input type="search" name="feline_search" class="ff-search-input border-none min-w-56 bg-transparent rounded-full focus:ring-0 focus:border-0" placeholder="Cat's name...">
               <button type="submit" class="ff-search-btn bg-brand-blue text-white rounded-full px-8 py-2 font-semibold">Search</button>
             </div>
           </form>
