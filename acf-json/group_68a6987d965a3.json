@@ -40,7 +40,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "hidden",
                 "id": ""
             },
             "default_value": "",
@@ -257,7 +257,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1756124305,
+    "modified": 1756259400,
     "acfe_categories": {
         "cpt": "CPT"
     }

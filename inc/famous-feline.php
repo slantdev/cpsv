@@ -118,7 +118,6 @@ function get_feline_card_html($post_id)
 {
   $cat_photo = get_field('cat_photo', $post_id);
   $cat_photo_url = $cat_photo ? $cat_photo['url'] : 'https://placehold.co/600x600';
-  //$cat_name = get_field('cat_name', $post_id);
   $cat_name = get_the_title($post_id);
   $cat_age = get_field('cat_age', $post_id);
   $cat_description = get_field('cat_description', $post_id);
