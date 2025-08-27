@@ -34,9 +34,10 @@ get_header();
     }
   }
 
-  .frm_form_field:not(.frm_compact) .frm_dropzone {
-    max-width: none;
+  .share-popover {
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
   }
+
 </style>
 <div id="famous-felines-page">
   <div class="container max-w-screen-2xl">

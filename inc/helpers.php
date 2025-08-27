@@ -81,16 +81,16 @@ function cpsv_icon($atts = array())
     $class .= ' ' . esc_attr($atts['class']);
 
   if (false !== $atts['size']) {
-    $repl = sprintf('<svg class="' . $class . '" width="%d" height="%d" aria-hidden="true" role="img" focusable="false" ', $atts['size'], $atts['size']);
-    $svg  = preg_replace('/^<svg /', $repl, trim($icon)); // Add extra attributes to SVG code.
+    $repl = sprintf("<svg class='" . $class . "' width='%d' height='%d' aria-hidden='true' role='img' focusable='false' ", $atts['size'], $atts['size']);
+    $svg  = preg_replace("/^<svg /", $repl, trim($icon)); // Add extra attributes to SVG code.
   } else {
-    $svg = preg_replace('/^<svg /', '<svg class="' . $class . '"', trim($icon));
+    $svg = preg_replace("/^<svg /", "<svg class='" . $class . "'", trim($icon));
   }
   $svg  = preg_replace("/([\n\t]+)/", ' ', $svg); // Remove newlines & tabs.
   $svg  = preg_replace('/>\s*</', '><', $svg); // Remove white space between SVG tags.
 
   if (!empty($atts['label'])) {
-    $svg = str_replace('<svg class', '<svg aria-label="' . esc_attr($atts['label']) . '" class', $svg);
+    $svg = str_replace("<svg class", "<svg aria-label='" . esc_attr($atts['label']) . "' class", $svg);
     $svg = str_replace('aria-hidden="true"', '', $svg);
   }
 

@@ -122,6 +122,7 @@ function get_feline_card_html($post_id)
   $cat_age = get_field('cat_age', $post_id);
   $cat_description = get_field('cat_description', $post_id);
   $vote_count = get_field('vote_count', $post_id) ? get_field('vote_count', $post_id) : 0;
+  $post_slug = get_post_field('post_name', $post_id);
 
   $voted_ips = get_post_meta($post_id, 'voted_ips', true);
   if (!is_array($voted_ips)) {
@@ -129,6 +130,26 @@ function get_feline_card_html($post_id)
   }
   $user_ip = $_SERVER['REMOTE_ADDR'];
   $voted_class = in_array($user_ip, $voted_ips) ? 'voted' : '';
+
+  // Generate all icons and popover HTML as variables.
+  $icon_facebook = cpsv_icon(array('icon' => 'facebook', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6'));
+  $icon_twitter = cpsv_icon(array('icon' => 'x', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6'));
+  $icon_linkedin = cpsv_icon(array('icon' => 'linkedin', 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6'));
+  $icon_copy = '<svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961" /></svg>';
+
+  $share_popover_html = "
+    <div class=\"share-popover hidden absolute z-10 w-40 bg-white rounded-lg shadow-lg right-0 top-10\">
+        <div class=\"py-1 text-sm\">
+            <a href=\"#\" class=\"share-link block px-4 py-2 text-gray-700 hover:bg-gray-100\" data-platform=\"facebook\"><div class=\"inline-flex gap-2 items-center\">{$icon_facebook}<div>Facebook</div></div></a>
+            <a href=\"#\" class=\"share-link block px-4 py-2 text-gray-700 hover:bg-gray-100\" data-platform=\"twitter\"><div class=\"inline-flex gap-2 items-center\">{$icon_twitter}<div>X (Twitter)</div></div></a>
+            <a href=\"#\" class=\"share-link block px-4 py-2 text-gray-700 hover:bg-gray-100\" data-platform=\"linkedin\"><div class=\"inline-flex gap-2 items-center\">{$icon_linkedin}<div>LinkedIn</div></div></a>
+            <button class=\"copy-url-btn block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100\"><div class=\"inline-flex gap-2 items-center\">{$icon_copy}<div class=\"copy-text\">Copy URL</div></div></button>
+        </div>
+    </div>
+  ";
+
+  // Create a caption-safe version by replacing double quotes with single quotes.
+  $share_popover_html_for_caption = str_replace('"', "'", $share_popover_html);
 
   ob_start();
   ?>
@@ -139,25 +160,18 @@ function get_feline_card_html($post_id)
         data-caption="<div class='ff-card--header'>
                         <div class='flex justify-between items-center py-3 mb-3 border-b border-slate-300'>
                           <div class='ff-card--name'>
-                            <h3 class='font-semibold text-2xl'>
-                              <?php echo esc_html($cat_name); ?>
-                            </h3>
-                            <?php if ($cat_age) : ?>
-                              <p class='font-semibold mt-2'>
-                                <?php echo esc_html($cat_age); ?>
-                              </p>
-                            <?php endif; ?>
+                            <h3 class='font-semibold text-2xl'><?php echo esc_html($cat_name); ?></h3>
+                            <?php if ($cat_age) : ?><p class='font-semibold mt-2'><?php echo esc_html($cat_age); ?></p><?php endif; ?>
                           </div>
                           <div class='ff-card--action flex items-center'>
-                            <button class='share-btn p-2 rounded-full hover:bg-slate-100'>
-                              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
-                                <path fill-rule='evenodd' d='M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z' clip-rule='evenodd' />
-                              </svg>
-                            </button>
+                            <div class='share-container relative'>
+                              <button class='share-btn p-2 rounded-full hover:bg-slate-100' data-post-slug='<?php echo $post_slug; ?>' data-post-title='<?php echo esc_attr($cat_name); ?>'>
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'><path fill-rule='evenodd' d='M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z' clip-rule='evenodd' /></svg>
+                              </button>
+                              <?php echo $share_popover_html_for_caption; ?>
+                            </div>
                             <button class='vote-btn flex items-center gap-2 p-2 rounded-full hover:bg-slate-100 relative <?php echo $voted_class; ?>' data-post-id='<?php echo $post_id; ?>'>
-                              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-10 h-10 text-slate-600'>
-                                <path d='m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z' />
-                              </svg>
+                              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-10 h-10 text-slate-600'><path d='m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z' /></svg>
                               <div class='absolute inset-0 flex items-center justify-center'>
                                 <div class='vote-loader' style='display: none;'></div>
                                 <div class='vote-count font-semibold text-xs text-white'><?php echo esc_html($vote_count); ?></div>
@@ -166,10 +180,8 @@ function get_feline_card_html($post_id)
                           </div>
                         </div>
                       </div>
-                      <div class='ff-card--description'>
-                        <?php echo wp_kses_post($cat_description); ?>
-                      </div>"
-        data-slug="<?php echo get_post_field('post_name', $post_id); ?>">
+                      <div class='ff-card--description'><?php echo wp_kses_post($cat_description); ?></div>"
+        data-slug="<?php echo $post_slug; ?>">
         <img src="<?php echo esc_url($cat_photo_url); ?>" alt="<?php echo esc_attr($cat_name); ?>" class="rounded-lg w-full h-auto aspect-square object-cover">
       </a>
     </div>
@@ -187,11 +199,14 @@ function get_feline_card_html($post_id)
             <?php endif; ?>
           </div>
           <div class="ff-card--action flex items-center">
-            <button class="share-btn p-2 rounded-full hover:bg-slate-100">
-              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
-                <path fill-rule='evenodd' d='M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z' clip-rule='evenodd' />
-              </svg>
-            </button>
+            <div class="share-container relative">
+              <button class="share-btn p-2 rounded-full hover:bg-slate-100" data-post-slug="<?php echo $post_slug; ?>" data-post-title="<?php echo esc_attr($cat_name); ?>">
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
+                  <path fill-rule='evenodd' d='M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z' clip-rule='evenodd' />
+                </svg>
+              </button>
+              <?php echo $share_popover_html; ?>
+            </div>
             <button class="vote-btn flex items-center gap-2 p-2 rounded-full hover:bg-slate-100 relative <?php echo $voted_class; ?>" data-post-id='<?php echo $post_id; ?>'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='w-10 h-10 text-slate-600'>
                 <path d='m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z' />

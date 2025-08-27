@@ -3857,6 +3857,9 @@ details.collapse summary::-webkit-details-marker {
 .top-auto {
     top: auto;
 }
+.top-10 {
+    top: 2.5rem;
+}
 .\!z-20 {
     z-index: 20 !important;
 }
@@ -4354,6 +4357,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .w-px {
     width: 1px;
+}
+.w-40 {
+    width: 10rem;
 }
 .min-w-56 {
     min-width: 14rem;
@@ -6310,6 +6316,10 @@ body {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.hover\:bg-gray-100:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
 .hover\:text-black:hover {
     --tw-text-opacity: 1;
     color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -7394,6 +7404,12 @@ body {
     }
     .print\:pt-0 {
         padding-top: 0px;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .dark\:text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
     }
 }
 .\[\&\>\.swiper-pagination-bullet\]\:h-1\.5>.swiper-pagination-bullet {

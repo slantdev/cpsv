@@ -30,6 +30,74 @@ jQuery(function ($) {
       });
     });
   }
+
+  // SHARE POPOVER
+  // Show/hide popover
+  $("body").on("click", ".share-btn", function (e) {
+    e.stopPropagation();
+    // Close all other popovers
+    $(".share-popover").not($(this).siblings(".share-popover")).addClass("hidden");
+    // Toggle current popover
+    $(this).siblings(".share-popover").toggleClass("hidden");
+  });
+
+  // Close popovers when clicking outside
+  $(document).on("click", function () {
+    $(".share-popover").addClass("hidden");
+  });
+
+  // Stop click inside popover from closing it
+  $("body").on("click", ".share-popover", function (e) {
+    e.stopPropagation();
+  });
+
+  // Handle social sharing
+  $("body").on("click", ".share-link", function (e) {
+    e.preventDefault();
+    var button = $(this);
+    var container = button.closest(".share-container");
+    var shareButton = container.find(".share-btn");
+    var postSlug = shareButton.data("post-slug");
+    var postTitle = shareButton.data("post-title");
+    var pageUrl = window.location.href.split("#")[0];
+    var shareUrl = "".concat(pageUrl, "#&gid=feline-gallery&pid=").concat(postSlug);
+    var encodedUrl = encodeURIComponent(shareUrl);
+    var encodedTitle = encodeURIComponent(postTitle);
+    var platformUrl = "";
+    switch (button.data("platform")) {
+      case "facebook":
+        platformUrl = "https://www.facebook.com/sharer/sharer.php?u=".concat(encodedUrl);
+        break;
+      case "twitter":
+        platformUrl = "https://twitter.com/intent/tweet?url=".concat(encodedUrl, "&text=").concat(encodedTitle);
+        break;
+      case "linkedin":
+        platformUrl = "https://www.linkedin.com/shareArticle?mini=true&url=".concat(encodedUrl);
+        break;
+    }
+    if (platformUrl) {
+      window.open(platformUrl, "_blank", "width=600,height=400");
+    }
+  });
+
+  // Handle Copy URL
+  $("body").on("click", ".copy-url-btn", function (e) {
+    e.preventDefault();
+    var button = $(this);
+    var container = button.closest(".share-container");
+    var shareButton = container.find(".share-btn");
+    var postSlug = shareButton.data("post-slug");
+    var pageUrl = window.location.href.split("#")[0];
+    var shareUrl = "".concat(pageUrl, "#&gid=feline-gallery&pid=").concat(postSlug);
+    var copyText = button.find(".copy-text");
+    navigator.clipboard.writeText(shareUrl).then(function () {
+      var originalText = button.text();
+      copyText.text("Copied!");
+      setTimeout(function () {
+        copyText.text(originalText);
+      }, 2000);
+    });
+  });
   if ($(".counterNumber").length) {
     counterNumber();
   }
