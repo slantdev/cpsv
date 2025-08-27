@@ -41,36 +41,12 @@ get_header();
 <div id="famous-felines-page">
   <div class="container max-w-screen-2xl">
     <div class="ff-banner py-4 lg:py-6 xl:py-8">
-      <img src="https://placehold.co/1440x720" alt="" class="rounded-lg">
-    </div>
-    <div class="ff-campaign-form pb-6 lg:pb-12">
-      <h1 class="text-3xl lg:text-5xl tracking-tight font-semibold mt-4 mb-4 lg:mb-12">Enter our Purrfect Pin Up 2026 Calendar Competition</h1>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-10">
-        <div class="prose">
-          <div class="text-2xl mb-4 lg:mb-6">Is your cat ready for their close up!</div>
-          <div class="text-lg">
-            <p>Calling all Victorian cat lovers!</p>
-            <p>Do you live with a fabulous feline? Does your marvellous moggie have the charm, style, and star power to shine? Would you love the chance to show the world just how paw-some they are?</p>
-            This is your moment.
-            <p>We’re on the lookout for 12 incredible cats to star in our 2026 Cat Protection Society Calendar – and your furry friend could be one of them!</p>
-            <p>Not only will your cat enjoy their time in the spotlight, but every calendar sold will help support our work in caring for and rehoming Victorian cats in need.</p>
-          </div>
-          <div class="text-2xl mb-4 lg:mb-6">Who can Enter?</div>
-          <div class="text-lg">
-            <ol>
-              <li>Any Victorian who has adopted a cat or kitten from The Cat Protection Society of Victoria Adoption Shelter.</li>
-              <li>You must be able to bring your cat to our Greensborough Adoption Shelter for their very own private photoshoot.</li>
-              <li>Your cat must be up to date with their vaccinations and you can show proof of this vaccination status prior to a scheduled photoshoot should your cat win. </li>
-            </ol>
-          </div>
-        </div>
-        <div>
-          <?php /* echo FrmFormsController::get_form_shortcode(array('id' => 5)); */ ?>
-          <?php echo FrmFormsController::get_form_shortcode(array('id' => 39)); ?>
-        </div>
-      </div>
+      <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/campaign/purrfect-pinup-banner.jpg'; ?>" alt="" class="rounded-lg">
     </div>
   </div>
+  <?php
+  get_template_part('template-parts/page', 'builder');
+  ?>
   <div class="ff-cats-grid py-8 lg:py-16 bg-[#f8f7f6]">
     <div class="container max-w-screen-2xl">
       <h2 class="text-3xl lg:text-5xl tracking-tight font-semibold mb-4 lg:mb-8">Meet our contestants</h2>
