@@ -21,11 +21,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 jQuery(function ($) {
   var grid = document.querySelector(".ff-masonry");
   if (grid) {
-    var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(grid, {
-      itemSelector: ".ff-grid-item",
-      columnWidth: ".ff-grid-item",
-      gutter: ".gutter-sizer",
-      percentPosition: true
+    imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(grid, function () {
+      var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(grid, {
+        itemSelector: ".ff-grid-item",
+        columnWidth: ".ff-grid-item",
+        gutter: ".gutter-sizer",
+        percentPosition: true
+      });
     });
   }
   if ($(".counterNumber").length) {

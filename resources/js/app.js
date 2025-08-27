@@ -4,11 +4,13 @@ import imagesLoaded from "imagesloaded";
 jQuery(function ($) {
   const grid = document.querySelector(".ff-masonry");
   if (grid) {
-    const msnry = new Masonry(grid, {
-      itemSelector: ".ff-grid-item",
-      columnWidth: ".ff-grid-item",
-      gutter: ".gutter-sizer",
-      percentPosition: true,
+    imagesLoaded(grid, function () {
+      const msnry = new Masonry(grid, {
+        itemSelector: ".ff-grid-item",
+        columnWidth: ".ff-grid-item",
+        gutter: ".gutter-sizer",
+        percentPosition: true,
+      });
     });
   }
   if ($(".counterNumber").length) {
