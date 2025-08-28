@@ -47,6 +47,22 @@
             "library": "all"
         },
         {
+            "key": "field_68afbc5db58dd",
+            "label": "Link",
+            "name": "link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_660654869bf60",
             "label": "(Column 3\/12)",
             "name": "",
@@ -117,6 +133,7 @@
                             "choices": {
                                 "## Default": "## Default",
                                 "default": "Default",
+                                "none": "None",
                                 "1_1": "1:1",
                                 "## Potrait": "## Potrait",
                                 "3_2": "3:2",
@@ -238,7 +255,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1711691447,
+    "modified": 1756347534,
     "acfe_categories": {
         "components": "Components"
     }
