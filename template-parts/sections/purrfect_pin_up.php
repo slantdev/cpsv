@@ -18,6 +18,13 @@ $show_sort = $purrfect_pin_up['show_sort'] ?? '';
 $card_background_color = $purrfect_pin_up['card_background_color'] ?? '#f4efea';
 $posts_per_page = $purrfect_pin_up['posts_per_page'] ?? '-1';
 $show_pagination = $purrfect_pin_up['show_pagination'] ?? 'false';
+$popup_settings = $purrfect_pin_up['popup_settings'] ?? ''; //Group
+$popup_headline = $popup_settings['popup_headline'] ?? '';
+$popup_description = $popup_settings['popup_description'] ?? '';
+$popup_button = $popup_settings['popup_button_link'] ?? '';
+$popup_button_link = $popup_settings['popup_button_link']['url'] ?? '';
+$popup_button_title = $popup_settings['popup_button_link']['title'] ?? 'Donate Now';
+$popup_button_target = $popup_settings['popup_button_link']['target'] ?? '_self';
 
 $uniqid = uniqid();
 $section_purrfect_pin_up_class = 'section-purrfect_pin_up-' . $uniqid;
@@ -27,7 +34,7 @@ if ($card_background_color) {
 }
 
 ?>
-<section <?php echo $section_id ?> class="<?php echo $section_purrfect_pin_up_class ?> section-wrapper relative" style="<?php echo $section_style ?>">
+<section <?php echo $section_id ?> class="<?php echo $section_purrfect_pin_up_class ?> section-wrapper relative" style="<?php echo $section_style ?>" data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>">
   <?php get_template_part('template-parts/global/separator', '', array('location' => 'top', 'active' => $top_separator, 'color' => $top_separator_color, 'class' => '')); ?>
   <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'top', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
@@ -49,9 +56,9 @@ if ($card_background_color) {
         ?>
       </div>
       <div class="container mx-auto max-w-screen-2xl">
-        <div class="ff-toolbox flex justify-between mb-4 lg:mb-8">
+        <div class="ff-toolbox flex flex-col gap-4 md:flex-row md:justify-between mb-4 lg:mb-8">
           <?php if ($show_sort) : ?>
-            <div class="ff-sort">
+            <div class="ff-sort order-2 md:order-1">
               <div class="ff-sort-buttons flex gap-2">
                 <button class="sort-btn active" data-sort="newest">Newest</button>
                 <button class="sort-btn" data-sort="oldest">Oldest</button>
@@ -60,11 +67,11 @@ if ($card_background_color) {
             </div>
           <?php endif; ?>
           <?php if ($show_search_bar) : ?>
-            <div class="ff-search">
+            <div class="ff-search order-1 md:order-2 lg:w-96">
               <form class="ff-search-form">
-                <div class="bg-white rounded-full px-1 py-1 shadow-[inset_0_2px_4px_0px_rgba(0,0,0,0.3)] flex gap-1">
-                  <input type="search" name="feline_search" class="ff-search-input border-none min-w-56 bg-transparent rounded-full focus:ring-0 focus:border-0" placeholder="Cat's name...">
-                  <button type="submit" class="ff-search-btn bg-brand-blue text-white rounded-full px-8 py-2 font-semibold">Search</button>
+                <div class="bg-white rounded-full px-1 py-1 shadow-[inset_0_2px_4px_0px_rgba(0,0,0,0.3)] flex gap-1 lg:justify-between w-full">
+                  <input type="search" name="feline_search" class="ff-search-input border-none min-w-0 w-full lg:max-w-64 bg-transparent rounded-full focus:ring-0 focus:border-0" placeholder="Cat's name...">
+                  <button type="submit" class="ff-search-btn grow-0 bg-brand-blue text-white rounded-full px-8 py-2 font-semibold w-auto">Search</button>
                 </div>
               </form>
             </div>
@@ -77,12 +84,14 @@ if ($card_background_color) {
           <div id="ff-grid-container">
             <?php
             if (!is_admin()) {
+              $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
               $args = array(
                 'post_type' => 'famous-feline',
                 'post_status' => 'publish',
-                'posts_per_page' => -1,
+                'posts_per_page' => $posts_per_page,
                 'orderby' => 'date',
                 'order' => 'DESC',
+                'paged' => $paged,
               );
             } else {
               $args = array(
@@ -117,10 +126,26 @@ if ($card_background_color) {
                 </div>
               <?php endif; ?>
             <?php
+              // Pagination is now handled outside this container
               wp_reset_postdata();
             else :
               echo '<p class="text-center col-span-full">No contestants found. Be the first to enter!</p>';
             endif;
+            ?>
+          </div>
+          <div id="ff-pagination-container" class="ff-pagination mt-8">
+            <?php
+            if ($show_pagination && isset($felines_query) && $felines_query->max_num_pages > 1) {
+              echo paginate_links(array(
+                'base' => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+                'format' => '?paged=%#%',
+                'current' => max(1, $paged),
+                'total' => $felines_query->max_num_pages,
+                'prev_text' => __('&laquo;'),
+                'next_text' => __('&raquo;'),
+                'type' => 'list',
+              ));
+            }
             ?>
           </div>
         </div>
@@ -130,4 +155,16 @@ if ($card_background_color) {
     <?php get_template_part('template-parts/global/background_ornament', '', array('location' => 'bottom', 'shape' => $section_ornament_shape, 'color' => $section_ornament_color, 'position' => $section_ornament_position, 'class' => '')); ?>
   </div>
   <?php get_template_part('template-parts/global/separator', '', array('location' => 'bottom', 'active' => $bottom_separator, 'color' => $bottom_separator_color, 'class' => '')); ?>
+  <?php if ($popup_headline && $popup_description) : ?>
+    <div id="vote-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center px-4">
+      <div class="relative bg-white rounded-lg shadow-lg p-8 max-w-screen-sm w-full">
+        <h3 class="text-2xl font-bold mb-4 text-primary-text lg:text-3xl"><?php echo esc_html($popup_headline); ?></h3>
+        <div class="mb-6 text-secondary-text"><?php echo wp_kses_post($popup_description); ?></div>
+        <?php if ($popup_button_link) : ?>
+          <a class="btn btn-lg btn-primary" href="<?php echo $popup_button_link ?>" target="<?php echo $popup_button_target ?>"><?php echo $popup_button_title ?></a>
+        <?php endif; ?>
+        <button id="close-vote-popup" class="btn btn-circle btn-sm btn-outline text-2xl font-normal absolute right-6 top-6">&times;</button>
+      </div>
+    </div>
+  <?php endif; ?>
 </section>

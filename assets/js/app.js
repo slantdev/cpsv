@@ -264,6 +264,7 @@ jQuery(function ($) {
   });
 
   // VOTE
+  var enableVotePopupOnce = false; // Set to false to show popup on every vote for testing
   $("body").on("click", ".vote-btn", function (e) {
     e.preventDefault();
     var button = $(this);
@@ -290,6 +291,13 @@ jQuery(function ($) {
         } else {
           allButtons.removeClass("voted");
         }
+
+        // Show popup on first successful vote
+        var popupAlreadyShown = sessionStorage.getItem("votePopupShown") === "true";
+        if ((!popupAlreadyShown || !enableVotePopupOnce) && $("#vote-popup").length) {
+          $("#vote-popup").removeClass("hidden").addClass("flex");
+          sessionStorage.setItem("votePopupShown", "true");
+        }
       }
     }).always(function () {
       allVoteLoaderEls.hide();
@@ -297,42 +305,80 @@ jQuery(function ($) {
     });
   });
 
+  // Close vote popup
+  $("body").on("click", "#close-vote-popup", function () {
+    $("#vote-popup").removeClass("flex").addClass("hidden");
+  });
+
   // Sort Felines
   $(".ff-sort-buttons .sort-btn").on("click", function (e) {
     e.preventDefault();
     var button = $(this);
     var sortBy = button.data("sort");
-    var searchTerm = $(".ff-search-form .ff-search-input").val();
+    var section = button.closest('.section-wrapper');
+    var searchTerm = section.find(".ff-search-form .ff-search-input").val();
 
     // Set active class
-    $(".ff-sort-buttons .sort-btn").removeClass("active");
+    section.find(".ff-sort-buttons .sort-btn").removeClass("active");
     button.addClass("active");
-    trigger_feline_ajax(sortBy, searchTerm);
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
   });
 
   // Search Felines
   $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
-    var searchTerm = $(this).find(".ff-search-input").val();
-    var sortBy = $(".ff-sort-buttons .sort-btn.active").data("sort");
-    trigger_feline_ajax(sortBy, searchTerm);
+    var form = $(this);
+    var section = form.closest('.section-wrapper');
+    var searchTerm = form.find(".ff-search-input").val();
+    var sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
   });
-  function trigger_feline_ajax(sortBy, searchTerm) {
-    var scrollPos = $(window).scrollTop(); // Store scroll position
-    var container = $("#ff-grid-container");
-    var loader = container.siblings(".ff-loader-container"); // Updated selector
 
+  // Pagination
+  $("body").on("click", ".ff-pagination a", function (e) {
+    e.preventDefault();
+    var link = $(this);
+    var section = link.closest('.section-wrapper');
+    var pageUrl = link.prop('href');
+    var page = 1;
+    var pagedMatch = pageUrl.match(/paged=(\d+)/);
+    var pageMatch = pageUrl.match(/\/page\/(\d+)/);
+    if (pagedMatch && pagedMatch[1]) {
+      page = pagedMatch[1];
+    } else if (pageMatch && pageMatch[1]) {
+      page = pageMatch[1];
+    }
+    var sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    var searchTerm = section.find(".ff-search-form .ff-search-input").val();
+    trigger_feline_ajax(sortBy, searchTerm, page, section);
+  });
+  function trigger_feline_ajax(sortBy, searchTerm, page, section) {
+    var scrollPos = $(window).scrollTop(); // Store scroll position
+    var container = section.find("#ff-grid-container");
+    var paginationContainer = $("#ff-pagination-container");
+    var loader = section.find(".ff-loader-container");
+    var postsPerPage = section.data('posts-per-page');
     loader.show(); // Show loader
 
     $.post(my_theme_ajax.ajaxurl, {
       action: "sort_famous_felines",
       sort_by: sortBy,
-      search_term: searchTerm
+      search_term: searchTerm,
+      page: page,
+      posts_per_page: postsPerPage
     }).done(function (response) {
       if (response.success) {
-        container.html(response.data); // Replace content
+        container.html(response.data.posts); // Replace content
+        paginationContainer.html(response.data.pagination); // Replace pagination
+
+        var scrollToTarget = function scrollToTarget() {
+          $('html, body').animate({
+            scrollTop: container.offset().top - 100 // 100px offset
+          }, 500);
+        };
+
         // Re-initialize masonry
-        var _grid = document.querySelector(".ff-masonry");
+        var _grid = container.find(".ff-masonry")[0];
         if (_grid) {
           imagesloaded__WEBPACK_IMPORTED_MODULE_1___default()(_grid, function () {
             var msnry = new (masonry_layout__WEBPACK_IMPORTED_MODULE_0___default())(_grid, {
@@ -341,11 +387,11 @@ jQuery(function ($) {
               gutter: ".gutter-sizer",
               percentPosition: true
             });
-            // Restore scroll position
-            $(window).scrollTop(scrollPos);
+            scrollToTarget();
           });
+        } else {
+          scrollToTarget();
         }
-        // Check voted status
       }
     }).always(function () {
       loader.hide(); // Hide loader

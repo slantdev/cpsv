@@ -269,6 +269,7 @@ jQuery(function ($) {
   });
 
   // VOTE
+  const enableVotePopupOnce = false; // Set to false to show popup on every vote for testing
   $("body").on("click", ".vote-btn", function (e) {
     e.preventDefault();
     const button = $(this);
@@ -299,6 +300,18 @@ jQuery(function ($) {
           } else {
             allButtons.removeClass("voted");
           }
+
+          // Show popup on first successful vote
+          const popupAlreadyShown =
+            sessionStorage.getItem("votePopupShown") === "true";
+
+          if (
+            (!popupAlreadyShown || !enableVotePopupOnce) &&
+            $("#vote-popup").length
+          ) {
+            $("#vote-popup").removeClass("hidden").addClass("flex");
+            sessionStorage.setItem("votePopupShown", "true");
+          }
         }
       })
       .always(function () {
@@ -307,32 +320,65 @@ jQuery(function ($) {
       });
   });
 
+  // Close vote popup
+  $("body").on("click", "#close-vote-popup", function () {
+    $("#vote-popup").removeClass("flex").addClass("hidden");
+  });
+
   // Sort Felines
   $(".ff-sort-buttons .sort-btn").on("click", function (e) {
     e.preventDefault();
     const button = $(this);
     const sortBy = button.data("sort");
-    const searchTerm = $(".ff-search-form .ff-search-input").val();
+    const section = button.closest('.section-wrapper');
+    const searchTerm = section.find(".ff-search-form .ff-search-input").val();
 
     // Set active class
-    $(".ff-sort-buttons .sort-btn").removeClass("active");
+    section.find(".ff-sort-buttons .sort-btn").removeClass("active");
     button.addClass("active");
 
-    trigger_feline_ajax(sortBy, searchTerm);
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
   });
 
   // Search Felines
   $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
-    const searchTerm = $(this).find(".ff-search-input").val();
-    const sortBy = $(".ff-sort-buttons .sort-btn.active").data("sort");
-    trigger_feline_ajax(sortBy, searchTerm);
+    const form = $(this);
+    const section = form.closest('.section-wrapper');
+    const searchTerm = form.find(".ff-search-input").val();
+    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
   });
 
-  function trigger_feline_ajax(sortBy, searchTerm) {
+  // Pagination
+  $("body").on("click", ".ff-pagination a", function (e) {
+    e.preventDefault();
+    const link = $(this);
+    const section = link.closest('.section-wrapper');
+    const pageUrl = link.prop('href');
+    let page = 1;
+    
+    const pagedMatch = pageUrl.match(/paged=(\d+)/);
+    const pageMatch = pageUrl.match(/\/page\/(\d+)/);
+
+    if (pagedMatch && pagedMatch[1]) {
+      page = pagedMatch[1];
+    } else if (pageMatch && pageMatch[1]) {
+      page = pageMatch[1];
+    }
+
+    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    const searchTerm = section.find(".ff-search-form .ff-search-input").val();
+
+    trigger_feline_ajax(sortBy, searchTerm, page, section);
+  });
+
+  function trigger_feline_ajax(sortBy, searchTerm, page, section) {
     const scrollPos = $(window).scrollTop(); // Store scroll position
-    const container = $("#ff-grid-container");
-    const loader = container.siblings(".ff-loader-container"); // Updated selector
+    const container = section.find("#ff-grid-container");
+    const paginationContainer = $("#ff-pagination-container");
+    const loader = section.find(".ff-loader-container");
+    const postsPerPage = section.data('posts-per-page');
 
     loader.show(); // Show loader
 
@@ -340,12 +386,22 @@ jQuery(function ($) {
       action: "sort_famous_felines",
       sort_by: sortBy,
       search_term: searchTerm,
+      page: page,
+      posts_per_page: postsPerPage,
     })
       .done(function (response) {
         if (response.success) {
-          container.html(response.data); // Replace content
+          container.html(response.data.posts); // Replace content
+          paginationContainer.html(response.data.pagination); // Replace pagination
+
+          const scrollToTarget = () => {
+            $('html, body').animate({
+                scrollTop: container.offset().top - 100 // 100px offset
+            }, 500);
+          }
+
           // Re-initialize masonry
-          const grid = document.querySelector(".ff-masonry");
+          const grid = container.find(".ff-masonry")[0];
           if (grid) {
             imagesLoaded(grid, function () {
               const msnry = new Masonry(grid, {
@@ -354,11 +410,11 @@ jQuery(function ($) {
                 gutter: ".gutter-sizer",
                 percentPosition: true,
               });
-              // Restore scroll position
-              $(window).scrollTop(scrollPos);
+              scrollToTarget();
             });
+          } else {
+            scrollToTarget();
           }
-          // Check voted status
         }
       })
       .always(function () {

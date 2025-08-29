@@ -63,34 +63,51 @@ function sort_famous_felines()
 {
   $sort_by = sanitize_text_field($_POST['sort_by']);
   $search_term = sanitize_text_field($_POST['search_term']);
+  $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+  $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : -1;
 
-  $args = array(
+  // Base arguments for the queries
+  $base_args = array(
     'post_type' => 'famous-feline',
     'post_status' => 'publish',
-    'posts_per_page' => -1,
   );
-
   if (!empty($search_term)) {
-    $args['s'] = $search_term;
+    $base_args['s'] = $search_term;
   }
 
+  // Add sorting arguments
   switch ($sort_by) {
     case 'oldest':
-      $args['orderby'] = 'date';
-      $args['order'] = 'ASC';
+      $base_args['orderby'] = 'date';
+      $base_args['order'] = 'ASC';
       break;
     case 'highest_votes':
-      $args['meta_key'] = 'vote_count';
-      $args['orderby'] = 'meta_value_num';
-      $args['order'] = 'DESC';
+      $base_args['meta_key'] = 'vote_count';
+      $base_args['orderby'] = 'meta_value_num';
+      $base_args['order'] = 'DESC';
       break;
     default:
-      $args['orderby'] = 'date';
-      $args['order'] = 'DESC';
+      $base_args['orderby'] = 'date';
+      $base_args['order'] = 'DESC';
       break;
   }
 
-  $felines_query = new WP_Query($args);
+  // First query: get the total count of posts matching the criteria
+  $count_query = new WP_Query($base_args);
+  $total_posts = $count_query->found_posts;
+  wp_reset_postdata(); // Reset post data after the count query
+
+  // Calculate total pages
+  $total_pages = ($posts_per_page > 0) ? ceil($total_posts / $posts_per_page) : 1;
+
+  // Second query: get the actual posts for the current page
+  $main_query_args = $base_args;
+  $main_query_args['posts_per_page'] = $posts_per_page;
+  $main_query_args['paged'] = $page;
+
+  $felines_query = new WP_Query($main_query_args);
+
+  $response = array();
 
   if ($felines_query->have_posts()) :
     ob_start();
@@ -104,9 +121,26 @@ function sort_famous_felines()
       ?>
     </div>
   <?php
-    wp_reset_postdata();
-    $html = ob_get_clean();
-    wp_send_json_success($html);
+    $response['posts'] = ob_get_clean();
+
+    if ($total_pages > 1) { // Use our calculated total pages
+      ob_start();
+      echo paginate_links(array(
+        'base' => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+        'format' => '?paged=%#%',
+        'current' => max(1, $page),
+        'total' => $total_pages, // Use our calculated total pages
+        'prev_text' => __('&laquo;'),
+        'next_text' => __('&raquo;'),
+        'type' => 'list',
+      ));
+      $response['pagination'] = ob_get_clean();
+    } else {
+      $response['pagination'] = '';
+    }
+
+    wp_reset_postdata(); // Reset post data after the main query
+    wp_send_json_success($response);
   else :
     wp_send_json_error('<p class="text-center col-span-full">No contestants found.</p>');
   endif;
