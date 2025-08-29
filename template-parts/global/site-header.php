@@ -1,5 +1,7 @@
 <?php
 $top_navigation = get_field('top_navigation', 'option')['top_navigation'];
+$call_us = $top_navigation['call_us'] ?? '';
+$call_us_url = $top_navigation['call_us']['url'] ?? '';
 $top_links = $top_navigation['top_links'] ?? '';
 $social_links = $top_navigation['social_links'] ?? '';
 $sign_in_register = $top_navigation['sign_in_register'] ?? '';
@@ -8,8 +10,10 @@ $donate_button = $top_navigation['donate_button'] ?? '';
 <div class="top-header hidden xl:block relative z-50 bg-brand-dark-blue py-3 print:hidden">
   <div class="container max-w-screen-5xl">
     <div class="flex items-center justify-between">
-      <div>
-        <a href="tel:61384576500" target="_blank" class="text-white font-medium hover:opacity-75">+61 3 8457 6500</a>
+      <div class="text-white">
+        <?php if ($call_us_url) : ?>
+          Call Us : <a href="<?php echo $call_us_url ?>" target="_blank" class="text-white font-medium hover:opacity-75"><?php echo $call_us['title'] ?></a>
+        <?php endif; ?>
       </div>
       <div class="flex items-center justify-end">
         <?php if ($top_links) : ?>
