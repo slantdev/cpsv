@@ -39,6 +39,8 @@
 	},
 	"dependencies": {
 		"@fancyapps/ui": "^5.0.35",
-		"@tailwindcss/container-queries": "^0.1.1"
+		"@tailwindcss/container-queries": "^0.1.1",
+		"imagesloaded": "^5.0.0",
+		"masonry-layout": "^4.2.2"
 	}
 }

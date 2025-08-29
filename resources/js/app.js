@@ -1,4 +1,93 @@
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+
 jQuery(function ($) {
+  const grid = document.querySelector(".ff-masonry");
+  if (grid) {
+    imagesLoaded(grid, function () {
+      const msnry = new Masonry(grid, {
+        itemSelector: ".ff-grid-item",
+        columnWidth: ".ff-grid-item",
+        gutter: ".gutter-sizer",
+        percentPosition: true,
+      });
+    });
+  }
+
+  // SHARE POPOVER
+  // Show/hide popover
+  $("body").on("click", ".share-btn", function (e) {
+    e.stopPropagation();
+    // Close all other popovers
+    $(".share-popover")
+      .not($(this).siblings(".share-popover"))
+      .addClass("hidden");
+    // Toggle current popover
+    $(this).siblings(".share-popover").toggleClass("hidden");
+  });
+
+  // Close popovers when clicking outside
+  $(document).on("click", function () {
+    $(".share-popover").addClass("hidden");
+  });
+
+  // Stop click inside popover from closing it
+  $("body").on("click", ".share-popover", function (e) {
+    e.stopPropagation();
+  });
+
+  // Handle social sharing
+  $("body").on("click", ".share-link", function (e) {
+    e.preventDefault();
+    const button = $(this);
+    const container = button.closest(".share-container");
+    const shareButton = container.find(".share-btn");
+    const postSlug = shareButton.data("post-slug");
+    const postTitle = shareButton.data("post-title");
+    const pageUrl = window.location.href.split("#")[0];
+    const shareUrl = `${pageUrl}#&gid=feline-gallery&pid=${postSlug}`;
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedTitle = encodeURIComponent(postTitle);
+
+    let platformUrl = "";
+
+    switch (button.data("platform")) {
+      case "facebook":
+        platformUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        break;
+      case "twitter":
+        platformUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+        break;
+      case "linkedin":
+        platformUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}`;
+        break;
+    }
+
+    if (platformUrl) {
+      window.open(platformUrl, "_blank", "width=600,height=400");
+    }
+  });
+
+  // Handle Copy URL
+  $("body").on("click", ".copy-url-btn", function (e) {
+    e.preventDefault();
+    const button = $(this);
+    const container = button.closest(".share-container");
+    const shareButton = container.find(".share-btn");
+    const postSlug = shareButton.data("post-slug");
+    const pageUrl = window.location.href.split("#")[0];
+    const shareUrl = `${pageUrl}#&gid=feline-gallery&pid=${postSlug}`;
+    const copyText = button.find(".copy-text");
+
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      const originalText = button.text();
+      copyText.text("Copied!");
+      setTimeout(() => {
+        copyText.text(originalText);
+      }, 2000);
+    });
+  });
+
   if ($(".counterNumber").length) {
     counterNumber();
   }
@@ -148,16 +237,188 @@ jQuery(function ($) {
   });
 
   // FANCYBOX
-  Fancybox.bind("[data-fancybox]", {
-    // Custom options for all galleries
-    tpl: {
-      closeButton:
-        '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
+  Fancybox.bind("[data-fancybox='feline-gallery']", {
+    // Custom options for this gallery
+    Carousel: {
+      Thumbs: false,
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ["close"],
+        },
+      },
     },
+    theme: "light",
+    groupAll: true,
+    slug: (fancybox, slide) => slide.triggerEl.dataset.slug,
+  });
+
+  // Also keep the generic one for other parts of the site.
+  Fancybox.bind("[data-fancybox]:not([data-fancybox='feline-gallery'])", {
+    // Custom options for all other galleries
+    // tpl: {
+    //   closeButton:
+    //     '<button data-fancybox-close class="f-button is-close-btn top-6 right-6 rounded-full bg-black/50" title="{{CLOSE}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" tabindex="-1"><path d="M20 20L4 4m16 0L4 20"/></svg></button>',
+    // },
   });
 
   // Woocommerce
   $(document).on("change", ".cart-content .quantity .qty", function (e) {
     $(".btn-update-cart").trigger("click");
   });
+
+  // VOTE
+  const enableVotePopupOnce = false; // Set to false to show popup on every vote for testing
+  $("body").on("click", ".vote-btn", function (e) {
+    e.preventDefault();
+    const button = $(this);
+    const postId = button.data("post-id");
+
+    // Target all buttons for this post, including the one in the caption
+    const allButtons = $(`.vote-btn[data-post-id='${postId}']`);
+    const allVoteCountEls = allButtons.find(".vote-count");
+    const allVoteLoaderEls = allButtons.find(".vote-loader");
+
+    allVoteCountEls.hide();
+    allVoteLoaderEls.show();
+
+    $.post(my_theme_ajax.ajaxurl, {
+      action: "handle_vote",
+      post_id: postId,
+    })
+      .done(function (response) {
+        if (response.success) {
+          const newCount = response.data.new_count;
+          const action = response.data.action;
+
+          // Update vote count on all matching buttons
+          allVoteCountEls.text(`${newCount}`);
+
+          if (action === "voted") {
+            allButtons.addClass("voted");
+          } else {
+            allButtons.removeClass("voted");
+          }
+
+          // Show popup on first successful vote
+          const popupAlreadyShown =
+            sessionStorage.getItem("votePopupShown") === "true";
+
+          if (
+            (!popupAlreadyShown || !enableVotePopupOnce) &&
+            $("#vote-popup").length
+          ) {
+            $("#vote-popup").removeClass("hidden").addClass("flex");
+            sessionStorage.setItem("votePopupShown", "true");
+          }
+        }
+      })
+      .always(function () {
+        allVoteLoaderEls.hide();
+        allVoteCountEls.show();
+      });
+  });
+
+  // Close vote popup
+  $("body").on("click", "#close-vote-popup", function () {
+    $("#vote-popup").removeClass("flex").addClass("hidden");
+  });
+
+  // Sort Felines
+  $(".ff-sort-buttons .sort-btn").on("click", function (e) {
+    e.preventDefault();
+    const button = $(this);
+    const sortBy = button.data("sort");
+    const section = button.closest('.section-wrapper');
+    const searchTerm = section.find(".ff-search-form .ff-search-input").val();
+
+    // Set active class
+    section.find(".ff-sort-buttons .sort-btn").removeClass("active");
+    button.addClass("active");
+
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
+  });
+
+  // Search Felines
+  $(".ff-search-form").on("submit", function (e) {
+    e.preventDefault();
+    const form = $(this);
+    const section = form.closest('.section-wrapper');
+    const searchTerm = form.find(".ff-search-input").val();
+    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    trigger_feline_ajax(sortBy, searchTerm, 1, section);
+  });
+
+  // Pagination
+  $("body").on("click", ".ff-pagination a", function (e) {
+    e.preventDefault();
+    const link = $(this);
+    const section = link.closest('.section-wrapper');
+    const pageUrl = link.prop('href');
+    let page = 1;
+    
+    const pagedMatch = pageUrl.match(/paged=(\d+)/);
+    const pageMatch = pageUrl.match(/\/page\/(\d+)/);
+
+    if (pagedMatch && pagedMatch[1]) {
+      page = pagedMatch[1];
+    } else if (pageMatch && pageMatch[1]) {
+      page = pageMatch[1];
+    }
+
+    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    const searchTerm = section.find(".ff-search-form .ff-search-input").val();
+
+    trigger_feline_ajax(sortBy, searchTerm, page, section);
+  });
+
+  function trigger_feline_ajax(sortBy, searchTerm, page, section) {
+    const scrollPos = $(window).scrollTop(); // Store scroll position
+    const container = section.find("#ff-grid-container");
+    const paginationContainer = $("#ff-pagination-container");
+    const loader = section.find(".ff-loader-container");
+    const postsPerPage = section.data('posts-per-page');
+
+    loader.show(); // Show loader
+
+    $.post(my_theme_ajax.ajaxurl, {
+      action: "sort_famous_felines",
+      sort_by: sortBy,
+      search_term: searchTerm,
+      page: page,
+      posts_per_page: postsPerPage,
+    })
+      .done(function (response) {
+        if (response.success) {
+          container.html(response.data.posts); // Replace content
+          paginationContainer.html(response.data.pagination); // Replace pagination
+
+          const scrollToTarget = () => {
+            $('html, body').animate({
+                scrollTop: container.offset().top - 100 // 100px offset
+            }, 500);
+          }
+
+          // Re-initialize masonry
+          const grid = container.find(".ff-masonry")[0];
+          if (grid) {
+            imagesLoaded(grid, function () {
+              const msnry = new Masonry(grid, {
+                itemSelector: ".ff-grid-item",
+                columnWidth: ".ff-grid-item",
+                gutter: ".gutter-sizer",
+                percentPosition: true,
+              });
+              scrollToTarget();
+            });
+          } else {
+            scrollToTarget();
+          }
+        }
+      })
+      .always(function () {
+        loader.hide(); // Hide loader
+      });
+  }
 });

@@ -56,6 +56,9 @@ if (! post_password_required()) {
       elseif (get_row_layout() == 'posts_grid') :
         get_template_part('template-parts/sections/posts_grid');
 
+      elseif (get_row_layout() == 'purrfect_pin_up') :
+        get_template_part('template-parts/sections/purrfect_pin_up');
+
       elseif (get_row_layout() == 'foster_care') :
         get_template_part('template-parts/sections/foster_care');
 

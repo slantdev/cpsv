@@ -1,0 +1,70 @@
+.ff-grid-item {
+  width: 32%;
+  margin-bottom: 2%;
+}
+
+.gutter-sizer {
+  width: 2%;
+}
+
+/* Add responsive widths */
+@media (max-width: 1024px) {
+  .ff-grid-item {
+    width: 48%;
+  }
+}
+@media (max-width: 768px) {
+  .ff-grid-item {
+    width: 100%;
+  }
+}
+
+.vote-btn.voted > svg {
+  @apply text-red-600;
+}
+
+.ff-sort-buttons .sort-btn {
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #4a5568;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.ff-sort-buttons .sort-btn.active {
+  @apply bg-slate-400;
+  color: white;
+}
+
+.ff-loader-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+}
+
+.ff-loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

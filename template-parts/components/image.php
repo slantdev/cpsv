@@ -11,6 +11,9 @@ $image_comp = is_array($field) ? $field : get_sub_field($field ?: 'image');
 $image_source = $image_comp['image_source'] ?? [];
 $image_url = $image_source['url'] ?? '';
 $image_alt = $image_source['alt'] ?? '';
+$image_link = $image_source['link'] ?? '';
+$image_link_url = $image_source['link']['url'] ?? '';
+$image_link_target = $image_source['link']['target'] ?? '';
 
 $more_settings = $image_comp['settings']['more_settings'] ?? [];
 $aspect_ratio = $more_settings['aspect_ratio'] ?? '1_1';
@@ -25,6 +28,7 @@ $aspect_ratio_map = [
   "5_4" => ['aspect-w-5', 'aspect-h-4'],
   "16_9" => ['aspect-w-16', 'aspect-h-9'],
   "4_3" => ['aspect-w-4', 'aspect-h-3'],
+  "none" => ['', ''],
 ];
 [$aspect_w, $aspect_h] = $aspect_ratio_map[$aspect_ratio];
 
@@ -45,7 +49,13 @@ $class .= ' ' . implode(' ', $class_list);
 if ($image_url) {
   echo '<div class="' . $max_w_class . '">';
   echo '<div class="' . $class . '">';
-  echo '<img src="' . $image_url . '" alt="' . $image_alt . '" class="object-cover w-full h-full" />';
+  if ($image_link) {
+    echo '<a href="' . $image_link_url . '" target="' . $image_link_target . '">';
+    echo '<img src="' . $image_url . '" alt="' . $image_alt . '" class="object-cover w-full h-full" />';
+    echo '</a>';
+  } else {
+    echo '<img src="' . $image_url . '" alt="' . $image_alt . '" class="object-cover w-full h-full" />';
+  }
   echo '</div>';
   echo '</div>';
 }
