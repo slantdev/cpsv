@@ -7,47 +7,52 @@ $donate_button = $top_navigation['donate_button'] ?? '';
 ?>
 <div class="top-header hidden xl:block relative z-50 bg-brand-dark-blue py-3 print:hidden">
   <div class="container max-w-screen-5xl">
-    <div class="flex items-center justify-end">
-      <?php if ($top_links) : ?>
-        <ul class="top-nav flex gap-x-6 text-sm 4xl:text-base leading-tight">
-          <?php
-          foreach ($top_links as $link) :
-            $link_url = $link['link']['url'] ?? '';
-            $link_title = $link['link']['title'] ?? '';
-            $link_target = $link['link']['target'] ?? '_self';
-          ?>
-            <?php if ($link_url) : ?>
-              <li><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-white font-medium hover:opacity-75"><?php echo $link_title ?></a></li>
-            <?php endif; ?>
-          <?php endforeach ?>
-        </ul>
-      <?php endif; ?>
-      <?php if ($social_links) : ?>
-        <ul class="social-link flex gap-x-1 px-6">
-          <?php
-          foreach ($social_links as $link) :
-            $social_media_link = $link['social_media_link'] ?? '';
-            $social_media_icon = $link['social_media_icon'] ?? '';
-          ?>
-            <li><a href="<?php echo $social_media_link ?>" target="_blank" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => $social_media_icon, 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
-          <?php endforeach ?>
-        </ul>
-      <?php endif; ?>
-      <?php
-      $sign_in_register_url = $sign_in_register['url'] ?? '';
-      $sign_in_register_title = $sign_in_register['title'] ?? '';
-      $sign_in_register_target = $sign_in_register['target'] ?? '_self';
-      if ($sign_in_register_url) :
-      ?>
-        <div class="pl-6 border-l border-white border-solid hidden">
-          <a href="<?php echo $sign_in_register_url ?>" target="<?php echo $sign_in_register_target ?>" class="flex items-center gap-x-2 text-sm 4xl:text-base leading-tight text-white font-medium hover:opacity-75">
-            <div>
-              <?php echo cpsv_icon(array('icon' => 'account', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?>
-            </div>
-            <div><?php echo $sign_in_register_title ?></div>
-          </a>
-        </div>
-      <?php endif; ?>
+    <div class="flex items-center justify-between">
+      <div>
+        <a href="tel:61384576500" target="_blank" class="text-white font-medium hover:opacity-75">+61 3 8457 6500</a>
+      </div>
+      <div class="flex items-center justify-end">
+        <?php if ($top_links) : ?>
+          <ul class="top-nav flex gap-x-6 text-sm 4xl:text-base leading-tight">
+            <?php
+            foreach ($top_links as $link) :
+              $link_url = $link['link']['url'] ?? '';
+              $link_title = $link['link']['title'] ?? '';
+              $link_target = $link['link']['target'] ?? '_self';
+            ?>
+              <?php if ($link_url) : ?>
+                <li><a href="<?php echo $link_url ?>" target="<?php echo $link_target ?>" class="text-white font-medium hover:opacity-75"><?php echo $link_title ?></a></li>
+              <?php endif; ?>
+            <?php endforeach ?>
+          </ul>
+        <?php endif; ?>
+        <?php if ($social_links) : ?>
+          <ul class="social-link flex gap-x-1 px-6">
+            <?php
+            foreach ($social_links as $link) :
+              $social_media_link = $link['social_media_link'] ?? '';
+              $social_media_icon = $link['social_media_icon'] ?? '';
+            ?>
+              <li><a href="<?php echo $social_media_link ?>" target="_blank" class="text-white font-medium hover:opacity-75"><?php echo cpsv_icon(array('icon' => $social_media_icon, 'group' => 'social', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?></a></li>
+            <?php endforeach ?>
+          </ul>
+        <?php endif; ?>
+        <?php
+        $sign_in_register_url = $sign_in_register['url'] ?? '';
+        $sign_in_register_title = $sign_in_register['title'] ?? '';
+        $sign_in_register_target = $sign_in_register['target'] ?? '_self';
+        if ($sign_in_register_url) :
+        ?>
+          <div class="pl-6 border-l border-white border-solid hidden">
+            <a href="<?php echo $sign_in_register_url ?>" target="<?php echo $sign_in_register_target ?>" class="flex items-center gap-x-2 text-sm 4xl:text-base leading-tight text-white font-medium hover:opacity-75">
+              <div>
+                <?php echo cpsv_icon(array('icon' => 'account', 'group' => 'utilities', 'size' => '24', 'class' => 'w-6 h-6 text-white')); ?>
+              </div>
+              <div><?php echo $sign_in_register_title ?></div>
+            </a>
+          </div>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </div>

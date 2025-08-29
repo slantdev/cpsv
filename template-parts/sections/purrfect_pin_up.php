@@ -34,6 +34,11 @@ if ($card_background_color) {
 }
 
 ?>
+<style>
+  .frm_form_field:not(.frm_compact) .frm_dropzone {
+    width: 100%;
+  }
+</style>
 <section <?php echo $section_id ?> class="<?php echo $section_purrfect_pin_up_class ?> section-wrapper relative" style="<?php echo $section_style ?>" data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>">
   <?php get_template_part('template-parts/global/separator', '', array('location' => 'top', 'active' => $top_separator, 'color' => $top_separator_color, 'class' => '')); ?>
   <div class="section-spacing relative <?php echo $section_padding_top . ' ' . $section_padding_bottom ?>">

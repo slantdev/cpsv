@@ -38,7 +38,7 @@
             "pagination": 0,
             "min": 0,
             "max": 0,
-            "collapsed": "",
+            "collapsed": "field_66399bd7d08f1",
             "button_label": "Add Item",
             "rows_per_page": 20,
             "sub_fields": [
@@ -193,7 +193,7 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1715052983,
+    "modified": 1756444434,
     "acfe_categories": {
         "components": "Components"
     }
