@@ -207,3 +207,47 @@ function add_shortcode_body_class($classes)
 
 // Hook into body_class filter
 add_filter('body_class', 'add_shortcode_body_class');
+
+/**
+ * Adds Open Graph meta tags for a specific feline when a 'cat' query parameter is present.
+ */
+function add_feline_og_tags() {
+  if (is_singular() || !isset($_GET['cat'])) {
+    return;
+  }
+
+  $cat_slug = sanitize_title($_GET['cat']);
+  if (empty($cat_slug)) {
+    return;
+  }
+
+  $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+
+  if ($post) {
+    $post_id = $post->ID;
+    $title = get_the_title($post_id);
+    $description = has_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words(get_the_content(null, false, $post_id), 30);
+    $url = get_permalink($post_id);
+    $image_url = get_the_post_thumbnail_url($post_id, 'large');
+    if (!empty(get_field('cat_photo', $post_id))) {
+      $image_url = get_field('cat_photo', $post_id)['url'];
+    }
+
+    echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($description) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
+    if ($image_url) {
+      echo '<meta property="og:image" content="' . esc_url($image_url) . '" />' . "\n";
+    }
+    echo '<meta property="og:type" content="article" />' . "\n";
+
+    // Twitter Card Tags
+    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
+    echo '<meta name="twitter:description" content="' . esc_attr($description) . '">' . "\n";
+    if ($image_url) {
+      echo '<meta name="twitter:image" content="' . esc_url($image_url) . '">' . "\n";
+    }
+  }
+}
+add_action('wp_head', 'add_feline_og_tags');

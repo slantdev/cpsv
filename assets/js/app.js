@@ -59,8 +59,8 @@ jQuery(function ($) {
     var shareButton = container.find(".share-btn");
     var postSlug = shareButton.data("post-slug");
     var postTitle = shareButton.data("post-title");
-    var pageUrl = window.location.href.split("#")[0];
-    var shareUrl = "".concat(pageUrl, "#").concat(postSlug);
+    var pageUrl = window.location.href.split('?')[0].split('#')[0];
+    var shareUrl = "".concat(pageUrl, "?cat=").concat(postSlug);
     var encodedUrl = encodeURIComponent(shareUrl);
     var encodedTitle = encodeURIComponent(postTitle);
     var platformUrl = "";
@@ -87,8 +87,8 @@ jQuery(function ($) {
     var container = button.closest(".share-container");
     var shareButton = container.find(".share-btn");
     var postSlug = shareButton.data("post-slug");
-    var pageUrl = window.location.href.split("#")[0];
-    var shareUrl = "".concat(pageUrl, "#").concat(postSlug);
+    var pageUrl = window.location.href.split('?')[0].split('#')[0];
+    var shareUrl = "".concat(pageUrl, "?cat=").concat(postSlug);
     var copyText = button.find(".copy-text");
     navigator.clipboard.writeText(shareUrl).then(function () {
       var originalText = button.text();
@@ -276,7 +276,7 @@ jQuery(function ($) {
         e.preventDefault();
         _this2.navigate(-1);
       });
-      $(window).on("hashchange", function () {
+      $(window).on("popstate", function () {
         _this2.checkUrlOnLoad();
       });
     },
@@ -292,19 +292,21 @@ jQuery(function ($) {
       this.open(newSlug);
     },
     checkUrlOnLoad: function checkUrlOnLoad() {
-      var hash = window.location.hash.replace("#", "");
-      if (hash) {
-        if (this.galleryItems.includes(hash)) {
-          this.open(hash);
+      var urlParams = new URLSearchParams(window.location.search);
+      var catSlug = urlParams.get('cat');
+      if (catSlug) {
+        if (this.galleryItems.includes(catSlug)) {
+          this.open(catSlug, true); // Pass flag to prevent another pushState
         }
       } else {
         if (this.isOpen) {
-          this.close(true); // Close without changing hash
+          this.close(true); // Close without changing history
         }
       }
     },
     open: function open(slug) {
       var _this3 = this;
+      var fromHistory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       this.currentIndex = this.galleryItems.indexOf(slug);
       this.isOpen = true;
       this.shell.removeClass("hidden");
@@ -316,8 +318,12 @@ jQuery(function ($) {
       }).done(function (response) {
         if (response.success) {
           _this3.content.html(response.data.html);
-          if (window.location.hash !== "#".concat(slug)) {
-            window.history.pushState(null, null, "#".concat(slug));
+          if (!fromHistory) {
+            var newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("cat", slug);
+            window.history.pushState({
+              path: newUrl.href
+            }, '', newUrl.href);
           }
         } else {
           _this3.content.html("<p>Could not load cat details.</p>");
@@ -327,13 +333,17 @@ jQuery(function ($) {
       });
     },
     close: function close() {
-      var preventHashChange = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var fromHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       this.isOpen = false;
       this.shell.addClass("hidden");
       this.content.html("");
       $("body").removeClass("overflow-hidden");
-      if (!preventHashChange && window.location.hash) {
-        window.history.pushState(null, null, window.location.pathname + window.location.search);
+      if (!fromHistory) {
+        var newUrl = new URL(window.location.href);
+        newUrl.searchParams["delete"]("cat");
+        window.history.pushState({
+          path: newUrl.href
+        }, '', newUrl.href);
       }
     }
   };

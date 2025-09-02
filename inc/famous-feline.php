@@ -367,13 +367,15 @@ function send_feline_publish_notification($new_status, $old_status, $post)
   $subject = 'It’s Official – Your Cat is Gallery-Ready!';
 
   // Email Body
-  $body = "It’s Official – Your Cat is Gallery-Ready!\n\n";
-  $body .= "Cue the confetti and catnip – your marvellous moggie has been approved and is now strutting their stuff in our Purrfect Pin Up Contestant Gallery!\n\n";
+  $body = "<strong>It’s Official – Your Cat is Gallery-Ready!</strong>\n\n";
+  $body .= "Cue the confetti and catnip – your marvellous moggie has been approved and is now strutting their stuff in our <strong>Purrfect Pin Up Contestant Gallery!</strong>\n\n";
   $body .= "Now it’s time to rally the troops.\n\n";
   $body .= "Share your cat’s profile far and wide – friends, family, neighbours, co-workers, even that barista who always draws a paw print on your coffee.\n\n";
-  $body .= "Because every vote counts… and the top 10 cats with the most votes will land a spot in the 2026 CPSV Calendar, with 2 more chosen as our CPSV Choice!\n\n";
+  $body .= "Because every vote counts… and the <strong>top 10 cats with the most votes</strong> will land a spot in the 2026 CPSV Calendar, with 2 more chosen as our <strong>CPSV Choice!</strong>\n\n";
   $body .= "Ready, set… VOTE!\n\n";
-  $body .= "https://catprotection.com.au/purrfect-pin-up/#" . $post->post_name . "\n\n";
+  $body .= "You can view your cat's profile and share it from here: https://catprotection.com.au/purrfect-pin-up/?cat=" . $post->post_name . "
+
+";
 
   // To send HTML email, you can set the Content-Type header.
   $headers = array('Content-Type: text/plain; charset=UTF-8');

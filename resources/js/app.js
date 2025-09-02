@@ -44,8 +44,8 @@ jQuery(function ($) {
     const shareButton = container.find(".share-btn");
     const postSlug = shareButton.data("post-slug");
     const postTitle = shareButton.data("post-title");
-    const pageUrl = window.location.href.split("#")[0];
-    const shareUrl = `${pageUrl}#${postSlug}`;
+    const pageUrl = window.location.href.split('?')[0].split('#')[0];
+    const shareUrl = `${pageUrl}?cat=${postSlug}`;
     const encodedUrl = encodeURIComponent(shareUrl);
     const encodedTitle = encodeURIComponent(postTitle);
 
@@ -75,8 +75,8 @@ jQuery(function ($) {
     const container = button.closest(".share-container");
     const shareButton = container.find(".share-btn");
     const postSlug = shareButton.data("post-slug");
-    const pageUrl = window.location.href.split("#")[0];
-    const shareUrl = `${pageUrl}#${postSlug}`;
+    const pageUrl = window.location.href.split('?')[0].split('#')[0];
+    const shareUrl = `${pageUrl}?cat=${postSlug}`;
     const copyText = button.find(".copy-text");
 
     navigator.clipboard.writeText(shareUrl).then(() => {
@@ -290,7 +290,7 @@ jQuery(function ($) {
         this.navigate(-1);
       });
 
-      $(window).on("hashchange", () => {
+      $(window).on("popstate", () => {
         this.checkUrlOnLoad();
       });
     },
@@ -308,18 +308,20 @@ jQuery(function ($) {
       this.open(newSlug);
     },
     checkUrlOnLoad: function () {
-      const hash = window.location.hash.replace("#", "");
-      if (hash) {
-        if (this.galleryItems.includes(hash)) {
-          this.open(hash);
+      const urlParams = new URLSearchParams(window.location.search);
+      const catSlug = urlParams.get('cat');
+
+      if (catSlug) {
+        if (this.galleryItems.includes(catSlug)) {
+          this.open(catSlug, true); // Pass flag to prevent another pushState
         }
       } else {
         if (this.isOpen) {
-          this.close(true); // Close without changing hash
+          this.close(true); // Close without changing history
         }
       }
     },
-    open: function (slug) {
+    open: function (slug, fromHistory = false) {
       this.currentIndex = this.galleryItems.indexOf(slug);
       this.isOpen = true;
       this.shell.removeClass("hidden");
@@ -334,8 +336,10 @@ jQuery(function ($) {
         .done((response) => {
           if (response.success) {
             this.content.html(response.data.html);
-            if (window.location.hash !== `#${slug}`) {
-              window.history.pushState(null, null, `#${slug}`);
+            if (!fromHistory) {
+              const newUrl = new URL(window.location.href);
+              newUrl.searchParams.set("cat", slug);
+              window.history.pushState({path: newUrl.href}, '', newUrl.href);
             }
           } else {
             this.content.html("<p>Could not load cat details.</p>");
@@ -345,17 +349,15 @@ jQuery(function ($) {
           this.content.html("<p>An error occurred.</p>");
         });
     },
-    close: function (preventHashChange = false) {
+    close: function (fromHistory = false) {
       this.isOpen = false;
       this.shell.addClass("hidden");
       this.content.html("");
       $("body").removeClass("overflow-hidden");
-      if (!preventHashChange && window.location.hash) {
-        window.history.pushState(
-          null,
-          null,
-          window.location.pathname + window.location.search
-        );
+      if (!fromHistory) {
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete("cat");
+        window.history.pushState({path: newUrl.href}, '', newUrl.href);
       }
     },
   };

@@ -175,7 +175,7 @@ if ($card_background_color) {
 
   <div id="feline-popup-shell" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 overflow-y-auto">
     <div class="feline-popup-wrapper flex items-center justify-center min-h-screen p-4">
-      <div class="feline-popup-container bg-white rounded-lg shadow-lg w-full max-w-4xl relative">
+      <div class="feline-popup-container bg-white rounded-lg shadow-lg w-full max-w-3xl relative">
         <button id="feline-popup-close" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl z-10">&times;</button>
         <div id="feline-popup-content" class="p-8">
           <div class="feline-popup-loader"></div>
@@ -192,8 +192,8 @@ if ($card_background_color) {
       <h3 class="text-2xl font-bold mb-4 text-primary-text">Change your vote?</h3>
       <p class="mb-6 text-secondary-text">Are you sure you want to change your vote?</p>
       <div class="flex justify-center gap-4">
-          <button id="vote-confirm-cancel" class="btn btn-lg btn-outline">Cancel</button>
-          <button id="vote-confirm-yes" class="btn btn-lg btn-primary">Yes, Change Vote</button>
+        <button id="vote-confirm-cancel" class="btn btn-lg btn-outline">Cancel</button>
+        <button id="vote-confirm-yes" class="btn btn-lg btn-primary">Yes, Change Vote</button>
       </div>
     </div>
   </div>
