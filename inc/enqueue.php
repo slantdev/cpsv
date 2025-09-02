@@ -9,14 +9,14 @@ function cpsv_enqueue_scripts()
 
   wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css', array(), '8.4.7');
   //wp_enqueue_style('animate', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
-  // wp_enqueue_style('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css', array(), '5.0.0');
-  wp_enqueue_style('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css', array(), '6.0.24');
+  wp_enqueue_style('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css', array(), '5.0.0');
+  //wp_enqueue_style('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css', array(), '6.0.24');
   //wp_enqueue_style('fancybox', cpsv_asset('js/fancybox.css'), array(), $theme->get('Version'));
   wp_enqueue_style('cpsv', cpsv_asset('css/app.css'), array(), $theme->get('Version'));
 
   wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js', array(), '8.4.7');
-  // wp_enqueue_script('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js', array(), '5.0.0');
-  wp_enqueue_script('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js', array(), '6.0.24');
+  wp_enqueue_script('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js', array(), '5.0.0');
+  //wp_enqueue_script('fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js', array(), '6.0.24');
   wp_enqueue_script('counterup', cpsv_asset('js/counterup.js'), array(), '2.0.2', false);
   // wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), $theme->get('Version'), true);
 
@@ -79,9 +79,10 @@ function cpsv_admin_styles()
 }
 add_action('admin_enqueue_scripts', 'cpsv_admin_styles');
 
-function my_theme_localize_scripts() {
-    wp_localize_script('cpsv', 'my_theme_ajax', array(
-        'ajaxurl' => admin_url('admin-ajax.php')
-    ));
+function my_theme_localize_scripts()
+{
+  wp_localize_script('cpsv', 'my_theme_ajax', array(
+    'ajaxurl' => admin_url('admin-ajax.php')
+  ));
 }
 add_action('wp_enqueue_scripts', 'my_theme_localize_scripts', 99999);

@@ -4785,6 +4785,9 @@ details.collapse summary::-webkit-details-marker {
 .top-auto {
   top: auto;
 }
+.top-1\/2 {
+  top: 50%;
+}
 .\!z-20 {
   z-index: 20 !important;
 }
@@ -5864,11 +5867,17 @@ details.collapse summary::-webkit-details-marker {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 250 / var(--tw-bg-opacity));
 }
+.bg-black\/20 {
+  background-color: rgb(0 0 0 / 0.2);
+}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
 .bg-opacity-60 {
   --tw-bg-opacity: 0.6;
+}
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
 }
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
@@ -6436,6 +6445,10 @@ details.collapse summary::-webkit-details-marker {
 .text-brand-yellow {
   --tw-text-opacity: 1;
   color: rgb(255 165 0 / var(--tw-text-opacity));
+}
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 .text-gray-700 {
   --tw-text-opacity: 1;
@@ -9253,7 +9266,8 @@ div.woocommerce
   width: 32%;
   margin-bottom: 2%;
 }
-.f-caption {
+.f-caption,
+.fancybox__caption {
   width: 100%;
 }
 .gutter-sizer {
@@ -9320,6 +9334,20 @@ div.woocommerce
   body {
     -webkit-print-color-adjust: exact;
   }
+}
+/* Feline Popup Loader */
+.feline-popup-loader {
+  border: 5px solid #f0f2f5; /* formal-grey */
+  border-top: 5px solid #1890ff; /* primary.DEFAULT */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 100px auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 @media (min-width: 768px) {
 
@@ -10055,6 +10083,9 @@ div.woocommerce
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.hover\:bg-black\/50:hover {
+  background-color: rgb(0 0 0 / 0.5);
+}
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -10066,6 +10097,10 @@ div.woocommerce
 .hover\:text-brand-tomato:hover {
   --tw-text-opacity: 1;
   color: rgb(255 99 71 / var(--tw-text-opacity));
+}
+.hover\:text-gray-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 .hover\:text-slate-700:hover {
   --tw-text-opacity: 1;
@@ -11500,4 +11535,3 @@ div.woocommerce
 .last\:\[\&_ul\>li\]\:font-bold ul>li:last-child {
   font-weight: 700;
 }
-

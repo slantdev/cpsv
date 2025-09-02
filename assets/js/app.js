@@ -60,7 +60,7 @@ jQuery(function ($) {
     var postSlug = shareButton.data("post-slug");
     var postTitle = shareButton.data("post-title");
     var pageUrl = window.location.href.split("#")[0];
-    var shareUrl = "".concat(pageUrl, "#&gid=feline-gallery&pid=").concat(postSlug);
+    var shareUrl = "".concat(pageUrl, "#").concat(postSlug);
     var encodedUrl = encodeURIComponent(shareUrl);
     var encodedTitle = encodeURIComponent(postTitle);
     var platformUrl = "";
@@ -88,7 +88,7 @@ jQuery(function ($) {
     var shareButton = container.find(".share-btn");
     var postSlug = shareButton.data("post-slug");
     var pageUrl = window.location.href.split("#")[0];
-    var shareUrl = "".concat(pageUrl, "#&gid=feline-gallery&pid=").concat(postSlug);
+    var shareUrl = "".concat(pageUrl, "#").concat(postSlug);
     var copyText = button.find(".copy-text");
     navigator.clipboard.writeText(shareUrl).then(function () {
       var originalText = button.text();
@@ -229,29 +229,118 @@ jQuery(function ($) {
     $("#search-form-container").removeClass("show");
   });
 
-  // FANCYBOX
-  Fancybox.bind("[data-fancybox='purrfect-pin-up']", {
-    // Custom options for this gallery
-    Carousel: {
-      Thumbs: false,
-      Toolbar: {
-        display: {
-          left: [],
-          middle: [],
-          right: ["close"]
+  // Feline AJAX Popup
+  var felinePopup = {
+    isOpen: false,
+    galleryItems: [],
+    currentIndex: -1,
+    init: function init() {
+      this.shell = $("#feline-popup-shell");
+      this.content = $("#feline-popup-content");
+      this.closeBtn = $("#feline-popup-close");
+      this.nextBtn = $("#feline-popup-next");
+      this.prevBtn = $("#feline-popup-prev");
+      this.updateGalleryItems();
+      this.bindEvents();
+      this.checkUrlOnLoad();
+    },
+    updateGalleryItems: function updateGalleryItems() {
+      var _this = this;
+      this.galleryItems = [];
+      $(".open-feline-popup").each(function (index, el) {
+        _this.galleryItems.push($(el).attr("href").replace("#", ""));
+      });
+    },
+    bindEvents: function bindEvents() {
+      var _this2 = this;
+      $("body").on("click", ".open-feline-popup", function (e) {
+        e.preventDefault();
+        var slug = $(e.currentTarget).attr("href").replace("#", "");
+        _this2.open(slug);
+      });
+      this.closeBtn.on("click", function (e) {
+        e.preventDefault();
+        _this2.close();
+      });
+      this.shell.on("click", function (e) {
+        if ($(e.target).is(_this2.shell) || $(e.target).is(".feline-popup-wrapper")) {
+          e.preventDefault();
+          _this2.close();
+        }
+      });
+      this.nextBtn.on("click", function (e) {
+        e.preventDefault();
+        _this2.navigate(1);
+      });
+      this.prevBtn.on("click", function (e) {
+        e.preventDefault();
+        _this2.navigate(-1);
+      });
+      $(window).on("hashchange", function () {
+        _this2.checkUrlOnLoad();
+      });
+    },
+    navigate: function navigate(direction) {
+      if (this.galleryItems.length === 0) return;
+      var newIndex = this.currentIndex + direction;
+      if (newIndex >= this.galleryItems.length) {
+        newIndex = 0; // Loop to start
+      } else if (newIndex < 0) {
+        newIndex = this.galleryItems.length - 1; // Loop to end
+      }
+      var newSlug = this.galleryItems[newIndex];
+      this.open(newSlug);
+    },
+    checkUrlOnLoad: function checkUrlOnLoad() {
+      var hash = window.location.hash.replace("#", "");
+      if (hash) {
+        if (this.galleryItems.includes(hash)) {
+          this.open(hash);
+        }
+      } else {
+        if (this.isOpen) {
+          this.close(true); // Close without changing hash
         }
       }
     },
-    theme: "light",
-    groupAll: true,
-    //groupAttr: false,
-    slug: function slug(fancybox, slide) {
-      return slide.triggerEl.getAttribute("data-slug");
+    open: function open(slug) {
+      var _this3 = this;
+      this.currentIndex = this.galleryItems.indexOf(slug);
+      this.isOpen = true;
+      this.shell.removeClass("hidden");
+      $("body").addClass("overflow-hidden");
+      this.content.html('<div class="feline-popup-loader"></div>');
+      $.post(my_theme_ajax.ajaxurl, {
+        action: "get_feline_popup_content",
+        post_slug: slug
+      }).done(function (response) {
+        if (response.success) {
+          _this3.content.html(response.data.html);
+          if (window.location.hash !== "#".concat(slug)) {
+            window.history.pushState(null, null, "#".concat(slug));
+          }
+        } else {
+          _this3.content.html("<p>Could not load cat details.</p>");
+        }
+      }).fail(function () {
+        _this3.content.html("<p>An error occurred.</p>");
+      });
+    },
+    close: function close() {
+      var preventHashChange = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this.isOpen = false;
+      this.shell.addClass("hidden");
+      this.content.html("");
+      $("body").removeClass("overflow-hidden");
+      if (!preventHashChange && window.location.hash) {
+        window.history.pushState(null, null, window.location.pathname + window.location.search);
+      }
     }
-  });
+  };
+  felinePopup.init();
 
   // Also keep the generic one for other parts of the site.
-  Fancybox.bind("[data-fancybox]:not([data-fancybox='feline-gallery'])", {
+  Fancybox.bind("[data-fancybox]:not([data-fancybox='purrfect-pin-up'])", {
     // Custom options for all other galleries
     // tpl: {
     //   closeButton:
@@ -265,13 +354,13 @@ jQuery(function ($) {
   });
 
   // VOTE
-  var enableVotePopupOnce = false; // Set to false to show popup on every vote for testing
-  $("body").on("click", ".vote-btn", function (e) {
-    e.preventDefault();
-    var button = $(this);
-    var postId = button.data("post-id");
-
-    // Target all buttons for this post, including the one in the caption
+  var confirmMovePopup = $("#vote-confirm-popup");
+  var confirmMoveYesBtn = $("#vote-confirm-yes");
+  var confirmMoveCancelBtn = $("#vote-confirm-cancel");
+  var moveVotePromise = null;
+  var welcomePopup = $("#vote-popup");
+  var welcomeCloseBtn = $("#close-vote-popup");
+  function processVote(postId) {
     var allButtons = $(".vote-btn[data-post-id='".concat(postId, "']"));
     var allVoteCountEls = allButtons.find(".vote-count");
     var allVoteLoaderEls = allButtons.find(".vote-loader");
@@ -282,33 +371,76 @@ jQuery(function ($) {
       post_id: postId
     }).done(function (response) {
       if (response.success) {
-        var newCount = response.data.new_count;
-        var action = response.data.action;
-
-        // Update vote count on all matching buttons
-        allVoteCountEls.text("".concat(newCount));
-        if (action === "voted") {
-          allButtons.addClass("voted");
-        } else {
-          allButtons.removeClass("voted");
+        // Handle 'voted' and 'unvoted' actions
+        if (response.data.action === 'voted' || response.data.action === 'unvoted') {
+          var newPost = response.data.new_post_data;
+          var targetButtons = $(".vote-btn[data-post-id='".concat(newPost.id, "']"));
+          targetButtons.find(".vote-count").text(newPost.count);
+          if (response.data.action === 'voted') {
+            targetButtons.addClass("voted");
+          } else {
+            targetButtons.removeClass("voted");
+          }
         }
 
-        // Show popup on first successful vote
-        var popupAlreadyShown = sessionStorage.getItem("votePopupShown") === "true";
-        if ((!popupAlreadyShown || !enableVotePopupOnce) && $("#vote-popup").length) {
-          $("#vote-popup").removeClass("hidden").addClass("flex");
+        // Handle 'moved' action
+        if (response.data.action === 'moved') {
+          var _newPost = response.data.new_post_data;
+          var oldPost = response.data.old_post_data;
+          var oldButtons = $(".vote-btn[data-post-id='".concat(oldPost.id, "']"));
+          oldButtons.removeClass("voted");
+          oldButtons.find(".vote-count").text(oldPost.count);
+          var newButtons = $(".vote-btn[data-post-id='".concat(_newPost.id, "']"));
+          newButtons.addClass("voted");
+          newButtons.find(".vote-count").text(_newPost.count);
+        }
+
+        // After handling the vote, check if we need to show the welcome popup.
+        var welcomePopupShown = sessionStorage.getItem("votePopupShown") === "true";
+        if (!welcomePopupShown && (response.data.action === 'voted' || response.data.action === 'moved')) {
+          welcomePopup.removeClass("hidden").addClass("flex");
           sessionStorage.setItem("votePopupShown", "true");
         }
       }
     }).always(function () {
-      allVoteLoaderEls.hide();
-      allVoteCountEls.show();
+      $(".vote-loader").hide();
+      $(".vote-count").show();
+      moveVotePromise = null;
+      confirmMovePopup.addClass("hidden");
     });
+  }
+  $("body").on("click", ".vote-btn", function (e) {
+    e.preventDefault();
+    var button = $(this);
+    var postId = button.data("post-id");
+    var alreadyVotedForThis = button.hasClass("voted");
+    var hasVotedForAnother = $(".vote-btn.voted").length > 0 && !alreadyVotedForThis;
+    if (hasVotedForAnother) {
+      // This is a vote move, ask for confirmation
+      confirmMovePopup.removeClass("hidden").addClass("flex");
+      moveVotePromise = {
+        postId: postId
+      };
+    } else {
+      // This is a fresh vote or an un-vote. Process immediately.
+      processVote(postId);
+    }
+  });
+  confirmMoveYesBtn.on("click", function (e) {
+    e.preventDefault();
+    if (moveVotePromise) {
+      processVote(moveVotePromise.postId);
+    }
+  });
+  confirmMoveCancelBtn.on("click", function (e) {
+    e.preventDefault();
+    moveVotePromise = null;
+    confirmMovePopup.addClass("hidden");
   });
 
-  // Close vote popup
-  $("body").on("click", "#close-vote-popup", function () {
-    $("#vote-popup").removeClass("flex").addClass("hidden");
+  // Handler for the welcome popup's close button
+  welcomeCloseBtn.on("click", function () {
+    welcomePopup.addClass("hidden");
   });
 
   // Sort Felines
@@ -371,6 +503,8 @@ jQuery(function ($) {
       if (response.success) {
         container.html(response.data.posts); // Replace content
         paginationContainer.html(response.data.pagination); // Replace pagination
+
+        felinePopup.updateGalleryItems(); // Update the gallery list
 
         var scrollToTarget = function scrollToTarget() {
           $("html, body").animate({
