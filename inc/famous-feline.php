@@ -191,7 +191,7 @@ function get_feline_card_html($post_id)
     <div class="ff-card p-4 rounded-lg shadow-md flex flex-col" style="background-color: var(--ff-card-bg)">
       <div class="ff-card--image">
         <a href="<?php echo esc_url($cat_photo_url); ?>"
-          data-fancybox="feline-gallery"
+          data-fancybox="purrfect-pin-up"
           data-caption="<div class='ff-card--header'>
                         <div class='flex justify-between items-center py-3 mb-3 border-b border-slate-300'>
                           <div class='ff-card--name'>
@@ -263,3 +263,54 @@ function get_feline_card_html($post_id)
 <?php
   return ob_get_clean();
 }
+
+/**
+ * Send an email notification when a 'famous-feline' post is published.
+ *
+ * @param string  $new_status New post status.
+ * @param string  $old_status Old post status.
+ * @param WP_Post $post       Post object.
+ */
+function send_feline_publish_notification($new_status, $old_status, $post)
+{
+  // Check if the post type is 'famous-feline' and the new status is 'publish'
+  if ('famous-feline' !== $post->post_type || 'publish' !== $new_status) {
+    return;
+  }
+
+  // Prevent email on every update of a published post
+  if ($old_status === 'publish') {
+    return;
+  }
+
+  // Get the recipient email from the custom field
+  $recipient_email = get_field('email', $post->ID);
+
+  // Check if the email is valid
+  if (!is_email($recipient_email)) {
+    return;
+  }
+
+  // Get post details for the email content
+  $post_title = get_the_title($post->ID);
+  $post_permalink = get_permalink($post->ID);
+
+  // Email Subject
+  $subject = 'It’s Official – Your Cat is Gallery-Ready!';
+
+  // Email Body
+  $body = "<strong>It’s Official – Your Cat is Gallery-Ready!</strong>\n\n";
+  $body .= "Cue the confetti and catnip – your marvellous moggie has been approved and is now strutting their stuff in our Purrfect Pin Up Contestant Gallery!\n\n";
+  $body .= "Now it’s time to rally the troops.\n\n";
+  $body .= "Share your cat’s profile far and wide – friends, family, neighbours, co-workers, even that barista who always draws a paw print on your coffee.\n\n";
+  $body .= "Because every vote counts… and the <strong>top 10 cats with the most votes</strong> will land a spot in the 2026 CPSV Calendar, with 2 more chosen as our <strong>CPSV Choice!</strong>\n\n";
+  $body .= "Ready, set… VOTE!\n\n";
+  $body .= "https://catprotection.com.au/purrfect-pin-up/\n";
+
+  // To send HTML email, you can set the Content-Type header.
+  $headers = array('Content-Type: text/plain; charset=UTF-8');
+
+  // Send the email
+  wp_mail($recipient_email, $subject, $body, $headers);
+}
+add_action('transition_post_status', 'send_feline_publish_notification', 10, 3);

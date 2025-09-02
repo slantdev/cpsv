@@ -230,7 +230,7 @@ jQuery(function ($) {
   });
 
   // FANCYBOX
-  Fancybox.bind("[data-fancybox='feline-gallery']", {
+  Fancybox.bind("[data-fancybox='purrfect-pin-up']", {
     // Custom options for this gallery
     Carousel: {
       Thumbs: false,
@@ -244,8 +244,9 @@ jQuery(function ($) {
     },
     theme: "light",
     groupAll: true,
+    //groupAttr: false,
     slug: function slug(fancybox, slide) {
-      return slide.triggerEl.dataset.slug;
+      return slide.triggerEl.getAttribute("data-slug");
     }
   });
 
@@ -315,7 +316,7 @@ jQuery(function ($) {
     e.preventDefault();
     var button = $(this);
     var sortBy = button.data("sort");
-    var section = button.closest('.section-wrapper');
+    var section = button.closest(".section-wrapper");
     var searchTerm = section.find(".ff-search-form .ff-search-input").val();
 
     // Set active class
@@ -328,7 +329,7 @@ jQuery(function ($) {
   $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
     var form = $(this);
-    var section = form.closest('.section-wrapper');
+    var section = form.closest(".section-wrapper");
     var searchTerm = form.find(".ff-search-input").val();
     var sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
     trigger_feline_ajax(sortBy, searchTerm, 1, section);
@@ -338,8 +339,8 @@ jQuery(function ($) {
   $("body").on("click", ".ff-pagination a", function (e) {
     e.preventDefault();
     var link = $(this);
-    var section = link.closest('.section-wrapper');
-    var pageUrl = link.prop('href');
+    var section = link.closest(".section-wrapper");
+    var pageUrl = link.prop("href");
     var page = 1;
     var pagedMatch = pageUrl.match(/paged=(\d+)/);
     var pageMatch = pageUrl.match(/\/page\/(\d+)/);
@@ -357,7 +358,7 @@ jQuery(function ($) {
     var container = section.find("#ff-grid-container");
     var paginationContainer = $("#ff-pagination-container");
     var loader = section.find(".ff-loader-container");
-    var postsPerPage = section.data('posts-per-page');
+    var postsPerPage = section.data("posts-per-page");
     loader.show(); // Show loader
 
     $.post(my_theme_ajax.ajaxurl, {
@@ -372,7 +373,7 @@ jQuery(function ($) {
         paginationContainer.html(response.data.pagination); // Replace pagination
 
         var scrollToTarget = function scrollToTarget() {
-          $('html, body').animate({
+          $("html, body").animate({
             scrollTop: container.offset().top - 100 // 100px offset
           }, 500);
         };

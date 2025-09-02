@@ -237,7 +237,7 @@ jQuery(function ($) {
   });
 
   // FANCYBOX
-  Fancybox.bind("[data-fancybox='feline-gallery']", {
+  Fancybox.bind("[data-fancybox='purrfect-pin-up']", {
     // Custom options for this gallery
     Carousel: {
       Thumbs: false,
@@ -251,7 +251,8 @@ jQuery(function ($) {
     },
     theme: "light",
     groupAll: true,
-    slug: (fancybox, slide) => slide.triggerEl.dataset.slug,
+    //groupAttr: false,
+    slug: (fancybox, slide) => slide.triggerEl.getAttribute("data-slug"),
   });
 
   // Also keep the generic one for other parts of the site.
@@ -330,7 +331,7 @@ jQuery(function ($) {
     e.preventDefault();
     const button = $(this);
     const sortBy = button.data("sort");
-    const section = button.closest('.section-wrapper');
+    const section = button.closest(".section-wrapper");
     const searchTerm = section.find(".ff-search-form .ff-search-input").val();
 
     // Set active class
@@ -344,9 +345,11 @@ jQuery(function ($) {
   $(".ff-search-form").on("submit", function (e) {
     e.preventDefault();
     const form = $(this);
-    const section = form.closest('.section-wrapper');
+    const section = form.closest(".section-wrapper");
     const searchTerm = form.find(".ff-search-input").val();
-    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    const sortBy = section
+      .find(".ff-sort-buttons .sort-btn.active")
+      .data("sort");
     trigger_feline_ajax(sortBy, searchTerm, 1, section);
   });
 
@@ -354,10 +357,10 @@ jQuery(function ($) {
   $("body").on("click", ".ff-pagination a", function (e) {
     e.preventDefault();
     const link = $(this);
-    const section = link.closest('.section-wrapper');
-    const pageUrl = link.prop('href');
+    const section = link.closest(".section-wrapper");
+    const pageUrl = link.prop("href");
     let page = 1;
-    
+
     const pagedMatch = pageUrl.match(/paged=(\d+)/);
     const pageMatch = pageUrl.match(/\/page\/(\d+)/);
 
@@ -367,7 +370,9 @@ jQuery(function ($) {
       page = pageMatch[1];
     }
 
-    const sortBy = section.find(".ff-sort-buttons .sort-btn.active").data("sort");
+    const sortBy = section
+      .find(".ff-sort-buttons .sort-btn.active")
+      .data("sort");
     const searchTerm = section.find(".ff-search-form .ff-search-input").val();
 
     trigger_feline_ajax(sortBy, searchTerm, page, section);
@@ -378,7 +383,7 @@ jQuery(function ($) {
     const container = section.find("#ff-grid-container");
     const paginationContainer = $("#ff-pagination-container");
     const loader = section.find(".ff-loader-container");
-    const postsPerPage = section.data('posts-per-page');
+    const postsPerPage = section.data("posts-per-page");
 
     loader.show(); // Show loader
 
@@ -395,10 +400,13 @@ jQuery(function ($) {
           paginationContainer.html(response.data.pagination); // Replace pagination
 
           const scrollToTarget = () => {
-            $('html, body').animate({
-                scrollTop: container.offset().top - 100 // 100px offset
-            }, 500);
-          }
+            $("html, body").animate(
+              {
+                scrollTop: container.offset().top - 100, // 100px offset
+              },
+              500
+            );
+          };
 
           // Re-initialize masonry
           const grid = container.find(".ff-masonry")[0];
