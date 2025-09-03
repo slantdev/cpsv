@@ -256,7 +256,7 @@ function custom_feline_og_desc($desc)
 }
 add_filter('wpseo_opengraph_desc', 'custom_feline_og_desc', 10, 1);
 
-function custom_feline_og_image($images)
+function custom_feline_og_image($img)
 {
   if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
     $cat_slug = sanitize_title($_GET['cat']);
@@ -274,17 +274,11 @@ function custom_feline_og_image($images)
         }
 
         if ($image_url) {
-          // Clear existing images and add our specific image
-          $images = array(
-            array(
-              'url' => $image_url,
-            )
-          );
+          return $image_url;
         }
       }
     }
   }
-  return $images;
+  return $img;
 }
-//add_filter('wpseo_add_opengraph_images', 'custom_feline_og_image', 10, 1);
-add_filter('wpseo_opengraph_image', 'custom_feline_og_image');
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 999, 1);
