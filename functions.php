@@ -209,54 +209,65 @@ function add_shortcode_body_class($classes)
 add_filter('body_class', 'add_shortcode_body_class');
 
 /**
- * Modify Yoast SEO Open Graph tags for Feline pages using the presenter context.
+ * Modify Yoast SEO Open Graph tags for Feline pages.
  */
-function custom_feline_yoast_presenter_context($context) {
-    // Check if we are on the correct page and the 'cat' parameter is set.
-    // Assumes the page slug is 'purrfect-pin-up'.
-    if (!is_page('purrfect-pin-up') || !isset($_GET['cat'])) {
-        return $context;
-    }
-
-    $cat_slug = sanitize_title($_GET['cat']);
-    if (empty($cat_slug)) {
-        return $context;
-    }
-
-    $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
-
-    if ($post) {
-        $post_id = $post->ID;
-
-        // Override the context properties
-        $context->opengraph_title = get_the_title($post_id);
-        
-        if (has_excerpt($post_id)) {
-            $context->opengraph_description = get_the_excerpt($post_id);
-        } else {
-            $context->opengraph_description = wp_trim_words(get_the_content(null, false, $post_id), 30);
-        }
-
-        $context->opengraph_url = home_url('/purrfect-pin-up/?cat=' . $cat_slug);
-
-        $image_url = '';
-        if (function_exists('get_field') && get_field('cat_photo', $post_id)) {
-            $image_details = get_field('cat_photo', $post_id);
-            $image_url = $image_details['url'];
-        } elseif (has_post_thumbnail($post_id)) {
-            $image_url = get_the_post_thumbnail_url($post_id, 'large');
-        }
-
-        if ($image_url) {
-            // Yoast expects an array of image objects
-            $context->opengraph_images = [
-                [
-                    'url' => $image_url,
-                ]
-            ];
+function custom_feline_og_url($url) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            return home_url('/purrfect-pin-up/?cat=' . $cat_slug);
         }
     }
-
-    return $context;
+    return $url;
 }
-add_filter('wpseo_frontend_presenter_context', 'custom_feline_yoast_presenter_context', 10, 1);
+add_filter('wpseo_opengraph_url', 'custom_feline_og_url', 10, 1);
+
+function custom_feline_og_title($title) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                return get_the_title($post->ID);
+            }
+        }
+    }
+    return $title;
+}
+add_filter('wpseo_opengraph_title', 'custom_feline_og_title', 10, 1);
+
+function custom_feline_og_desc($desc) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                if (has_excerpt($post->ID)) {
+                    return get_the_excerpt($post->ID);
+                }
+                return wp_trim_words(get_the_content(null, false, $post->ID), 30);
+            }
+        }
+    }
+    return $desc;
+}
+add_filter('wpseo_opengraph_desc', 'custom_feline_og_desc', 10, 1);
+
+function custom_feline_og_image($img) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
+                    $image_details = get_field('cat_photo', $post->ID);
+                    return $image_details['url'];
+                } elseif (has_post_thumbnail($post->ID)) {
+                    return get_the_post_thumbnail_url($post->ID, 'large');
+                }
+            }
+        }
+    }
+    return $img;
+}
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 10, 1);
