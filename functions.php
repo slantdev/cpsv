@@ -245,8 +245,9 @@ function custom_feline_og_desc($desc)
     if (!empty($cat_slug)) {
       $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
       if ($post) {
-        if (has_excerpt($post->ID)) {
-          return get_the_excerpt($post->ID);
+        $cat_description = get_field('cat_description', $post->ID);
+        if ($cat_description) {
+          return $cat_description;
         }
         return wp_trim_words(get_the_content(null, false, $post->ID), 30);
       }
