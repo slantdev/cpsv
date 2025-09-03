@@ -211,63 +211,67 @@ add_filter('body_class', 'add_shortcode_body_class');
 /**
  * Modify Yoast SEO Open Graph tags for Feline pages.
  */
-function custom_feline_og_url($url) {
-    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
-        $cat_slug = sanitize_title($_GET['cat']);
-        if (!empty($cat_slug)) {
-            return home_url('/purrfect-pin-up/?cat=' . $cat_slug);
-        }
+function custom_feline_og_url($url)
+{
+  if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+    $cat_slug = sanitize_title($_GET['cat']);
+    if (!empty($cat_slug)) {
+      return home_url('/purrfect-pin-up/?cat=' . $cat_slug);
     }
-    return $url;
+  }
+  return $url;
 }
 add_filter('wpseo_opengraph_url', 'custom_feline_og_url', 10, 1);
 
-function custom_feline_og_title($title) {
-    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
-        $cat_slug = sanitize_title($_GET['cat']);
-        if (!empty($cat_slug)) {
-            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
-            if ($post) {
-                return get_the_title($post->ID);
-            }
-        }
+function custom_feline_og_title($title)
+{
+  if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+    $cat_slug = sanitize_title($_GET['cat']);
+    if (!empty($cat_slug)) {
+      $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+      if ($post) {
+        return get_the_title($post->ID);
+      }
     }
-    return $title;
+  }
+  return $title;
 }
 add_filter('wpseo_opengraph_title', 'custom_feline_og_title', 10, 1);
 
-function custom_feline_og_desc($desc) {
-    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
-        $cat_slug = sanitize_title($_GET['cat']);
-        if (!empty($cat_slug)) {
-            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
-            if ($post) {
-                if (has_excerpt($post->ID)) {
-                    return get_the_excerpt($post->ID);
-                }
-                return wp_trim_words(get_the_content(null, false, $post->ID), 30);
-            }
+function custom_feline_og_desc($desc)
+{
+  if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+    $cat_slug = sanitize_title($_GET['cat']);
+    if (!empty($cat_slug)) {
+      $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+      if ($post) {
+        if (has_excerpt($post->ID)) {
+          return get_the_excerpt($post->ID);
         }
+        return wp_trim_words(get_the_content(null, false, $post->ID), 30);
+      }
     }
-    return $desc;
+  }
+  return $desc;
 }
 add_filter('wpseo_opengraph_desc', 'custom_feline_og_desc', 10, 1);
 
-function custom_feline_og_image($img) {
-    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
-        $cat_slug = sanitize_title($_GET['cat']);
-        if (!empty($cat_slug)) {
-            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
-            if ($post) {
-                if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
-                    $image_details = get_field('cat_photo', $post->ID);
-                    return $image_details['url'];
-                } elseif (has_post_thumbnail($post->ID)) {
-                    return get_the_post_thumbnail_url($post->ID, 'large');
-                }
-            }
+function custom_feline_og_image($img)
+{
+  if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+    $cat_slug = sanitize_title($_GET['cat']);
+    if (!empty($cat_slug)) {
+      $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+      if ($post) {
+        if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
+          $image_details = get_field('cat_photo', $post->ID);
+          return $image_details['url'];
+        } elseif (has_post_thumbnail($post->ID)) {
+          return get_the_post_thumbnail_url($post->ID, 'large');
         }
+      }
     }
-    return $img;
+  }
+  return $img;
 }
-add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 99, 1);
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 999, 1);
