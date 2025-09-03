@@ -270,4 +270,4 @@ function custom_feline_og_image($img) {
     }
     return $img;
 }
-add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 10, 1);
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 99, 1);
