@@ -245,23 +245,10 @@ function custom_feline_og_desc($desc)
     if (!empty($cat_slug)) {
       $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
       if ($post) {
-        // --- DEBUGGING CODE START ---
-        // Let's find the image URL and return it as the description
-        if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
-            $image_details = get_field('cat_photo', $post->ID);
-            // Check if the return value is an array with a 'url' key
-            if (is_array($image_details) && isset($image_details['url'])) {
-                return 'DEBUG: Image URL is ' . $image_details['url'];
-            } else {
-                // If it's not an array, maybe it's just the URL string or an ID
-                return 'DEBUG: cat_photo field did not return an array. Value is: ' . print_r($image_details, true);
-            }
-        } elseif (has_post_thumbnail($post->ID)) {
-            return 'DEBUG: Image URL is ' . get_the_post_thumbnail_url($post->ID, 'large');
-        } else {
-            return 'DEBUG: No image found for this post.';
+        if (has_excerpt($post->ID)) {
+          return get_the_excerpt($post->ID);
         }
-        // --- DEBUGGING CODE END ---
+        return wp_trim_words(get_the_content(null, false, $post->ID), 30);
       }
     }
   }
@@ -269,22 +256,34 @@ function custom_feline_og_desc($desc)
 }
 add_filter('wpseo_opengraph_desc', 'custom_feline_og_desc', 10, 1);
 
-function custom_feline_og_image($img)
+function custom_feline_og_image($images)
 {
   if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
     $cat_slug = sanitize_title($_GET['cat']);
     if (!empty($cat_slug)) {
       $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
       if ($post) {
+        $image_url = '';
         if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
           $image_details = get_field('cat_photo', $post->ID);
-          return $image_details['url'];
+          if (is_array($image_details) && isset($image_details['url'])) {
+            $image_url = $image_details['url'];
+          }
         } elseif (has_post_thumbnail($post->ID)) {
-          return get_the_post_thumbnail_url($post->ID, 'large');
+          $image_url = get_the_post_thumbnail_url($post->ID, 'large');
+        }
+
+        if ($image_url) {
+          // Clear existing images and add our specific image
+          $images = array(
+            array(
+              'url' => $image_url,
+            )
+          );
         }
       }
     }
   }
-  return $img;
+  return $images;
 }
-add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 999, 1);
+add_filter('wpseo_opengraph_image_images', 'custom_feline_og_image', 10, 1);
