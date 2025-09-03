@@ -212,7 +212,9 @@ add_filter('body_class', 'add_shortcode_body_class');
  * Adds Open Graph meta tags for a specific feline when a 'cat' query parameter is present.
  */
 function add_feline_og_tags() {
-  if (is_singular() || !isset($_GET['cat'])) {
+  // Only run this logic on the 'purrfect-pin-up' page when the 'cat' parameter is present.
+  // Assumes the page slug is 'purrfect-pin-up'.
+  if (!is_page('purrfect-pin-up') || !isset($_GET['cat'])) {
     return;
   }
 
@@ -227,10 +229,16 @@ function add_feline_og_tags() {
     $post_id = $post->ID;
     $title = get_the_title($post_id);
     $description = has_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words(get_the_content(null, false, $post_id), 30);
-    $url = get_permalink($post_id);
-    $image_url = get_the_post_thumbnail_url($post_id, 'large');
-    if (!empty(get_field('cat_photo', $post_id))) {
-      $image_url = get_field('cat_photo', $post_id)['url'];
+    
+    // Construct the correct share URL with the query parameter.
+    $url = home_url('/purrfect-pin-up/?cat=' . $cat_slug);
+
+    $image_url = '';
+    if (function_exists('get_field') && get_field('cat_photo', $post_id)) {
+      $image_details = get_field('cat_photo', $post_id);
+      $image_url = $image_details['url'];
+    } else {
+      $image_url = get_the_post_thumbnail_url($post_id, 'large');
     }
 
     echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
