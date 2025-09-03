@@ -245,10 +245,23 @@ function custom_feline_og_desc($desc)
     if (!empty($cat_slug)) {
       $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
       if ($post) {
-        if (has_excerpt($post->ID)) {
-          return get_the_excerpt($post->ID);
+        // --- DEBUGGING CODE START ---
+        // Let's find the image URL and return it as the description
+        if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
+            $image_details = get_field('cat_photo', $post->ID);
+            // Check if the return value is an array with a 'url' key
+            if (is_array($image_details) && isset($image_details['url'])) {
+                return 'DEBUG: Image URL is ' . $image_details['url'];
+            } else {
+                // If it's not an array, maybe it's just the URL string or an ID
+                return 'DEBUG: cat_photo field did not return an array. Value is: ' . print_r($image_details, true);
+            }
+        } elseif (has_post_thumbnail($post->ID)) {
+            return 'DEBUG: Image URL is ' . get_the_post_thumbnail_url($post->ID, 'large');
+        } else {
+            return 'DEBUG: No image found for this post.';
         }
-        return wp_trim_words(get_the_content(null, false, $post->ID), 30);
+        // --- DEBUGGING CODE END ---
       }
     }
   }
