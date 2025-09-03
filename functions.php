@@ -286,4 +286,5 @@ function custom_feline_og_image($images)
   }
   return $images;
 }
-add_filter('wpseo_add_opengraph_images', 'custom_feline_og_image', 10, 1);
+//add_filter('wpseo_add_opengraph_images', 'custom_feline_og_image', 10, 1);
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image');
