@@ -209,53 +209,65 @@ function add_shortcode_body_class($classes)
 add_filter('body_class', 'add_shortcode_body_class');
 
 /**
- * Adds Open Graph meta tags for a specific feline when a 'cat' query parameter is present.
+ * Modify Yoast SEO Open Graph tags for Feline pages.
  */
-function add_feline_og_tags() {
-  // Only run this logic on the 'purrfect-pin-up' page when the 'cat' parameter is present.
-  // Assumes the page slug is 'purrfect-pin-up'.
-  if (!is_page('purrfect-pin-up') || !isset($_GET['cat'])) {
-    return;
-  }
-
-  $cat_slug = sanitize_title($_GET['cat']);
-  if (empty($cat_slug)) {
-    return;
-  }
-
-  $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
-
-  if ($post) {
-    $post_id = $post->ID;
-    $title = get_the_title($post_id);
-    $description = has_excerpt($post_id) ? get_the_excerpt($post_id) : wp_trim_words(get_the_content(null, false, $post_id), 30);
-    
-    // Construct the correct share URL with the query parameter.
-    $url = home_url('/purrfect-pin-up/?cat=' . $cat_slug);
-
-    $image_url = '';
-    if (function_exists('get_field') && get_field('cat_photo', $post_id)) {
-      $image_details = get_field('cat_photo', $post_id);
-      $image_url = $image_details['url'];
-    } else {
-      $image_url = get_the_post_thumbnail_url($post_id, 'large');
+function custom_feline_og_url($url) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            return home_url('/purrfect-pin-up/?cat=' . $cat_slug);
+        }
     }
-
-    echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
-    echo '<meta property="og:description" content="' . esc_attr($description) . '" />' . "\n";
-    echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
-    if ($image_url) {
-      echo '<meta property="og:image" content="' . esc_url($image_url) . '" />' . "\n";
-    }
-    echo '<meta property="og:type" content="article" />' . "\n";
-
-    // Twitter Card Tags
-    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
-    echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
-    echo '<meta name="twitter:description" content="' . esc_attr($description) . '">' . "\n";
-    if ($image_url) {
-      echo '<meta name="twitter:image" content="' . esc_url($image_url) . '">' . "\n";
-    }
-  }
+    return $url;
 }
-add_action('wp_head', 'add_feline_og_tags');
+add_filter('wpseo_opengraph_url', 'custom_feline_og_url', 10, 1);
+
+function custom_feline_og_title($title) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                return get_the_title($post->ID);
+            }
+        }
+    }
+    return $title;
+}
+add_filter('wpseo_opengraph_title', 'custom_feline_og_title', 10, 1);
+
+function custom_feline_og_desc($desc) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                if (has_excerpt($post->ID)) {
+                    return get_the_excerpt($post->ID);
+                }
+                return wp_trim_words(get_the_content(null, false, $post->ID), 30);
+            }
+        }
+    }
+    return $desc;
+}
+add_filter('wpseo_opengraph_desc', 'custom_feline_og_desc', 10, 1);
+
+function custom_feline_og_image($img) {
+    if (is_page('purrfect-pin-up') && isset($_GET['cat'])) {
+        $cat_slug = sanitize_title($_GET['cat']);
+        if (!empty($cat_slug)) {
+            $post = get_page_by_path($cat_slug, OBJECT, 'famous-feline');
+            if ($post) {
+                if (function_exists('get_field') && get_field('cat_photo', $post->ID)) {
+                    $image_details = get_field('cat_photo', $post->ID);
+                    return $image_details['url'];
+                } elseif (has_post_thumbnail($post->ID)) {
+                    return get_the_post_thumbnail_url($post->ID, 'large');
+                }
+            }
+        }
+    }
+    return $img;
+}
+add_filter('wpseo_opengraph_image', 'custom_feline_og_image', 10, 1);
