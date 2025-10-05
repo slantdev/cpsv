@@ -256,7 +256,8 @@ jQuery(function ($) {
       $("body").on("click", ".open-feline-popup", function (e) {
         e.preventDefault();
         var slug = $(e.currentTarget).attr("href").replace("#", "");
-        _this2.open(slug);
+        var showActions = $(e.currentTarget).data("show-actions");
+        _this2.open(slug, false, showActions);
       });
       this.closeBtn.on("click", function (e) {
         e.preventDefault();
@@ -307,6 +308,7 @@ jQuery(function ($) {
     open: function open(slug) {
       var _this3 = this;
       var fromHistory = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var showActions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       this.currentIndex = this.galleryItems.indexOf(slug);
       this.isOpen = true;
       this.shell.removeClass("hidden");
@@ -314,7 +316,8 @@ jQuery(function ($) {
       this.content.html('<div class="feline-popup-loader"></div>');
       $.post(my_theme_ajax.ajaxurl, {
         action: "get_feline_popup_content",
-        post_slug: slug
+        post_slug: slug,
+        show_actions: showActions
       }).done(function (response) {
         if (response.success) {
           _this3.content.html(response.data.html);

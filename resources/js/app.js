@@ -262,7 +262,8 @@ jQuery(function ($) {
       $("body").on("click", ".open-feline-popup", (e) => {
         e.preventDefault();
         const slug = $(e.currentTarget).attr("href").replace("#", "");
-        this.open(slug);
+        const showActions = $(e.currentTarget).data("show-actions");
+        this.open(slug, false, showActions);
       });
 
       this.closeBtn.on("click", (e) => {
@@ -321,7 +322,7 @@ jQuery(function ($) {
         }
       }
     },
-    open: function (slug, fromHistory = false) {
+    open: function (slug, fromHistory = false, showActions = true) {
       this.currentIndex = this.galleryItems.indexOf(slug);
       this.isOpen = true;
       this.shell.removeClass("hidden");
@@ -332,6 +333,7 @@ jQuery(function ($) {
       $.post(my_theme_ajax.ajaxurl, {
         action: "get_feline_popup_content",
         post_slug: slug,
+        show_actions: showActions,
       })
         .done((response) => {
           if (response.success) {

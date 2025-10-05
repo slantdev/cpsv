@@ -10,6 +10,7 @@ include get_template_directory() . '/template-parts/global/section_settings.php'
 $section_id = $section_id ? 'id="' . $section_id . '"' : '';
 
 $purrfect_pin_up = get_sub_field('purrfect_pin_up') ?: []; // Group
+$winners = $purrfect_pin_up['winners'] ?? []; // Moved here
 
 $heading_text = $purrfect_pin_up['heading']['heading_text'] ?? '';
 $text_area = $purrfect_pin_up['text_area']['text_area'] ?? '';
@@ -90,14 +91,26 @@ if ($card_background_color) {
             <?php
             if (!is_admin()) {
               $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-              $args = array(
-                'post_type' => 'famous-feline',
-                'post_status' => 'publish',
-                'posts_per_page' => $posts_per_page,
-                'orderby' => 'date',
-                'order' => 'DESC',
-                'paged' => $paged,
-              );
+
+              if (!empty($winners)) {
+                $winner_ids = wp_list_pluck($winners, 'ID');
+                $args = array(
+                  'post_type' => 'famous-feline',
+                  'post_status' => 'publish',
+                  'posts_per_page' => -1,
+                  'post__in' => $winner_ids,
+                  'orderby' => 'post__in',
+                );
+              } else {
+                $args = array(
+                  'post_type' => 'famous-feline',
+                  'post_status' => 'publish',
+                  'posts_per_page' => $posts_per_page,
+                  'orderby' => 'date',
+                  'order' => 'DESC',
+                  'paged' => $paged,
+                );
+              }
             } else {
               $args = array(
                 'post_type' => 'famous-feline',
@@ -117,7 +130,7 @@ if ($card_background_color) {
                   <div class="gutter-sizer"></div>
                   <?php
                   while ($felines_query->have_posts()) : $felines_query->the_post();
-                    echo get_feline_card_html(get_the_ID());
+                    echo get_feline_card_html(get_the_ID(), empty($winners));
                   endwhile;
                   ?>
                 </div>
@@ -125,7 +138,7 @@ if ($card_background_color) {
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
                   <?php
                   while ($felines_query->have_posts()) : $felines_query->the_post();
-                    echo get_feline_card_html(get_the_ID());
+                    echo get_feline_card_html(get_the_ID(), empty($winners));
                   endwhile;
                   ?>
                 </div>
