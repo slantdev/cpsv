@@ -112,13 +112,24 @@ if ($card_background_color) {
                 );
               }
             } else {
-              $args = array(
-                'post_type' => 'famous-feline',
-                'post_status' => 'publish',
-                'posts_per_page' => 3,
-                'orderby' => 'date',
-                'order' => 'DESC',
-              );
+              if (!empty($winners)) {
+                $winner_ids = wp_list_pluck($winners, 'ID');
+                $args = array(
+                  'post_type' => 'famous-feline',
+                  'post_status' => 'publish',
+                  'posts_per_page' => 3,
+                  'post__in' => $winner_ids,
+                  'orderby' => 'post__in',
+                );
+              } else {
+                $args = array(
+                  'post_type' => 'famous-feline',
+                  'post_status' => 'publish',
+                  'posts_per_page' => 3,
+                  'orderby' => 'date',
+                  'order' => 'DESC',
+                );
+              }
             }
 
             $felines_query = new WP_Query($args);
