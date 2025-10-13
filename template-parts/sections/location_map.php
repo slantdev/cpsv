@@ -54,7 +54,7 @@ $section_class = 'section-location_map-' . $uniqid;
       <?php if ($google_map) : ?>
         <div class="location_map-container relative container max-w-screen-2xl my-8 xl:my-12">
           <?php if (defined('GOOGLE_MAPS_API')) {
-            echo '<script src="https://maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API . '&libraries=places,geometry&callback=Function.prototype"></script>';
+            echo '<script src="https://maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API . '&libraries=places,geometry,marker&v=weekly&callback=initLocationMap" async defer></script>';
           }
           ?>
           <style type="text/css">
@@ -68,130 +68,92 @@ $section_class = 'section-location_map-' . $uniqid;
             }
           </style>
           <script type="text/javascript">
-            (function($) {
+            function initLocationMap() {
+              (function($) {
 
-              /**
-               * initMap
-               *
-               * Renders a Google Map onto the selected jQuery element
-               *
-               * @date    22/10/19
-               * @since   5.8.6
-               *
-               * @param   jQuery $el The jQuery element.
-               * @return  object The map instance.
-               */
-              function initMap($el) {
+                function initMap($el) {
+                  // Find marker elements within map.
+                  var $markers = $el.find('.marker');
 
-                // Find marker elements within map.
-                var $markers = $el.find('.marker');
+                  // Create gerenic map.
+                  var mapArgs = {
+                    zoom: $el.data('zoom') || 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                  };
+                  var map = new google.maps.Map($el[0], mapArgs);
 
-                // Create gerenic map.
-                var mapArgs = {
-                  zoom: $el.data('zoom') || 16,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map($el[0], mapArgs);
-
-                // Add markers.
-                map.markers = [];
-                $markers.each(function() {
-                  initMarker($(this), map);
-                });
-
-                // Center map based on markers.
-                centerMap(map);
-
-                // Return map instance.
-                return map;
-              }
-
-              /**
-               * initMarker
-               *
-               * Creates a marker for the given jQuery element and map.
-               *
-               * @date    22/10/19
-               * @since   5.8.6
-               *
-               * @param   jQuery $el The jQuery element.
-               * @param   object The map instance.
-               * @return  object The marker instance.
-               */
-              function initMarker($marker, map) {
-
-                // Get position from marker.
-                var lat = $marker.data('lat');
-                var lng = $marker.data('lng');
-                var latLng = {
-                  lat: parseFloat(lat),
-                  lng: parseFloat(lng)
-                };
-
-                // Create marker instance.
-                var marker = new google.maps.Marker({
-                  position: latLng,
-                  map: map
-                });
-
-                // Append to reference for later use.
-                map.markers.push(marker);
-
-                // If marker contains HTML, add it to an infoWindow.
-                if ($marker.html()) {
-
-                  // Create info window.
-                  var infowindow = new google.maps.InfoWindow({
-                    content: $marker.html()
+                  // Add markers.
+                  map.markers = [];
+                  $markers.each(function() {
+                    initMarker($(this), map);
                   });
 
-                  // Show info window when marker is clicked.
-                  google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.open(map, marker);
-                  });
+                  // Center map based on markers.
+                  centerMap(map);
+
+                  // Return map instance.
+                  return map;
                 }
-              }
 
-              /**
-               * centerMap
-               *
-               * Centers the map showing all markers in view.
-               *
-               * @date    22/10/19
-               * @since   5.8.6
-               *
-               * @param   object The map instance.
-               * @return  void
-               */
-              function centerMap(map) {
+                function initMarker($marker, map) {
+                  // Get position from marker.
+                  var lat = $marker.data('lat');
+                  var lng = $marker.data('lng');
+                  var latLng = {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng)
+                  };
 
-                // Create map boundaries from all map markers.
-                var bounds = new google.maps.LatLngBounds();
-                map.markers.forEach(function(marker) {
-                  bounds.extend({
-                    lat: marker.position.lat(),
-                    lng: marker.position.lng()
+                  // Create marker instance.
+                  var marker = new google.maps.marker.AdvancedMarkerElement({
+                    position: latLng,
+                    map: map
                   });
-                });
 
-                // Case: Single marker.
-                if (map.markers.length == 1) {
-                  map.setCenter(bounds.getCenter());
+                  // Append to reference for later use.
+                  map.markers.push(marker);
 
-                  // Case: Multiple markers.
-                } else {
-                  map.fitBounds(bounds);
+                  // If marker contains HTML, add it to an infoWindow.
+                  if ($marker.html()) {
+                    // Create info window.
+                    var infowindow = new google.maps.InfoWindow({
+                      content: $marker.html()
+                    });
+
+                    // Show info window when marker is clicked.
+                    marker.addListener('click', function() {
+                      infowindow.open(map, marker);
+                    });
+                  }
                 }
-              }
 
-              // Render maps on page load.
-              $(document).ready(function() {
+                function centerMap(map) {
+                  // Create map boundaries from all map markers.
+                  var bounds = new google.maps.LatLngBounds();
+                  map.markers.forEach(function(marker) {
+                    bounds.extend({
+                      lat: marker.position.lat(),
+                      lng: marker.position.lng()
+                    });
+                  });
+
+                  // Case: Single marker.
+                  if (map.markers.length == 1) {
+                    map.setCenter(bounds.getCenter());
+
+                    // Case: Multiple markers.
+                  } else {
+                    map.fitBounds(bounds);
+                  }
+                }
+
+                // Render maps on page load.
                 $('.acf-map').each(function() {
                   var map = initMap($(this));
                 });
-              });
 
-            })(jQuery);
+              })(jQuery);
+            }
           </script>
           <div class="aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-7 rounded-md lg:rounded-lg bg-slate-100 overflow-clip">
             <div class="acf-map" data-zoom="16">
