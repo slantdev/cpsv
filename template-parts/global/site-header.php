@@ -71,6 +71,15 @@ $cart_page_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : $wooco
 
 ?>
 <header class="fixed z-50 w-full top-0 left-0 bg-white xl:bg-transparent xl:static print:hidden">
+  <div class="top-header xl:hidden relative z-50 bg-brand-dark-blue py-2 print:hidden">
+    <div class="container">
+      <div class="flex items-center justify-center">
+        <div class="text-white text-sm">
+          Call Us : <a href="<?php echo $call_us_url ?>" target="_blank" class="text-white font-medium hover:opacity-75"><?php echo $call_us['title'] ?></a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="main-header">
     <div class="container max-w-screen-5xl">
       <div class="relative xl:flex xl:justify-between">
@@ -81,7 +90,7 @@ $cart_page_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : $wooco
           <div class="flex gap-x-3 lg:gap-x-4 items-center">
             <a href="<?php echo $cart_page_url ?>" class="relative flex justify-center items-center px-2 py-2 xl:hidden">
               <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6')); ?>
-              <div class="basket-item-count absolute right-[3px] top-1.5 bg-brand-yellow text-[10px] rounded-full w-2.5 h-2.5 flex items-center justify-center">
+              <div class="basket-item-count absolute right-[3px] top-1.5 bg-brand-tomato text-[10px] rounded-full w-3 h-3 flex items-center justify-center">
                 <span class="cart-items-count count hidden">
                   <?php echo WC()->cart->get_cart_contents_count(); ?>
                 </span>
@@ -116,8 +125,8 @@ $cart_page_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : $wooco
             <a id="minicart" href="<?php echo $cart_page_url ?>" class="bg-brand-yellow text-white flex justify-center items-center px-4 5xl:px-7 py-4 hover:brightness-110">
               <div class="relative">
                 <?php echo cpsv_icon(array('icon' => 'cart', 'group' => 'utilities', 'size' => '36', 'class' => 'w-6 h-6 5xl:w-9 5xl:h-9 text-white')); ?>
-                <div class="cart-items-count hidden 4xl:flex">
-                  <span class="count">
+                <div class="basket-item-count hidden 4xl:flex absolute -top-1 -right-2 bg-brand-tomato text-[10px] rounded-full w-4 h-4 items-center justify-center">
+                  <span class="cart-items-count count hidden 4xl:flex">
                     <?php echo WC()->cart->get_cart_contents_count(); ?>
                   </span>
                 </div>

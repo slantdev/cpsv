@@ -3869,6 +3869,15 @@ details.collapse summary::-webkit-details-marker {
 .top-auto {
     top: auto;
 }
+.-right-1 {
+    right: -0.25rem;
+}
+.-top-1 {
+    top: -0.25rem;
+}
+.-right-2 {
+    right: -0.5rem;
+}
 .\!z-20 {
     z-index: 20 !important;
 }
@@ -5360,6 +5369,9 @@ details.collapse summary::-webkit-details-marker {
 }
 .pt-\[72px\] {
     padding-top: 72px;
+}
+.pt-\[108px\] {
+    padding-top: 108px;
 }
 .text-left {
     text-align: left;

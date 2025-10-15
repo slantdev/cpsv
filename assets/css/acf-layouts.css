@@ -4600,6 +4600,18 @@
   top: auto;
 }
 
+#poststuff .acf-layout .-right-1 {
+  right: -0.25rem;
+}
+
+#poststuff .acf-layout .-top-1 {
+  top: -0.25rem;
+}
+
+#poststuff .acf-layout .-right-2 {
+  right: -0.5rem;
+}
+
 #poststuff .acf-layout .\!z-20 {
   z-index: 20 !important;
 }
@@ -6547,6 +6559,10 @@
 
 #poststuff .acf-layout .pt-\[72px\] {
   padding-top: 72px;
+}
+
+#poststuff .acf-layout .pt-\[108px\] {
+  padding-top: 108px;
 }
 
 #poststuff .acf-layout .text-left {

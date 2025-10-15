@@ -21,9 +21,6 @@
     > a {
       @apply block text-base xl:text-sm 3xl:text-[15px] 4xl:text-base 5xl:text-lg font-medium leading-tight whitespace-nowrap uppercase text-brand-dark-blue hover:text-brand-blue;
       @apply py-3 px-4 xl:py-0 xl:px-0;
-      &.current-menu,
-      &.current-menu-ancestor {
-      }
     }
   }
 }
@@ -172,5 +169,5 @@
 }
 
 .cart-items-count {
-  @apply absolute top-0 -right-1 4xl:-top-1 4xl:-right-2 bg-brand-tomato text-[8px] 5xl:text-[10px] rounded-full w-2.5 h-2.5 4xl:w-4 4xl:h-4 5xl:w-5 5xl:h-5 flex items-center justify-center;
+  @apply absolute top-0 text-[8px] 5xl:text-[10px] rounded-full w-3 h-3 4xl:w-4 4xl:h-4 5xl:w-5 5xl:h-5 flex items-center justify-center text-white;
 }
