@@ -364,26 +364,23 @@ function send_feline_publish_notification($new_status, $old_status, $post)
     return;
   }
 
-  // Get post details for the email content
-  $post_title = get_the_title($post->ID);
-  $post_permalink = get_permalink($post->ID);
-
   // Email Subject
   $subject = 'It’s Official – Your Cat is Gallery-Ready!';
 
-  // Email Body
-  $body = "<strong>It’s Official – Your Cat is Gallery-Ready!</strong>\n\n";
-  $body .= "Cue the confetti and catnip – your marvellous moggie has been approved and is now strutting their stuff in our <strong>Purrfect Pin Up Contestant Gallery!</strong>\n\n";
-  $body .= "Now it’s time to rally the troops.\n\n";
-  $body .= "Share your cat’s profile far and wide – friends, family, neighbours, co-workers, even that barista who always draws a paw print on your coffee.\n\n";
-  $body .= "Because every vote counts… and the <strong>top 10 cats with the most votes</strong> will land a spot in the 2026 CPSV Calendar, with 2 more chosen as our <strong>CPSV Choice!</strong>\n\n";
-  $body .= "Ready, set… VOTE!\n\n";
-  $body .= "You can view your cat's profile and share it from here: https://catprotection.com.au/purrfect-pin-up/?cat=" . $post->post_name . "
+  // Email Body (Updated to use proper HTML tags for spacing)
+  $body = "<p><strong>It’s Official – Your Cat is Gallery-Ready!</strong></p>";
+  $body .= "<p>Cue the confetti and catnip – your marvellous moggie has been approved and is now strutting their stuff in our <strong>Purrfect Pin Up Contestant Gallery!</strong></p>";
+  $body .= "<p>Now it’s time to rally the troops.</p>";
+  $body .= "<p>Share your cat’s profile far and wide – friends, family, neighbours, co-workers, even that barista who always draws a paw print on your coffee.</p>";
+  $body .= "<p>Because every vote counts… and the <strong>top 10 cats with the most votes</strong> will land a spot in the 2027 CPSV Calendar, with 2 more chosen as our <strong>CPSV Choice!</strong></p>";
+  $body .= "<p>Ready, set… VOTE!</p>";
+  
+  // Added an anchor tag to make the link clickable in the HTML email
+  $link = "https://catprotection.com.au/purrfect-pin-up/?cat=" . $post->post_name;
+  $body .= "<p>You can view your cat's profile and share it from here: <a href='" . $link . "'>" . $link . "</a></p>";
 
-";
-
-  // To send HTML email, you can set the Content-Type header.
-  $headers = array('Content-Type: text/plain; charset=UTF-8');
+  // CORRECTED: Set the header to text/html
+  $headers = array('Content-Type: text/html; charset=UTF-8');
 
   // Send the email
   wp_mail($recipient_email, $subject, $body, $headers);
