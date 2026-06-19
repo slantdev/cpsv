@@ -187,8 +187,8 @@ if ($card_background_color) {
   <?php if ($popup_headline && $popup_description) : ?>
     <div id="vote-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center px-4">
       <div class="relative bg-white rounded-lg shadow-lg p-8 max-w-screen-sm w-full">
-        <h3 class="text-2xl font-bold mb-4 text-primary-text lg:text-3xl"><?php echo esc_html($popup_headline); ?></h3>
-        <div class="mb-6 text-secondary-text"><?php echo wp_kses_post($popup_description); ?></div>
+        <h3 class="text-2xl font-bold mb-4 text-primary-text lg:text-3xl pr-12"><?php echo esc_html($popup_headline); ?></h3>
+        <div class="mb-6 text-secondary-text prose"><?php echo wp_kses_post($popup_description); ?></div>
         <?php if ($popup_button_link) : ?>
           <a class="btn btn-lg btn-primary" href="<?php echo $popup_button_link ?>" target="<?php echo $popup_button_target ?>"><?php echo $popup_button_title ?></a>
         <?php endif; ?>
